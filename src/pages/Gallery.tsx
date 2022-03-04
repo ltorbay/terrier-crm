@@ -1,17 +1,18 @@
 import {Box, ImageList, ImageListItem} from "@mui/material";
 import {Image} from "../model/Image";
+import * as images from "../assets/index";
 
 export default function Gallery() {
     const galleryImages: Image[] = [
-        new Image("assets/pictures/aerial_view.jpeg", "Aerial view"),
-        new Image("assets/pictures/pool.jpg", "Pool"),
-        new Image("assets/pictures/bay_view.jpeg", "Bay view"),
-        new Image("assets/pictures/pool_view.jpeg", "Pool view"),
-        new Image("assets/pictures/salon.jpeg", "Salon"),
-        new Image("assets/pictures/kitchen.jpg", "First kitchen"),
-        new Image("assets/pictures/salon_inside.jpeg", "Inside the salon"),
-        new Image("assets/pictures/terrace.jpeg", "Terrace"),
-        new Image("assets/pictures/well.jpeg", "Well"),
+        new Image(images.AerialView, "Aerial view"),
+        new Image(images.Pool, "Pool"),
+        new Image(images.BayView, "Bay view"),
+        new Image(images.PoolView, "Pool view"),
+        new Image(images.Salon, "Salon"),
+        new Image(images.Kitchen, "First kitchen"),
+        new Image(images.SalonInside, "Inside the salon"),
+        new Image(images.Terrace, "Terrace"),
+        new Image(images.Well, "Well"),
     ]
 
     return (

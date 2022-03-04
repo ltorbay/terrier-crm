@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import {HomeButton} from "./HomeButton";
 import {Pages} from "../pages/Pages";
-import {NavLink} from "react-router-dom";
+import {Link} from "@mui/material";
 
 const NavigationBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -57,12 +57,12 @@ const NavigationBar = () => {
                                   display: {xs: 'block', md: 'none'},
                               }}>
                             {Pages.map((page) => (
-                                <NavLink to={page.path} style={{textDecoration: 'none', color: 'black', display: 'flex'}}>
+                                <Link href={page.path} style={{textDecoration: 'none', color: 'black', display: 'flex'}}>
                                     <MenuItem key={page.key}
                                               onClick={handleCloseNavMenu}>
                                         <Typography textAlign="center">{page.key}</Typography>
                                     </MenuItem>
-                                </NavLink>
+                                </Link>
                             ))}
                         </Menu>
                     </Box>

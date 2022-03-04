@@ -6,7 +6,6 @@ import {Pages} from "./pages/Pages";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {brown} from "@mui/material/colors";
 
-
 const theme = createTheme({
     palette: {
         primary: {
