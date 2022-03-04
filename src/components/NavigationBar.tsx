@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import {HomeButton} from "./HomeButton";
 import {Pages} from "../pages/Pages";
+import {NavLink} from "react-router-dom";
 
 const NavigationBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -30,6 +31,15 @@ const NavigationBar = () => {
                 <Toolbar disableGutters>
                     <HomeButton/>
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit">
+                            <MenuIcon/>
+                        </IconButton>
                         <Menu id="menu-appbar"
                               anchorEl={anchorElNav}
                               anchorOrigin={{
@@ -47,9 +57,12 @@ const NavigationBar = () => {
                                   display: {xs: 'block', md: 'none'},
                               }}>
                             {Pages.map((page) => (
-                                <MenuItem key={page.key} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page.key}</Typography>
-                                </MenuItem>
+                                <NavLink to={page.path} style={{textDecoration: 'none', color: 'black', display: 'flex'}}>
+                                    <MenuItem key={page.key}
+                                              onClick={handleCloseNavMenu}>
+                                        <Typography textAlign="center">{page.key}</Typography>
+                                    </MenuItem>
+                                </NavLink>
                             ))}
                         </Menu>
                     </Box>

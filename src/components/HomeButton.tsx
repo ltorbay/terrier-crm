@@ -4,19 +4,12 @@ import {PagesMap} from "../pages/Pages";
 
 export function HomeButton() {
     const home = PagesMap.get("home");
-    return home ?
-        <Button
-            key={home.key}
-            href={home.path}
-            startIcon={<img src={"assets/Logo.png"}
-                            width="25%"
-                            height="auto"
-                            alt={home.key}
-                            loading="lazy"/>}>
-        </Button>
-        : <img src={"assets/Logo.png"}
-               width="25%"
-               height="auto"
-               alt="Home"
-               loading="lazy"/>
+    return <Button key={home?.key || "home"}
+                   href={home?.path || undefined}
+                   startIcon={<img src={"assets/Logo.png"}
+                                   width="100vw"
+                                   height="auto"
+                                   alt={home?.key || "home"}
+                                   loading="lazy"/>}>
+    </Button>;
 }
