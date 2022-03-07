@@ -20,13 +20,11 @@ function App() {
             <header>
                 <NavigationBar/>
             </header>
-            <body>
             <Routes>
                 {Pages.map((page) => (
                     <Route key={page.key} path={page.path} element={page.element}/>
                 ))}
             </Routes>
-            </body>
         </ThemeProvider>
     );
 }

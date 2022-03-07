@@ -57,9 +57,8 @@ const NavigationBar = () => {
                                   display: {xs: 'block', md: 'none'},
                               }}>
                             {Pages.map((page) => (
-                                <Link href={page.path} style={{textDecoration: 'none', color: 'black', display: 'flex'}}>
-                                    <MenuItem key={page.key}
-                                              onClick={handleCloseNavMenu}>
+                                <Link key={page.key} href={page.path} style={{textDecoration: 'none', color: 'black', display: 'flex'}}>
+                                    <MenuItem onClick={handleCloseNavMenu}>
                                         <Typography textAlign="center">{page.key}</Typography>
                                     </MenuItem>
                                 </Link>
