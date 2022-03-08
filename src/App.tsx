@@ -10,6 +10,9 @@ const theme = createTheme({
     palette: {
         primary: {
             main: brown[200],
+            light: brown[100],
+            dark: brown[900],
+            contrastText: brown.A400
         },
     },
 });
