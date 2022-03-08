@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import {HomeButton} from "./HomeButton";
 import {Pages} from "../pages/Pages";
 import {Link} from "@mui/material";
+import {LocaleSelector} from "./LocaleSelector";
 
 const NavigationBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -76,6 +77,7 @@ const NavigationBar = () => {
                             </Button>
                         ))}
                     </Box>
+                    <LocaleSelector/>
                 </Toolbar>
             </Container>
         </AppBar>
