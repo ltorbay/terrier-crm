@@ -18,11 +18,11 @@ class Page {
 }
 
 export const Pages = [
-    new Page("home", "/", <Home/>),
-    new Page("gallery", "/gallery", <Gallery/>),
-    new Page("services", "/services", <Services/>),
-    new Page("prices", "/prices", <Prices/>),
-    new Page("booking", "/booking", <Booking/>),
+    new Page("pages.home.label", "/", <Home/>),
+    new Page("pages.gallery.label", "/gallery", <Gallery/>),
+    new Page("pages.services.label", "/services", <Services/>),
+    new Page("pages.prices.label", "/prices", <Prices/>),
+    new Page("pages.booking.label", "/booking", <Booking/>),
 ]
 
 export const PagesMap = new Map(Pages.map(page => [page.key, page]));

@@ -14,9 +14,11 @@ import {HomeButton} from "./HomeButton";
 import {Pages} from "../pages/Pages";
 import {Link} from "@mui/material";
 import {LocaleSelector} from "./LocaleSelector";
+import {useTranslation} from "react-i18next";
 
 const NavigationBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+    const {t} = useTranslation();
 
     const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -58,7 +60,8 @@ const NavigationBar = () => {
                                   display: {xs: 'block', md: 'none'},
                               }}>
                             {Pages.map((page) => (
-                                <Link key={page.key} href={page.path} style={{textDecoration: 'none', color: 'black', display: 'flex'}}>
+                                <Link key={page.key} href={page.path}
+                                      style={{textDecoration: 'none', color: 'black', display: 'flex'}}>
                                     <MenuItem onClick={handleCloseNavMenu}>
                                         <Typography textAlign="center">{page.key}</Typography>
                                     </MenuItem>
@@ -73,7 +76,7 @@ const NavigationBar = () => {
                                 href={page.path}
                                 onClick={handleCloseNavMenu}
                                 sx={{my: 2, color: 'white', display: 'block'}}>
-                                {page.key}
+                                {t(page.key)}
                             </Button>
                         ))}
                     </Box>

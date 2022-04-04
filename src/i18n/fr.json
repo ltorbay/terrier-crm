@@ -1,0 +1,29 @@
+{
+  "common": {
+    "nights_one": "{{count}} nuitée",
+    "nights_other": "{{count}} nuitées"
+  },
+  "pages": {
+    "home": {
+      "label": "accueil"
+    },
+    "gallery": {
+      "label": "galerie"
+    },
+    "services": {
+      "label": "services"
+    },
+    "prices": {
+      "label": "tarifs",
+      "peak-season": "Haute saison",
+      "off-season": "Basse saison",
+      "weekly-rental": "Location à la semaine",
+      "nightly-rental": "Location à la nuitée",
+      "weekend-rental": "Location au week-end",
+      "price-per-night": "tarif à la nuitée avec un minimum de deux nuits"
+    },
+    "booking": {
+      "label": "réservation"
+    }
+  }
+}

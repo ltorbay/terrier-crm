@@ -1,26 +1,30 @@
 import * as React from 'react';
 import {Container, Divider, List, ListItem, ListItemText, Typography,} from "@mui/material";
+import {useTranslation} from "react-i18next";
+import moment from "moment";
 
-function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-) {
-    return {name, calories, fat, carbs, protein};
-}
+const peakSeasonStart = moment("19700601", "YYYYMMDD");
+const peakSeasonEnd = moment("19700930", "YYYYMMDD");
 
 export default function Prices() {
+    const {t} = useTranslation();
+    const pageT = (key: string) => t("pages.prices." + key);
+    
     return (
         <Container maxWidth="lg">
             <List>
                 <ListItem alignItems="flex-start">
                     <ListItemText>
-                        <ListItemText primary="Peak season" secondary="01/06 - 30/09"/>
+                        <ListItemText primary={pageT("peak-season")}
+                                      secondary={
+                                          peakSeasonStart.format("DD/MM")
+                                          + " - "
+                                          + peakSeasonEnd.format("DD/MM")
+                                      }/>
                         <List>
                             <ListItem>
-                                <ListItemText primary="Weekly rental" secondary="7 nights"/>
+                                <ListItemText primary={pageT("weekly-rental")}
+                                              secondary={t("common.nights", {count: 7})}/>
                                 <Typography gutterBottom color="primary.dark" variant="h6" component="div">
                                     4000 €
                                 </Typography>
@@ -31,22 +35,29 @@ export default function Prices() {
                 <Divider/>
                 <ListItem alignItems="flex-start">
                     <ListItemText>
-                        <ListItemText primary="Off season" secondary="01/10 - 31/05"/>
+                        <ListItemText primary={pageT("off-season")}
+                                      secondary={
+                                          peakSeasonEnd.clone().add(1, "days").format("DD/MM")
+                                          + " - "
+                                          + peakSeasonStart.clone().subtract(1, "days").format("DD/MM")
+                                      }/>
                         <List>
                             <ListItem>
-                                <ListItemText primary="Weekly rental" secondary="7 nights"/>
+                                <ListItemText primary={pageT("weekly-rental")}
+                                              secondary={t("common.nights", {count: 7})}/>
                                 <Typography gutterBottom color="primary.dark" variant="h6" component="div">
                                     2000 €
                                 </Typography>
                             </ListItem>
                             <ListItem>
-                                <ListItemText primary="Weekend rental" secondary="2 nights"/>
+                                <ListItemText primary={pageT("weekend-rental")}
+                                              secondary={t("common.nights", {count: 2})}/>
                                 <Typography gutterBottom color="primary.dark" variant="h6" component="div">
                                     1100 €
                                 </Typography>
                             </ListItem>
                             <ListItem>
-                                <ListItemText primary="Nightly rental" secondary="price per night with a minimum of 2 nights"/>
+                                <ListItemText primary={pageT("nightly-rental")} secondary={pageT("price-per-night")}/>
                                 <Typography gutterBottom color="primary.dark" variant="h6" component="div">
                                     320 €
                                 </Typography>
