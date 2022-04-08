@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Container, Divider, List, ListItem, ListItemText, Typography,} from "@mui/material";
 import {useTranslation} from "react-i18next";
-import moment from "moment";
 import {PEAK_SEASON_END, PEAK_SEASON_START} from "../const/constants";
 
 export default function Prices() {
@@ -13,7 +12,7 @@ export default function Prices() {
             <List>
                 <ListItem alignItems="flex-start">
                     <ListItemText>
-                        <ListItemText primary={pageT("peak-season")}
+                        <ListItemText primary={t("common.peak-season")}
                                       secondary={
                                           PEAK_SEASON_START.format("DD/MM")
                                           + " - "

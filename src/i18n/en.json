@@ -1,7 +1,8 @@
 {
   "common": {
     "nights_one": "{{count}} night",
-    "nights_other": "{{count}} nights"
+    "nights_other": "{{count}} nights",
+    "peak-season": "Peak season"
   },
   "pages": {
     "home": {
@@ -15,7 +16,6 @@
     },
     "prices": {
       "label": "prices",
-      "peak-season": "Peak season",
       "off-season": "Off season",
       "weekly-rental": "Weekly rental",
       "nightly-rental": "Nightly rental",

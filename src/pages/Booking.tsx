@@ -8,7 +8,7 @@ export default function Booking() {
     return (
         <Container maxWidth="sm">
             <FormGroup>
-                <BookingDateRange reservedDates={[moment().add(15, "days").format("YYYYMMDD")]}
+                <BookingDateRange reservedDates={[moment().add(25, "days")]}
                                   onChange={handleSelect}/>
             </FormGroup>
         </Container>
