@@ -2,9 +2,7 @@ import * as React from 'react';
 import {Container, Divider, List, ListItem, ListItemText, Typography,} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import moment from "moment";
-
-const peakSeasonStart = moment("19700601", "YYYYMMDD");
-const peakSeasonEnd = moment("19700930", "YYYYMMDD");
+import {PEAK_SEASON_END, PEAK_SEASON_START} from "../const/constants";
 
 export default function Prices() {
     const {t} = useTranslation();
@@ -17,9 +15,9 @@ export default function Prices() {
                     <ListItemText>
                         <ListItemText primary={pageT("peak-season")}
                                       secondary={
-                                          peakSeasonStart.format("DD/MM")
+                                          PEAK_SEASON_START.format("DD/MM")
                                           + " - "
-                                          + peakSeasonEnd.format("DD/MM")
+                                          + PEAK_SEASON_END.format("DD/MM")
                                       }/>
                         <List>
                             <ListItem>
@@ -37,9 +35,9 @@ export default function Prices() {
                     <ListItemText>
                         <ListItemText primary={pageT("off-season")}
                                       secondary={
-                                          peakSeasonEnd.clone().add(1, "days").format("DD/MM")
+                                          PEAK_SEASON_END.clone().add(1, "days").format("DD/MM")
                                           + " - "
-                                          + peakSeasonStart.clone().subtract(1, "days").format("DD/MM")
+                                          + PEAK_SEASON_START.clone().subtract(1, "days").format("DD/MM")
                                       }/>
                         <List>
                             <ListItem>

@@ -6,6 +6,14 @@ import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 import './i18n';
 
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+const Moment = require('moment');
+const MomentRange = require('moment-range');
+
+const moment = MomentRange.extendMoment(Moment);
+export default moment;
+
 ReactDOM.render(
     <BrowserRouter>
         <App/>
