@@ -2,7 +2,8 @@
   "common": {
     "nights_one": "{{count}} nuitée",
     "nights_other": "{{count}} nuitées",
-      "peak-season": "Haute saison"
+    "off-season": "Basse saison",
+    "peak-season": "Haute saison"
   },
   "pages": {
     "home": {
@@ -16,7 +17,6 @@
     },
     "prices": {
       "label": "tarifs",
-      "off-season": "Basse saison",
       "weekly-rental": "Location à la semaine",
       "nightly-rental": "Location à la nuitée",
       "weekend-rental": "Location au week-end",

@@ -2,6 +2,7 @@
   "common": {
     "nights_one": "{{count}} night",
     "nights_other": "{{count}} nights",
+    "off-season": "Off season",
     "peak-season": "Peak season"
   },
   "pages": {
@@ -16,7 +17,6 @@
     },
     "prices": {
       "label": "prices",
-      "off-season": "Off season",
       "weekly-rental": "Weekly rental",
       "nightly-rental": "Nightly rental",
       "weekend-rental": "Weekend rental",

@@ -1,7 +1,7 @@
 import {Container, FormGroup} from "@mui/material";
-import {BookingDateRange} from "../components/BookingDateRange";
 import moment from "moment";
 import {BookingSelection} from "../model/BookingSelection";
+import BookingDateRange from "../components/BookingDateRange";
 
 export default function Booking() {
     moment({ month: 0, day: 3, hour:15, minute:10 });

@@ -32,7 +32,7 @@ export default function Prices() {
                 <Divider/>
                 <ListItem alignItems="flex-start">
                     <ListItemText>
-                        <ListItemText primary={pageT("off-season")}
+                        <ListItemText primary={t("common.off-season")}
                                       secondary={
                                           PEAK_SEASON_END.clone().add(1, "days").format("DD/MM")
                                           + " - "

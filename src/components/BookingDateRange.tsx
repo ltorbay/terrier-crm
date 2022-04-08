@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // @ts-ignore
 import {fr} from "react-date-range/src/locale";
 import {Moment} from "moment";
@@ -31,136 +31,96 @@ class State {
     }
 }
 
-export class BookingDateRange extends React.Component<Props, State> {
-    firstAvailableDateStart: Moment;
-    firstAvailableDateEnd: Moment;
+export default function BookingDateRange(props: Props) {
+    const {t} = useTranslation();
 
-    constructor(props: Props) {
-        super(props);
-        this.handleSelect = this.handleSelect.bind(this);
-        this.enabledDay = this.enabledDay.bind(this);
-        this.firstReservedDate = this.firstReservedDate.bind(this);
-        this.customDayContent = this.customDayContent.bind(this);
+    // TODO find the first non reserved date allowing a big enough range, depends on season !
+    const firstAvailableDateStart = moment()
+        .add(6, "days")
+        .startOf("week");
+    const firstAvailableDateEnd = firstAvailableDateStart
+        .clone()
+        .add(6, "days");
+    const [state, setState] = useState<State>(new State(moment.range(firstAvailableDateStart, firstAvailableDateEnd)));
 
-        // TODO find the first non reserved date allowing a big enough range
-        // And find another way of calculating season start/ends => find next occurrence of the month/day specified ?
-        this.firstAvailableDateStart = moment()
-            .add(6, "days")
-            .startOf("week");
-        this.firstAvailableDateEnd = this.firstAvailableDateStart
-            .clone()
-            .add(6, "days");
+    const content = (day: Date) => (<span>{moment(day).format("DD")}</span>);
+    const customDayContent = (day: Date) => isPeakSeason(day.getDate(), day.getMonth()) ? (
+        <Tooltip title={t("common.peak-season") || "Peak season"}>
+            {content(day)}
+        </Tooltip>
+    ) : (
+        <Tooltip title={t("common.off-season") || "Off season"}>
+            <i>
+                {content(day)}
+            </i>
+        </Tooltip>
+    );
 
-        this.state = new State(moment.range(this.firstAvailableDateStart, this.firstAvailableDateEnd));
-    }
+    // TODO cleanly handle locale mapping to react-date-range locale object
+    return (
+        <DateRange ranges={[{
+            key: "selection",
+            startDate: state.period.start.toDate(),
+            endDate: state.period.end.toDate()
+        }]}
+                   onChange={days => handleSelect(days, props.onChange, state, setState)}
+                   disabledDay={date => !enabledDay(moment(date), props, state)}
+                   minDate={firstAvailableDateStart.toDate()}
+                   maxDate={state.selectingStart ? undefined : firstReservedDate(state.period.start, props)?.toDate()}
+                   dayContentRenderer={customDayContent}
+                   preventSnapRefocus={true}
+                   moveRangeOnFirstSelection={true}
+                   months={2}
+                   direction="horizontal"
+                   weekStartsOn={0}
+                   locale={fr}/>
+    );
+}
 
-    handleSelect(dates: any) {
-        if (this.state.selectingStart) {
-            if (this.isPeakSeason(this.state.period.start.date(), this.state.period.start.month())) {
-                let startDate = moment(dates.selection.startDate)
-                    .startOf("week");
-                dates.selection.startDate = startDate.toDate();
-                dates.selection.endDate = startDate.clone().add(6, "days").toDate();
-            } else {
-                dates.selection.endDate = moment(dates.selection.startDate).add(2, "days").toDate();
-            }
+function handleSelect(dates: any, onChange: (arg: BookingSelection) => void, state: State, setState: React.Dispatch<any>) {
+    if (state.selectingStart) {
+        if (isPeakSeason(state.period.start.date(), state.period.start.month())) {
+            let startDate = moment(dates.selection.startDate)
+                .startOf("week");
+            dates.selection.startDate = startDate.toDate();
+            dates.selection.endDate = startDate.clone().add(6, "days").toDate();
+        } else {
+            dates.selection.endDate = moment(dates.selection.startDate).add(2, "days").toDate();
         }
-        let selectedRange = moment.range(dates.selection.startDate, dates.selection.endDate);
-        let selectingStart = !this.state.selectingStart;
-        this.setState({
-            period: selectedRange,
-            selectingStart: selectingStart
-        });
-
-        if (selectingStart) {
-            this.props.onChange(new BookingSelection(selectedRange))
-        }
     }
+    let selectedRange = moment.range(dates.selection.startDate, dates.selection.endDate);
+    let selectingStart = !state.selectingStart;
+    setState({
+        period: selectedRange,
+        selectingStart: selectingStart
+    });
 
-    enabledDay(date: Moment): boolean {
-
-        // TODO Handle differently if dates selected are in off season
-        // TODO handle correctly the switch between seasons -> allow reservations going over the period
-        // TODO also check with minDate -> better performance
-        // TODO include minimal periods in reserved dates check (from backend ?)
-        // FIXME does the include check work ?
-        return !this.props.reservedDates.some(d => d.isSame(date, "day"))
-            && (this.state.selectingStart || date.weekday() === 6);
+    if (selectingStart) {
+        onChange(new BookingSelection(selectedRange))
     }
+}
 
-    isPeakSeason(date: number, month: number) {
-        // This simplification only works if peak season does not contain year change, which I hope it never will...
-        let afterStart = month > PEAK_SEASON_START_JSON.month
-            || (month === PEAK_SEASON_START_JSON.month && date >= PEAK_SEASON_START_JSON.day);
-        let beforeEnd = month < PEAK_SEASON_END_JSON.month
-            || (month === PEAK_SEASON_END_JSON.month && date <= PEAK_SEASON_END_JSON.day);
-        return afterStart && beforeEnd;
-    }
+function enabledDay(date: Moment, props: Props, state: State): boolean {
+    // TODO Handle differently if date is in off season
+    // TODO handle correctly the switch between seasons -> allow reservations going over the period
+    // TODO also check with minDate -> better performance
+    // TODO include minimal periods in reserved dates check (from backend ?)
+    return !props.reservedDates.some(d => d.isSame(date, "day"))
+        && (state.selectingStart || date.weekday() === 6);
+}
 
-    firstReservedDate(after: Moment | undefined): Moment | undefined {
-        let sortedDates = this.props.reservedDates;
-        sortedDates.filter(m => !after || m.isAfter(after, "days"))
-            .sort((a, b) => a.unix() - b.unix());
-        return sortedDates[0] || undefined;
-    }
+function isPeakSeason(date: number, month: number) {
+    // This simplification only works if peak season does not contain year change, which I hope it never will...
+    let afterStart = month > PEAK_SEASON_START_JSON.month
+        || (month === PEAK_SEASON_START_JSON.month && date >= PEAK_SEASON_START_JSON.day);
+    let beforeEnd = month < PEAK_SEASON_END_JSON.month
+        || (month === PEAK_SEASON_END_JSON.month && date <= PEAK_SEASON_END_JSON.day);
+    return afterStart && beforeEnd;
+}
 
-    // customDayContent(day: Date) {
-    //     let momentDay = moment(day);
-    //     let extraDot = null;
-    //     if (this.isPeakSeason(day.getDate(), day.getMonth())) {
-    //         extraDot = (
-    //             <div
-    //                 style={{
-    //                     height: "5px",
-    //                     width: "5px",
-    //                     borderRadius: "100%",
-    //                     background: "orange",
-    //                     position: "absolute",
-    //                     top: 2,
-    //                     right: 2,
-    //                 }}
-    //             />
-    //         )
-    //     }
-    //     return (
-    //         <span style={{
-    //             background: this.isPeakSeason(day.getDate(), day.getMonth()) ? "orange" : "dark"
-    //         }}>{moment(day).format("DD")}</span>
-    //     )
-    // }
-
-    customDayContent(day: Date) {
-        const {t} = useTranslation();
-        return this.isPeakSeason(day.getDate(), day.getMonth()) ? (
-            <Tooltip title={t("common.peak-season") || "Peak season"}>
-                <strong>
-                    <span>{moment(day).format("DD")}</span>
-                </strong>
-            </Tooltip>
-        ) : (
-            <span>{moment(day).format("DD")}</span>
-        );
-    }
-
-    render() {
-        // TODO cleanly handle locale
-        return (
-            <DateRange ranges={[{
-                key: "selection",
-                startDate: this.state.period.start.toDate(),
-                endDate: this.state.period.end.toDate()
-            }]}
-                       onChange={this.handleSelect}
-                       disabledDay={date => !this.enabledDay(moment(date))}
-                       minDate={this.firstAvailableDateStart.toDate()}
-                       maxDate={this.state.selectingStart ? undefined : this.firstReservedDate(this.state.period.start)?.toDate()}
-                       dayContentRenderer={this.customDayContent}
-                       preventSnapRefocus={true}
-                       moveRangeOnFirstSelection={true}
-                       months={2}
-                       direction="horizontal"
-                       weekStartsOn={0}
-                       locale={fr}/>
-        );
-    }
+function firstReservedDate(after: Moment | undefined, props: Props): Moment | undefined {
+    let sortedDates = props.reservedDates;
+    sortedDates.filter(m => !after || m.isAfter(after, "days"))
+        .sort((a, b) => a.unix() - b.unix());
+    return sortedDates[0] || undefined;
 }
