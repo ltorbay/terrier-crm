@@ -8,10 +8,17 @@ import './i18n';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+import {START_OF_RESERVATION_WEEK} from "./const/constants";
 const Moment = require('moment');
 const MomentRange = require('moment-range');
 
 const moment = MomentRange.extendMoment(Moment);
+// TODO handle locale correctly
+moment.locale("fr", {
+    week: {
+        dow: START_OF_RESERVATION_WEEK
+    }
+});
 export default moment;
 
 ReactDOM.render(

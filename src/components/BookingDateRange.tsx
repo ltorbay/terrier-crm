@@ -7,9 +7,16 @@ import moment from "../index";
 import {DateRange as MomentRange} from "moment-range";
 import {DateRange} from "react-date-range";
 import {BookingSelection} from "../model/BookingSelection";
-import {PEAK_SEASON_END_JSON, PEAK_SEASON_START_JSON} from "../const/constants";
+import {
+    MIN_CONSECUTIVE_DAYS_OFF_SEASON,
+    MIN_CONSECUTIVE_DAYS_PEAK_SEASON,
+    PEAK_SEASON_END_JSON,
+    PEAK_SEASON_START_JSON,
+    START_OF_RESERVATION_WEEK
+} from "../const/constants";
 import {Tooltip} from "@mui/material";
 import {useTranslation} from "react-i18next";
+
 
 class Props {
     reservedDates: Moment[];
@@ -44,6 +51,7 @@ export default function BookingDateRange(props: Props) {
     const [state, setState] = useState<State>(new State(moment.range(firstAvailableDateStart, firstAvailableDateEnd)));
 
     const content = (day: Date) => (<span>{moment(day).format("DD")}</span>);
+    // TODO add visual separator between high and low season
     const customDayContent = (day: Date) => isPeakSeason(day.getDate(), day.getMonth()) ? (
         <Tooltip title={t("common.peak-season") || "Peak season"}>
             {content(day)}
@@ -64,49 +72,70 @@ export default function BookingDateRange(props: Props) {
             endDate: state.period.end.toDate()
         }]}
                    onChange={days => handleSelect(days, props.onChange, state, setState)}
+                   onRangeFocusChange={rangeFocus => onRangeFocusChange(rangeFocus, state, setState)}
+                   focusedRange={state.selectingStart ? [0, 0] : [0, 1]}
                    disabledDay={date => !enabledDay(moment(date), props, state)}
-                   minDate={firstAvailableDateStart.toDate()}
+                   minDate={getMinDate(state, firstAvailableDateStart).toDate()}
                    maxDate={state.selectingStart ? undefined : firstReservedDate(state.period.start, props)?.toDate()}
                    dayContentRenderer={customDayContent}
                    preventSnapRefocus={true}
-                   moveRangeOnFirstSelection={true}
+                   moveRangeOnFirstSelection={false}
                    months={2}
                    direction="horizontal"
-                   weekStartsOn={0}
+                   weekStartsOn={START_OF_RESERVATION_WEEK}
                    locale={fr}/>
     );
 }
 
-function handleSelect(dates: any, onChange: (arg: BookingSelection) => void, state: State, setState: React.Dispatch<any>) {
+function getMinDate(state: State, firstAvailableDateStart: moment.Moment): Moment {
     if (state.selectingStart) {
-        if (isPeakSeason(state.period.start.date(), state.period.start.month())) {
-            let startDate = moment(dates.selection.startDate)
-                .startOf("week");
-            dates.selection.startDate = startDate.toDate();
-            dates.selection.endDate = startDate.clone().add(6, "days").toDate();
-        } else {
-            dates.selection.endDate = moment(dates.selection.startDate).add(2, "days").toDate();
-        }
+        return firstAvailableDateStart;
+    } else {
+        const seasonMinDaysShift = isPeakSeason(state.period.start.date(), state.period.start.month()) ?
+            MIN_CONSECUTIVE_DAYS_PEAK_SEASON - 1
+            : MIN_CONSECUTIVE_DAYS_OFF_SEASON - 1;
+        return state.period.start.clone().add(seasonMinDaysShift, "days");
     }
-    let selectedRange = moment.range(dates.selection.startDate, dates.selection.endDate);
-    let selectingStart = !state.selectingStart;
-    setState({
-        period: selectedRange,
-        selectingStart: selectingStart
-    });
+}
 
-    if (selectingStart) {
+function handleSelect(dates: any, onChange: (arg: BookingSelection) => void, state: State, setState: React.Dispatch<any>) {
+    let startMoment;
+    let endMoment;
+    if (state.selectingStart) {
+        startMoment = moment(dates.selection.startDate);
+        if (isPeakSeason(startMoment.date(), startMoment.month())) {
+            startMoment.startOf("week");
+            endMoment = startMoment.clone().add(6, "days");
+        } else {
+            endMoment = startMoment.clone().add(2, "days");
+        }
+    } else {
+        startMoment = state.period.start;
+        endMoment = moment(dates.selection.endDate)
+    }
+    
+    let selectedRange = moment.range(startMoment, endMoment);
+    setState((prevState: State) => ({
+        period: selectedRange,
+        selectingStart: prevState.selectingStart
+    }));
+
+    if (!state.selectingStart) {
         onChange(new BookingSelection(selectedRange))
     }
 }
 
+function onRangeFocusChange(rangeFocus: number[], state: State, setState: React.Dispatch<any>) {
+    // Range focus is the following : [date selection index(0 if single period), 0/1 (period start/end)]
+    setState((prevState: State) => ({
+        period: prevState.period,
+        selectingStart: rangeFocus[1] === 0
+    }))
+}
+
 function enabledDay(date: Moment, props: Props, state: State): boolean {
-    // TODO Handle differently if date is in off season
-    // TODO handle correctly the switch between seasons -> allow reservations going over the period
-    // TODO also check with minDate -> better performance
-    // TODO include minimal periods in reserved dates check (from backend ?)
     return !props.reservedDates.some(d => d.isSame(date, "day"))
-        && (state.selectingStart || date.weekday() === 6);
+        && (state.selectingStart || (isPeakSeason(date.date(), date.month()) ? date.weekday() === 6 : true));
 }
 
 function isPeakSeason(date: number, month: number) {
@@ -120,7 +149,6 @@ function isPeakSeason(date: number, month: number) {
 
 function firstReservedDate(after: Moment | undefined, props: Props): Moment | undefined {
     let sortedDates = props.reservedDates;
-    sortedDates.filter(m => !after || m.isAfter(after, "days"))
-        .sort((a, b) => a.unix() - b.unix());
-    return sortedDates[0] || undefined;
+    return sortedDates.filter(m => m.isAfter(after, "days"))
+        .sort((a, b) => a.unix() - b.unix())[0] || undefined;
 }
