@@ -101,7 +101,6 @@ function customDayContent(date: Moment, props: Props, state: State, firstAvailab
         && (!peakSeason || (false !== firstReservedDate(state.period.start, props)?.isAfter(date, "day")
             && getMinDate(state, firstAvailableDateStart).isBefore(date, "day")))) {
         let consecutiveDays = peakSeason ? MIN_CONSECUTIVE_DAYS_PEAK_SEASON : MIN_CONSECUTIVE_DAYS_OFF_SEASON - 1;
-        console.log(consecutiveDays);
         return (
             <Tooltip
                 title={peakSeason ?
@@ -185,7 +184,6 @@ function getDayState(date: Moment, props: Props, state: State): DayState {
         if (state.selectingStart || date.weekday() === 6) {
             return DayState.Enabled;
         }
-        console.log(date.format("DD/MM") + " is grayed")
         return DayState.Grayed;
     }
 
