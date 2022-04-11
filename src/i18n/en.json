@@ -3,7 +3,8 @@
     "nights_one": "{{count}} night",
     "nights_other": "{{count}} nights",
     "off-season": "Off season",
-    "peak-season": "Peak season"
+    "peak-season": "Peak season",
+    "minimum-nights": "{{count}} nights minimum"
   },
   "pages": {
     "home": {

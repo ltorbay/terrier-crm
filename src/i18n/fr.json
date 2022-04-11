@@ -3,7 +3,8 @@
     "nights_one": "{{count}} nuitée",
     "nights_other": "{{count}} nuitées",
     "off-season": "Basse saison",
-    "peak-season": "Haute saison"
+    "peak-season": "Haute saison",
+    "minimum-nights": "{{count}} nuits minimum"
   },
   "pages": {
     "home": {

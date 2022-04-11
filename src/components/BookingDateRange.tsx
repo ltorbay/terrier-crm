@@ -17,6 +17,8 @@ import {
 } from "../const/constants";
 import {Language} from "../model/Locale";
 import i18n from "../i18n";
+import {Tooltip} from "@mui/material";
+import {useTranslation} from "react-i18next";
 
 const DAY_STATE_CACHE: Record<string, DayState> = {};
 
@@ -61,6 +63,7 @@ class State {
 }
 
 export default function BookingDateRange(props: Props) {
+    const {t} = useTranslation();
     const firstAvailableDateStart = moment()
         .add(6, "days")
         .startOf("week");
@@ -81,7 +84,7 @@ export default function BookingDateRange(props: Props) {
                    disabledDay={date => cachedDayState(moment(date), props, state) !== DayState.Enabled && !state.period.contains(date)}
                    minDate={getMinDate(state, firstAvailableDateStart).toDate()}
                    maxDate={state.selectingStart ? undefined : firstReservedDate(state.period.start, props)?.toDate()}
-                   dayContentRenderer={date => customDayContent(moment(date), props, state)}
+                   dayContentRenderer={date => customDayContent(moment(date), props, state, t)}
                    preventSnapRefocus={true}
                    moveRangeOnFirstSelection={false}
                    months={2}
@@ -91,11 +94,23 @@ export default function BookingDateRange(props: Props) {
     );
 }
 
-function customDayContent(date: Moment, props: Props, state: State): React.ReactNode {
-    let grayedDate = (cachedDayState(date, props, state) === DayState.Grayed
-        && !state.period.contains(date)) ? "grayedDate" : undefined;
-    
-    return <span className={grayedDate}>{date.format("DD")}</span>;
+function customDayContent(date: Moment, props: Props, state: State, t: any): React.ReactNode {
+    let grayedDate = cachedDayState(date, props, state) === DayState.Grayed
+        && !state.period.contains(date);
+
+    let cssClass = grayedDate ? "grayedDate" : undefined;
+
+    if (cachedDayState(date, props, state) === DayState.Grayed
+        && !state.period.contains(date)) {
+        let consecutiveDays = (isPeakSeason(date.date(), date.month()) ? MIN_CONSECUTIVE_DAYS_PEAK_SEASON : MIN_CONSECUTIVE_DAYS_OFF_SEASON) - 1;
+        return (
+            <Tooltip title={t("common.minimum-nights", {count: consecutiveDays}) || `${consecutiveDays} nights minimum`}>
+                <span className="grayedDate">{date.format("DD")}</span>
+            </Tooltip>
+        );
+    }
+
+    return <span className={cssClass}>{date.format("DD")}</span>;
 }
 
 function getMinDate(state: State, firstAvailableDateStart: moment.Moment): Moment {
@@ -147,7 +162,7 @@ function onRangeFocusChange(rangeFocus: number[], state: State, setState: React.
 function cachedDayState(date: Moment, props: Props, state: State): DayState {
     let key = new DayStateKey(date, state.selectingStart).toString();
     let value = DAY_STATE_CACHE[key];
-    if (value) return value;
+    if (value !== undefined) return value;
 
     value = getDayState(date, props, state);
     DAY_STATE_CACHE[key] = value;

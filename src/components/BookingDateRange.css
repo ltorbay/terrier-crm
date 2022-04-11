@@ -1,4 +1,5 @@
 .rdrDayDisabled .rdrDayNumber .grayedDate {
     width: 100%;
     background-color: white;
+    color: black;
 }
