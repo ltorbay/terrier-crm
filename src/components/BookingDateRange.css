@@ -1,5 +1,13 @@
-.rdrDayDisabled .rdrDayNumber .grayedDate {
+.rdrDayDisabled:not(.rdrDayPassive) .rdrDayNumber .grayedDate {
     width: 100%;
     background-color: white;
     color: black;
+}
+
+.rdrDayPassive span.rdrDayNumber {
+    display: none;
+}
+
+.rdrDayPassive {
+    background-color: transparent !important;
 }

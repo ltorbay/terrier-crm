@@ -4,7 +4,8 @@
     "nights_other": "{{count}} nights",
     "off-season": "Off season",
     "peak-season": "Peak season",
-    "minimum-nights": "{{count}} nights minimum"
+    "minimum-nights": "{{count}} nights minimum",
+    "weekly-rental": "Weekly rental only"
   },
   "pages": {
     "home": {

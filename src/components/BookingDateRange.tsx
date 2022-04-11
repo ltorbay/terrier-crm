@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Moment} from "moment";
 import "./BookingDateRange.css";
 // @ts-ignore
-import {fr, enGB} from "react-date-range/src/locale";
+import {enGB, fr} from "react-date-range/src/locale";
 
 import moment from "../index";
 import {DateRange as MomentRange} from "moment-range";
@@ -84,7 +84,7 @@ export default function BookingDateRange(props: Props) {
                    disabledDay={date => cachedDayState(moment(date), props, state) !== DayState.Enabled && !state.period.contains(date)}
                    minDate={getMinDate(state, firstAvailableDateStart).toDate()}
                    maxDate={state.selectingStart ? undefined : firstReservedDate(state.period.start, props)?.toDate()}
-                   dayContentRenderer={date => customDayContent(moment(date), props, state, t)}
+                   dayContentRenderer={date => customDayContent(moment(date), props, state, firstAvailableDateStart, t)}
                    preventSnapRefocus={true}
                    moveRangeOnFirstSelection={false}
                    months={2}
@@ -94,23 +94,25 @@ export default function BookingDateRange(props: Props) {
     );
 }
 
-function customDayContent(date: Moment, props: Props, state: State, t: any): React.ReactNode {
-    let grayedDate = cachedDayState(date, props, state) === DayState.Grayed
-        && !state.period.contains(date);
-
-    let cssClass = grayedDate ? "grayedDate" : undefined;
-
+function customDayContent(date: Moment, props: Props, state: State, firstAvailableDateStart: Moment, t: any): React.ReactNode {
+    let peakSeason = isPeakSeason(date.date(), date.month());
     if (cachedDayState(date, props, state) === DayState.Grayed
-        && !state.period.contains(date)) {
-        let consecutiveDays = (isPeakSeason(date.date(), date.month()) ? MIN_CONSECUTIVE_DAYS_PEAK_SEASON : MIN_CONSECUTIVE_DAYS_OFF_SEASON) - 1;
+        && !state.period.contains(date)
+        && (!peakSeason || (false !== firstReservedDate(state.period.start, props)?.isAfter(date, "day")
+            && getMinDate(state, firstAvailableDateStart).isBefore(date, "day")))) {
+        let consecutiveDays = peakSeason ? MIN_CONSECUTIVE_DAYS_PEAK_SEASON : MIN_CONSECUTIVE_DAYS_OFF_SEASON - 1;
+        console.log(consecutiveDays);
         return (
-            <Tooltip title={t("common.minimum-nights", {count: consecutiveDays}) || `${consecutiveDays} nights minimum`}>
+            <Tooltip
+                title={peakSeason ?
+                    t("common.weekly-rental", {count: consecutiveDays}) 
+                    : t("common.minimum-nights", {count: consecutiveDays}) || `${consecutiveDays} nights minimum`}>
                 <span className="grayedDate">{date.format("DD")}</span>
             </Tooltip>
         );
     }
 
-    return <span className={cssClass}>{date.format("DD")}</span>;
+    return <span>{date.format("DD")}</span>;
 }
 
 function getMinDate(state: State, firstAvailableDateStart: moment.Moment): Moment {
@@ -137,7 +139,12 @@ function handleSelect(dates: any, onChange: (arg: BookingSelection) => void, sta
         }
     } else {
         startMoment = state.period.start;
-        endMoment = moment(dates.selection.endDate)
+        let selectedEnd = moment(dates.selection.endDate)
+        if (isPeakSeason(selectedEnd.date(), selectedEnd.month())) {
+            endMoment = selectedEnd.endOf("week");
+        } else {
+            endMoment = selectedEnd;
+        }
     }
 
     let selectedRange = moment.range(startMoment, endMoment);
@@ -178,6 +185,7 @@ function getDayState(date: Moment, props: Props, state: State): DayState {
         if (state.selectingStart || date.weekday() === 6) {
             return DayState.Enabled;
         }
+        console.log(date.format("DD/MM") + " is grayed")
         return DayState.Grayed;
     }
 
