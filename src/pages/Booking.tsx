@@ -2,9 +2,11 @@ import {Container, FormGroup} from "@mui/material";
 import moment from "moment";
 import {BookingSelection} from "../model/BookingSelection";
 import BookingDateRange from "../components/BookingDateRange";
+import BookingPayment from "../components/BookingPayment";
+import {useState} from "react";
 
 export default function Booking() {
-    moment({month: 0, day: 3, hour: 15, minute: 10});
+    const [state, setState] = useState<BookingSelection>();
     return (
         <Container maxWidth="sm">
             <FormGroup>
@@ -16,14 +18,9 @@ export default function Booking() {
                     moment({year: 2022, month: 5, day: 12}),
                     moment({year: 2022, month: 5, day: 13}),
                 ]}
-                                  onChange={handleSelect}/>
+                                  onChange={setState}/>
             </FormGroup>
+            {(state?.periods && state?.weekStarts) ? <BookingPayment periods={state?.periods || []} weekStarts={state?.weekStarts || []}/> : undefined}
         </Container>
     )
-}
-
-function handleSelect(dates: BookingSelection) {
-    console.log("------ handle select called -------");
-    dates.periods.forEach(range => console.log("Period start: " + range.start.format("DD/MM") + ", end: " + range.end.format("DD/MM")));
-    dates.weekStarts.forEach(m => console.log("Week start: " + m.format("DD/MM")));
 }

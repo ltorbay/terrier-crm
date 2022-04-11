@@ -10,3 +10,13 @@ export const PEAK_SEASON_END_JSON = {month: PEAK_SEASON_END.month(), day: PEAK_S
 export const MIN_CONSECUTIVE_DAYS_PEAK_SEASON=7;
 export const MIN_CONSECUTIVE_DAYS_OFF_SEASON=3;
 export const START_OF_RESERVATION_WEEK=6;
+
+export const PRICES = {
+    peakSeason: {
+        pricePerWeek: 4000
+    },
+    offSeason: {
+        pricePerWeek: 2000,
+        pricePerDay: 320
+    }
+}

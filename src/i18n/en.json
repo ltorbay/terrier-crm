@@ -7,25 +7,33 @@
     "minimum-nights": "{{count}} nights minimum",
     "weekly-rental": "Weekly rental only"
   },
+  "components": {
+    "booking-payment": {
+      "per-day_one": "Accomodation for {{count}} day:",
+      "per-day_other": "Accomodation for {{count}} days:",
+      "per-week_one": "Accomodation for {{count}} week:",
+      "per-week_other": "Accomodation for {{count}} weeks:"
+    }
+  },
   "pages": {
     "home": {
-      "label": "home"
+      "label": "Home"
     },
     "gallery": {
-      "label": "gallery"
+      "label": "Gallery"
     },
     "services": {
-      "label": "services"
+      "label": "Services"
     },
     "prices": {
-      "label": "prices",
+      "label": "Prices",
       "weekly-rental": "Weekly rental",
       "nightly-rental": "Nightly rental",
       "weekend-rental": "Weekend rental",
       "price-per-night": "price per night with a minimum of 2 nights"
     },
     "booking": {
-      "label": "booking"
+      "label": "Booking"
     }
   }
 }

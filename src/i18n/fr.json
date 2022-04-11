@@ -7,25 +7,33 @@
     "minimum-nights": "{{count}} nuits minimum",
     "weekly-rental": "Location à la semaine uniquement"
   },
+  "components": {
+    "booking-payment": {
+      "per-day_one": "Hébergement pour {{count}} jour :",
+      "per-day_other": "Hébergement pour {{count}} jours :",
+      "per-week_one": "Hébergement pour {{count}} semaine :",
+      "per-week_other": "Hébergement pour {{count}} semaines :"
+    }
+  },
   "pages": {
     "home": {
-      "label": "accueil"
+      "label": "Accueil"
     },
     "gallery": {
-      "label": "galerie"
+      "label": "Galerie"
     },
     "services": {
-      "label": "services"
+      "label": "Services"
     },
     "prices": {
-      "label": "tarifs",
+      "label": "Tarifs",
       "weekly-rental": "Location à la semaine",
       "nightly-rental": "Location à la nuitée",
       "weekend-rental": "Location au week-end",
       "price-per-night": "tarif à la nuitée avec un minimum de deux nuits"
     },
     "booking": {
-      "label": "réservation"
+      "label": "Réservation"
     }
   }
 }

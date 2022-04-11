@@ -11,14 +11,13 @@ import {BookingSelection} from "../model/BookingSelection";
 import {
     MIN_CONSECUTIVE_DAYS_OFF_SEASON,
     MIN_CONSECUTIVE_DAYS_PEAK_SEASON,
-    PEAK_SEASON_END_JSON,
-    PEAK_SEASON_START_JSON,
     START_OF_RESERVATION_WEEK
 } from "../const/constants";
 import {Language} from "../model/Locale";
 import i18n from "../i18n";
 import {Tooltip} from "@mui/material";
 import {useTranslation} from "react-i18next";
+import {isPeakSeason} from "../utils/CommonDatesCalculations";
 
 const DAY_STATE_CACHE: Record<string, DayState> = {};
 
@@ -194,15 +193,6 @@ function getDayState(date: Moment, props: Props, state: State): DayState {
         return DayState.Grayed;
     }
     return DayState.Enabled;
-}
-
-function isPeakSeason(date: number, month: number) {
-    // This simplification only works if peak season does not contain year change, which I hope it never will...
-    let afterStart = month > PEAK_SEASON_START_JSON.month
-        || (month === PEAK_SEASON_START_JSON.month && date >= PEAK_SEASON_START_JSON.day);
-    let beforeEnd = month < PEAK_SEASON_END_JSON.month
-        || (month === PEAK_SEASON_END_JSON.month && date <= PEAK_SEASON_END_JSON.day);
-    return afterStart && beforeEnd;
 }
 
 function firstReservedDate(after: Moment | undefined, props: Props): Moment | undefined {

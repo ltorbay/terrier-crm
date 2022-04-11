@@ -36,7 +36,7 @@ const NavigationBar = () => {
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
                             size="large"
-                            aria-label="account of current user"
+                            aria-label="menu"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
@@ -63,7 +63,7 @@ const NavigationBar = () => {
                                 <Link key={page.key} href={page.path}
                                       style={{textDecoration: 'none', color: 'black', display: 'flex'}}>
                                     <MenuItem onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{page.key}</Typography>
+                                        <Typography textAlign="center">{t(page.key)}</Typography>
                                     </MenuItem>
                                 </Link>
                             ))}
