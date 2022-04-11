@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-// @ts-ignore
-import {fr} from "react-date-range/src/locale";
 import {Moment} from "moment";
+import "./BookingDateRange.css";
+// @ts-ignore
+import {fr, enGB} from "react-date-range/src/locale";
 
 import moment from "../index";
 import {DateRange as MomentRange} from "moment-range";
@@ -14,9 +15,30 @@ import {
     PEAK_SEASON_START_JSON,
     START_OF_RESERVATION_WEEK
 } from "../const/constants";
-import {Tooltip} from "@mui/material";
-import {useTranslation} from "react-i18next";
+import {Language} from "../model/Locale";
+import i18n from "../i18n";
 
+const DAY_STATE_CACHE: Record<string, DayState> = {};
+
+enum DayState {
+    Enabled,
+    Grayed,
+    Disabled
+}
+
+class DayStateKey {
+    date: Moment;
+    selectingStart: boolean;
+
+    toString(): string {
+        return `${this.date.format("YYYYMMDD")}|${this.selectingStart}`;
+    }
+
+    constructor(date: Moment, selectingStart: boolean) {
+        this.date = date;
+        this.selectingStart = selectingStart;
+    }
+}
 
 class Props {
     reservedDates: Moment[];
@@ -39,9 +61,6 @@ class State {
 }
 
 export default function BookingDateRange(props: Props) {
-    const {t} = useTranslation();
-
-    // TODO find the first non reserved date allowing a big enough range, depends on season !
     const firstAvailableDateStart = moment()
         .add(6, "days")
         .startOf("week");
@@ -50,21 +69,6 @@ export default function BookingDateRange(props: Props) {
         .add(6, "days");
     const [state, setState] = useState<State>(new State(moment.range(firstAvailableDateStart, firstAvailableDateEnd)));
 
-    const content = (day: Date) => (<span>{moment(day).format("DD")}</span>);
-    // TODO add visual separator between high and low season
-    const customDayContent = (day: Date) => isPeakSeason(day.getDate(), day.getMonth()) ? (
-        <Tooltip title={t("common.peak-season") || "Peak season"}>
-            {content(day)}
-        </Tooltip>
-    ) : (
-        <Tooltip title={t("common.off-season") || "Off season"}>
-            <i>
-                {content(day)}
-            </i>
-        </Tooltip>
-    );
-
-    // TODO cleanly handle locale mapping to react-date-range locale object
     return (
         <DateRange ranges={[{
             key: "selection",
@@ -74,17 +78,24 @@ export default function BookingDateRange(props: Props) {
                    onChange={days => handleSelect(days, props.onChange, state, setState)}
                    onRangeFocusChange={rangeFocus => onRangeFocusChange(rangeFocus, state, setState)}
                    focusedRange={state.selectingStart ? [0, 0] : [0, 1]}
-                   disabledDay={date => !enabledDay(moment(date), props, state)}
+                   disabledDay={date => cachedDayState(moment(date), props, state) !== DayState.Enabled && !state.period.contains(date)}
                    minDate={getMinDate(state, firstAvailableDateStart).toDate()}
                    maxDate={state.selectingStart ? undefined : firstReservedDate(state.period.start, props)?.toDate()}
-                   dayContentRenderer={customDayContent}
+                   dayContentRenderer={date => customDayContent(moment(date), props, state)}
                    preventSnapRefocus={true}
                    moveRangeOnFirstSelection={false}
                    months={2}
                    direction="horizontal"
                    weekStartsOn={START_OF_RESERVATION_WEEK}
-                   locale={fr}/>
+                   locale={i18n.language === Language.FR.valueOf() ? fr : enGB}/>
     );
+}
+
+function customDayContent(date: Moment, props: Props, state: State): React.ReactNode {
+    let grayedDate = (cachedDayState(date, props, state) === DayState.Grayed
+        && !state.period.contains(date)) ? "grayedDate" : undefined;
+    
+    return <span className={grayedDate}>{date.format("DD")}</span>;
 }
 
 function getMinDate(state: State, firstAvailableDateStart: moment.Moment): Moment {
@@ -113,7 +124,7 @@ function handleSelect(dates: any, onChange: (arg: BookingSelection) => void, sta
         startMoment = state.period.start;
         endMoment = moment(dates.selection.endDate)
     }
-    
+
     let selectedRange = moment.range(startMoment, endMoment);
     setState((prevState: State) => ({
         period: selectedRange,
@@ -133,9 +144,35 @@ function onRangeFocusChange(rangeFocus: number[], state: State, setState: React.
     }))
 }
 
-function enabledDay(date: Moment, props: Props, state: State): boolean {
-    return !props.reservedDates.some(d => d.isSame(date, "day"))
-        && (state.selectingStart || (isPeakSeason(date.date(), date.month()) ? date.weekday() === 6 : true));
+function cachedDayState(date: Moment, props: Props, state: State): DayState {
+    let key = new DayStateKey(date, state.selectingStart).toString();
+    let value = DAY_STATE_CACHE[key];
+    if (value) return value;
+
+    value = getDayState(date, props, state);
+    DAY_STATE_CACHE[key] = value;
+    return value;
+}
+
+function getDayState(date: Moment, props: Props, state: State): DayState {
+    const peakSeason = isPeakSeason(date.date(), date.month());
+    if (peakSeason) {
+        if (props.reservedDates.some(d => d.isSame(date, "week"))) {
+            return DayState.Disabled;
+        }
+        if (state.selectingStart || date.weekday() === 6) {
+            return DayState.Enabled;
+        }
+        return DayState.Grayed;
+    }
+
+    if (props.reservedDates.some(d => d.isSame(date, "day"))) {
+        return DayState.Disabled;
+    }
+    if (state.selectingStart && (firstReservedDate(date, props)?.diff(date, "days", false) || 100) < MIN_CONSECUTIVE_DAYS_OFF_SEASON) {
+        return DayState.Grayed;
+    }
+    return DayState.Enabled;
 }
 
 function isPeakSeason(date: number, month: number) {
@@ -148,7 +185,6 @@ function isPeakSeason(date: number, month: number) {
 }
 
 function firstReservedDate(after: Moment | undefined, props: Props): Moment | undefined {
-    let sortedDates = props.reservedDates;
-    return sortedDates.filter(m => m.isAfter(after, "days"))
+    return props.reservedDates.filter(m => m.isAfter(after, "days"))
         .sort((a, b) => a.unix() - b.unix())[0] || undefined;
 }

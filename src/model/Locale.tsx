@@ -24,5 +24,3 @@ export const Locales = [
     new Locale(Language.FR, /^fr\b/, "Français", <Flags.FR title="Français"/>),
     new Locale(Language.EN, /^en\b/, "English", <Flags.GB title="English"/>),
 ]
-
-export const LocalesMap = new Map(Locales.map(locale => [locale.language.valueOf(), locale]));
