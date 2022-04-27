@@ -11,8 +11,8 @@
     "booking-payment": {
       "per-day_one": "Hébergement pour {{count}} jour :",
       "per-day_other": "Hébergement pour {{count}} jours :",
-      "per-week_one": "Hébergement pour {{count}} semaine :",
-      "per-week_other": "Hébergement pour {{count}} semaines :"
+      "per-week_one": "Hébergement pour {{count}} semaine complète :",
+      "per-week_other": "Hébergement pour {{count}} semaines complètes :"
     }
   },
   "pages": {

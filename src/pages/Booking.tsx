@@ -3,7 +3,7 @@ import moment from "moment";
 import {BookingSelection} from "../model/BookingSelection";
 import BookingDateRange from "../components/BookingDateRange";
 import BookingPayment from "../components/BookingPayment";
-import {useState} from "react";
+import React, {useState} from "react";
 
 export default function Booking() {
     const [state, setState] = useState<BookingSelection>();

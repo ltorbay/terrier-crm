@@ -19,9 +19,9 @@ export default function BookingPayment(props: BookingSelection) {
         <Card>
             <CardContent>
                 <List dense={true}>
-                    {priceLine(split.offSeasonDays, PRICES.offSeason.pricePerDay, false, "components.booking-payment.per-day", t)}
-                    {priceLine(split.offSeasonWeeks, PRICES.offSeason.pricePerWeek, false, "components.booking-payment.per-week", t)}
                     {priceLine(split.peakSeasonWeeks, PRICES.peakSeason.pricePerWeek, true, "components.booking-payment.per-week", t)}
+                    {priceLine(split.offSeasonWeeks, PRICES.offSeason.pricePerWeek, false, "components.booking-payment.per-week", t)}
+                    {priceLine(split.offSeasonDays, PRICES.offSeason.pricePerDay, false, "components.booking-payment.per-day", t)}
                     <Divider/>
                     <ListItem>
                         <ListItemText primary="Total"/>

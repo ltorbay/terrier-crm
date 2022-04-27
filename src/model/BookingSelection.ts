@@ -8,6 +8,12 @@ export class BookingSelection {
 
     constructor(period: MomentRange) {
         // TODO split into weekends remaining periods ? or do that in the backend ? or avoid having distinct price for weekends ?
+        if(period.duration("days") < 6) {
+            this.periods = [period];
+            this.weekStarts = [];
+            return;
+        }
+        
         let periods: MomentRange[] = [];
         let periodFirstWeekStart = period.start
             .clone()

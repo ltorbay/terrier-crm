@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
@@ -9,6 +8,8 @@ import './i18n';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import {START_OF_RESERVATION_WEEK} from "./const/constants";
+import {createRoot} from "react-dom/client";
+
 const Moment = require('moment');
 const MomentRange = require('moment-range');
 
@@ -21,11 +22,14 @@ moment.locale("fr", {
 });
 export default moment;
 
-ReactDOM.render(
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Failed to find the root element');
+const root = createRoot(rootElement);
+
+root.render(
     <BrowserRouter>
         <App/>
     </BrowserRouter>,
-    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

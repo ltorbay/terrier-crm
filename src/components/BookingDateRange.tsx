@@ -78,7 +78,7 @@ export default function BookingDateRange(props: Props) {
             endDate: state.period.end.toDate()
         }]}
                    onChange={days => handleSelect(days, props.onChange, state, setState)}
-                   onRangeFocusChange={rangeFocus => onRangeFocusChange(rangeFocus, state, setState)}
+                   onRangeFocusChange={rangeFocus => onRangeFocusChange(rangeFocus, setState)}
                    focusedRange={state.selectingStart ? [0, 0] : [0, 1]}
                    disabledDay={date => cachedDayState(moment(date), props, state) !== DayState.Enabled && !state.period.contains(date)}
                    minDate={getMinDate(state, firstAvailableDateStart).toDate()}
@@ -156,7 +156,7 @@ function handleSelect(dates: any, onChange: (arg: BookingSelection) => void, sta
     }
 }
 
-function onRangeFocusChange(rangeFocus: number[], state: State, setState: React.Dispatch<any>) {
+function onRangeFocusChange(rangeFocus: number[], setState: React.Dispatch<any>) {
     // Range focus is the following : [date selection index(0 if single period), 0/1 (period start/end)]
     setState((prevState: State) => ({
         period: prevState.period,

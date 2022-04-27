@@ -1,6 +1,7 @@
 import {Box, ImageList, ImageListItem} from "@mui/material";
 import {Image} from "../model/Image";
 import * as images from "../assets/index";
+import React from "react";
 
 export default function Gallery() {
     const galleryImages: Image[] = [
