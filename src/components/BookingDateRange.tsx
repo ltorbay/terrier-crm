@@ -42,6 +42,7 @@ class DayStateKey {
 }
 
 class Props {
+    // TODO handle selecting one or the other building
     reservedDates: Moment[];
     onChange: (arg: BookingSelection) => void;
 

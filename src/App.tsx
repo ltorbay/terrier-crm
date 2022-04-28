@@ -4,7 +4,7 @@ import NavigationBar from "./components/NavigationBar";
 import {Route, Routes} from "react-router-dom";
 import {Pages} from "./pages/Pages";
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import {brown} from "@mui/material/colors";
+import {brown, green} from "@mui/material/colors";
 
 const theme = createTheme({
     palette: {
@@ -14,6 +14,9 @@ const theme = createTheme({
             dark: brown[900],
             contrastText: brown.A400
         },
+        secondary: {
+            main: green[900]
+        }
     },
 });
 

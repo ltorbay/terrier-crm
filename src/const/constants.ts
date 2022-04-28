@@ -1,4 +1,5 @@
 import moment from "moment";
+import {LatLng} from "leaflet";
 
 // TODO all this should come from the backend and be available through redux
 export const PEAK_SEASON_START_STR = "0601";
@@ -20,3 +21,6 @@ export const PRICES = {
         pricePerDay: 320
     }
 }
+
+export const POSITION = new LatLng(45.139756772239814, 0.9903618727530135, 11);
+export const ADDRESS = "86 A La Placette, 24210 Fossemagne";
