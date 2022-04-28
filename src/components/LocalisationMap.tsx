@@ -4,7 +4,7 @@ import {Container, IconButton} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import 'leaflet/dist/leaflet.css';
 import "./LocalisationMap.css";
-import {divIcon, LatLng, point} from "leaflet";
+import {divIcon, point} from "leaflet";
 import {renderToStaticMarkup} from "react-dom/server";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {SimplePaletteColorOptions} from "@mui/material/styles/createPalette";
