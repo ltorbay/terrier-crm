@@ -25,7 +25,7 @@ export default function BookingPayment(props: BookingSelection) {
                     <Divider/>
                     <ListItem>
                         <ListItemText primary="Total"/>
-                        <Typography gutterBottom color="primary.dark" variant="h5" component="div">
+                        <Typography gutterBottom variant="h5" component="div">
                             {total} €
                         </Typography>
                     </ListItem>
@@ -47,7 +47,7 @@ function priceLine(count: number, pricePerItem: number, peakSeason: boolean, lab
         <ListItem>
             <ListItemText primary={t(labelCode, {count: count})}
                           secondary={peakSeason ? t("common.peak-season") : t("common.off-season")}/>
-            <Typography gutterBottom color="primary.dark" variant="h6" component="div">
+            <Typography gutterBottom variant="h6" component="div">
                 {count * pricePerItem} €
             </Typography>
         </ListItem>

@@ -1,4 +1,4 @@
-import {Container, FormGroup} from "@mui/material";
+import {Box, Container, FormGroup} from "@mui/material";
 import {BookingSelection} from "../model/BookingSelection";
 import BookingDateRange from "../components/booking-date-range/BookingDateRange";
 import BookingPayment from "../components/BookingPayment";
@@ -21,6 +21,7 @@ export default function Booking() {
                 <NavigationBar shade={Shade.Dark} />
             </header>
             <FormGroup>
+            <Box height='200px'></Box>
                 <BookingDateRange reservedDates={reservedDates}
                                   onChange={setState}/>
             </FormGroup>

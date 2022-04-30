@@ -28,7 +28,7 @@ export default function Prices() {
                                 <ListItem>
                                     <ListItemText primary={pageT("weekly-rental")}
                                                   secondary={t("common.nights", {count: 7})}/>
-                                    <Typography gutterBottom color="primary.dark" variant="h6" component="div">
+                                    <Typography gutterBottom variant="h6" component="div">
                                         4000 €
                                     </Typography>
                                 </ListItem>
@@ -48,21 +48,21 @@ export default function Prices() {
                                 <ListItem>
                                     <ListItemText primary={pageT("weekly-rental")}
                                                   secondary={t("common.nights", {count: 7})}/>
-                                    <Typography gutterBottom color="primary.dark" variant="h6" component="div">
+                                    <Typography gutterBottom variant="h6" component="div">
                                         2000 €
                                     </Typography>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemText primary={pageT("weekend-rental")}
                                                   secondary={t("common.nights", {count: 2})}/>
-                                    <Typography gutterBottom color="primary.dark" variant="h6" component="div">
+                                    <Typography gutterBottom variant="h6" component="div">
                                         1100 €
                                     </Typography>
                                 </ListItem>
                                 <ListItem>
                                     <ListItemText primary={pageT("nightly-rental")}
                                                   secondary={pageT("price-per-night")}/>
-                                    <Typography gutterBottom color="primary.dark" variant="h6" component="div">
+                                    <Typography gutterBottom variant="h6" component="div">
                                         320 €
                                     </Typography>
                                 </ListItem>

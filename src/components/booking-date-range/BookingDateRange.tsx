@@ -63,6 +63,7 @@ class State {
 }
 
 export default function BookingDateRange(props: Props) {
+    // TODO handle saturday to saturday reservations for full weeks !
     const {t} = useTranslation();
     const firstAvailableDateStart = moment()
         .add(6, "days")
