@@ -4,20 +4,20 @@ import "./BookingDateRange.css";
 // @ts-ignore
 import {enGB, fr} from "react-date-range/src/locale";
 
-import moment from "../index";
+import moment from "../../index";
 import {DateRange as MomentRange} from "moment-range";
 import {DateRange} from "react-date-range";
-import {BookingSelection} from "../model/BookingSelection";
+import {BookingSelection} from "../../model/BookingSelection";
 import {
     MIN_CONSECUTIVE_DAYS_OFF_SEASON,
     MIN_CONSECUTIVE_DAYS_PEAK_SEASON,
     START_OF_RESERVATION_WEEK
-} from "../const/constants";
-import {Language} from "../model/Locale";
-import i18n from "../i18n";
+} from "../../const/constants";
+import {Language} from "../../model/Locale";
+import i18n from "../../i18n";
 import {Tooltip} from "@mui/material";
 import {useTranslation} from "react-i18next";
-import {isPeakSeason} from "../utils/CommonDatesCalculations";
+import {isPeakSeason} from "../../utils/commonDatesCalculations";
 
 const DAY_STATE_CACHE: Record<string, DayState> = {};
 

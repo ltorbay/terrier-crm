@@ -17,12 +17,14 @@ class Page {
     }
 }
 
-export const Pages = [
-    new Page("pages.home.label", "/", <Home/>),
+export const HOME = new Page("pages.home.label", "/", <Home/>)
+
+export const PAGES = [
+    HOME,
     new Page("pages.gallery.label", "/gallery", <Gallery/>),
     new Page("pages.services.label", "/services", <Services/>),
     new Page("pages.prices.label", "/prices", <Prices/>),
     new Page("pages.booking.label", "/booking", <Booking/>),
 ]
 
-export const PagesMap = new Map(Pages.map(page => [page.key, page]));
+export const PagesMap = new Map(PAGES.map(page => [page.key, page]));

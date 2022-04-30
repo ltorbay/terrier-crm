@@ -25,6 +25,7 @@ i18n.use(detector)
         interpolation: {
             escapeValue: false // react already safes from xss
         }
-    });
+    })
+    .finally();
 
 export default i18n;

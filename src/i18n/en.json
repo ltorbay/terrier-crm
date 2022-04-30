@@ -5,7 +5,7 @@
     "off-season": "Off season",
     "peak-season": "Peak season",
     "minimum-nights": "{{count}} nights minimum",
-    "weekly-rental": "Weekly rental only"
+    "weekly-rental": "Weekly rental only for peak season"
   },
   "components": {
     "booking-payment": {

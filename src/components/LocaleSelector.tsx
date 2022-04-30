@@ -15,6 +15,7 @@ export function LocaleSelector() {
         <Select size="small"
                 disableUnderline={true}
                 autoWidth
+                sx={{opacity: '0.5'}}
                 onChange={(event: SelectChangeEvent) => {
                     let newLanguage = event.target.value;
                     i18n.changeLanguage(newLanguage)

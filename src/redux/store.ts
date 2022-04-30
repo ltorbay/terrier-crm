@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import {reservedDatesSlice} from "./slice/reservedDatesSlice";
+import {reservedDatesSlice} from "./slice/ReservedDatesSlice";
 
 export const store = configureStore({
     reducer: {

@@ -11,13 +11,27 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import {HomeButton} from "./HomeButton";
-import {Pages} from "../pages/Pages";
-import {Link} from "@mui/material";
+import {PAGES} from "../pages/Pages";
 import {LocaleSelector} from "./LocaleSelector";
 import {useTranslation} from "react-i18next";
+import {NavLink} from "react-router-dom";
+import {Shade} from "../model/Shade";
+import {Link, useMediaQuery} from "@mui/material";
 
-const NavigationBar = () => {
+class Props {
+    shade: Shade;
+    displayHomeButton?: boolean;
+
+    constructor(shade: Shade, displayHomeButton: boolean) {
+        this.shade = shade;
+        this.displayHomeButton = displayHomeButton;
+    }
+}
+
+const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
+    const color = shade === Shade.Light ? 'primary.light' : 'primary.dark';
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+    const smallScreen = useMediaQuery('(max-width:600px)');
     const {t} = useTranslation();
 
     const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement>) => {
@@ -29,55 +43,58 @@ const NavigationBar = () => {
     };
 
     return (
-        <AppBar position="static">
-            <Container maxWidth="xl">
+        <AppBar position='absolute' style={{background: 'transparent', boxShadow: 'none'}}>
+            <Container maxWidth='xl'>
                 <Toolbar disableGutters>
-                    <HomeButton/>
-                    <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
-                        <IconButton
-                            size="large"
-                            aria-label="menu"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit">
+                    {displayHomeButton ? <HomeButton logo={shade} height='50px'/> : <Box height='62px'/>}
+                    <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: smallScreen ? 'flex' : 'none'}}>
+                        <IconButton size='large'
+                                    aria-label='menu'
+                                    aria-controls='menu-appbar'
+                                    aria-haspopup='true'
+                                    onClick={handleOpenNavMenu}
+                                    sx={{color: color}}>
                             <MenuIcon/>
                         </IconButton>
-                        <Menu id="menu-appbar"
+                        <Menu id='menu-appbar'
                               anchorEl={anchorElNav}
                               anchorOrigin={{
                                   vertical: 'bottom',
-                                  horizontal: 'left',
+                                  horizontal: 'right',
                               }}
                               keepMounted
                               transformOrigin={{
                                   vertical: 'top',
-                                  horizontal: 'left',
+                                  horizontal: 'right',
                               }}
                               open={Boolean(anchorElNav)}
                               onClose={handleCloseNavMenu}
                               sx={{
                                   display: {xs: 'block', md: 'none'},
                               }}>
-                            {Pages.map((page) => (
-                                <Link key={page.key} href={page.path}
-                                      style={{textDecoration: 'none', color: 'black', display: 'flex'}}>
+                            {PAGES.map((page) => (
+                                <Link href={page.path}
+                                      color='primary.dark'
+                                      key={page.key}
+                                      style={{textDecoration: 'none', display: 'flex'}}>
                                     <MenuItem onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center">{t(page.key)}</Typography>
+                                        <Typography textAlign='center'>{t(page.key)}</Typography>
                                     </MenuItem>
                                 </Link>
                             ))}
                         </Menu>
                     </Box>
-                    <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                        {Pages.map((page) => (
-                            <Button
-                                key={page.key}
-                                href={page.path}
-                                onClick={handleCloseNavMenu}
-                                sx={{my: 2, color: 'white', display: 'block'}}>
-                                {t(page.key)}
-                            </Button>
+                    <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: smallScreen ? 'none' : 'flex'}}>
+                        {PAGES.map((page) => (
+                            <NavLink to={page.path}
+                                     key={page.key}
+                                     style={{textDecoration: 'none', color: color, display: 'flex'}}>
+                                <Button
+                                    onClick={handleCloseNavMenu}
+                                    sx={{my: 2, color: color, display: 'block'}}>
+                                    <Typography variant='body2'>{t(page.key)}</Typography>
+                                </Button>
+                            </NavLink>
                         ))}
                     </Box>
                     <LocaleSelector/>

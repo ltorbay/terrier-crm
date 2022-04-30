@@ -1,11 +1,13 @@
 import {Container, FormGroup} from "@mui/material";
 import {BookingSelection} from "../model/BookingSelection";
-import BookingDateRange from "../components/BookingDateRange";
+import BookingDateRange from "../components/booking-date-range/BookingDateRange";
 import BookingPayment from "../components/BookingPayment";
 import React, {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import {initReservedDates} from "../redux/slice/reservedDatesSlice";
+import {initReservedDates} from "../redux/slice/ReservedDatesSlice";
 import moment from "../index";
+import NavigationBar from "../components/NavigationBar";
+import {Shade} from "../model/Shade";
 
 export default function Booking() {
     const [state, setState] = useState<BookingSelection>();
@@ -15,6 +17,9 @@ export default function Booking() {
         .map(epoch => moment(epoch));
     return (
         <Container maxWidth="sm">
+            <header>
+                <NavigationBar shade={Shade.Dark} />
+            </header>
             <FormGroup>
                 <BookingDateRange reservedDates={reservedDates}
                                   onChange={setState}/>

@@ -2,6 +2,8 @@ import {Box, ImageList, ImageListItem} from "@mui/material";
 import {Image} from "../model/Image";
 import * as images from "../assets/index";
 import React from "react";
+import NavigationBar from "../components/NavigationBar";
+import {Shade} from "../model/Shade";
 
 export default function Gallery() {
     const galleryImages: Image[] = [
@@ -18,6 +20,9 @@ export default function Gallery() {
 
     return (
         <Box>
+            <header>
+                <NavigationBar shade={Shade.Light}/>
+            </header>
             <ImageList variant="woven" cols={3} gap={8}>
                 {galleryImages.map((image) => (
                     <ImageListItem key={image.src}>
