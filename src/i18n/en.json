@@ -6,7 +6,13 @@
     "peak-season": "Peak season",
     "minimum-nights": "{{count}} nights minimum",
     "weekly-rental": "Weekly rental only for peak season",
-    "rural-cottages": "RURAL COTTAGES"
+    "rural-cottages": "RURAL COTTAGES",
+    "places": {
+      "pear": "Pear house",
+      "grape": "Grape house",
+      "lodge": "Lodge",
+      "pool": "Swimming pool"
+    }
   },
   "components": {
     "booking-payment": {
