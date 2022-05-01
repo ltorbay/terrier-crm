@@ -7,6 +7,7 @@ import {DarkLogo} from "../assets";
 import {makeStyles} from "@mui/styles";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -19,24 +20,16 @@ const useStyles = makeStyles(() => ({
         position: 'absolute',
         width: '100%',
         height: 'auto',
-        // filter: 'brightness(70%)',
         left: '50%',
         top: '50%',
         '-webkit-transform': 'translate(-50%,-50%)',
         '-ms-transform': 'translate(-50%,-50%)',
         transform: 'translate(-50%,-50%)',
     },
-    overlayArea: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        textAlign: 'center',
-        width: '50%',
-        transform: 'translate(-50%, -50%)',
-    }
 }));
 
 export default function Home() {
+    const {t} = useTranslation();
     const image = new Image(images.Pool, "Pool");
     const imgClasses = useStyles();
 
@@ -45,9 +38,9 @@ export default function Home() {
             <header>
                 <NavigationBar shade={Shade.Dark} displayHomeButton={false}/>
             </header>
-            <Box sx={{textAlign: 'center', paddingY: '4vh'}}>
+            <Box sx={{textAlign: 'center', paddingBottom: '4vh', paddingTop: '6vh'}}>
                 <img src={DarkLogo}
-                     width='10%'
+                     width='12%'
                      height='auto'
                      loading='lazy'
                      alt=''/>
@@ -55,7 +48,7 @@ export default function Home() {
                     LE TERRIER
                 </Typography>
                 <Typography variant='h6'>
-                    GÎTES RURAUX
+                    {t('common.rural-cottages')}
                 </Typography>
             </Box>
             <Box className={imgClasses.container}>

@@ -1,9 +1,10 @@
 import React, {ReactNode} from "react";
 import Home from "./Home";
 import Gallery from "./Gallery";
-import Services from "./Services";
-import Prices from "./Prices";
+import Cottages from "./Cottages";
+import Explore from "./Explore";
 import Booking from "./Booking";
+import Contact from "./Contact";
 
 class Page {
     key: string;
@@ -20,11 +21,9 @@ class Page {
 export const HOME = new Page("pages.home.label", "/", <Home/>)
 
 export const PAGES = [
-    HOME,
     new Page("pages.gallery.label", "/gallery", <Gallery/>),
-    new Page("pages.services.label", "/services", <Services/>),
-    new Page("pages.prices.label", "/prices", <Prices/>),
+    new Page("pages.cottages.label", "/cottages", <Cottages/>),
+    new Page("pages.explore.label", "/explore", <Explore/>),
     new Page("pages.booking.label", "/booking", <Booking/>),
+    new Page("pages.contact.label", "/contact", <Contact/>),
 ]
-
-export const PagesMap = new Map(PAGES.map(page => [page.key, page]));

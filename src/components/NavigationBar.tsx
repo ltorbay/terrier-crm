@@ -16,7 +16,7 @@ import {LocaleSelector} from "./LocaleSelector";
 import {useTranslation} from "react-i18next";
 import {NavLink} from "react-router-dom";
 import {Shade} from "../model/Shade";
-import {Link, useMediaQuery} from "@mui/material";
+import {useMediaQuery} from "@mui/material";
 
 class Props {
     shade: Shade;
@@ -31,7 +31,7 @@ class Props {
 const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
     const color = shade === Shade.Light ? 'primary.light' : 'primary.dark';
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    const smallScreen = useMediaQuery('(max-width:600px)');
+    const smallScreen = useMediaQuery('(max-width:650px)');
     const {t} = useTranslation();
 
     const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement>) => {
@@ -46,7 +46,7 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
         <AppBar position='absolute' style={{background: 'transparent', boxShadow: 'none'}}>
             <Container maxWidth='xl'>
                 <Toolbar disableGutters>
-                    {displayHomeButton ? <HomeButton logo={shade} height='50px'/> : <Box height='62px'/>}
+                    {displayHomeButton ? <HomeButton shade={shade} height='50px'/> : <Box height='50px'/>}
                     <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: smallScreen ? 'flex' : 'none'}}>
                         <IconButton size='large'
                                     aria-label='menu'
@@ -73,14 +73,14 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
                                   display: {xs: 'block', md: 'none'},
                               }}>
                             {PAGES.map((page) => (
-                                <Link href={page.path}
-                                      color='primary.dark'
-                                      key={page.key}
-                                      style={{textDecoration: 'none', display: 'flex'}}>
+                                <NavLink to={page.path}
+                                         color='primary.dark'
+                                         key={page.key}
+                                         style={{textDecoration: 'none', display: 'flex'}}>
                                     <MenuItem onClick={handleCloseNavMenu}>
                                         <Typography textAlign='center'>{t(page.key)}</Typography>
                                     </MenuItem>
-                                </Link>
+                                </NavLink>
                             ))}
                         </Menu>
                     </Box>

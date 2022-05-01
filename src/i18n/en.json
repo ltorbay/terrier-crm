@@ -5,7 +5,8 @@
     "off-season": "Off season",
     "peak-season": "Peak season",
     "minimum-nights": "{{count}} nights minimum",
-    "weekly-rental": "Weekly rental only for peak season"
+    "weekly-rental": "Weekly rental only for peak season",
+    "rural-cottages": "RURAL COTTAGES"
   },
   "components": {
     "booking-payment": {
@@ -22,18 +23,21 @@
     "gallery": {
       "label": "Gallery"
     },
-    "services": {
-      "label": "Services"
+    "cottages": {
+      "label": "Cottages"
     },
-    "prices": {
-      "label": "Prices",
+    "explore": {
+      "label": "Explore Dordogne"
+    },
+    "booking": {
+      "label": "Booking",
       "weekly-rental": "Weekly rental",
       "nightly-rental": "Nightly rental",
       "weekend-rental": "Weekend rental",
       "price-per-night": "price per night with a minimum of 2 nights"
     },
-    "booking": {
-      "label": "Booking"
+    "contact": {
+      "label": "Contact us"
     }
   }
 }

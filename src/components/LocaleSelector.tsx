@@ -11,7 +11,7 @@ export function LocaleSelector() {
     }
 
     const [lang, setLang] = useState<string>(mappedLanguage);
-    return <FormControl variant="standard">
+    return <FormControl variant="standard" sx={{background: 'transparent'}}>
         <Select size="small"
                 disableUnderline={true}
                 autoWidth

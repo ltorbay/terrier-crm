@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Route, Routes} from "react-router-dom";
-import {PAGES} from "./pages/Pages";
+import {HOME, PAGES} from "./pages/Pages";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import Poppins from './fonts/Poppins-Regular.woff2';
@@ -97,7 +97,7 @@ function App() {
                 <CssBaseline/>
                 <Box sx={{backgroundColor: 'primary.light'}}>
                     <Routes>
-                        {PAGES.map((page) => (
+                        {PAGES.concat(HOME).map((page) => (
                             <Route key={page.key} path={page.path} element={page.element}/>
                         ))}
                     </Routes>

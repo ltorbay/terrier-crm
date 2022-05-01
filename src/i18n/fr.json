@@ -5,7 +5,8 @@
     "off-season": "Basse saison",
     "peak-season": "Haute saison",
     "minimum-nights": "{{count}} nuits minimum",
-    "weekly-rental": "Location à la semaine uniquement en haute saison"
+    "weekly-rental": "Location à la semaine uniquement en haute saison",
+    "rural-cottages": "GÎTES RURAUX"
   },
   "components": {
     "booking-payment": {
@@ -22,18 +23,21 @@
     "gallery": {
       "label": "Galerie"
     },
-    "services": {
-      "label": "Services"
+    "cottages": {
+      "label": "Gîtes"
     },
-    "prices": {
-      "label": "Tarifs",
+    "explore": {
+      "label": "Explorer la Dordogne"
+    },
+    "booking": {
+      "label": "Réserver",
       "weekly-rental": "Location à la semaine",
       "nightly-rental": "Location à la nuitée",
       "weekend-rental": "Location au week-end",
       "price-per-night": "tarif à la nuitée avec un minimum de deux nuits"
     },
-    "booking": {
-      "label": "Réservation"
+    "contact": {
+      "label": "Nous contacter"
     }
   }
 }
