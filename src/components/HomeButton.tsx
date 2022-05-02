@@ -10,10 +10,10 @@ export function HomeButton({shade, height}: { shade: Shade, height: string }) {
     return (
         <NavLink to={HOME.path}
                  key={HOME.key}
-                 style={{textDecoration: 'none', color: color, display: 'flex'}}>
+                 style={{textDecoration: 'none', color: color}}>
             <Button key={HOME.key}
                     href={HOME.path}
-                    sx={{my: 2, color: color, display: 'block', marginY: '0', paddingY: '0'}}
+                    sx={{display: 'inline-block', my: 2, color: color, marginY: '0', paddingY: '0'}}
                     startIcon={
                         <img src={shade === Shade.Dark ? DarkLogo : LightLogo}
                              width="auto"

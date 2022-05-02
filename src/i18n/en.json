@@ -20,6 +20,11 @@
       "per-day_other": "Accomodation for {{count}} days:",
       "per-week_one": "Accomodation for {{count}} full week:",
       "per-week_other": "Accomodation for {{count}} full weeks:"
+    },
+    "footer": {
+      "legal-notice": "Legal notice",
+      "cookies": "Cookies preferences",
+      "copyright": "© Le Terrier - 2022"
     }
   },
   "pages": {

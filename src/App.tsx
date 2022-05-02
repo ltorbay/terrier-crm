@@ -1,13 +1,21 @@
 import React from 'react';
 import './App.css';
-import {Route, Routes} from "react-router-dom";
+import {NavLink, Route, Routes} from "react-router-dom";
 import {HOME, PAGES} from "./pages/Pages";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import Poppins from './fonts/Poppins-Regular.woff2';
 import Minion from './fonts/MinionPro-Regular.woff2';
 import {createTheme, responsiveFontSizes, ThemeProvider} from "@mui/material/styles";
-import {Box, CssBaseline} from "@mui/material";
+import {Box, CssBaseline, Grid, IconButton} from "@mui/material";
+import {makeStyles} from "@mui/styles";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import Typography from "@mui/material/Typography";
+import {useTranslation} from "react-i18next";
+import {HomeButton} from "./components/HomeButton";
+import {Shade} from "./model/Shade";
 
 const minion = {
     fontFamily: 'MinionPro',
@@ -90,7 +98,18 @@ const theme = responsiveFontSizes(createTheme({
     },
 }));
 
+const useStyles = makeStyles(() => ({
+    footer: {
+        textAlign: 'center',
+        paddingBottom: '4vh',
+        paddingTop: '4vh',
+        marginTop: '4vh'
+    }
+}));
+
 function App() {
+    const classes = useStyles();
+    const {t} = useTranslation();
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
@@ -101,6 +120,48 @@ function App() {
                             <Route key={page.key} path={page.path} element={page.element}/>
                         ))}
                     </Routes>
+                    <Box sx={{backgroundColor: 'primary.contrastText'}} className={classes.footer}>
+                        <Grid container textAlign='center'>
+                            <Grid item xs={12}>
+                                <HomeButton shade={Shade.Dark} height='55px'/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='instagram'>
+                                    <InstagramIcon fontSize='small'/>
+                                </IconButton>
+                                <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='facebook'>
+                                    <FacebookIcon fontSize='small'/>
+                                </IconButton>
+                                <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='pinterest'>
+                                    <PinterestIcon fontSize='small'/>
+                                </IconButton>
+                            </Grid>
+                            <Grid item xs={4} marginTop='2vh'>
+                                <NavLink to={HOME.path}
+                                         key='legal-notice'
+                                         style={{textDecoration: 'none'}}>
+                                    <Typography variant='body2'
+                                                color='primary.dark'>{t('components.footer.legal-notice')}</Typography>
+                                </NavLink>
+                            </Grid>
+                            <Grid item xs={4} marginTop='2vh'>
+                                <NavLink to={HOME.path}
+                                         key='cookies'
+                                         style={{textDecoration: 'none'}}>
+                                    <Typography variant='body2'
+                                                color='primary.dark'>{t('components.footer.cookies')}</Typography>
+                                </NavLink>
+                            </Grid>
+                            <Grid item xs={4} marginTop='2vh'>
+                                <NavLink to={HOME.path}
+                                         key='copyright'
+                                         style={{textDecoration: 'none'}}>
+                                    <Typography variant='body2'
+                                                color='primary.dark'>{t('components.footer.copyright')}</Typography>
+                                </NavLink>
+                            </Grid>
+                        </Grid>
+                    </Box>
                 </Box>
             </ThemeProvider>
         </Provider>

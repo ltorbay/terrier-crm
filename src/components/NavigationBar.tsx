@@ -89,9 +89,8 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
                             <NavLink to={page.path}
                                      key={page.key}
                                      style={{textDecoration: 'none', color: color, display: 'flex'}}>
-                                <Button
-                                    onClick={handleCloseNavMenu}
-                                    sx={{my: 2, color: color, display: 'block'}}>
+                                <Button onClick={handleCloseNavMenu}
+                                        sx={{my: 2, color: color, display: 'block'}}>
                                     <Typography variant='body2'>{t(page.key)}</Typography>
                                 </Button>
                             </NavLink>

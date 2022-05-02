@@ -27,6 +27,9 @@ const useStyles = makeStyles(() => ({
         '-webkit-transform': 'translate(-50%,-50%)',
         '-ms-transform': 'translate(-50%,-50%)',
         transform: 'translate(-50%,-50%)',
+    },
+    itemBar: {
+        background: 'linear-gradient(to top, rgba(33,30,30,0.6) 0%, rgba(33,30,30,0.4) 70%, rgba(33,30,30,0.2) 100%) !important'
     }
 }));
 
@@ -50,7 +53,7 @@ export default function Home() {
                 <Typography variant='h2'>
                     LE TERRIER
                 </Typography>
-                <Typography variant='h6'>
+                <Typography variant='body1'>
                     {t('common.rural-cottages')}
                 </Typography>
             </Box>
@@ -67,25 +70,29 @@ export default function Home() {
                     <img src={Pear}
                          alt='pear-house'
                          loading="lazy"/>
-                    <ImageListItemBar title={t('common.places.pear')}/>
+                    <ImageListItemBar className={classes.itemBar}
+                                      title={t('common.places.pear')}/>
                 </ImageListItem>
                 <ImageListItem key='grape-house'>
                     <img src={Grapes}
                          alt='grape-house'
                          loading="lazy"/>
-                    <ImageListItemBar title={t('common.places.grape')}/>
+                    <ImageListItemBar className={classes.itemBar}
+                                      title={t('common.places.grape')}/>
                 </ImageListItem>
                 <ImageListItem key='lodge'>
                     <img src={Lodge}
                          alt='lodge-house'
                          loading="lazy"/>
-                    <ImageListItemBar title={t('common.places.lodge')}/>
+                    <ImageListItemBar className={classes.itemBar}
+                                      title={t('common.places.lodge')}/>
                 </ImageListItem>
                 <ImageListItem key='pool-view'>
                     <img src={PoolView}
                          alt='pool-view'
                          loading="lazy"/>
-                    <ImageListItemBar title={t('common.places.pool')}/>
+                    <ImageListItemBar className={classes.itemBar}
+                                      title={t('common.places.pool')}/>
                 </ImageListItem>
             </ImageList>
             <ImageDecoration/>

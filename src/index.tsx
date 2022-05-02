@@ -14,7 +14,6 @@ const Moment = require('moment');
 const MomentRange = require('moment-range');
 
 const moment = MomentRange.extendMoment(Moment);
-// TODO handle locale correctly
 moment.locale("fr", {
     week: {
         dow: START_OF_RESERVATION_WEEK

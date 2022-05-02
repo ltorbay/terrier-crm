@@ -20,6 +20,11 @@
       "per-day_other": "Hébergement pour {{count}} jours :",
       "per-week_one": "Hébergement pour {{count}} semaine complète :",
       "per-week_other": "Hébergement pour {{count}} semaines complètes :"
+    },
+    "footer": {
+      "legal-notice": "Mentions légales",
+      "cookies": "Préférences des cookies",
+      "copyright": "© Le Terrier - 2022"
     }
   },
   "pages": {
