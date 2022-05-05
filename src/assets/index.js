@@ -20,15 +20,25 @@ import TerraceView from './pictures/domain/terrace_view.jpeg';
 import Well from './pictures/domain/well.jpeg';
 import Yard from './pictures/domain/yard.jpeg';
 
-import Pool from './pictures/pool/pool.jpg';
+import Backside from './pictures/lodge/backside.jpeg';
 import BayView from './pictures/lodge/bay_view.jpeg';
-import Salon from './pictures/lodge/salon.jpeg';
-import Kitchen from './pictures/grape/kitchen.jpg';
-import SalonInside from './pictures/lodge/salon_inside.jpeg';
-
+import DinnerTable from './pictures/lodge/dinner_table.jpeg';
+import DinnerTableSunny from './pictures/lodge/dinner_table_sunny.jpeg';
+import FirstMezzanine from './pictures/lodge/first_mezzanine.jpeg';
+import SecondMezzanine from './pictures/lodge/second_mezzanine.jpeg';
+import ViewFromMezzanine from './pictures/lodge/view_from_mezzanine.jpg';
 import Lodge from './pictures/lodge/lodge.jpeg';
+import Salon from './pictures/lodge/salon.jpeg';
+import SalonFront from './pictures/lodge/salon_front.jpeg';
+import SalonInside from './pictures/lodge/salon_inside.jpeg';
+import ViewedFromTerrace from './pictures/lodge/viewed_from_terrace.jpeg';
+
+import Kitchen from './pictures/grape/kitchen.jpg';
 import GrapeHouse from './pictures/grape/grape_house.jpeg';
+
 import Pear from './pictures/pear/pear.jpeg';
+
+import Pool from './pictures/pool/pool.jpg';
 import PoolView from './pictures/pool/pool_view.jpg';
 
 export const PICTURES = {
@@ -43,15 +53,24 @@ export const PICTURES = {
         well: Well,
         yard: Yard,
     },
+    lodge: {
+        backside: Backside,
+        bayView: BayView,
+        // FIXME remove unused ones
+        // dinnerTable: DinnerTable,
+        dinnerTableSunny: DinnerTableSunny,
+        firstMezzanine: FirstMezzanine,
+        secondMezzanine: SecondMezzanine,
+        viewFromMezzanine: ViewFromMezzanine,
+        lodgeFrontView: Lodge,
+        salon: Salon,
+        // salonFront: SalonFront,
+        salonInside: SalonInside,
+        viewedFromTerrace: ViewedFromTerrace
+    },
     grape: {
         kitchen: Kitchen,
         grapeHouse: GrapeHouse
-    },
-    lodge: {
-        bayView: BayView,
-        salon: Salon,
-        salonInside: SalonInside,
-        lodgeFrontView: Lodge
     },
     pear: {
         pearHouseTerrace: Pear

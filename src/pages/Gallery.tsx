@@ -33,7 +33,18 @@ export default function Gallery() {
         new Image(PICTURES.domain.terrace, 'Terrace'),
         new Image(PICTURES.domain.well, 'Well'),
     ];
-    const lodgeImages: Image[] = [];
+    const lodgeImages: Image[] = [
+        new Image(PICTURES.lodge.bayView, 'Bay view', 1, 2),
+        new Image(PICTURES.lodge.backside, 'Back side'),
+        new Image(PICTURES.lodge.dinnerTableSunny, 'Sunny dinner table'),
+        new Image(PICTURES.lodge.firstMezzanine, 'First mezzanine'),
+        new Image(PICTURES.lodge.lodgeFrontView, 'Lodge front view', 2, 2),
+        new Image(PICTURES.lodge.secondMezzanine, 'Second mezzanine'),
+        new Image(PICTURES.lodge.viewedFromTerrace, 'Viewed from the terrace', 2, 1),
+        new Image(PICTURES.lodge.viewFromMezzanine, 'View from the mezzanine'),
+        new Image(PICTURES.lodge.salon, 'Lodge salon'),
+        new Image(PICTURES.lodge.salonInside, 'Inside the salon', 1, 2),
+    ];
     const pearImages: Image[] = [];
     const grapeImages: Image[] = [];
     const poolImages: Image[] = [];
@@ -41,7 +52,7 @@ export default function Gallery() {
     return (
         <Box>
             <header>
-                <NavigationBar shade={Shade.Light}/>
+                <NavigationBar shade={Shade.Dark}/>
             </header>
             <Box sx={{paddingTop: '4vh'}}/>
             <ImageDecoration right/>
@@ -75,7 +86,7 @@ export default function Gallery() {
 
 function imageList(images: Image[]) {
     return (
-        <ImageList variant="quilted" cols={4} gap={8}>
+        <ImageList variant="quilted"  cols={4} gap={6}>
             {images.map((image) => (
                 <ImageListItem key={image.src}
                                cols={image.cols || 1}
