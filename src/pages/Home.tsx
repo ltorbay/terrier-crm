@@ -1,9 +1,7 @@
 import {Box, ImageList, ImageListItem, ImageListItemBar, Typography, useMediaQuery} from "@mui/material";
 import React from "react";
 import {LocalisationMap} from "../components/localisation-map/LocalisationMap";
-import {Image} from "../model/Image";
-import * as images from "../assets";
-import {Lodge, DarkLogo, Grapes, Pear, PoolView} from "../assets";
+import {ICONS, PICTURES} from "../assets";
 import {makeStyles} from "@mui/styles";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
@@ -35,7 +33,6 @@ const useStyles = makeStyles(() => ({
 
 export default function Home() {
     const {t} = useTranslation();
-    const image = new Image(images.Pool, "Pool");
     const classes = useStyles();
     const smallScreen = useMediaQuery('(max-width:650px)');
 
@@ -45,7 +42,7 @@ export default function Home() {
                 <NavigationBar shade={Shade.Dark} displayHomeButton={false}/>
             </header>
             <Box sx={{textAlign: 'center', marginBottom: '4vh', marginTop: '8vh'}}>
-                <img src={DarkLogo}
+                <img src={ICONS.dark.logo}
                      width='12%'
                      height='auto'
                      loading='lazy'
@@ -58,8 +55,8 @@ export default function Home() {
                 </Typography>
             </Box>
             <Box className={classes.container}>
-                <img src={image.src}
-                     alt={image.title}
+                <img src={PICTURES.pool.pool}
+                     alt={'Pool'}
                      className={classes.imgResponsive}
                      loading="lazy"/>
             </Box>
@@ -67,28 +64,28 @@ export default function Home() {
             <TextBox titleKey={'pages.home.history-title'} contentKey={'pages.home.history-body'}/>
             <ImageList variant="standard" cols={smallScreen ? 1 : 2} gap={8}>
                 <ImageListItem key='pear-house'>
-                    <img src={Pear}
+                    <img src={PICTURES.pear.pearHouseTerrace}
                          alt='pear-house'
                          loading="lazy"/>
                     <ImageListItemBar className={classes.itemBar}
                                       title={t('common.places.pear')}/>
                 </ImageListItem>
                 <ImageListItem key='grape-house'>
-                    <img src={Grapes}
+                    <img src={PICTURES.grape.grapeHouse}
                          alt='grape-house'
                          loading="lazy"/>
                     <ImageListItemBar className={classes.itemBar}
                                       title={t('common.places.grape')}/>
                 </ImageListItem>
                 <ImageListItem key='lodge'>
-                    <img src={Lodge}
+                    <img src={PICTURES.lodge.lodgeFrontView}
                          alt='lodge-house'
                          loading="lazy"/>
                     <ImageListItemBar className={classes.itemBar}
                                       title={t('common.places.lodge')}/>
                 </ImageListItem>
                 <ImageListItem key='pool-view'>
-                    <img src={PoolView}
+                    <img src={PICTURES.pool.poolView}
                          alt='pool-view'
                          loading="lazy"/>
                     <ImageListItemBar className={classes.itemBar}

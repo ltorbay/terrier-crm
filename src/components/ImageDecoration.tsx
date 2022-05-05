@@ -1,6 +1,6 @@
 import React from "react";
 import {makeStyles} from "@mui/styles";
-import * as images from "../assets";
+import {ICONS} from "../assets";
 
 const useStyles = makeStyles(() => ({
     backgroundDecorationLeft: {
@@ -25,7 +25,7 @@ export function ImageDecoration({right = false, marginTop = '100px'}: { right?: 
     const classes = useStyles();
 
     return (
-        <img src={images.DarkFlower}
+        <img src={ICONS.dark.icons.flower}
              style={{marginTop: marginTop}}
              className={right ? classes.backgroundDecorationRight : classes.backgroundDecorationLeft}
              alt=''/>

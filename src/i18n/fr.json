@@ -15,7 +15,8 @@
       "lodge": "Lodge",
       "the-lodge": "Le lodge",
       "pool": "Piscine",
-      "the-pool": "La piscine"
+      "the-pool": "La piscine",
+      "domain": "Le domaine"
     },
     "equipments": {
       "double-glazing": "Double vitrage",
@@ -62,7 +63,8 @@
       "lodge-description": "Ce grand bâtiment d’architecte de 130m2 et sa verrière orientée plein Sud permettent une immersion complète dans la nature ! C’est le cœur du Terrier, et l’endroit idéal pour se retrouver grâce à sa salle de réception de 77m2. Les 2 mezzanines et leur salle de bains permettent d’accueillir jusqu’à 4 personnes.\n\n<strong>4 personnes - 2 chambres - 1 salle de bains</strong> \n\nLes équipements :\n"
     },
     "gallery": {
-      "label": "Galerie"
+      "label": "Galerie",
+      "body": "Bienvenue au <strong><i>Terrier</i></strong> ! 3 gîtes ruraux en <i>Dordogne</i> dans le Sud-Ouest rassemblés autour d’une placette de charme bordée d’oliviers, pour se retrouver avec ses proches au cœur de la nature non loin de sites emblématiques comme <i>Lascaux</i>, <i>Sarlat</i> ou encore <i>Rocamadour</i>."
     },
     "explore": {
       "label": "Explorer la Dordogne"

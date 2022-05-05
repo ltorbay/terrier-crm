@@ -1,9 +1,9 @@
 import Button from "@mui/material/Button";
 import * as React from "react";
 import {HOME} from "../pages/Pages";
-import {DarkLogo, LightLogo} from "../assets/index"
 import {Shade} from "../model/Shade";
 import {NavLink} from "react-router-dom";
+import {ICONS} from "../assets";
 
 export function HomeButton({shade, height}: { shade: Shade, height: string }) {
     const color = shade === Shade.Dark ? 'primary.dark' : 'primary.light';
@@ -14,7 +14,7 @@ export function HomeButton({shade, height}: { shade: Shade, height: string }) {
             <Button key={HOME.key}
                     sx={{display: 'inline-block', my: 2, color: color, marginY: '0', paddingY: '0'}}
                     startIcon={
-                        <img src={shade === Shade.Dark ? DarkLogo : LightLogo}
+                        <img src={shade === Shade.Dark ? ICONS.dark.logo : ICONS.light.logo}
                              width="auto"
                              height={height}
                              alt={HOME.key}
