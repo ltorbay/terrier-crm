@@ -7,7 +7,7 @@ import {store} from "./redux/store";
 import Poppins from './fonts/Poppins-Regular.woff2';
 import Minion from './fonts/MinionPro-Regular.woff2';
 import {createTheme, responsiveFontSizes, ThemeProvider} from "@mui/material/styles";
-import {Box, CssBaseline, Grid, IconButton} from "@mui/material";
+import {Box, CssBaseline, Grid, IconButton, useMediaQuery} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -110,6 +110,8 @@ const useStyles = makeStyles(() => ({
 function App() {
     const classes = useStyles();
     const {t} = useTranslation();
+    const smallScreen = useMediaQuery('(max-width:650px)');
+    
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
@@ -136,7 +138,7 @@ function App() {
                                     <PinterestIcon fontSize='small'/>
                                 </IconButton>
                             </Grid>
-                            <Grid item xs={4} marginTop='2vh'>
+                            <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
                                 <NavLink to={HOME.path}
                                          key='legal-notice'
                                          style={{textDecoration: 'none'}}>
@@ -144,7 +146,7 @@ function App() {
                                                 color='primary.dark'>{t('components.footer.legal-notice')}</Typography>
                                 </NavLink>
                             </Grid>
-                            <Grid item xs={4} marginTop='2vh'>
+                            <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
                                 <NavLink to={HOME.path}
                                          key='cookies'
                                          style={{textDecoration: 'none'}}>
@@ -152,7 +154,7 @@ function App() {
                                                 color='primary.dark'>{t('components.footer.cookies')}</Typography>
                                 </NavLink>
                             </Grid>
-                            <Grid item xs={4} marginTop='2vh'>
+                            <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
                                 <NavLink to={HOME.path}
                                          key='copyright'
                                          style={{textDecoration: 'none'}}>

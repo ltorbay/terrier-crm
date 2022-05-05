@@ -1,33 +1,33 @@
 import {Box, Typography} from "@mui/material";
-import React from "react";
 import {Trans} from "react-i18next";
+import React, {ReactElement} from "react";
 
 class Props {
+    children: ReactElement;
     titleKey?: string;
-    contentKey: string;
     width?: string;
+    marginBottom?: string;
 
-    constructor(titleKey: string, contentKey: string, width: string) {
+    constructor(children: ReactElement, titleKey: string, width: string, marginBottom: string) {
+        this.children = children;
         this.titleKey = titleKey;
-        this.contentKey = contentKey;
         this.width = width;
+        this.marginBottom = marginBottom;
     }
 }
 
-export function TextBox({titleKey, contentKey, width = '70%'}: Props) {
+export function ContentBox({children, titleKey, width = '70%', marginBottom = '6vh'}: Props) {
     let displayedTitle = titleKey ? (
         <Typography paddingBottom='2rem' display='block' textAlign='center' variant='h4'>
             <Trans i18nKey={titleKey}/>
         </Typography>
     ) : undefined;
-    
+
     return (
-        <Box sx={{display: 'flex', justifyContent: 'center', marginBottom: '4vh', marginTop: '6vh'}}>
+        <Box sx={{display: 'flex', justifyContent: 'center', marginBottom: marginBottom, marginTop: '6vh'}}>
             <Box width={width}>
                 {displayedTitle}
-                <Typography display='block' textAlign='justify' variant='body1'>
-                    <Trans i18nKey={contentKey}/>
-                </Typography>
+                {children}
             </Box>
         </Box>
     );

@@ -2,7 +2,7 @@ import {BookingSelection} from "../model/BookingSelection";
 import {Card, CardContent, Divider, List, ListItem, ListItemText, Typography} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {isPeakSeason} from "../utils/commonDatesCalculations";
-import {PRICES} from "../const/constants";
+import {PRICES} from "../constants/constants";
 import * as React from "react";
 
 interface SplitBookings {

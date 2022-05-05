@@ -7,7 +7,7 @@ import './i18n';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import {START_OF_RESERVATION_WEEK} from "./const/constants";
+import {START_OF_RESERVATION_WEEK} from "./constants/constants";
 import {createRoot} from "react-dom/client";
 
 const Moment = require('moment');

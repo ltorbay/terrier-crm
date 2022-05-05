@@ -8,14 +8,14 @@ import {makeStyles} from "@mui/styles";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
 import {useTranslation} from "react-i18next";
-import {TextBox} from "../components/TextBox";
+import {TextBox} from "../components/containers/TextBox";
 import {ImageDecoration} from "../components/ImageDecoration";
 
 const useStyles = makeStyles(() => ({
     container: {
         overflow: 'hidden',
         position: 'relative',
-        height: '40vw',
+        height: '50vw',
         width: '100%',
     },
     imgResponsive: {
@@ -44,7 +44,7 @@ export default function Home() {
             <header>
                 <NavigationBar shade={Shade.Dark} displayHomeButton={false}/>
             </header>
-            <Box sx={{textAlign: 'center', marginBottom: '4vh', marginTop: '6vh'}}>
+            <Box sx={{textAlign: 'center', marginBottom: '4vh', marginTop: '8vh'}}>
                 <img src={DarkLogo}
                      width='12%'
                      height='auto'
@@ -64,7 +64,7 @@ export default function Home() {
                      loading="lazy"/>
             </Box>
             <ImageDecoration right/>
-            <TextBox titleKey={'pages.home.history-title'} contentKey={'pages.home.history-body_html'}/>
+            <TextBox titleKey={'pages.home.history-title'} contentKey={'pages.home.history-body'}/>
             <ImageList variant="standard" cols={smallScreen ? 1 : 2} gap={8}>
                 <ImageListItem key='pear-house'>
                     <img src={Pear}
@@ -96,8 +96,10 @@ export default function Home() {
                 </ImageListItem>
             </ImageList>
             <ImageDecoration/>
-            <TextBox titleKey={'pages.home.join-us-title'} contentKey={'pages.home.join-us-body_html'}/>
+            <TextBox titleKey={'pages.home.join-us-title'} contentKey={'pages.home.join-us-body'}/>
+            {/*TODO use TranslatedList for list items in join us section*/}
             <LocalisationMap/>
+            {/*TODO Le terrier en photos (see edito)*/}
         </Box>
     )
 }

@@ -12,7 +12,7 @@ import {
     MIN_CONSECUTIVE_DAYS_OFF_SEASON,
     MIN_CONSECUTIVE_DAYS_PEAK_SEASON,
     START_OF_RESERVATION_WEEK
-} from "../../const/constants";
+} from "../../constants/constants";
 import {Language} from "../../model/Locale";
 import i18n from "../../i18n";
 import {Tooltip} from "@mui/material";

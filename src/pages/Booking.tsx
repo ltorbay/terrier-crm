@@ -8,7 +8,7 @@ import {initReservedDates} from "../redux/slice/ReservedDatesSlice";
 import moment from "../index";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
-import {PEAK_SEASON_END, PEAK_SEASON_START} from "../const/constants";
+import {PEAK_SEASON_END, PEAK_SEASON_START} from "../constants/constants";
 import {useTranslation} from "react-i18next";
 
 export default function Booking() {

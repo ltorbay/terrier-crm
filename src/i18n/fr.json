@@ -9,9 +9,21 @@
     "rural-cottages": "GÎTES RURAUX",
     "places": {
       "pear": "Maison de la poire",
+      "the-pear": "La maison de la poire",
       "grape": "Maison du raisin",
+      "the-grape": "La maison du raisin",
       "lodge": "Lodge",
-      "pool": "Piscine"
+      "the-lodge": "Le lodge",
+      "pool": "Piscine",
+      "the-pool": "La piscine"
+    },
+    "equipments": {
+      "double-glazing": "Double vitrage",
+      "central-heater-stove": "Chauffage central - Poêle à bois",
+      "reversible-air-conditionner": "Climatisation réversible",
+      "stove": "Poêle à bois",
+      "equipped-kitchen": "Cuisine toute équipée",
+      "covered-terrace": "Terrasse couverte privative"
     }
   },
   "components": {
@@ -31,15 +43,26 @@
     "home": {
       "label": "Accueil",
       "history-title": "Notre histoire",
-      "history-body_html": "À l’origine de ce projet : 4 amis qui se sont rencontrés durant les études. Christelle, Cécile, Mathieu et Louis. Nous nous connaissons depuis plusieurs années, et bien qu’ayant des carrières différentes, nous avons une complémentarité naturelle qui nous rassemble autour d’intérêts variés. Il nous est souvent arrivé de voyager ensemble, en France ou à l’étranger, et c’est lors d’une de ces escapades en 2018 que nous avons imaginé notre projet de gîtes ruraux qui allient confort, nature et slow life.\n\nNous avions une volonté commune de changer de vie, d’avoir un projet dans lequel s’investir pour retrouver du sens, et surtout une vision commune de ce que pourrait être notre avenir pour mener à bien cette belle aventure. Mue par une envie profonde de créer ce lieu de vie dans le Sud-Ouest, et plus particulièrement en Dordogne : <strong><i>Le Terrier</i></strong> était né.\n\nPourquoi <strong><i>Le Terrier</i></strong> ? Au départ, ce qui était une référence à la maison des Weasley dans Harry Potter est vite devenu synonyme d’un nid douillet, un endroit pour déconnecter, s’évader de son quotidien en toute sécurité et retrouver ses proches “en vrai” dans le respect de la nature environnante.\n\nC’est à Fossemagne en Dordogne, non loin de Lascaux, que nous avons trouvé la perle rare qui nous permettrait de donner vie à ce beau projet : un domaine surélevé pour prendre de la hauteur, des bâtiments anciens en pierre avec beaucoup de charme, une placette conviviale, un bâtiment dont les baies vitrées offrent une vue exceptionnelle sur la nature alentour, une piscine avec une vue incroyable sur la forêt en contrebas et bien d’autres surprises encore… Bienvenue chez nous !",
+      "history-body": "À l’origine de ce projet : 4 amis qui se sont rencontrés durant les études. Christelle, Cécile, Mathieu et Louis. Nous nous connaissons depuis plusieurs années, et bien qu’ayant des carrières différentes, nous avons une complémentarité naturelle qui nous rassemble autour d’intérêts variés. Il nous est souvent arrivé de voyager ensemble, en France ou à l’étranger, et c’est lors d’une de ces escapades en 2018 que nous avons imaginé notre projet de gîtes ruraux qui allient confort, nature et slow life.\n\nNous avions une volonté commune de changer de vie, d’avoir un projet dans lequel s’investir pour retrouver du sens, et surtout une vision commune de ce que pourrait être notre avenir pour mener à bien cette belle aventure. Mue par une envie profonde de créer ce lieu de vie dans le Sud-Ouest, et plus particulièrement en Dordogne : <strong><i>Le Terrier</i></strong> était né.\n\nPourquoi <strong><i>Le Terrier</i></strong> ? Au départ, ce qui était une référence à la maison des Weasley dans Harry Potter est vite devenu synonyme d’un nid douillet, un endroit pour déconnecter, s’évader de son quotidien en toute sécurité et retrouver ses proches “en vrai” dans le respect de la nature environnante.\n\nC’est à Fossemagne en Dordogne, non loin de Lascaux, que nous avons trouvé la perle rare qui nous permettrait de donner vie à ce beau projet : un domaine surélevé pour prendre de la hauteur, des bâtiments anciens en pierre avec beaucoup de charme, une placette conviviale, un bâtiment dont les baies vitrées offrent une vue exceptionnelle sur la nature alentour, une piscine avec une vue incroyable sur la forêt en contrebas et bien d’autres surprises encore… Bienvenue chez nous !",
       "join-us-title": "Comment venir ?",
-      "join-us-body_html": "Pour venir nous rendre visite, c’est par ici ! \n\nEn train - changements à <i>Bordeaux</i> ou <i>Brive-la-Gaillarde</i> depuis <i>Paris</i> : \n  - Gare de <i>Niversac</i> \n - Gare de <i>Périgueux</i> \n - Gare de <i>Thenon</i> \n - Gare de les <i>Versannes</i>\n\nEn voiture : \n - à 30 minutes de <i>Périgueux</i> via la D6089\n - à 45 minutes de <i>Brive-la-Gaillarde</i> via la D6089 et l’A89\n - à moins de 2h de <i>Bordeaux</i> via l’A89\n - à 2h30 de <i>Toulouse</i> via l’A20\n\nEn avion :\n - aéroport de <i>Périgueux</i>\n"
+      "join-us-body": "Pour venir nous rendre visite, c’est par ici ! \n\nEn train - changements à <i>Bordeaux</i> ou <i>Brive-la-Gaillarde</i> depuis <i>Paris</i> : \n  - Gare de <i>Niversac</i> \n - Gare de <i>Périgueux</i> \n - Gare de <i>Thenon</i> \n - Gare de les <i>Versannes</i>\n\nEn voiture : \n - à 30 minutes de <i>Périgueux</i> via la D6089\n - à 45 minutes de <i>Brive-la-Gaillarde</i> via la D6089 et l’A89\n - à moins de 2h de <i>Bordeaux</i> via l’A89\n - à 2h30 de <i>Toulouse</i> via l’A20\n\nEn avion :\n - aéroport de <i>Périgueux</i>\n"
+    },
+    "cottages": {
+      "label": "Gîtes",
+      "our-cottages-title": "Nos gîtes",
+      "our-cottages-body": "Bienvenue au <strong><i>Terrier</i></strong> ! 3 gîtes ruraux en <i>Dordogne</i> dans le Sud-Ouest rassemblés autour d’une placette de charme bordée d’oliviers, pour se retrouver avec ses proches au cœur de la nature non loin de sites emblématiques comme <i>Lascaux</i>, <i>Sarlat</i> ou encore <i>Rocamadour</i>. \n\nPlus de cent mètres de forêt sépare les bâtiments du plus proche voisin apportant une isolation sonore parfaite sans empiéter sur la vue plongeante sur la vallée du <i>Manoire</i>.\n\nEntre juin et septembre, les 3 gîtes sont disponibles à la location dans un même ensemble ; il est cependant possible de louer séparément la maison de la poire et la maison du raisin entre octobre et mai. Le pavillon reste la salle commune du domaine, et ne peut être loué séparément.",
+      "amenities-title": "Aménagements",
+      "private-alleyway": "Allée privative de 200 mètres",
+      "heated-pool": "Piscine chauffée",
+      "buildings-and-courtyard": "3 bâtiments disposés autour d’une cour centrale",
+      "private-terraces": "Terrasses privatives",
+      "terrain-description": "13 hectares de jardins, prairies et bois",
+      "pear-description": "Ce gîte de 100m2 dispose de 3 chambres dont 2 grandes, et peut accueillir jusqu’à 8 personnes. Le salon de 19m2 peut quant à lui accueillir 2 personnes supplémentaires grâce à des couchages d’appoint. Le petit + : la douce odeur du poirier accolé à la façade au printemps et en été !\n\n<strong>8-10 personnes - 3 chambres - 2 salles de bains</strong> \n\nLes équipements :",
+      "grape-description": "Ce gîte de 114m2 dispose de 2 chambres dont 1 grande, et peut accueillir jusqu’à 4 personnes. Le grand salon de 51m2, qui fait également office de salle à manger, permet à chacun de pouvoir se retrouver au moment des repas. Le petit <i>+</i> : cueillir un grain de raisin gorgé de soleil en été, sur les vignes qui ornent les murs du gîte !\n\n<strong>4 personnes - 2 chambres - 2 salles de bains</strong> \n\nLes équipements :",
+      "lodge-description": "Ce grand bâtiment d’architecte de 130m2 et sa verrière orientée plein Sud permettent une immersion complète dans la nature ! C’est le cœur du Terrier, et l’endroit idéal pour se retrouver grâce à sa salle de réception de 77m2. Les 2 mezzanines et leur salle de bains permettent d’accueillir jusqu’à 4 personnes.\n\n<strong>4 personnes - 2 chambres - 1 salle de bains</strong> \n\nLes équipements :\n"
     },
     "gallery": {
       "label": "Galerie"
-    },
-    "cottages": {
-      "label": "Gîtes"
     },
     "explore": {
       "label": "Explorer la Dordogne"

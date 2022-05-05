@@ -8,7 +8,7 @@ import {renderToStaticMarkup} from "react-dom/server";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import i18n from "../../i18n";
-import {ADDRESS, POSITION} from "../../const/constants";
+import {ADDRESS, POSITION} from "../../constants/constants";
 
 export function LocalisationMap() {
     const [lang, setLang] = useState<string>(i18n.language);
