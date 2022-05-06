@@ -21,11 +21,15 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-export function ImageDecoration({right = false, marginTop = '100px'}: { right?: boolean, marginTop?: string }) {
+export function ImageDecoration({
+                                    right = false,
+                                    marginTop = '100px',
+                                    icon = ICONS.dark.icons.flower
+                                }: { right?: boolean, marginTop?: string, icon?: string }) {
     const classes = useStyles();
 
     return (
-        <img src={ICONS.dark.icons.flower}
+        <img src={icon}
              style={{marginTop: marginTop}}
              className={right ? classes.backgroundDecorationRight : classes.backgroundDecorationLeft}
              alt=''/>
