@@ -32,7 +32,7 @@ export default function Cottages() {
                 </ContentBox>
             </ImageBox>
             <ImageBox src={PICTURES.lodge.lodgeFrontView} right>
-                <ImageDecoration icon={ICONS.dark.icons.keys}/>
+                <ImageDecoration icon={ICONS.dark.icons.stump} marginTop='50px' width='30vw'/>
                 <TextBox titleKey={'common.places.the-lodge'}
                          contentKey={'pages.cottages.lodge-description'}
                          marginBottom='0'
@@ -50,7 +50,7 @@ export default function Cottages() {
                                 itemKeys={pearEquipments.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
             <ImageBox src={PICTURES.grape.house} right>
-                <ImageDecoration icon={ICONS.dark.icons.darkGrapes}/>
+                <ImageDecoration icon={ICONS.dark.icons.darkGrapes} width='15vw'/>
                 <TextBox titleKey={'common.places.the-grape'}
                          contentKey={'pages.cottages.grape-description'}
                          marginBottom='0'

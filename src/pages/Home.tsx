@@ -95,7 +95,7 @@ export default function Home() {
                                       title={t('common.places.pool')}/>
                 </ImageListItem>
             </ImageList>
-            <ImageDecoration/>
+            <ImageDecoration icon={ICONS.dark.icons.keys}/>
             <Box sx={{display: 'flex', justifyContent: 'center'}}>
                 <Box width='70%'>
                     <TextBox titleKey={'pages.home.join-us-title'} contentKey={'pages.home.join-us-train'}
