@@ -83,7 +83,11 @@ export default function Booking() {
                 </List>
             </Container>
             <FormGroup>
+                {/*TODO condition enable peak season on selecting one of the buildings*/}
+                {/*TODO condition reserved dates on the selected building*/}
+                {/*TODO force reset the component (and the selection) on selected building change*/}
                 <BookingDateRange reservedDates={reservedDates}
+                                  enablePeakSeason={true}
                                   onChange={setState}/>
             </FormGroup>
             {(state?.periods && state?.weekStarts) ?

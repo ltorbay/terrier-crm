@@ -21,6 +21,8 @@ export const reservedDatesSlice = createSlice({
             }
             // TODO call backend and remove mocks
             state.array = [
+                moment({year: 2022, month: 4, day: 7}).valueOf(),
+                moment({year: 2022, month: 4, day: 8}).valueOf(),
                 moment({year: 2022, month: 4, day: 15}).valueOf(),
                 moment({year: 2022, month: 4, day: 19}).valueOf(),
                 moment({year: 2022, month: 4, day: 22}).valueOf(),

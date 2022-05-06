@@ -8,32 +8,33 @@ export class BookingSelection {
 
     constructor(period: MomentRange) {
         // TODO split into weekends remaining periods ? or do that in the backend ? or avoid having distinct price for weekends ?
-        if(period.duration("days") < 6) {
-            this.periods = [period];
+        const nightsPeriod = moment.range(period.start, period.end.clone().subtract(1, "day"));
+        if(nightsPeriod.duration("days") < 6) {
+            this.periods = [nightsPeriod];
             this.weekStarts = [];
             return;
         }
         
         let periods: MomentRange[] = [];
-        let periodFirstWeekStart = period.start
+        let periodFirstWeekStart = nightsPeriod.start
             .clone()
             .add(6, "days")
             .startOf("week");
-        let periodLastWeekEnd = period.end
+        let periodLastWeekEnd = nightsPeriod.end
             .clone()
             .endOf("week");
 
-        if (!period.start.isSame(periodFirstWeekStart, "day")) {
+        if (!nightsPeriod.start.isSame(periodFirstWeekStart, "day")) {
             // First week starts after the start of the period -> Add the last days of the week
-            periods.push(moment.range(period.start, periodFirstWeekStart.clone().subtract(1, "day")));
+            periods.push(moment.range(nightsPeriod.start, periodFirstWeekStart.clone().subtract(1, "day")));
         }
-        if (!period.end.isSame(periodLastWeekEnd, "day")) {
+        if (!nightsPeriod.end.isSame(periodLastWeekEnd, "day")) {
             // Last week ends before the end of the period -> Add the first days of the week
-            periods.push(moment.range(period.end.clone().startOf("week"), period.end));
+            periods.push(moment.range(nightsPeriod.end.clone().startOf("week"), nightsPeriod.end));
         }
 
         // Produce array of starting days of the included weeks
-        let weeksOnlyPeriod = moment.range(periodFirstWeekStart, period.end.clone().subtract(6, "days").endOf("week"));
+        let weeksOnlyPeriod = moment.range(periodFirstWeekStart, nightsPeriod.end.clone().subtract(6, "days").endOf("week"));
 
         this.weekStarts = Array.from<Moment>(weeksOnlyPeriod.by("days", {excludeEnd: false, step: 7}))
             .filter(w => !periods.some(p => p.contains(w)));

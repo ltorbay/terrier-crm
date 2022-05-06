@@ -11,3 +11,7 @@
 .rdrDayPassive {
     background-color: transparent !important;
 }
+
+.rdrEndEdge:not(.grayedDate),.rdrInRange:not(.grayedDate) {
+    filter: none !important;
+}
