@@ -8,6 +8,7 @@ import {Shade} from "../model/Shade";
 import {useTranslation} from "react-i18next";
 import {TextBox} from "../components/containers/TextBox";
 import {ImageDecoration} from "../components/ImageDecoration";
+import {TranslatedList} from "../components/TranslatedList";
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -35,6 +36,8 @@ export default function Home() {
     const {t} = useTranslation();
     const classes = useStyles();
     const smallScreen = useMediaQuery('(max-width:650px)');
+    const trainStations = ['Niversac', 'Périgueux', 'Thenon', 'Les Versannes'];
+    const carAccess = ['perigueux-by-car', 'brive-by-car', 'bordeaux-by-car', 'toulouse-by-car']
 
     return (
         <Box>
@@ -64,14 +67,14 @@ export default function Home() {
             <TextBox titleKey={'pages.home.history-title'} contentKey={'pages.home.history-body'}/>
             <ImageList variant="standard" cols={smallScreen ? 1 : 2} gap={8}>
                 <ImageListItem key='pear-house'>
-                    <img src={PICTURES.pear.pearHouseTerrace}
+                    <img src={PICTURES.pear.backside}
                          alt='pear-house'
                          loading="lazy"/>
                     <ImageListItemBar className={classes.itemBar}
                                       title={t('common.places.pear')}/>
                 </ImageListItem>
                 <ImageListItem key='grape-house'>
-                    <img src={PICTURES.grape.grapeHouse}
+                    <img src={PICTURES.grape.house}
                          alt='grape-house'
                          loading="lazy"/>
                     <ImageListItemBar className={classes.itemBar}
@@ -85,7 +88,7 @@ export default function Home() {
                                       title={t('common.places.lodge')}/>
                 </ImageListItem>
                 <ImageListItem key='pool-view'>
-                    <img src={PICTURES.pool.poolView}
+                    <img src={PICTURES.pool.view}
                          alt='pool-view'
                          loading="lazy"/>
                     <ImageListItemBar className={classes.itemBar}
@@ -93,7 +96,20 @@ export default function Home() {
                 </ImageListItem>
             </ImageList>
             <ImageDecoration/>
-            <TextBox titleKey={'pages.home.join-us-title'} contentKey={'pages.home.join-us-body'}/>
+            <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                <Box width='70%'>
+                    <TextBox titleKey={'pages.home.join-us-title'} contentKey={'pages.home.join-us-train'}
+                             marginBottom='0'
+                             width='100%'/>
+                    <TranslatedList
+                        itemKeys={trainStations.map(station => t('pages.home.train-station-of', {city: station}))}/>
+                    <TextBox contentKey={'pages.home.join-us-car'} marginBottom='0' marginTop='0' width='100%'/>
+                    <TranslatedList itemKeys={carAccess.map(carFrom => 'pages.home.' + carFrom)}/>
+                    <TextBox contentKey={'pages.home.join-us-plane'} marginBottom='0' marginTop='0' width='100%'/>
+                    <TranslatedList itemKeys={['pages.home.perigueux-airport']}/>
+                    <Box sx={{paddingTop: '4vh'}}/>
+                </Box>
+            </Box>
             {/*TODO use TranslatedList for list items in join us section*/}
             <LocalisationMap/>
             {/*TODO Le terrier en photos (see edito)*/}

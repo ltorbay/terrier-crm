@@ -27,11 +27,13 @@ class Image {
 export default function Gallery() {
     const domainImages: Image[] = [
         new Image(PICTURES.domain.arrival, 'Arrival', 2, 2),
-        new Image(PICTURES.domain.entrance, 'entrance', 1, 1),
-        new Image(PICTURES.domain.yard, 'Yard'),
+        new Image(PICTURES.pool.large, 'Pool large', 1, 2),
         new Image(PICTURES.domain.frontTerrace, 'Front terrace', 2, 2),
         new Image(PICTURES.domain.terrace, 'Terrace'),
         new Image(PICTURES.domain.well, 'Well'),
+        new Image(PICTURES.domain.yard, 'Yard'),
+        new Image(PICTURES.pool.pool, 'Pool', 1, 2),
+        new Image(PICTURES.domain.entrance, 'entrance'),
     ];
     const lodgeImages: Image[] = [
         new Image(PICTURES.lodge.bayView, 'Bay view', 1, 2),
@@ -45,9 +47,33 @@ export default function Gallery() {
         new Image(PICTURES.lodge.salon, 'Lodge salon'),
         new Image(PICTURES.lodge.salonInside, 'Inside the salon', 1, 2),
     ];
-    const pearImages: Image[] = [];
-    const grapeImages: Image[] = [];
-    const poolImages: Image[] = [];
+    const pearImages: Image[] = [
+        new Image(PICTURES.pear.coveredTerrace, 'Covered terrace'),
+        new Image(PICTURES.pear.pears, 'Pears', 1, 2),
+        new Image(PICTURES.pear.kitchen, 'Kitchen'),
+        new Image(PICTURES.pear.bathroom, 'Bathroom'),
+        new Image(PICTURES.pear.dinnerTable, 'Dinner table'),
+        new Image(PICTURES.pear.smallBedroom, 'Small bedroom'),
+        new Image(PICTURES.pear.salon, 'Salon'),
+        new Image(PICTURES.pear.smallDoubleBedroom, 'Small double bedroom'),
+        new Image(PICTURES.pear.backside, 'Back side', 2, 2),
+        new Image(PICTURES.pear.frontSide, 'Front side'),
+        new Image(PICTURES.pear.kitchen2, 'Kitchen 2'),
+        new Image(PICTURES.pear.tallBedroom, 'Tall bedroom'),
+    ];
+    const grapeImages: Image[] = [
+        new Image(PICTURES.grape.backside, 'Back side'),
+        new Image(PICTURES.grape.grapes, 'Grapes', 1, 2),
+        new Image(PICTURES.grape.salon2, 'High salon'),
+        new Image(PICTURES.grape.fireplace, 'Fire place', 1, 2),
+        new Image(PICTURES.grape.bathroom, 'Bathroom'),
+        new Image(PICTURES.grape.house, 'House'),
+        new Image(PICTURES.grape.salon, 'Salon'),
+        new Image(PICTURES.grape.tallBedroom, 'Tall bedroom'),
+        new Image(PICTURES.grape.terrace, 'Terrace', 2, 2),
+        new Image(PICTURES.grape.kitchen, 'Kitchen'),
+        new Image(PICTURES.grape.smallBedroom, 'Small bedroom'),
+    ];
 
     return (
         <Box>
@@ -76,10 +102,6 @@ export default function Gallery() {
                 <Trans i18nKey={'common.places.the-grape'}/>
             </Typography>
             {imageList(grapeImages)}
-            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'>
-                <Trans i18nKey={'common.places.the-pool'}/>
-            </Typography>
-            {imageList(poolImages)}
         </Box>
     )
 }

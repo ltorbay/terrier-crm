@@ -7,16 +7,18 @@ class Props {
     titleKey?: string;
     width?: string;
     marginBottom?: string;
+    marginTop?: string;
 
-    constructor(children: ReactElement, titleKey: string, width: string, marginBottom: string) {
+    constructor(children: ReactElement, titleKey: string, width: string, marginBottom: string, marginTop: string) {
         this.children = children;
         this.titleKey = titleKey;
         this.width = width;
         this.marginBottom = marginBottom;
+        this.marginTop = marginTop;
     }
 }
 
-export function ContentBox({children, titleKey, width = '70%', marginBottom = '6vh'}: Props) {
+export function ContentBox({children, titleKey, width = '70%', marginBottom = '6vh', marginTop = '6vh'}: Props) {
     let displayedTitle = titleKey ? (
         <Typography paddingBottom='2rem' display='block' textAlign='center' variant='h4'>
             <Trans i18nKey={titleKey}/>
@@ -24,7 +26,7 @@ export function ContentBox({children, titleKey, width = '70%', marginBottom = '6
     ) : undefined;
 
     return (
-        <Box sx={{display: 'flex', justifyContent: 'center', marginBottom: marginBottom, marginTop: '6vh'}}>
+        <Box sx={{display: 'flex', justifyContent: 'center', marginBottom: marginBottom, marginTop: marginTop}}>
             <Box width={width}>
                 {displayedTitle}
                 {children}

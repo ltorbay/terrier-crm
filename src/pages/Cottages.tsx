@@ -37,7 +37,7 @@ export default function Cottages() {
                          width='100%'/>
                 <TranslatedList itemKeys={lodgeEquipment.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
-            <ImageBox src={PICTURES.pear.pearHouseTerrace}>
+            <ImageBox src={PICTURES.pear.backside}>
                 <TextBox titleKey={'common.places.the-pear'}
                          contentKey={'pages.cottages.pear-description'}
                          marginBottom='0'
@@ -45,7 +45,7 @@ export default function Cottages() {
                 <TranslatedList itemKeys={pearEquipments.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
             <ImageDecoration/>
-            <ImageBox src={PICTURES.grape.grapeHouse} right>
+            <ImageBox src={PICTURES.grape.house} right>
                 <TextBox titleKey={'common.places.the-grape'}
                          contentKey={'pages.cottages.grape-description'}
                          marginBottom='0'
