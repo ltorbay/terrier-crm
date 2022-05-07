@@ -1,15 +1,15 @@
 import {Box, Typography} from "@mui/material";
 import {Trans} from "react-i18next";
-import React, {ReactElement} from "react";
+import React from "react";
 
 class Props {
-    children: ReactElement;
+    children: React.ReactNode;
     titleKey?: string;
     width?: string;
     marginBottom?: string;
     marginTop?: string;
 
-    constructor(children: ReactElement, titleKey: string, width: string, marginBottom: string, marginTop: string) {
+    constructor(children: React.ReactNode, titleKey: string, width: string, marginBottom: string, marginTop: string) {
         this.children = children;
         this.titleKey = titleKey;
         this.width = width;

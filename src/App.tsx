@@ -7,7 +7,7 @@ import {store} from "./redux/store";
 import Poppins from './fonts/Poppins-Regular.woff2';
 import Minion from './fonts/MinionPro-Regular.woff2';
 import {createTheme, responsiveFontSizes, ThemeProvider} from "@mui/material/styles";
-import {Box, CssBaseline, Grid, IconButton, useMediaQuery} from "@mui/material";
+import {Box, CssBaseline, GlobalStyles, Grid, IconButton, useMediaQuery} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -111,11 +111,20 @@ function App() {
     const classes = useStyles();
     const {t} = useTranslation();
     const smallScreen = useMediaQuery('(max-width:650px)');
-    
+
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
+                <GlobalStyles styles={{
+                    ':root': {
+                        '--color-primary': theme.palette.primary.main,
+                        '--color-secondary': theme.palette.secondary.main,
+                        '--color-contrast': theme.palette.primary.contrastText,
+                        '--color-light': theme.palette.primary.light,
+                        '--color-dark': theme.palette.primary.dark
+                    },
+                }}/>
                 <Box sx={{backgroundColor: 'primary.light'}}>
                     <Routes>
                         {PAGES.concat(HOME).map((page) => (

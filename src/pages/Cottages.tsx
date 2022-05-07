@@ -18,7 +18,7 @@ export default function Cottages() {
     const lodgeEquipment = ['double-glazing', 'reversible-air-conditionner', 'stove'];
 
     return (
-        <Box>
+        <>
             <header>
                 <NavigationBar shade={Shade.Dark}/>
             </header>
@@ -41,7 +41,7 @@ export default function Cottages() {
                                 itemKeys={lodgeEquipment.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
             <ImageBox src={PICTURES.pear.backside}>
-                <ImageDecoration right icon={ICONS.dark.icons.darkPear}/>
+                <ImageDecoration right icon={ICONS.dark.icons.pear}/>
                 <TextBox titleKey={'common.places.the-pear'}
                          contentKey={'pages.cottages.pear-description'}
                          marginBottom='0'
@@ -50,7 +50,7 @@ export default function Cottages() {
                                 itemKeys={pearEquipments.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
             <ImageBox src={PICTURES.grape.house} right>
-                <ImageDecoration icon={ICONS.dark.icons.darkGrapes} width='15vw'/>
+                <ImageDecoration icon={ICONS.dark.icons.grapes} width='15vw'/>
                 <TextBox titleKey={'common.places.the-grape'}
                          contentKey={'pages.cottages.grape-description'}
                          marginBottom='0'
@@ -58,6 +58,6 @@ export default function Cottages() {
                 <TranslatedList width={textBoxWidth}
                                 itemKeys={grapeEquipments.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
-        </Box>
+        </>
     )
 }

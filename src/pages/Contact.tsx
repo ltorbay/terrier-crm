@@ -5,11 +5,11 @@ import {Shade} from "../model/Shade";
 
 export default function Contact() {
     return (
-        <Box>
+        <>
             <header>
                 <NavigationBar shade={Shade.Dark}/>
             </header>
             Contact page !
-        </Box>
+        </>
     );
 }

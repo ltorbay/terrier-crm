@@ -16,22 +16,18 @@ export default function BookingPayment(props: BookingSelection) {
     const split = splitSeasons(props);
     const total = totalPrice(split);
     return (
-        <Card>
-            <CardContent>
-                <List dense={true}>
-                    {priceLine(split.peakSeasonWeeks, PRICES.peakSeason.pricePerWeek, true, "components.booking-payment.per-week", t)}
-                    {priceLine(split.offSeasonWeeks, PRICES.offSeason.pricePerWeek, false, "components.booking-payment.per-week", t)}
-                    {priceLine(split.offSeasonDays, PRICES.offSeason.pricePerDay, false, "components.booking-payment.per-day", t)}
-                    <Divider/>
-                    <ListItem>
-                        <ListItemText primary="Total"/>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {total} €
-                        </Typography>
-                    </ListItem>
-                </List>
-            </CardContent>
-        </Card>
+        <List dense={true}>
+            {priceLine(split.peakSeasonWeeks, PRICES.peakSeason.pricePerWeek, true, "components.booking-payment.per-week", t)}
+            {priceLine(split.offSeasonWeeks, PRICES.offSeason.pricePerWeek, false, "components.booking-payment.per-week", t)}
+            {priceLine(split.offSeasonDays, PRICES.offSeason.pricePerDay, false, "components.booking-payment.per-day", t)}
+            <Divider/>
+            <ListItem>
+                <ListItemText primary="Total"/>
+                <Typography gutterBottom variant="h5" component="div">
+                    {total} €
+                </Typography>
+            </ListItem>
+        </List>
     )
 }
 

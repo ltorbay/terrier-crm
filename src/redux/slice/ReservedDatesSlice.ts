@@ -1,13 +1,21 @@
 import {createSlice} from "@reduxjs/toolkit";
 import moment from "../../index";
 
+// TODO received from backend / dedicated service
+// interface ReservedDates {
+//     pear: Moment;
+//     grapes: Moment;
+// }
+
 interface ReservedDatesState {
-    array: number[];
-    initializedAt:number | undefined
+    pear: number[];
+    grapes: number[];
+    initializedAt: number | undefined
 }
 
 const INITIAL_STATE: ReservedDatesState = {
-    array: [],
+    pear: [],
+    grapes: [],
     initializedAt: undefined
 }
 
@@ -16,11 +24,11 @@ export const reservedDatesSlice = createSlice({
     initialState: INITIAL_STATE,
     reducers: {
         initReservedDates: (state) => {
-            if(state.initializedAt) {
+            if (state.initializedAt) {
                 return state
             }
             // TODO call backend and remove mocks
-            state.array = [
+            state.pear = [
                 moment({year: 2022, month: 4, day: 7}).valueOf(),
                 moment({year: 2022, month: 4, day: 8}).valueOf(),
                 moment({year: 2022, month: 4, day: 15}).valueOf(),
@@ -30,10 +38,19 @@ export const reservedDatesSlice = createSlice({
                 moment({year: 2022, month: 5, day: 12}).valueOf(),
                 moment({year: 2022, month: 5, day: 13}).valueOf(),
             ];
+            state.grapes = [
+                moment({year: 2022, month: 4, day: 7}).valueOf(),
+                moment({year: 2022, month: 4, day: 8}).valueOf(),
+                moment({year: 2022, month: 4, day: 15}).valueOf(),
+                moment({year: 2022, month: 4, day: 18}).valueOf(),
+                moment({year: 2022, month: 4, day: 19}).valueOf(),
+                moment({year: 2022, month: 4, day: 20}).valueOf(),
+                moment({year: 2022, month: 4, day: 30}).valueOf(),
+            ]
             state.initializedAt = moment().valueOf();
             return state;
         }
     }
 })
 
-export const { initReservedDates } = reservedDatesSlice.actions
+export const {initReservedDates} = reservedDatesSlice.actions

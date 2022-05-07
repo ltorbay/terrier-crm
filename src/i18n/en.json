@@ -11,7 +11,8 @@
       "pear": "Pear house",
       "grape": "Grape house",
       "lodge": "Lodge",
-      "pool": "Swimming pool"
+      "pool": "Swimming pool",
+      "full-cottage": "Whole domain"
     }
   },
   "components": {
@@ -25,6 +26,13 @@
       "legal-notice": "Legal notice",
       "cookies": "Cookies preferences",
       "copyright": "© Le Terrier - 2022"
+    },
+    "prices-list": {
+      "title": "Our prices",
+      "weekly-rental": "Weekly rental",
+      "nightly-rental": "Nightly rental",
+      "weekend-rental": "Weekend rental",
+      "price-per-night": "price per night with a minimum of 2 nights"
     }
   },
   "pages": {
@@ -35,17 +43,15 @@
       "label": "Gallery"
     },
     "cottages": {
-      "label": "Cottages"
+      "label": "Cottages",
+      "select-cottage": "Quel gîte souhaitez-vous réserver ?",
+      "book-stay": "Book your stay"
     },
     "explore": {
       "label": "Explore Dordogne"
     },
     "booking": {
-      "label": "Booking",
-      "weekly-rental": "Weekly rental",
-      "nightly-rental": "Nightly rental",
-      "weekend-rental": "Weekend rental",
-      "price-per-night": "price per night with a minimum of 2 nights"
+      "label": "Booking"
     },
     "contact": {
       "label": "Contact us"

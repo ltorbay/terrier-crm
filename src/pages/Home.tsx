@@ -40,7 +40,7 @@ export default function Home() {
     const carAccess = ['perigueux-by-car', 'brive-by-car', 'bordeaux-by-car', 'toulouse-by-car']
 
     return (
-        <Box>
+        <>
             <header>
                 <NavigationBar shade={Shade.Dark} displayHomeButton={false}/>
             </header>
@@ -113,6 +113,6 @@ export default function Home() {
             {/*TODO use TranslatedList for list items in join us section*/}
             <LocalisationMap/>
             {/*TODO Le terrier en photos (see edito)*/}
-        </Box>
+        </>
     )
 }

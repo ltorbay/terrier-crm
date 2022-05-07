@@ -132,8 +132,8 @@ export const ICONS = {
             flower: DarkFlower,
             keys: DarkKeys,
             stump: DarkStump,
-            darkGrapes: DarkGrapes,
-            darkPear: DarkPear
+            grapes: DarkGrapes,
+            pear: DarkPear
         }
     },
     light: {
@@ -143,8 +143,8 @@ export const ICONS = {
             flower: LightFlower,
             keys: LightKeys,
             stump: LightStump,
-            lightGrapes: LightGrapes,
-            lightPear: LightPear
+            grapes: LightGrapes,
+            pear: LightPear
         }
     }
 }

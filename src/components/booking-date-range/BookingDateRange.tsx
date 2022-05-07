@@ -18,8 +18,9 @@ import i18n from "../../i18n";
 import {Tooltip} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {isPeakSeason} from "../../utils/commonDatesCalculations";
-
-const DAY_STATE_CACHE: Record<string, DayState> = {};
+import {useTheme} from "@mui/styles";
+import {Theme} from "@mui/material/styles/createTheme";
+import {CottageSelect} from "../../model/CottageSelect";
 
 enum DayState {
     Enabled,
@@ -27,39 +28,31 @@ enum DayState {
     Disabled
 }
 
-class DayStateKey {
-    date: Moment;
-    selectingStart: boolean;
-    enablePeakSeason: boolean;
-
-    toString(): string {
-        return `${this.date.format("YYYYMMDD")}|${this.selectingStart}|${this.enablePeakSeason}`;
-    }
-
-    constructor(date: Moment, selectingStart: boolean, enablePeakSeason: boolean) {
-        this.date = date;
-        this.selectingStart = selectingStart;
-        this.enablePeakSeason = enablePeakSeason;
-    }
-}
-
 class Props {
-    reservedDates: Moment[];
-    enablePeakSeason: boolean;
+    pearReservations: number[];
+    grapesReservations: number[];
+    cottageSelect: CottageSelect;
+    vertical: boolean;
     onChange: (arg: BookingSelection) => void;
 
-    constructor(reservedDates: Moment[], enablePeakSeason: boolean, onChange: (arg: BookingSelection) => void) {
-        this.reservedDates = reservedDates;
-        this.enablePeakSeason = enablePeakSeason;
+    constructor(pearReservations: number[], grapesReservations: number[], cottageSelect: CottageSelect, vertical: boolean, onChange: (arg: BookingSelection) => void) {
+        this.pearReservations = pearReservations;
+        this.grapesReservations = grapesReservations;
+        this.cottageSelect = cottageSelect;
+        this.vertical = vertical;
         this.onChange = onChange;
     }
 }
 
 class State {
+    reservedDates: Moment[];
+    firstAvailableRange: MomentRange;
     period: MomentRange;
     selectingStart: boolean
 
-    constructor(period: MomentRange) {
+    constructor(reservedDates: Moment[], firstAvailableRange: MomentRange, period: MomentRange) {
+        this.reservedDates = reservedDates;
+        this.firstAvailableRange = firstAvailableRange;
         this.period = period;
         this.selectingStart = true;
     }
@@ -67,14 +60,17 @@ class State {
 
 export default function BookingDateRange(props: Props) {
     const {t} = useTranslation();
+    const theme: Theme = useTheme();
 
-    const [firstAvailableRange] = useState<MomentRange>(() => getFirstAvailablePeriod(props.reservedDates, props.enablePeakSeason))
-    const [state, setState] = useState<State>(() => new State(moment.range(firstAvailableRange.start, firstAvailableRange.end)));
+    const [state, setState] = useState<State>(() => buildState(props));
+    console.log('building component')
 
     useEffect(() => {
-        props.onChange(new BookingSelection(state.period));
+        const newState = buildState(props);
+        setState(newState);
+        props.onChange(new BookingSelection(newState.period));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [props.grapesReservations, props.pearReservations, props.cottageSelect]);
 
     return (
         <DateRange ranges={[{
@@ -85,43 +81,31 @@ export default function BookingDateRange(props: Props) {
                    onChange={days => handleSelect(days, props.onChange, state, setState)}
                    onRangeFocusChange={rangeFocus => onRangeFocusChange(rangeFocus, setState)}
                    focusedRange={state.selectingStart ? [0, 0] : [0, 1]}
-                   disabledDay={date => cachedDayState(moment(date), props.reservedDates, state.selectingStart, props.enablePeakSeason) !== DayState.Enabled}
-                   minDate={getMinDate(state, firstAvailableRange.start).toDate()}
-                   maxDate={state.selectingStart ? undefined : firstReservedDate(state.period.start, props.reservedDates)?.toDate()}
-                   dayContentRenderer={date => customDayContent(moment(date), props, state, firstAvailableRange.start, t)}
+                   disabledDay={date => getDayState(moment(date), state.reservedDates, state.selectingStart, props.cottageSelect) !== DayState.Enabled}
+                   minDate={getMinDate(state, state.firstAvailableRange.start).toDate()}
+                   maxDate={state.selectingStart ? undefined : firstReservedDate(state.period.start, state.reservedDates)?.toDate()}
+                   dayContentRenderer={date => customDayContent(moment(date), state.reservedDates, props.cottageSelect, state, state.firstAvailableRange.start, t)}
                    preventSnapRefocus={true}
                    moveRangeOnFirstSelection={false}
                    months={2}
-                   direction="horizontal"
+                   color={theme.palette.secondary.main}
+                   rangeColors={[theme.palette.secondary.main]}
+                   direction={props.vertical ? 'vertical' : 'horizontal'}
                    weekStartsOn={START_OF_RESERVATION_WEEK}
                    locale={i18n.language === Language.FR.valueOf() ? fr : enGB}/>
     );
 }
 
-function getFirstAvailablePeriod(reservedDates: Moment[], enablePeakSeason: boolean): MomentRange {
-    let start = today();
-    while (cachedDayState(start, reservedDates, true, enablePeakSeason) !== DayState.Enabled) {
-        start.add(1, "day");
-    }
-
-    const end = start
-        .clone()
-        .add(isPeakSeason(start.date(), start.month()) ?
-            MIN_CONSECUTIVE_NIGHTS_PEAK_SEASON
-            : MIN_CONSECUTIVE_NIGHTS_OFF_SEASON, "days");
-
-    return moment.range(start, end);
-}
-
-function customDayContent(date: Moment, props: Props, state: State, firstAvailableDateStart: Moment, t: any): React.ReactNode {
+function customDayContent(date: Moment, reservedDates: Moment[], cottageSelect: CottageSelect, state: State, firstAvailableDateStart: Moment, t: any): React.ReactNode {
     let peakSeason = isPeakSeason(date.date(), date.month());
-    if (cachedDayState(date, props.reservedDates, state.selectingStart, props.enablePeakSeason) === DayState.Grayed
+    if (getDayState(date, reservedDates, state.selectingStart, cottageSelect) === DayState.Grayed
         && !state.period.contains(date)
-        && (!peakSeason || (false !== firstReservedDate(state.period.start, props.reservedDates)?.isAfter(date, "day")
+        && (!peakSeason || (false !== firstReservedDate(state.period.start, reservedDates)?.isAfter(date, "day")
             && getMinDate(state, firstAvailableDateStart).isBefore(date, "day")))) {
         let consecutiveDays = peakSeason ? MIN_CONSECUTIVE_NIGHTS_PEAK_SEASON : MIN_CONSECUTIVE_NIGHTS_OFF_SEASON;
         return (
             <Tooltip
+                placement='right'
                 title={peakSeason ?
                     t("common.weekly-rental", {count: consecutiveDays})
                     : t("common.minimum-nights", {count: consecutiveDays}) || `${consecutiveDays} nights minimum`}>
@@ -162,8 +146,8 @@ function handleSelect(dates: any, onChange: (arg: BookingSelection) => void, sta
 
     let selectedRange = moment.range(startMoment, endMoment);
     setState((prevState: State) => ({
-        period: selectedRange,
-        selectingStart: prevState.selectingStart
+        ...prevState,
+        period: selectedRange
     }));
 
     if (!state.selectingStart) {
@@ -174,26 +158,16 @@ function handleSelect(dates: any, onChange: (arg: BookingSelection) => void, sta
 function onRangeFocusChange(rangeFocus: number[], setState: React.Dispatch<any>) {
     // Range focus is the following : [date selection index(0 if single period), 0/1 (period start/end)]
     setState((prevState: State) => ({
-        period: prevState.period,
+        ...prevState,
         selectingStart: rangeFocus[1] === 0
     }))
 }
 
-function cachedDayState(date: Moment, reservedDates: Moment[], selectingStart: boolean, enablePeakSeason: boolean): DayState {
-    let key = new DayStateKey(date, selectingStart, enablePeakSeason).toString();
-    let value = DAY_STATE_CACHE[key];
-    if (value !== undefined) return value;
-
-    value = getDayState(date, reservedDates, selectingStart, enablePeakSeason);
-    DAY_STATE_CACHE[key] = value;
-    return value;
-}
-
-function getDayState(date: Moment, reservedDates: Moment[], selectingStart: boolean, enablePeakSeason: boolean): DayState {
+function getDayState(date: Moment, reservedDates: Moment[], selectingStart: boolean, cottageSelect: CottageSelect): DayState {
     if (isPeakSeason(date.date(), date.month())) {
         // Disabled if some days of the week are in the past !
         // If first day of reservation -> date is available for selection !
-        if (!enablePeakSeason
+        if (cottageSelect !== CottageSelect.BOTH
             || date.clone().startOf("week").isBefore(today())
             || isReserved(selectingStart, date, reservedDates, "week")) {
             return DayState.Disabled;
@@ -211,6 +185,41 @@ function getDayState(date: Moment, reservedDates: Moment[], selectingStart: bool
         return DayState.Grayed;
     }
     return DayState.Enabled;
+}
+
+function buildState(props: Props): State {
+    console.log('building state')
+    const reservedDates = cottageReservationArray(props.cottageSelect, props.pearReservations, props.grapesReservations).map(epoch => moment(epoch));
+    const firstAvailableRange = getFirstAvailablePeriod(reservedDates, props.cottageSelect);
+    const period = moment.range(firstAvailableRange.start, firstAvailableRange.end);
+    return new State(reservedDates, firstAvailableRange, period);
+}
+
+function cottageReservationArray(cottage: CottageSelect, pearReservations: number[], grapesReservations: number[]): number[] {
+    console.log('rebuilding reservation array with cottage ' + cottage)
+    switch (cottage) {
+        case CottageSelect.BOTH:
+            return Array.from(new Set([...grapesReservations, ...pearReservations]));
+        case CottageSelect.PEAR:
+            return pearReservations || [];
+        case CottageSelect.GRAPE:
+            return grapesReservations || [];
+    }
+}
+
+function getFirstAvailablePeriod(reservedDates: Moment[], cottageSelect: CottageSelect): MomentRange {
+    let start = today();
+    while (getDayState(start, reservedDates, true, cottageSelect) !== DayState.Enabled) {
+        start.add(1, "day");
+    }
+
+    const end = start
+        .clone()
+        .add(isPeakSeason(start.date(), start.month()) ?
+            MIN_CONSECUTIVE_NIGHTS_PEAK_SEASON
+            : MIN_CONSECUTIVE_NIGHTS_OFF_SEASON, "days");
+
+    return moment.range(start, end);
 }
 
 function isReserved(selectingStart: boolean, date: Moment, reservedDates: Moment[], unitOfTime: moment.unitOfTime.Diff): boolean {

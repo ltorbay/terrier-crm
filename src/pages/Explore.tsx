@@ -5,11 +5,11 @@ import {Shade} from "../model/Shade";
 
 export default function Explore() {
     return (
-        <Box>
+        <>
             <header>
                 <NavigationBar shade={Shade.Dark}/>
             </header>
             Explore page !
-        </Box>
+        </>
     );
 }

@@ -1,97 +1,102 @@
-import {Box, Container, Divider, FormGroup, List, ListItem, ListItemText, Typography} from "@mui/material";
+import {
+    Box,
+    Card,
+    FormControl,
+    FormGroup,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Select,
+    Typography,
+    useMediaQuery
+} from "@mui/material";
 import {BookingSelection} from "../model/BookingSelection";
 import BookingDateRange from "../components/booking-date-range/BookingDateRange";
 import BookingPayment from "../components/BookingPayment";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
 import {initReservedDates} from "../redux/slice/ReservedDatesSlice";
-import moment from "../index";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
-import {PEAK_SEASON_END, PEAK_SEASON_START} from "../constants/constants";
-import {useTranslation} from "react-i18next";
+import {Trans} from "react-i18next";
+import {PricesList} from "../components/PricesList";
+import {ContentBox} from "../components/containers/ContentBox";
+import {CottageSelect, cottageToIcon, cottageToLabel} from "../model/CottageSelect";
+import {ImageDecoration} from "../components/ImageDecoration";
+import moment from "../index";
 
 export default function Booking() {
     const [state, setState] = useState<BookingSelection>();
-    useAppDispatch()(initReservedDates())
-    const {t} = useTranslation();
-    const pageT = (key: string) => t("pages.booking." + key);
+    const [cottage, setCottage] = useState<CottageSelect>(CottageSelect.BOTH)
+    // TODO centralize media queries string in constants before it gets out of hand
+    const tinyScreen = useMediaQuery('(max-width:500px)');
 
-    const reservedDates = useAppSelector((datesState) => datesState.reservedDates.array)
-        .map(epoch => moment(epoch));
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(initReservedDates())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    const pearReservations = useAppSelector((datesState) => datesState.reservedDates.pear);
+    const grapesReservations = useAppSelector((datesState) => datesState.reservedDates.grapes);
+
     return (
-        <Container maxWidth="sm">
+        <>
             <header>
                 <NavigationBar shade={Shade.Dark}/>
             </header>
-            <Box height='100px'></Box>
-            <Container maxWidth="lg">
-                <List>
-                    <ListItem alignItems="flex-start">
-                        <ListItemText>
-                            <ListItemText primary={t("common.peak-season")}
-                                          secondary={
-                                              PEAK_SEASON_START.format("DD/MM")
-                                              + " - "
-                                              + PEAK_SEASON_END.format("DD/MM")
-                                          }/>
-                            <List>
-                                <ListItem>
-                                    <ListItemText primary={pageT("weekly-rental")}
-                                                  secondary={t("common.nights", {count: 7})}/>
-                                    <Typography gutterBottom variant="h6" component="div">
-                                        4000 €
-                                    </Typography>
-                                </ListItem>
-                            </List>
-                        </ListItemText>
-                    </ListItem>
-                    <Divider/>
-                    <ListItem alignItems="flex-start">
-                        <ListItemText>
-                            <ListItemText primary={t("common.off-season")}
-                                          secondary={
-                                              PEAK_SEASON_END.clone().add(1, "days").format("DD/MM")
-                                              + " - "
-                                              + PEAK_SEASON_START.clone().subtract(1, "days").format("DD/MM")
-                                          }/>
-                            <List>
-                                <ListItem>
-                                    <ListItemText primary={pageT("weekly-rental")}
-                                                  secondary={t("common.nights", {count: 7})}/>
-                                    <Typography gutterBottom variant="h6" component="div">
-                                        2000 €
-                                    </Typography>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemText primary={pageT("weekend-rental")}
-                                                  secondary={t("common.nights", {count: 2})}/>
-                                    <Typography gutterBottom variant="h6" component="div">
-                                        1100 €
-                                    </Typography>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemText primary={pageT("nightly-rental")}
-                                                  secondary={pageT("price-per-night")}/>
-                                    <Typography gutterBottom variant="h6" component="div">
-                                        320 €
-                                    </Typography>
-                                </ListItem>
-                            </List>
-                        </ListItemText>
-                    </ListItem>
-                </List>
-            </Container>
-            <FormGroup>
-                {/*TODO condition enable peak season on selecting one of the buildings*/}
-                {/*TODO condition reserved dates on the selected building*/}
-                {/*TODO force reset the component (and the selection) on selected building change*/}
-                <BookingDateRange reservedDates={reservedDates}
-                                  enablePeakSeason={true}
-                                  onChange={setState}/>
-            </FormGroup>
-            {(state?.periods && state?.weekStarts) ?
-                <BookingPayment periods={state?.periods || []} weekStarts={state?.weekStarts || []}/> : undefined}
-        </Container>
+            <Box sx={{paddingTop: '8vh'}}/>
+            <PricesList/>
+            <Card>
+                <ImageDecoration icon={cottageToIcon(cottage)} marginTop='50px'/>
+                <ContentBox titleKey='pages.booking.book-stay' width={tinyScreen ? '300px' : '500px'}>
+                    <FormGroup>
+                        <FormControl fullWidth>
+                            <Select onChange={action => setCottage(action.target.value as CottageSelect)}
+                                    defaultValue={CottageSelect.BOTH}
+                                    sx={{backgroundColor: 'white'}}
+                                    inputProps={{name: 'cottage', id: 'uncontrolled-native'}}>
+                                <MenuItem value={CottageSelect.BOTH}>
+                                    <Trans i18nKey={cottageToLabel(CottageSelect.BOTH)}/>
+                                </MenuItem>
+                                <MenuItem value={CottageSelect.PEAR}>
+                                    <Trans i18nKey={cottageToLabel(CottageSelect.PEAR)}/>
+                                </MenuItem>
+                                <MenuItem value={CottageSelect.GRAPE}>
+                                    <Trans i18nKey={cottageToLabel(CottageSelect.GRAPE)}/>
+                                </MenuItem>
+                            </Select>
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                &nbsp;<Trans i18nKey='pages.booking.select-cottage'/>
+                            </InputLabel>
+                        </FormControl>
+                        <Typography display='block' textAlign='justify' variant='body2' marginLeft='1em'>
+                            <Trans i18nKey={cottageSizingKey(cottage)}/>
+                        </Typography>
+                        <Grid>
+                            <BookingDateRange cottageSelect={cottage}
+                                              pearReservations={pearReservations}
+                                              grapesReservations={grapesReservations}
+                                              vertical={tinyScreen}
+                                              onChange={setState}/>
+                        </Grid>
+                    </FormGroup>
+                    {(state?.periods && state?.weekStarts) ?
+                        <BookingPayment periods={state?.periods || []}
+                                        weekStarts={state?.weekStarts || []}/> : undefined}
+                </ContentBox>
+            </Card>
+        </>
     )
+}
+
+function cottageSizingKey(cottage: CottageSelect): string {
+    switch (cottage) {
+        case CottageSelect.BOTH:
+            return 'pages.booking.full-cottage-count';
+        case CottageSelect.PEAR:
+            return 'pages.booking.pear-count';
+        case CottageSelect.GRAPE:
+            return 'pages.booking.grape-count';
+    }
 }
