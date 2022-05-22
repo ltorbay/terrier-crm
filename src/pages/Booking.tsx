@@ -23,7 +23,6 @@ import {PricesList} from "../components/PricesList";
 import {ContentBox} from "../components/containers/ContentBox";
 import {CottageSelect, cottageToIcon, cottageToLabel} from "../model/CottageSelect";
 import {ImageDecoration} from "../components/ImageDecoration";
-import moment from "../index";
 
 export default function Booking() {
     const [state, setState] = useState<BookingSelection>();
@@ -37,8 +36,8 @@ export default function Booking() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const pearReservations = useAppSelector((datesState) => datesState.reservedDates.pear);
-    const grapesReservations = useAppSelector((datesState) => datesState.reservedDates.grapes);
+    const pearReservations = useAppSelector((state) => state.reservedDates.pear);
+    const grapesReservations = useAppSelector((state) => state.reservedDates.grapes);
 
     return (
         <>

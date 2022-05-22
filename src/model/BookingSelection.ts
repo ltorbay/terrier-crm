@@ -7,6 +7,7 @@ export class BookingSelection {
     periods: MomentRange[];
 
     constructor(period: MomentRange) {
+        // TODO stop this nonsense and only count consecutive days in period to calculate full week price !! (same as in API) (OR query API each time ?)
         // TODO split into weekends remaining periods ? or do that in the backend ? or avoid having distinct price for weekends ?
         const nightsPeriod = moment.range(period.start, period.end.clone().subtract(1, "day"));
         if(nightsPeriod.duration("days") < 6) {

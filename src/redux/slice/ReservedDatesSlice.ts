@@ -1,12 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import moment from "../../index";
 
-// TODO received from backend / dedicated service
-// interface ReservedDates {
-//     pear: Moment;
-//     grapes: Moment;
-// }
-
 interface ReservedDatesState {
     pear: number[];
     grapes: number[];

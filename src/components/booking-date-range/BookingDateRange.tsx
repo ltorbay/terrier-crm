@@ -63,7 +63,6 @@ export default function BookingDateRange(props: Props) {
     const theme: Theme = useTheme();
 
     const [state, setState] = useState<State>(() => buildState(props));
-    console.log('building component')
 
     useEffect(() => {
         const newState = buildState(props);
@@ -188,7 +187,6 @@ function getDayState(date: Moment, reservedDates: Moment[], selectingStart: bool
 }
 
 function buildState(props: Props): State {
-    console.log('building state')
     const reservedDates = cottageReservationArray(props.cottageSelect, props.pearReservations, props.grapesReservations).map(epoch => moment(epoch));
     const firstAvailableRange = getFirstAvailablePeriod(reservedDates, props.cottageSelect);
     const period = moment.range(firstAvailableRange.start, firstAvailableRange.end);
@@ -196,7 +194,6 @@ function buildState(props: Props): State {
 }
 
 function cottageReservationArray(cottage: CottageSelect, pearReservations: number[], grapesReservations: number[]): number[] {
-    console.log('rebuilding reservation array with cottage ' + cottage)
     switch (cottage) {
         case CottageSelect.BOTH:
             return Array.from(new Set([...grapesReservations, ...pearReservations]));

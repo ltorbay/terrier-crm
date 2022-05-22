@@ -45,7 +45,8 @@
       "weekly-rental": "Location à la semaine",
       "nightly-rental": "Location à la nuitée",
       "weekend-rental": "Location au week-end",
-      "price-per-night": "tarif à la nuitée avec un minimum de deux nuits"
+      "price-per-night": "Tarif à la nuitée avec un minimum de deux nuits",
+      "price-is-per-night": "Tarif à la nuitée avec un minimum de {{count}} nuits"
     }
   },
   "pages": {
