@@ -4,15 +4,29 @@
     "nights_other": "{{count}} nights",
     "off-season": "Off season",
     "peak-season": "Peak season",
+    "holidays": "Holiday period",
     "minimum-nights": "{{count}} nights minimum",
     "weekly-rental": "Weekly rental only for peak season",
     "rural-cottages": "RURAL COTTAGES",
     "places": {
       "pear": "Pear house",
+      "the-pear": "The pear house",
       "grape": "Grape house",
-      "lodge": "Lodge",
+      "the-grape": "The grape house",
+      "lodge": "Bòsc",
+      "the-lodge": "The bòsc",
       "pool": "Swimming pool",
+      "the-pool": "The swimming pool",
+      "domain": "The domain",
       "full-cottage": "Whole domain"
+    },
+    "equipments": {
+      "double-glazing": "Double glazing",
+      "central-heater": "Central heater",
+      "reversible-air-conditionner": "Reversible air conditionner",
+      "stove": "Wood stove",
+      "equipped-kitchen": "Fully equipped kitchen",
+      "covered-terrace": "Covered private terrace"
     }
   },
   "components": {
@@ -45,7 +59,6 @@
     },
     "cottages": {
       "label": "Cottages",
-      "select-cottage": "Quel gîte souhaitez-vous réserver ?",
       "book-stay": "Book your stay"
     },
     "explore": {
