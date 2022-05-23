@@ -3,7 +3,7 @@ import DarkDoor from './icons/dark/door.png';
 import DarkFlower from './icons/dark/flower.png';
 import DarkKeys from './icons/dark/keys.png';
 import DarkStump from './icons/dark/stump.png';
-import DarkGrapes from './icons/dark/grapes.png';
+import DarkGrape from './icons/dark/grape.png';
 import DarkPear from './icons/dark/pear.png';
 
 import LightLogo from './icons/light/logo.png';
@@ -11,7 +11,7 @@ import LightDoor from './icons/light/door.png';
 import LightFlower from './icons/light/flower.png';
 import LightKeys from './icons/light/keys.png';
 import LightStump from './icons/light/stump.png';
-import LightGrapes from './icons/light/grapes.png';
+import LightGrape from './icons/light/grape.png';
 import LightPear from './icons/light/pear.png';
 
 import AerialView from './pictures/domain/aerial_view.jpeg';
@@ -112,7 +112,7 @@ export const PICTURES = {
         salon2: GrapeSalon2,
         tallBedroom: GrapeTallBedroom,
         terrace: GrapeTerrace,
-        grapes: Grapes,
+        grape: Grapes,
         kitchen: Kitchen,
         smallBedroom: SmallBedroom,
     },
@@ -132,7 +132,7 @@ export const ICONS = {
             flower: DarkFlower,
             keys: DarkKeys,
             stump: DarkStump,
-            grapes: DarkGrapes,
+            grape: DarkGrape,
             pear: DarkPear
         }
     },
@@ -143,7 +143,7 @@ export const ICONS = {
             flower: LightFlower,
             keys: LightKeys,
             stump: LightStump,
-            grapes: LightGrapes,
+            grape: LightGrape,
             pear: LightPear
         }
     }

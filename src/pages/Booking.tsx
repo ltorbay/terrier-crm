@@ -10,10 +10,9 @@ import {
     Typography,
     useMediaQuery
 } from "@mui/material";
-import {BookingSelection} from "../model/BookingSelection";
 import BookingDateRange from "../components/booking-date-range/BookingDateRange";
 import BookingPayment from "../components/BookingPayment";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
@@ -24,9 +23,11 @@ import {CottageSelect, cottageToIcon, cottageToLabel} from "../model/CottageSele
 import {ImageDecoration} from "../components/ImageDecoration";
 import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
 import moment from "../index";
+import BookingService, {PricingDetail} from "../service/BookingService";
+import {DateRange as MomentRange} from "moment-range";
 
 export default function Booking() {
-    const [state, setState] = useState<BookingSelection>();
+    const [state, setState] = useState<MomentRange>();
     const [cottage, setCottage] = useState<CottageSelect>(CottageSelect.BOTH)
     // TODO centralize media queries string in constants before it gets out of hand
     const tinyScreen = useMediaQuery('(max-width:500px)');
@@ -37,8 +38,10 @@ export default function Booking() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const pearReservations = useAppSelector((state) => state.reservedDates.pear);
-    const grapesReservations = useAppSelector((state) => state.reservedDates.grapes);
+    const pricingDetailRef = useRef<PricingDetail[]>([]);
+
+    const pearReservations = useAppSelector((s) => s.reservedDates.pear);
+    const grapeReservations = useAppSelector((s) => s.reservedDates.grape);
 
     return (
         <>
@@ -76,14 +79,22 @@ export default function Booking() {
                         <Grid>
                             <BookingDateRange cottageSelect={cottage}
                                               pearReservations={pearReservations}
-                                              grapesReservations={grapesReservations}
+                                              grapeReservations={grapeReservations}
                                               vertical={tinyScreen}
-                                              onChange={setState}/>
+                                              onChange={newSelection => {
+                                                  // FIXME simulation is called multiple times at component load
+                                                  console.log('new selection called')
+                                                  BookingService.simulateBooking(cottage, newSelection.start, newSelection.end).then(r => {
+                                                      pricingDetailRef.current = r;
+                                                      setState(newSelection);
+                                                  })
+                                              }}/>
                         </Grid>
                     </FormGroup>
-                    {(state?.periods && state?.weekStarts) ?
-                        <BookingPayment periods={state?.periods || []}
-                                        weekStarts={state?.weekStarts || []}/> : undefined}
+                    {(pricingDetailRef.current) ?
+                        <BookingPayment
+                            cottageSelect={cottage}
+                            pricingDetail={pricingDetailRef.current}/> : undefined}
                 </ContentBox>
             </Card>
         </>

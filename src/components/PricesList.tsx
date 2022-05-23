@@ -1,17 +1,14 @@
-import {useTranslation} from "react-i18next";
 import {Grid} from "@mui/material";
 import React, {MutableRefObject, useEffect, useRef} from "react";
 import {ContentBox} from "./containers/ContentBox";
 import {fetchPricingConfiguration, PricingConfigurationStateItem} from "../redux/slice/PricingSlice";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
 import moment from "../index";
-import {PricingPeriodType} from "../service/PriceService";
 import {Moment} from "moment/moment";
 import {PriceLine} from "./PriceLine";
+import {PricingPeriodType} from "../model/PricingPeriodType";
 
 export function PricesList() {
-    const {t} = useTranslation();
-    const pageT = (key: string) => t("components.prices-list." + key);
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(fetchPricingConfiguration({start: moment(), end: moment().endOf('year')}))
@@ -45,11 +42,11 @@ export function PricesList() {
 
 function labelKey(periodType: PricingPeriodType): string {
     switch (periodType) {
-        case PricingPeriodType.HOLIDAYS:
+        case 'HOLIDAYS':
             return 'common.holidays';
-        case PricingPeriodType.OFF_SEASON:
+        case 'OFF_SEASON':
             return 'common.off-season';
-        case PricingPeriodType.PEAK_SEASON:
+        case 'PEAK_SEASON':
             return 'common.peak-season';
         default:
             return '';

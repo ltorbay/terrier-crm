@@ -63,7 +63,7 @@ export default function Gallery() {
     ];
     const grapeImages: Image[] = [
         new Image(PICTURES.grape.backside, 'Back side'),
-        new Image(PICTURES.grape.grapes, 'Grapes', 1, 2),
+        new Image(PICTURES.grape.grape, 'Grape', 1, 2),
         new Image(PICTURES.grape.salon2, 'High salon'),
         new Image(PICTURES.grape.fireplace, 'Fire place', 1, 2),
         new Image(PICTURES.grape.bathroom, 'Bathroom'),

@@ -1,0 +1,1 @@
+export type PricingPeriodType = 'OFF_SEASON' | 'PEAK_SEASON' | 'HOLIDAYS'

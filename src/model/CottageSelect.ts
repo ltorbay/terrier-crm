@@ -1,4 +1,5 @@
 import {ICONS} from "../assets";
+import {PricingLine, PricingModel} from "./PricingModel";
 
 export enum CottageSelect {
     BOTH,
@@ -25,6 +26,28 @@ export function cottageToIcon(select: CottageSelect): string {
         case CottageSelect.PEAR:
             return ICONS.dark.icons.pear;
         case CottageSelect.GRAPE:
-            return ICONS.dark.icons.grapes;
+            return ICONS.dark.icons.grape;
+    }
+}
+
+export function cottageToString(select: CottageSelect): string {
+    switch (select) {
+        case CottageSelect.BOTH:
+            return 'BOTH';
+        case CottageSelect.PEAR:
+            return 'PEAR';
+        case CottageSelect.GRAPE:
+            return 'GRAPE';
+    }
+}
+
+export function cottageToPrice(select: CottageSelect, pricing: PricingModel): PricingLine {
+    switch (select) {
+        case CottageSelect.BOTH:
+            return pricing.both;
+        case CottageSelect.PEAR:
+            return pricing.pear;
+        case CottageSelect.GRAPE:
+            return pricing.grape;
     }
 }

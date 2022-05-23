@@ -5,13 +5,13 @@ import BookingService, {BookedDatesResponse} from "../../service/BookingService"
 
 interface BookedDatesState {
     pear: number[];
-    grapes: number[];
+    grape: number[];
     initializedAt: number | undefined
 }
 
 const INITIAL_STATE: BookedDatesState = {
     pear: [],
-    grapes: [],
+    grape: [],
     initializedAt: undefined
 }
 
@@ -27,7 +27,7 @@ export const fetchReservedDates = createAsyncThunk(
         if (state.initializedAt) {
             const reservedDates: BookedDatesResponse = {
                 pearBookings: state.pear.map(item => moment(item)),
-                grapesBookings: state.grapes.map(item => moment(item))
+                grapeBookings: state.grape.map(item => moment(item))
             }
             return Promise.resolve(reservedDates)
         }
@@ -41,7 +41,7 @@ export const reservedDatesSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchReservedDates.fulfilled, (state, action: PayloadAction<BookedDatesResponse>) => {
             state.pear = action.payload.pearBookings.map(date => moment(date).valueOf())
-            state.grapes = action.payload.grapesBookings.map(date => moment(date).valueOf())
+            state.grape = action.payload.grapeBookings.map(date => moment(date).valueOf())
             state.initializedAt = moment().valueOf();
         })
     },

@@ -2,7 +2,7 @@ import {List, ListItem, ListItemText, Typography} from "@mui/material";
 import React, {useEffect, useRef} from "react";
 import {TFunction, Trans, useTranslation} from "react-i18next";
 import {Moment} from "moment";
-import {PricingLine} from "../service/PriceService";
+import {PricingLine} from "../model/PricingModel";
 
 class Props {
     jsonData: string;
@@ -31,9 +31,9 @@ export function PriceLine(props: Props) {
             <ListItemText primary={t(data.labelKey)}
                           secondary={props.periods.map(display => display.start.format('DD/MM/YYYY') + (display.end ? (' - ' + display.end.format('DD/MM/YYYY')) : ' ...')
                           ).reduce((s1, s2) => s1 + '\n' + s2) + '\n' + t("common.minimum-nights", {count: nights})}/>
-            <List>
+            <List dense={true}>
                 {listItems(t, 'common.places.full-cottage', nights, data.pricing.both)}
-                {listItems(t, 'common.places.grape', nights, data.pricing.grapes)}
+                {listItems(t, 'common.places.grape', nights, data.pricing.grape)}
                 {listItems(t, 'common.places.pear', nights, data.pricing.pear)}
             </List>
         </>
@@ -44,7 +44,7 @@ function listItems(t: TFunction<"translation">, titleKey: string, minimumNights:
     if (!line.weekly && !line.nightly) return undefined;
     return (
         <ListItem key={titleKey}>
-            <List>
+            <List dense={true}>
                 <ListItem key='title'>
                     <Typography display='block' textAlign='justify' variant='h6'>
                         <Trans i18nKey={titleKey}/>
@@ -60,12 +60,12 @@ function listItems(t: TFunction<"translation">, titleKey: string, minimumNights:
 function listItemText(t: TFunction<"translation">, perNight: boolean, minimumNights: number, pricingCents: number) {
     if (!pricingCents) return undefined;
     return (
-        <ListItem key={perNight ? 'nightly' : 'weekly'}>
+        <ListItem key={perNight ? 'nightly' : 'weekly'} sx={{minWidth: '370px'}}>
             <ListItemText
                 primary={perNight ? t("components.prices-list.nightly-rental") : t("components.prices-list.weekly-rental")}
                 secondary={perNight ? t("components.prices-list.price-is-per-night", {count: minimumNights}) : t("common.nights", {count: 7})}/>
             <Typography gutterBottom variant="h6" component="div">
-                {pricingCents / 100} €
+                {pricingCents / 100}&nbsp;€
             </Typography>
         </ListItem>
     );

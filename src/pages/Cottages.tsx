@@ -50,7 +50,7 @@ export default function Cottages() {
                                 itemKeys={pearEquipments.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
             <ImageBox src={PICTURES.grape.house} right>
-                <ImageDecoration icon={ICONS.dark.icons.grapes} width='15vw'/>
+                <ImageDecoration icon={ICONS.dark.icons.grape} width='15vw'/>
                 <TextBox titleKey={'common.places.the-grape'}
                          contentKey={'pages.cottages.grape-description'}
                          marginBottom='0'
