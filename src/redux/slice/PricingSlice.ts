@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import moment from "../../index";
 import {Moment} from "moment";
-import PriceService, {BasePricingConfiguration, PricingConfiguration} from "../../service/PriceService";
+import PriceService, {BasePricingConfiguration, PricingConfigurationResponse} from "../../service/PriceService";
 
 export interface PricingConfigurationStateItem extends BasePricingConfiguration {
     start: number;
@@ -21,11 +21,10 @@ interface InitPricingPayload {
 
 export const fetchPricingConfiguration = createAsyncThunk(
     'PriceService/getPriceConfiguration',
-    async (payload: InitPricingPayload, thunkAPI): Promise<PricingConfiguration[]> => {
+    async (payload: InitPricingPayload, thunkAPI): Promise<PricingConfigurationResponse[]> => {
         const state = thunkAPI.getState() as PricingState;
         if (state.initializedAt && state.configuration) {
-            // Promise<PricingConfiguration>
-            const configuration: PricingConfiguration[] = state.configuration.map(item => {
+            const configuration: PricingConfigurationResponse[] = state.configuration.map(item => {
                 return {
                     periodType: item.periodType,
                     start: moment(item.start),
@@ -43,7 +42,7 @@ export const pricingSlice = createSlice({
     name: "pricing",
     initialState: INITIAL_STATE,
     extraReducers: (builder) => {
-        builder.addCase(fetchPricingConfiguration.fulfilled, (state, action: PayloadAction<PricingConfiguration[]>) => {
+        builder.addCase(fetchPricingConfiguration.fulfilled, (state, action: PayloadAction<PricingConfigurationResponse[]>) => {
             state.configuration = action.payload.map(pricingConfiguration => {
                 return {
                     periodType: pricingConfiguration.periodType,

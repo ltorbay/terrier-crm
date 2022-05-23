@@ -15,7 +15,6 @@ import BookingDateRange from "../components/booking-date-range/BookingDateRange"
 import BookingPayment from "../components/BookingPayment";
 import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import {initReservedDates} from "../redux/slice/ReservedDatesSlice";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
 import {Trans} from "react-i18next";
@@ -23,6 +22,8 @@ import {PricesList} from "../components/PricesList";
 import {ContentBox} from "../components/containers/ContentBox";
 import {CottageSelect, cottageToIcon, cottageToLabel} from "../model/CottageSelect";
 import {ImageDecoration} from "../components/ImageDecoration";
+import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
+import moment from "../index";
 
 export default function Booking() {
     const [state, setState] = useState<BookingSelection>();
@@ -32,7 +33,7 @@ export default function Booking() {
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch(initReservedDates())
+        dispatch(fetchReservedDates({start: moment(), end: moment().add(1, 'year')}))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

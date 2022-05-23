@@ -1,50 +1,49 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import moment from "../../index";
+import {Moment} from "moment";
+import BookingService, {BookedDatesResponse} from "../../service/BookingService";
 
-interface ReservedDatesState {
+interface BookedDatesState {
     pear: number[];
     grapes: number[];
     initializedAt: number | undefined
 }
 
-const INITIAL_STATE: ReservedDatesState = {
+const INITIAL_STATE: BookedDatesState = {
     pear: [],
     grapes: [],
     initializedAt: undefined
 }
 
+interface BookedDatesPayload {
+    start: Moment,
+    end: Moment,
+}
+
+export const fetchReservedDates = createAsyncThunk(
+    'BookingService/getReservedDates',
+    async (payload: BookedDatesPayload, thunkAPI): Promise<BookedDatesResponse> => {
+        const state = thunkAPI.getState() as BookedDatesState;
+        if (state.initializedAt) {
+            const reservedDates: BookedDatesResponse = {
+                pearBookings: state.pear.map(item => moment(item)),
+                grapesBookings: state.grapes.map(item => moment(item))
+            }
+            return Promise.resolve(reservedDates)
+        }
+        return BookingService.getReservedDates(payload.start, payload.end);
+    }
+)
+
 export const reservedDatesSlice = createSlice({
     name: "reservedDates",
     initialState: INITIAL_STATE,
-    reducers: {
-        initReservedDates: (state) => {
-            if (state.initializedAt) {
-                return state
-            }
-            // TODO call backend and remove mocks
-            state.pear = [
-                moment({year: 2022, month: 4, day: 7}).valueOf(),
-                moment({year: 2022, month: 4, day: 8}).valueOf(),
-                moment({year: 2022, month: 4, day: 15}).valueOf(),
-                moment({year: 2022, month: 4, day: 19}).valueOf(),
-                moment({year: 2022, month: 4, day: 22}).valueOf(),
-                moment({year: 2022, month: 4, day: 25}).valueOf(),
-                moment({year: 2022, month: 5, day: 12}).valueOf(),
-                moment({year: 2022, month: 5, day: 13}).valueOf(),
-            ];
-            state.grapes = [
-                moment({year: 2022, month: 4, day: 7}).valueOf(),
-                moment({year: 2022, month: 4, day: 8}).valueOf(),
-                moment({year: 2022, month: 4, day: 15}).valueOf(),
-                moment({year: 2022, month: 4, day: 18}).valueOf(),
-                moment({year: 2022, month: 4, day: 19}).valueOf(),
-                moment({year: 2022, month: 4, day: 20}).valueOf(),
-                moment({year: 2022, month: 4, day: 30}).valueOf(),
-            ]
+    extraReducers: (builder) => {
+        builder.addCase(fetchReservedDates.fulfilled, (state, action: PayloadAction<BookedDatesResponse>) => {
+            state.pear = action.payload.pearBookings.map(date => moment(date).valueOf())
+            state.grapes = action.payload.grapesBookings.map(date => moment(date).valueOf())
             state.initializedAt = moment().valueOf();
-            return state;
-        }
-    }
+        })
+    },
+    reducers: {}
 })
-
-export const {initReservedDates} = reservedDatesSlice.actions

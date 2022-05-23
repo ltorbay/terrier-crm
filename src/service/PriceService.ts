@@ -27,13 +27,12 @@ export interface BasePricingConfiguration {
     pricing: PricingModel
 }
 
-export interface PricingConfiguration extends BasePricingConfiguration {
+export interface PricingConfigurationResponse extends BasePricingConfiguration {
     start: Moment;
 }
 
 const PriceService = {
-    // TODO callback type restriction
-    getPriceConfiguration: async function (start: Moment, end: Moment): Promise<PricingConfiguration[]> {
+    getPriceConfiguration: async function (start: Moment, end: Moment): Promise<PricingConfigurationResponse[]> {
         const resp = await axios({
             method: 'get',
             baseURL: SERVER_URL,
