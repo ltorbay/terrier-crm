@@ -6,9 +6,7 @@ import {enGB, fr} from "react-date-range/src/locale";
 
 import {DateRange as MomentRange} from "moment-range";
 import {DateRange} from "react-date-range";
-import {
-    START_OF_RESERVATION_WEEK
-} from "../../constants/constants";
+import {START_OF_RESERVATION_WEEK} from "../../constants/constants";
 import {Language} from "../../model/Locale";
 import i18n from "../../i18n";
 import {Tooltip} from "@mui/material";
@@ -16,8 +14,8 @@ import {useTranslation} from "react-i18next";
 import {useTheme} from "@mui/styles";
 import {Theme} from "@mui/material/styles/createTheme";
 import {CottageSelect} from "../../model/CottageSelect";
-import {useAppSelector} from "../../redux/hooks";
-import {PricingConfigurationStateItem} from "../../redux/slice/PricingSlice";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks";
+import {fetchPricingConfiguration, PricingConfigurationStateItem} from "../../redux/slice/PricingSlice";
 import moment from "../../index";
 
 enum DayState {
@@ -64,11 +62,12 @@ class State {
 
 export default function BookingDateRange(props: Props) {
     const {t} = useTranslation();
+    const dispatch = useAppDispatch();
     const theme: Theme = useTheme();
 
-    // TODO pricing for isPeakSeason calls
     const pricing = useAppSelector(s => s.pricing);
     const seasonsArrayRef: MutableRefObject<SeasonRef[]> = useRef([]);
+    const pricingQueryBoundsRef: MutableRefObject<Moment> = useRef(moment().add(1, 'year'));
     useEffect(() => {
         if (pricing.configuration) {
             seasonsArrayRef.current = pricing.configuration.map((item: PricingConfigurationStateItem) => {
@@ -79,8 +78,10 @@ export default function BookingDateRange(props: Props) {
                 }
             });
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pricing.configuration === undefined, pricing.initializedAt])
+        if (pricing.queriedStart && pricing.queriedEnd) {
+            pricingQueryBoundsRef.current = moment(pricing.queriedEnd)
+        }
+    }, [pricing.configuration, pricing.initializedAt, pricing.queriedStart, pricing.queriedEnd])
     const seasons = seasonsArrayRef.current;
 
     const [state, setState] = useState<State>(() => buildState(props, seasons));
@@ -90,6 +91,15 @@ export default function BookingDateRange(props: Props) {
         props.onChange(newState.period);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.grapeReservations, props.pearReservations, props.cottageSelect]);
+
+    const fetchAdditionalSeasons = (from: Moment) => {
+        if (pricingQueryBoundsRef.current.isBefore(from)) {
+            dispatch(fetchPricingConfiguration({
+                start: pricingQueryBoundsRef.current,
+                end: pricingQueryBoundsRef.current.clone().add(1, 'year')
+            }))
+        }
+    }
 
     return (
         <DateRange ranges={[{
@@ -104,6 +114,7 @@ export default function BookingDateRange(props: Props) {
                    minDate={getMinDate(state, seasons).toDate()}
                    maxDate={state.selectingStart ? undefined : firstReservedDate(state.period.start, state.reservedDates)?.toDate()}
                    dayContentRenderer={date => customDayContent(t, moment(date), props.cottageSelect, state, seasons)}
+                   onShownDateChange={date => fetchAdditionalSeasons(moment(date))}
                    preventSnapRefocus={true}
                    moveRangeOnFirstSelection={false}
                    months={2}

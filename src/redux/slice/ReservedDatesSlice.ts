@@ -23,7 +23,7 @@ interface BookedDatesPayload {
 export const fetchReservedDates = createAsyncThunk(
     'BookingService/getReservedDates',
     async (payload: BookedDatesPayload, thunkAPI): Promise<BookedDatesResponse> => {
-        const state = thunkAPI.getState() as BookedDatesState;
+        const state = (thunkAPI.getState() as { reservedDates: BookedDatesState }).reservedDates;
         if (state.initializedAt) {
             const reservedDates: BookedDatesResponse = {
                 pearBookings: state.pear.map(item => moment(item)),
@@ -31,6 +31,7 @@ export const fetchReservedDates = createAsyncThunk(
             }
             return Promise.resolve(reservedDates)
         }
+        // TODO pagination !! (same as in PricingSlice !)
         return BookingService.getReservedDates(payload.start, payload.end);
     }
 )

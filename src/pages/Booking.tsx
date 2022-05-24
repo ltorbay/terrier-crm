@@ -83,7 +83,6 @@ export default function Booking() {
                                               vertical={tinyScreen}
                                               onChange={newSelection => {
                                                   // FIXME simulation is called multiple times at component load
-                                                  console.log('new selection called')
                                                   BookingService.simulateBooking(cottage, newSelection.start, newSelection.end).then(r => {
                                                       pricingDetailRef.current = r;
                                                       setState(newSelection);
