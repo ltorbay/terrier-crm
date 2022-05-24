@@ -2,13 +2,12 @@ import React, {useState} from "react";
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import {Container, IconButton} from "@mui/material";
 import 'leaflet/dist/leaflet.css';
-import "./LocalisationMap.css";
 import {divIcon, point} from "leaflet";
 import {renderToStaticMarkup} from "react-dom/server";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DirectionsIcon from '@mui/icons-material/Directions';
-import i18n from "../../i18n";
-import {ADDRESS, POSITION} from "../../constants/constants";
+import i18n from "../i18n";
+import {ADDRESS, POSITION} from "../constants/constants";
 
 export function LocalisationMap() {
     const [lang, setLang] = useState<string>(i18n.language);
@@ -20,7 +19,7 @@ export function LocalisationMap() {
                           zoom={POSITION.alt}
                           scrollWheelZoom={false}>
                 <TileLayer
-                    attribution={renderToStaticMarkup(<a href="https://www.openstreetmap.org/">OpenStreetMap</a>)}
+                    attribution={renderToStaticMarkup(<a href="src/components/LocalisationMap">OpenStreetMap</a>)}
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
                 <Marker position={POSITION}
                         icon={divIcon({

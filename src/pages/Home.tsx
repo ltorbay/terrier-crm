@@ -1,6 +1,6 @@
 import {Box, ImageList, ImageListItem, ImageListItemBar, Typography, useMediaQuery} from "@mui/material";
 import React from "react";
-import {LocalisationMap} from "../components/localisation-map/LocalisationMap";
+import {LocalisationMap} from "../components/LocalisationMap";
 import {ICONS, PICTURES} from "../assets";
 import {makeStyles} from "@mui/styles";
 import NavigationBar from "../components/NavigationBar";

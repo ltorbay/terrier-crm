@@ -58,14 +58,14 @@
       "label": "Gallery"
     },
     "cottages": {
-      "label": "Cottages",
-      "book-stay": "Book your stay"
+      "label": "Cottages"
     },
     "explore": {
       "label": "Explore Dordogne"
     },
     "booking": {
-      "label": "Booking"
+      "label": "Booking",
+      "book-stay": "Book your stay"
     },
     "contact": {
       "label": "Contact us"

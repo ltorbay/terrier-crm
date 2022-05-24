@@ -10,7 +10,7 @@ import {
     Typography,
     useMediaQuery
 } from "@mui/material";
-import BookingDateRange from "../components/booking-date-range/BookingDateRange";
+import BookingDateRange from "../components/BookingDateRange";
 import BookingPayment from "../components/BookingPayment";
 import React, {useEffect, useRef, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
