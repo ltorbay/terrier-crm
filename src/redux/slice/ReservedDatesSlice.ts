@@ -1,8 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import moment from "../../index";
 import {Moment} from "moment";
 import BookingService, {BookedDatesResponse} from "../../service/BookingService";
-import {BACKEND_DATES_FORMAT} from "../../constants/constants";
+import moment, {BACKEND_DATES_FORMAT} from "../../constants/constants";
 
 interface BookedDatesState {
     pear: number[];

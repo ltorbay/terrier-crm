@@ -3,7 +3,7 @@ import React, {MutableRefObject, useEffect, useRef} from "react";
 import {ContentBox} from "./containers/ContentBox";
 import {fetchPricingConfiguration, PricingConfigurationStateItem} from "../redux/slice/PricingSlice";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import moment from "../index";
+import moment from "../constants/constants";
 import {Moment} from "moment/moment";
 import {PriceLine} from "./PriceLine";
 import {PricingPeriodType} from "../model/PricingPeriodType";
