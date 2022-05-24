@@ -8,9 +8,10 @@ import {TextBox} from "../components/containers/TextBox";
 import {TranslatedList} from "../components/TranslatedList";
 import {ContentBox} from "../components/containers/ContentBox";
 import {ImageDecoration} from "../components/ImageDecoration";
+import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
 
 export default function Cottages() {
-    const textBoxWidth = useMediaQuery('(max-width:650px)') ? '70%' : '100%';
+    const textBoxWidth = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT) ? '70%' : '100%';
 
     const amenities = ['private-alleyway', 'heated-pool', 'buildings-and-courtyard', 'private-terraces', 'terrain-description']
     const pearEquipments = ['double-glazing', 'central-heater', 'stove', 'equipped-kitchen', 'covered-terrace'];

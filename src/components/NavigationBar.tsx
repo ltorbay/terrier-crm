@@ -17,6 +17,7 @@ import {useTranslation} from "react-i18next";
 import {NavLink} from "react-router-dom";
 import {Shade} from "../model/Shade";
 import {useMediaQuery} from "@mui/material";
+import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
 
 class Props {
     shade: Shade;
@@ -31,7 +32,7 @@ class Props {
 const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
     const color = shade === Shade.Light ? 'primary.light' : 'primary.dark';
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    const smallScreen = useMediaQuery('(max-width:650px)');
+    const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
     const {t} = useTranslation();
 
     const handleOpenNavMenu = (event: MouseEvent<HTMLButtonElement>) => {

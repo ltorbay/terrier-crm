@@ -30,7 +30,7 @@ export const fetchPricingConfiguration = createAsyncThunk(
         if (state.initializedAt && state.configuration && endMoment.isAfter(payload.start)) {
             const configuration: PricingConfigurationResponse[] = state.configuration.map(stateItemToResponse)
             return Promise.resolve({
-                query: {start: moment(state.queriedStart), end: endMoment},
+                query: {start: moment(state.queriedStart).valueOf(), end: endMoment.valueOf()},
                 response: configuration
             })
         }

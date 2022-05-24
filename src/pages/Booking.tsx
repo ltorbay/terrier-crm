@@ -24,13 +24,12 @@ import {ImageDecoration} from "../components/ImageDecoration";
 import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
 import moment from "../index";
 import BookingService, {PricingDetail} from "../service/BookingService";
-import {DateRange as MomentRange} from "moment-range";
+import {MEDIA_QUERY_500_BREAKPOINT} from "../constants/constants";
 
 export default function Booking() {
-    const [state, setState] = useState<MomentRange>();
+    const [loading, setLoading] = useState<boolean>(false);
     const [cottage, setCottage] = useState<CottageSelect>(CottageSelect.BOTH)
-    // TODO centralize media queries string in constants before it gets out of hand
-    const tinyScreen = useMediaQuery('(max-width:500px)');
+    const tinyScreen = useMediaQuery(MEDIA_QUERY_500_BREAKPOINT);
 
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -82,16 +81,17 @@ export default function Booking() {
                                               grapeReservations={grapeReservations}
                                               vertical={tinyScreen}
                                               onChange={newSelection => {
-                                                  // FIXME simulation is called multiple times at component load
+                                                  setLoading(true);
                                                   BookingService.simulateBooking(cottage, newSelection.start, newSelection.end).then(r => {
                                                       pricingDetailRef.current = r;
-                                                      setState(newSelection);
+                                                      setLoading(false);
                                                   })
                                               }}/>
                         </Grid>
                     </FormGroup>
-                    {(pricingDetailRef.current) ?
+                    {pricingDetailRef.current ?
                         <BookingPayment
+                            loading={loading}
                             cottageSelect={cottage}
                             pricingDetail={pricingDetailRef.current}/> : undefined}
                 </ContentBox>

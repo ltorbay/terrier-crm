@@ -17,6 +17,7 @@ import {CottageSelect} from "../../model/CottageSelect";
 import {useAppDispatch, useAppSelector} from "../../redux/hooks";
 import {fetchPricingConfiguration, PricingConfigurationStateItem} from "../../redux/slice/PricingSlice";
 import moment from "../../index";
+import {fetchReservedDates} from "../../redux/slice/ReservedDatesSlice";
 
 enum DayState {
     Enabled,
@@ -68,13 +69,15 @@ export default function BookingDateRange(props: Props) {
     const pricing = useAppSelector(s => s.pricing);
     const seasonsArrayRef: MutableRefObject<SeasonRef[]> = useRef([]);
     const pricingQueryBoundsRef: MutableRefObject<Moment> = useRef(moment().add(1, 'year'));
+    const reservationsQueryEnd: number | undefined = useAppSelector((s) => s.reservedDates.queryEnd);
+    
     useEffect(() => {
         if (pricing.configuration) {
             seasonsArrayRef.current = pricing.configuration.map((item: PricingConfigurationStateItem) => {
                 return {
                     start: moment(item.start),
                     peakSeason: 'OFF_SEASON' !== item.periodType,
-                    minConsecutiveDays: item.minConsecutiveDays
+                    minConsecutiveDays: item.minConsecutiveDays,
                 }
             });
         }
@@ -86,9 +89,11 @@ export default function BookingDateRange(props: Props) {
 
     const [state, setState] = useState<State>(() => buildState(props, seasons));
     useEffect(() => {
-        const newState = buildState(props, seasons);
-        setState(newState);
-        props.onChange(newState.period);
+        if (seasons && seasons.length) {
+            const newState = buildState(props, seasons);
+            setState(newState);
+            props.onChange(newState.period);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.grapeReservations, props.pearReservations, props.cottageSelect]);
 
@@ -99,8 +104,13 @@ export default function BookingDateRange(props: Props) {
                 end: pricingQueryBoundsRef.current.clone().add(1, 'year')
             }))
         }
+        const reservationsQueryEndMoment = moment(reservationsQueryEnd);
+        if(reservationsQueryEndMoment.isBefore(from)) {
+            dispatch(fetchReservedDates({start: reservationsQueryEndMoment, end: reservationsQueryEndMoment.clone().add(1, 'year')}));
+        }
     }
 
+    // TODO Shown dates are getting reset when component reloads (on pricing configuration change or reservations change !)
     return (
         <DateRange ranges={[{
             key: "selection",

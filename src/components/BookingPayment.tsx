@@ -16,7 +16,8 @@ interface BookingDetail {
 
 interface Props {
     pricingDetail: PricingDetail[],
-    cottageSelect: CottageSelect
+    cottageSelect: CottageSelect,
+    loading: boolean
 }
 
 export default function BookingPayment(props: Props) {
@@ -24,7 +25,7 @@ export default function BookingPayment(props: Props) {
     const split = splitBySeason(props.pricingDetail, props.cottageSelect);
     const total = props.pricingDetail.map(detail => detail.totalCents).reduce((v1, v2) => v1 + v2, 0) / 100;
     return (
-        <List dense={true}>
+        <List dense={true} sx={{opacity: props.loading ? 0.25 : 1}}>
             {split.map(detail => priceLine(t, detail))}
             <Divider/>
             <ListItem>
@@ -39,8 +40,6 @@ export default function BookingPayment(props: Props) {
 
 function priceLine(t: TFunction<"translation">, detail: BookingDetail): React.ReactNode | undefined {
     if (detail.daysCount === 0 && detail.weeksCount === 0) return undefined
-    // TODO missing holidays ('OFF_SEASON' | 'PEAK_SEASON' | 'HOLIDAYS')
-
     const seasonLabel = t(seasonKey(detail.seasonType));
     return (
         <ListItem key={detail.seasonType}>

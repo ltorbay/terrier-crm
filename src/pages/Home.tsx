@@ -9,6 +9,7 @@ import {useTranslation} from "react-i18next";
 import {TextBox} from "../components/containers/TextBox";
 import {ImageDecoration} from "../components/ImageDecoration";
 import {TranslatedList} from "../components/TranslatedList";
+import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles(() => ({
 export default function Home() {
     const {t} = useTranslation();
     const classes = useStyles();
-    const smallScreen = useMediaQuery('(max-width:650px)');
+    const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
     const trainStations = ['Niversac', 'Périgueux', 'Thenon', 'Les Versannes'];
     const carAccess = ['perigueux-by-car', 'brive-by-car', 'bordeaux-by-car', 'toulouse-by-car']
 
@@ -110,7 +111,6 @@ export default function Home() {
                     <Box sx={{paddingTop: '4vh'}}/>
                 </Box>
             </Box>
-            {/*TODO use TranslatedList for list items in join us section*/}
             <LocalisationMap/>
             {/*TODO Le terrier en photos (see edito)*/}
         </>

@@ -1,6 +1,7 @@
 import React from "react";
 import {Box, Grid, useMediaQuery} from "@mui/material";
 import {makeStyles} from "@mui/styles";
+import {MEDIA_QUERY_650_BREAKPOINT} from "../../constants/constants";
 
 const useStyles = makeStyles(() => ({
     center: {
@@ -38,7 +39,7 @@ class Props {
 
 export function ImageBox({children, src, right = false}: Props) {
     const classes = useStyles();
-    const smallScreen = useMediaQuery('(max-width:650px)');
+    const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
     const imageSize = smallScreen ? '100vw' : '35vw';
 
     const image = (

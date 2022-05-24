@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 import {useTranslation} from "react-i18next";
 import {HomeButton} from "./components/HomeButton";
 import {Shade} from "./model/Shade";
+import {MEDIA_QUERY_650_BREAKPOINT} from "./constants/constants";
 
 const minion = {
     fontFamily: 'MinionPro',
@@ -110,7 +111,7 @@ const useStyles = makeStyles(() => ({
 function App() {
     const classes = useStyles();
     const {t} = useTranslation();
-    const smallScreen = useMediaQuery('(max-width:650px)');
+    const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
 
     return (
         <Provider store={store}>

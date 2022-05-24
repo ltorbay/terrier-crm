@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-    SquarePaymentsForm,
-    CreditCardInput,
-} from 'react-square-web-payments-sdk'
+import {CreditCardInput, SquarePaymentsForm,} from 'react-square-web-payments-sdk'
 
 export default function MyPaymentForm() {
     return (
