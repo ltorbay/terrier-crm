@@ -3,8 +3,8 @@ import {TFunction, useTranslation} from "react-i18next";
 import * as React from "react";
 import {PricingDetail} from "../service/BookingService";
 import {PricingPeriodType} from "../model/PricingPeriodType";
-import moment from "../index";
 import {CottageSelect, cottageToPrice} from "../model/CottageSelect";
+import moment from "../constants/constants";
 
 interface BookingDetail {
     weeksCount: number;

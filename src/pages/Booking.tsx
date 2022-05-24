@@ -22,9 +22,8 @@ import {ContentBox} from "../components/containers/ContentBox";
 import {CottageSelect, cottageToIcon, cottageToLabel} from "../model/CottageSelect";
 import {ImageDecoration} from "../components/ImageDecoration";
 import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
-import moment from "../index";
 import BookingService, {PricingDetail} from "../service/BookingService";
-import {MEDIA_QUERY_500_BREAKPOINT} from "../constants/constants";
+import moment, {MEDIA_QUERY_500_BREAKPOINT} from "../constants/constants";
 
 export default function Booking() {
     const [loading, setLoading] = useState<boolean>(false);

@@ -1,8 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import moment from "../../index";
 import {Moment} from "moment";
 import PriceService, {BasePricingConfiguration, PricingConfigurationResponse} from "../../service/PriceService";
-import {BACKEND_DATES_FORMAT} from "../../constants/constants";
+import moment, {BACKEND_DATES_FORMAT} from "../../constants/constants";
 
 export interface PricingConfigurationStateItem extends BasePricingConfiguration {
     start: number;

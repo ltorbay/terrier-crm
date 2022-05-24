@@ -5,7 +5,7 @@ import {enGB, fr} from "react-date-range/src/locale";
 
 import {DateRange as MomentRange} from "moment-range";
 import {DateRange} from "react-date-range";
-import {START_OF_RESERVATION_WEEK} from "../constants/constants";
+import moment, {START_OF_RESERVATION_WEEK} from "../constants/constants";
 import {Language} from "../model/Locale";
 import i18n from "../i18n";
 import {Tooltip} from "@mui/material";
@@ -15,7 +15,6 @@ import {Theme} from "@mui/material/styles/createTheme";
 import {CottageSelect} from "../model/CottageSelect";
 import {useAppDispatch, useAppSelector} from "../redux/hooks";
 import {fetchPricingConfiguration, PricingConfigurationStateItem} from "../redux/slice/PricingSlice";
-import moment from "../index";
 import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
 
 enum DayState {
@@ -69,7 +68,7 @@ export default function BookingDateRange(props: Props) {
     const seasonsArrayRef: MutableRefObject<SeasonRef[]> = useRef([]);
     const pricingQueryBoundsRef: MutableRefObject<Moment> = useRef(moment().add(1, 'year'));
     const reservationsQueryEnd: number | undefined = useAppSelector((s) => s.reservedDates.queryEnd);
-    
+
     useEffect(() => {
         if (pricing.configuration) {
             seasonsArrayRef.current = pricing.configuration.map((item: PricingConfigurationStateItem) => {
@@ -104,8 +103,11 @@ export default function BookingDateRange(props: Props) {
             }))
         }
         const reservationsQueryEndMoment = moment(reservationsQueryEnd);
-        if(reservationsQueryEndMoment.isBefore(from)) {
-            dispatch(fetchReservedDates({start: reservationsQueryEndMoment, end: reservationsQueryEndMoment.clone().add(1, 'year')}));
+        if (reservationsQueryEndMoment.isBefore(from)) {
+            dispatch(fetchReservedDates({
+                start: reservationsQueryEndMoment,
+                end: reservationsQueryEndMoment.clone().add(1, 'year')
+            }));
         }
     }
 

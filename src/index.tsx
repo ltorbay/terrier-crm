@@ -7,19 +7,7 @@ import './i18n';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import {START_OF_RESERVATION_WEEK} from "./constants/constants";
 import {createRoot} from "react-dom/client";
-
-const Moment = require('moment');
-const MomentRange = require('moment-range');
-
-const moment = MomentRange.extendMoment(Moment);
-moment.locale("fr", {
-    week: {
-        dow: START_OF_RESERVATION_WEEK
-    }
-});
-export default moment;
 
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');
