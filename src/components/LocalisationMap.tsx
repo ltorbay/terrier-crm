@@ -1,47 +1,16 @@
 import React, {useState} from "react";
+import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import {Container, IconButton} from "@mui/material";
 import 'leaflet/dist/leaflet.css';
+import {divIcon, LatLng, point} from "leaflet";
 import {renderToStaticMarkup} from "react-dom/server";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DirectionsIcon from '@mui/icons-material/Directions';
-import i18n from "../i18n";
+import i18n from "../utils/i18n";
 import {ADDRESS, POSITION} from "../constants/constants";
-import dynamic from "next/dynamic";
-
-const MapContainer = dynamic<any>(
-    () => import("react-leaflet").then(module => module.MapContainer),
-    {ssr: false}
-);
-const Marker = dynamic<any>(
-    () => import("react-leaflet").then(module => module.Marker),
-    {ssr: false}
-);
-const Popup = dynamic<any>(
-    () => import("react-leaflet").then(module => module.Popup),
-    {ssr: false}
-);
-const TileLayer = dynamic<any>(
-    () => import("react-leaflet").then(module => module.TileLayer),
-    {ssr: false}
-);
-const divIcon = dynamic<any>(
-    () => import("leaflet").then(module => module.divIcon),
-    {ssr: false}
-);
-const LatLng = dynamic(
-// @ts-ignore
-    () => import("leaflet").then(module => module.LatLng),
-    {ssr: false}
-);
-const point = dynamic(
-// @ts-ignore
-    () => import("leaflet").then(module => module.point),
-    {ssr: false}
-);
-
 
 export function LocalisationMap() {
-    const positionLatLng = POSITION as LatLng;
+    const positionLatLng = new LatLng(POSITION.lat, POSITION.lng, POSITION.alt);
     const [lang, setLang] = useState<string>(i18n.language);
     i18n.on("languageChanged", setLang)
 

@@ -1,6 +1,6 @@
 import React from "react";
 import {makeStyles} from "@mui/styles";
-import {ICONS} from "../assets";
+import {ICONS} from "../../public/assets";
 
 const useStyles = (width: string) => makeStyles(() => ({
     backgroundDecorationLeft: {

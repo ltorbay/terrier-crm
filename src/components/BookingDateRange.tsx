@@ -7,7 +7,7 @@ import {DateRange as MomentRange} from "moment-range";
 import {DateRange} from "react-date-range";
 import moment, {START_OF_RESERVATION_WEEK} from "../constants/constants";
 import {Language} from "../model/Locale";
-import i18n from "../i18n";
+import i18n from "../utils/i18n";
 import {Tooltip} from "@mui/material";
 import {useTranslation} from "react-i18next";
 import {useTheme} from "@mui/styles";
@@ -29,7 +29,7 @@ interface SeasonRef {
     minConsecutiveDays: number
 }
 
-class Props {
+export class Props {
     pearReservations: number[];
     grapeReservations: number[];
     cottageSelect: CottageSelect;

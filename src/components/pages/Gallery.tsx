@@ -1,11 +1,11 @@
 import {Box, ImageList, ImageListItem, Typography} from "@mui/material";
-import {PICTURES} from "../assets";
+import {PICTURES} from "../../../public/assets";
 import React from "react";
-import NavigationBar from "../components/NavigationBar";
-import {Shade} from "../model/Shade";
-import {ImageDecoration} from "../components/ImageDecoration";
-import {TextBox} from "../components/containers/TextBox";
-import {ImageBox} from "../components/containers/ImageBox";
+import NavigationBar from "../NavigationBar";
+import {Shade} from "../../model/Shade";
+import {ImageDecoration} from "../ImageDecoration";
+import {TextBox} from "../containers/TextBox";
+import {ImageBox} from "../containers/ImageBox";
 import {Trans} from "react-i18next";
 
 class Image {

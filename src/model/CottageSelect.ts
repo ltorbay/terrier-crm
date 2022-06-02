@@ -1,4 +1,4 @@
-import {ICONS} from "../assets";
+import {ICONS} from "../../public/assets";
 import {PricingLine, PricingModel} from "./PricingModel";
 
 export enum CottageSelect {

@@ -1,14 +1,14 @@
 import {Box, useMediaQuery} from "@mui/material";
 import React from "react";
-import NavigationBar from "../components/NavigationBar";
-import {Shade} from "../model/Shade";
-import {ImageBox} from "../components/containers/ImageBox";
-import {ICONS, PICTURES} from "../assets";
-import {TextBox} from "../components/containers/TextBox";
-import {TranslatedList} from "../components/TranslatedList";
-import {ContentBox} from "../components/containers/ContentBox";
-import {ImageDecoration} from "../components/ImageDecoration";
-import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
+import NavigationBar from "../NavigationBar";
+import {Shade} from "../../model/Shade";
+import {ImageBox} from "../containers/ImageBox";
+import {ICONS, PICTURES} from "../../../public/assets";
+import {TextBox} from "../containers/TextBox";
+import {TranslatedList} from "../TranslatedList";
+import {ContentBox} from "../containers/ContentBox";
+import {ImageDecoration} from "../ImageDecoration";
+import {MEDIA_QUERY_650_BREAKPOINT} from "../../constants/constants";
 
 export default function Cottages() {
     const textBoxWidth = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT) ? '70%' : '100%';
