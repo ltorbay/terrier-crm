@@ -1,15 +1,15 @@
 import {Box, ImageList, ImageListItem, ImageListItemBar, Typography, useMediaQuery} from "@mui/material";
 import React from "react";
-import {LocalisationMap} from "../components/LocalisationMap";
-import {ICONS, PICTURES} from "../assets";
+import {ICONS, PICTURES} from "../../../public/assets";
 import {makeStyles} from "@mui/styles";
-import NavigationBar from "../components/NavigationBar";
-import {Shade} from "../model/Shade";
+import NavigationBar from "../NavigationBar";
+import {Shade} from "../../model/Shade";
 import {useTranslation} from "react-i18next";
-import {TextBox} from "../components/containers/TextBox";
-import {ImageDecoration} from "../components/ImageDecoration";
-import {TranslatedList} from "../components/TranslatedList";
-import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
+import {TextBox} from "../containers/TextBox";
+import {ImageDecoration} from "../ImageDecoration";
+import {TranslatedList} from "../TranslatedList";
+import {MEDIA_QUERY_650_BREAKPOINT} from "../../constants/constants";
+import {LocalisationMap} from "../LocalisationMap";
 
 const useStyles = makeStyles(() => ({
     container: {

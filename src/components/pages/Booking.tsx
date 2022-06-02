@@ -10,20 +10,20 @@ import {
     Typography,
     useMediaQuery
 } from "@mui/material";
-import BookingDateRange from "../components/BookingDateRange";
-import BookingPayment from "../components/BookingPayment";
+import BookingPayment from "../BookingPayment";
 import React, {useEffect, useRef, useState} from "react";
-import {useAppDispatch, useAppSelector} from "../redux/hooks";
-import NavigationBar from "../components/NavigationBar";
-import {Shade} from "../model/Shade";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks";
+import NavigationBar from "../NavigationBar";
+import {Shade} from "../../model/Shade";
 import {Trans} from "react-i18next";
-import {PricesList} from "../components/PricesList";
-import {ContentBox} from "../components/containers/ContentBox";
-import {CottageSelect, cottageToIcon, cottageToLabel} from "../model/CottageSelect";
-import {ImageDecoration} from "../components/ImageDecoration";
-import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
-import BookingService, {PricingDetail} from "../service/BookingService";
-import moment, {MEDIA_QUERY_500_BREAKPOINT} from "../constants/constants";
+import {PricesList} from "../PricesList";
+import {ContentBox} from "../containers/ContentBox";
+import {CottageSelect, cottageToIcon, cottageToLabel} from "../../model/CottageSelect";
+import {ImageDecoration} from "../ImageDecoration";
+import {fetchReservedDates} from "../../redux/slice/ReservedDatesSlice";
+import BookingService, {PricingDetail} from "../../service/BookingService";
+import moment, {MEDIA_QUERY_500_BREAKPOINT} from "../../constants/constants";
+import BookingDateRange from "../BookingDateRange";
 
 export default function Booking() {
     const [loading, setLoading] = useState<boolean>(false);

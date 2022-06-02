@@ -11,13 +11,13 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import {HomeButton} from "./HomeButton";
-import {PAGES} from "../pages/Pages";
 import {LocaleSelector} from "./LocaleSelector";
 import {useTranslation} from "react-i18next";
 import {NavLink} from "react-router-dom";
 import {Shade} from "../model/Shade";
 import {useMediaQuery} from "@mui/material";
 import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
+import {SITE_PAGES} from "../pages/_app";
 
 class Props {
     shade: Shade;
@@ -73,7 +73,7 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
                               sx={{
                                   display: {xs: 'block', md: 'none'},
                               }}>
-                            {PAGES.map((page) => (
+                            {SITE_PAGES.map((page) => (
                                 <NavLink to={page.path}
                                          color='primary.dark'
                                          key={page.key}
@@ -86,7 +86,7 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
                         </Menu>
                     </Box>
                     <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: smallScreen ? 'none' : 'flex'}}>
-                        {PAGES.map((page) => (
+                        {SITE_PAGES.map((page) => (
                             <NavLink to={page.path}
                                      key={page.key}
                                      style={{textDecoration: 'none', color: color, display: 'flex'}}>

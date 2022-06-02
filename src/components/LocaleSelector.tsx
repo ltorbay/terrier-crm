@@ -2,7 +2,7 @@ import * as React from "react";
 import {useState} from "react";
 import {FormControl, IconButton, MenuItem, Select, SelectChangeEvent, SvgIcon} from "@mui/material";
 import {Locales} from "../model/Locale";
-import i18n from "../i18n";
+import i18n from "../utils/i18n";
 
 export function LocaleSelector() {
     let mappedLanguage = (Locales.find((language) => language.languageRegex.test(i18n.language)) || Locales[0]).language.valueOf();

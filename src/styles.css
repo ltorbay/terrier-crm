@@ -1,0 +1,102 @@
+html {
+  background-color: #F6F5F5
+}
+
+@font-face {
+  font-family: "MinionPro";
+  src: url("../public/fonts/MinionPro-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins-Regular.ttf");
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  white-space: pre-line;
+}
+
+strong, i {
+  font-family: 'MinionPro', serif;
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.leaflet-control-attribution {
+  background-color: transparent !important;
+  font-size: x-small !important;
+}
+
+.rdrDayDisabled:not(.rdrDayPassive) .rdrDayNumber .grayedDate {
+  width: 100%;
+  background-color: white;
+  /*noinspection CssUnresolvedCustomProperty*/
+  color: var(--color-dark) !important;
+}
+
+.rdrDayNumber span, .rdrDateDisplayItemActive input, .rdrMonthAndYearPickers select {
+  /*noinspection CssUnresolvedCustomProperty*/
+  color: var(--color-dark);
+}
+
+.rdrDateDisplayItemActive {
+  /*noinspection CssUnresolvedCustomProperty*/
+  border-color: var(--color-secondary) !important;
+}
+
+.rdrDayDisabled {
+  /*noinspection CssUnresolvedCustomProperty*/
+  background-color: var(--color-light) !important;
+}
+
+
+.rdrDayPassive span.rdrDayNumber {
+  display: none;
+}
+
+.rdrDayPassive {
+  background-color: transparent !important;
+}
+
+.rdrEndEdge:not(.grayedDate), .rdrInRange:not(.grayedDate) {
+  filter: none !important;
+}
+
+.rdrCalendarWrapper, .rdrDateRangeWrapper {
+  width: 100%;
+}
+
+.rdrMonth {
+  width: 100% !important;
+}
+
+.rdrDateDisplayWrapper {
+  background-color: transparent !important;
+}
+
+.rdrDayToday .rdrDayNumber span:after {
+  /*noinspection CssUnresolvedCustomProperty*/
+  background: var(--color-secondary) !important;
+}
