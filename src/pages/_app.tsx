@@ -1,6 +1,5 @@
-import React, {ReactNode} from 'react';
+import React, {ReactElement, ReactNode, useEffect, useState} from 'react';
 import reportWebVitals from '../utils/reportWebVitals';
-import {BrowserRouter, NavLink, Route, Routes} from "react-router-dom";
 import '../utils/i18n';
 import '../styles.css';
 import 'react-date-range/dist/styles.css';
@@ -20,6 +19,9 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import Typography from "@mui/material/Typography";
 import {Provider} from "react-redux";
 import dynamic from "next/dynamic";
+import {AppProps} from "next/dist/pages/_app";
+import Link from "next/link";
+
 const Home = dynamic<any>(
     () => import("../components/pages/Home"),
     {ssr: false}
@@ -127,13 +129,33 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-function App() {
+function SafeHydrate({children}: { children: ReactElement }) {
+    const [showing, setShowing] = useState(false);
+
+    useEffect(() => {
+        setShowing(true);
+    }, []);
+
+    if (!showing) {
+        return null;
+    }
+
+    if (typeof window === 'undefined') {
+        return <></>;
+    } else {
+        return (
+            children
+        );
+    }
+}
+
+export default function App({Component, pageProps}: { Component: React.Component, pageProps: AppProps }) {
     const classes = useStyles();
     const {t} = useTranslation();
     const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
 
     return (
-        <BrowserRouter>
+        <SafeHydrate>
             <Provider store={store}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline/>
@@ -147,11 +169,8 @@ function App() {
                         },
                     }}/>
                     <Box sx={{backgroundColor: 'primary.light'}}>
-                        <Routes>
-                            {SITE_PAGES.concat(HOME_PAGE).map((page) => (
-                                <Route key={page.key} path={page.path} element={page.element}/>
-                            ))}
-                        </Routes>
+                        {/*@ts-ignore*/}
+                        <Component {...pageProps} />
                         <Box sx={{backgroundColor: 'primary.contrastText'}} className={classes.footer}>
                             <Grid container textAlign='center'>
                                 <Grid item xs={12}>
@@ -169,39 +188,37 @@ function App() {
                                     </IconButton>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <NavLink to={HOME_PAGE.path}
-                                             key='legal-notice'
-                                             style={{textDecoration: 'none'}}>
+                                    <Link href={HOME_PAGE.path}
+                                          key='legal-notice'
+                                          style={{textDecoration: 'none'}}>
                                         <Typography variant='body2'
                                                     color='primary.dark'>{t('components.footer.legal-notice')}</Typography>
-                                    </NavLink>
+                                    </Link>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <NavLink to={HOME_PAGE.path}
-                                             key='cookies'
-                                             style={{textDecoration: 'none'}}>
+                                    <Link href={HOME_PAGE.path}
+                                          key='cookies'
+                                          style={{textDecoration: 'none'}}>
                                         <Typography variant='body2'
                                                     color='primary.dark'>{t('components.footer.cookies')}</Typography>
-                                    </NavLink>
+                                    </Link>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <NavLink to={HOME_PAGE.path}
-                                             key='copyright'
-                                             style={{textDecoration: 'none'}}>
+                                    <Link href={HOME_PAGE.path}
+                                          key='copyright'
+                                          style={{textDecoration: 'none'}}>
                                         <Typography variant='body2'
                                                     color='primary.dark'>{t('components.footer.copyright')}</Typography>
-                                    </NavLink>
+                                    </Link>
                                 </Grid>
                             </Grid>
                         </Box>
                     </Box>
                 </ThemeProvider>
             </Provider>
-        </BrowserRouter>
+        </SafeHydrate>
     )
 }
-
-export default App
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
