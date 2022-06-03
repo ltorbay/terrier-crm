@@ -23,7 +23,12 @@ import {ImageDecoration} from "../ImageDecoration";
 import {fetchReservedDates} from "../../redux/slice/ReservedDatesSlice";
 import BookingService, {PricingDetail} from "../../service/BookingService";
 import moment, {MEDIA_QUERY_500_BREAKPOINT} from "../../constants/constants";
-import BookingDateRange from "../BookingDateRange";
+import {Props} from "../BookingDateRange";
+import dynamic from "next/dynamic";
+const BookingDateRange = dynamic<Props>(
+    () => import("../BookingDateRange"),
+    {ssr: false}
+);
 
 export default function Booking() {
     const [loading, setLoading] = useState<boolean>(false);

@@ -1,3 +1,11 @@
 module.exports = {
-    pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js']
+    async rewrites() {
+        return [
+            // Rewrite everything to `pages/index`
+            {
+                source: "/:any*",
+                destination: "/"
+            }
+        ];
+    }
 }

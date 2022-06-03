@@ -9,7 +9,11 @@ import {TextBox} from "../containers/TextBox";
 import {ImageDecoration} from "../ImageDecoration";
 import {TranslatedList} from "../TranslatedList";
 import {MEDIA_QUERY_650_BREAKPOINT} from "../../constants/constants";
-import {LocalisationMap} from "../LocalisationMap";
+import dynamic from "next/dynamic";
+const LocalisationMap = dynamic<any>(
+    () => import("../LocalisationMap").then(module => module.LocalisationMap),
+    {ssr: false}
+);
 
 const useStyles = makeStyles(() => ({
     container: {

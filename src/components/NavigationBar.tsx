@@ -13,11 +13,11 @@ import MenuItem from '@mui/material/MenuItem';
 import {HomeButton} from "./HomeButton";
 import {LocaleSelector} from "./LocaleSelector";
 import {useTranslation} from "react-i18next";
-import {NavLink} from "react-router-dom";
 import {Shade} from "../model/Shade";
 import {useMediaQuery} from "@mui/material";
 import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
 import {SITE_PAGES} from "../pages/_app";
+import Link from "next/link";
 
 class Props {
     shade: Shade;
@@ -74,27 +74,27 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
                                   display: {xs: 'block', md: 'none'},
                               }}>
                             {SITE_PAGES.map((page) => (
-                                <NavLink to={page.path}
-                                         color='primary.dark'
-                                         key={page.key}
-                                         style={{textDecoration: 'none', display: 'flex'}}>
+                                <Link href={page.path}
+                                      color='primary.dark'
+                                      key={page.key}
+                                      style={{textDecoration: 'none', display: 'flex'}}>
                                     <MenuItem onClick={handleCloseNavMenu}>
                                         <Typography textAlign='center'>{t(page.key)}</Typography>
                                     </MenuItem>
-                                </NavLink>
+                                </Link>
                             ))}
                         </Menu>
                     </Box>
                     <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: smallScreen ? 'none' : 'flex'}}>
                         {SITE_PAGES.map((page) => (
-                            <NavLink to={page.path}
-                                     key={page.key}
-                                     style={{textDecoration: 'none', color: color, display: 'flex'}}>
+                            <Link href={page.path}
+                                  key={page.key}
+                                  style={{textDecoration: 'none', color: color, display: 'flex'}}>
                                 <Button onClick={handleCloseNavMenu}
                                         sx={{my: 2, color: color, display: 'block'}}>
                                     <Typography variant='body2'>{t(page.key)}</Typography>
                                 </Button>
-                            </NavLink>
+                            </Link>
                         ))}
                     </Box>
                     <LocaleSelector/>
