@@ -1,6 +1,8 @@
 import React from "react";
 import {makeStyles} from "@mui/styles";
 import {ICONS} from "../../public/assets";
+import Image from "next/image";
+import {Box} from "@mui/material";
 
 const useStyles = (width: string) => makeStyles(() => ({
     backgroundDecorationLeft: {
@@ -30,10 +32,10 @@ export function ImageDecoration({
     const classes = useStyles(width)();
 
     return (
-        <img src={icon}
-             style={{marginTop: marginTop}}
-             width={width}
-             className={right ? classes.backgroundDecorationRight : classes.backgroundDecorationLeft}
-             alt=''/>
+        <Box className={right ? classes.backgroundDecorationRight : classes.backgroundDecorationLeft}
+        width={width} style={{marginTop: marginTop}}>
+            <Image src={icon}
+                   alt=''/>
+        </Box>
     );
 }
