@@ -1,4 +1,4 @@
-import React, {ReactElement, ReactNode, useEffect, useState} from 'react';
+import React, {ReactElement, useEffect, useState} from 'react';
 import reportWebVitals from '../utils/reportWebVitals';
 import '../utils/i18n';
 import '../styles.css';
@@ -18,52 +18,8 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import Typography from "@mui/material/Typography";
 import {Provider} from "react-redux";
-import dynamic from "next/dynamic";
 import {AppProps} from "next/dist/pages/_app";
 import Link from "next/link";
-
-const Home = dynamic<any>(
-    () => import("../components/pages/Home"),
-    {ssr: false}
-);
-const Cottages = dynamic<any>(
-    () => import("../components/pages/Cottages"),
-    {ssr: false}
-);
-const Gallery = dynamic<any>(
-    () => import("../components/pages/Gallery"),
-    {ssr: false}
-);
-const Booking = dynamic<any>(
-    () => import("../components/pages/Booking"),
-    {ssr: false}
-);
-const Contact = dynamic<any>(
-    () => import("../components/pages/Contact"),
-    {ssr: false}
-);
-
-class Page {
-    key: string;
-    path: string;
-    element: ReactNode;
-
-    constructor(key: string, path: string, element: ReactNode) {
-        this.key = key;
-        this.path = path;
-        this.element = element;
-    }
-}
-
-export const HOME_PAGE = new Page("pages.home.label", "/", <Home/>)
-
-export const SITE_PAGES = [
-    new Page("pages.cottages.label", "/cottages", <Cottages/>),
-    new Page("pages.gallery.label", "/gallery", <Gallery/>),
-    // new Page("pages.explore.label", "/explore", <Explore/>),
-    new Page("pages.booking.label", "/booking", <Booking/>),
-    new Page("pages.contact.label", "/contact", <Contact/>),
-]
 
 const theme = responsiveFontSizes(createTheme({
     palette: {
@@ -174,7 +130,7 @@ export default function App({Component, pageProps}: { Component: React.Component
                         <Box sx={{backgroundColor: 'primary.contrastText'}} className={classes.footer}>
                             <Grid container textAlign='center'>
                                 <Grid item xs={12}>
-                                    <HomeButton shade={Shade.Dark} height='55px'/>
+                                    <HomeButton shade={Shade.Dark} height={55}/>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='instagram'>
@@ -188,7 +144,7 @@ export default function App({Component, pageProps}: { Component: React.Component
                                     </IconButton>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <Link href={HOME_PAGE.path}
+                                    <Link href='/'
                                           key='legal-notice'
                                           style={{textDecoration: 'none'}}>
                                         <Typography variant='body2'
@@ -196,7 +152,7 @@ export default function App({Component, pageProps}: { Component: React.Component
                                     </Link>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <Link href={HOME_PAGE.path}
+                                    <Link href='/'
                                           key='cookies'
                                           style={{textDecoration: 'none'}}>
                                         <Typography variant='body2'
@@ -204,7 +160,7 @@ export default function App({Component, pageProps}: { Component: React.Component
                                     </Link>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <Link href={HOME_PAGE.path}
+                                    <Link href='/'
                                           key='copyright'
                                           style={{textDecoration: 'none'}}>
                                         <Typography variant='body2'

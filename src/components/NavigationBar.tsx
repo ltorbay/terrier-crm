@@ -16,7 +16,6 @@ import {useTranslation} from "react-i18next";
 import {Shade} from "../model/Shade";
 import {useMediaQuery} from "@mui/material";
 import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
-import {SITE_PAGES} from "../pages/_app";
 import Link from "next/link";
 
 class Props {
@@ -28,6 +27,14 @@ class Props {
         this.displayHomeButton = displayHomeButton;
     }
 }
+
+export const SITE_PAGES: { key: string, path: string }[] = [
+    {key: 'pages.cottages.label', path: '/cottages'},
+    {key: 'pages.gallery.label', path: '/gallery'},
+    // {key: 'pages.explore.label', path: '/explore'},
+    {key: 'pages.booking.label', path: '/booking'},
+    {key: 'pages.contact.label', path: '/contact'}
+]
 
 const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
     const color = shade === Shade.Light ? 'primary.light' : 'primary.dark';
@@ -47,7 +54,7 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
         <AppBar position='absolute' style={{background: 'transparent', boxShadow: 'none'}}>
             <Container maxWidth='xl'>
                 <Toolbar disableGutters>
-                    {displayHomeButton ? <HomeButton shade={shade} height='50px'/> : <Box height='50px'/>}
+                    {displayHomeButton ? <HomeButton shade={shade} height={50}/> : <Box height='50px'/>}
                     <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: smallScreen ? 'flex' : 'none'}}>
                         <IconButton size='large'
                                     aria-label='menu'
