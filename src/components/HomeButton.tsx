@@ -1,9 +1,10 @@
 import Button from "@mui/material/Button";
 import * as React from "react";
 import {Shade} from "../model/Shade";
-import {ICONS} from "../../public/assets";
 import Link from "next/link";
 import Image from "next/image";
+import imageLoader from "../service/ImageLoader";
+import {ICONS} from "../constants/constants";
 
 const HOME_PATH = '/';
 const HOME_KEY = 'pages.home.label'
@@ -26,6 +27,7 @@ export function HomeButton({shade, height}: { shade: Shade, height: number }) {
                     }}
                     startIcon={
                         <Image src={shade === Shade.Dark ? ICONS.dark.logo : ICONS.light.logo}
+                               loader={imageLoader}
                                layout='fill'
                                objectFit='contain'
                                height={height}

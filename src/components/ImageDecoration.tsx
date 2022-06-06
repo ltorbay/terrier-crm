@@ -1,10 +1,11 @@
 import React from "react";
 import {makeStyles} from "@mui/styles";
-import {ICONS} from "../../public/assets";
+import {ICONS} from "../constants/constants";
 import Image from "next/image";
 import {Box} from "@mui/material";
+import imageLoader from "../service/ImageLoader";
 
-const useStyles = (width: string) => makeStyles(() => ({
+const useStyles = (width: number) => makeStyles(() => ({
     backgroundDecorationLeft: {
         width: width,
         height: 'auto',
@@ -13,7 +14,7 @@ const useStyles = (width: string) => makeStyles(() => ({
         opacity: 0.1,
     },
     backgroundDecorationRight: {
-        width: width,
+        width: width + 'vw',
         height: 'auto',
         position: 'absolute',
         right: '2%',
@@ -26,15 +27,23 @@ const useStyles = (width: string) => makeStyles(() => ({
 export function ImageDecoration({
                                     right = false,
                                     marginTop = '100px',
-                                    width = '20vw',
+                                    vw = 20,
                                     icon = ICONS.dark.icons.flower
-                                }: { right?: boolean, marginTop?: string, width?: string, icon?: string }) {
-    const classes = useStyles(width)();
+                                }: { right?: boolean, marginTop?: string, vw?: number, icon?: string }) {
+    const classes = useStyles(vw)();
+    const vwPixel = vw * window.innerWidth / 100;
 
     return (
         <Box className={right ? classes.backgroundDecorationRight : classes.backgroundDecorationLeft}
-        width={width} style={{marginTop: marginTop}}>
+             width={vw + 'vw'}
+             style={{marginTop: marginTop}}>
             <Image src={icon}
+                   loader={imageLoader}
+                   width={vwPixel}
+                   height={2 * vwPixel}
+                   layout='responsive'
+                   objectFit='contain'
+                   loading='lazy'
                    alt=''/>
         </Box>
     );

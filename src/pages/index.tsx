@@ -1,6 +1,7 @@
 import {Box, ImageList, ImageListItem, ImageListItemBar, Typography, useMediaQuery} from "@mui/material";
 import React from "react";
-import {ICONS, PICTURES} from "../../public/assets";
+import {ICONS, MEDIA_QUERY_650_BREAKPOINT, PICTURES} from "../constants/constants";
+
 import {makeStyles} from "@mui/styles";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
@@ -8,9 +9,9 @@ import {useTranslation} from "react-i18next";
 import {TextBox} from "../components/containers/TextBox";
 import {ImageDecoration} from "../components/ImageDecoration";
 import {TranslatedList} from "../components/TranslatedList";
-import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import imageLoader from "../service/ImageLoader";
 
 const LocalisationMap = dynamic<any>(
     () => import("../components/LocalisationMap").then(module => module.LocalisationMap),
@@ -39,6 +40,13 @@ export default function Home() {
     const {t} = useTranslation();
     const classes = useStyles();
     const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
+    const vw = window.innerHeight / 100;
+    const cottagesImages: {src: string, key: string}[] = [
+        {src: PICTURES.pear.backside, key: 'common.places.pear'},
+        {src: PICTURES.grape.house, key: 'common.places.grape'},
+        {src: PICTURES.lodge.lodgeFrontView, key: 'common.places.lodge'},
+        {src: PICTURES.pool.view, key: 'common.places.pool'}
+    ]
     const trainStations = ['Niversac', 'Périgueux', 'Thenon', 'Les Versannes'];
     const carAccess = ['perigueux-by-car', 'brive-by-car', 'bordeaux-by-car', 'toulouse-by-car']
 
@@ -48,11 +56,16 @@ export default function Home() {
                 <NavigationBar shade={Shade.Dark} displayHomeButton={false}/>
             </header>
             <Box className={classes.centerContent}>
-                <Box width='12%'
-                     height='auto'
+                <Box width='20vw'
+                     height='16vw'
                      margin='auto'
                      position='relative'>
                     <Image src={ICONS.dark.logo}
+                           loader={imageLoader}
+                           width={1}
+                           height={1}
+                           layout='responsive'
+                           objectFit='contain'
                            alt=''/>
                 </Box>
                 <Typography variant='h2'>
@@ -64,42 +77,32 @@ export default function Home() {
             </Box>
             <Box className={classes.container}>
                 <Image src={PICTURES.pool.pool}
+                       loader={imageLoader}
                        layout='fill'
                        objectFit='cover'
                        alt='Pool'
-                       loading="lazy"/>
+                       loading='lazy'/>
             </Box>
             <ImageDecoration right/>
             <TextBox titleKey={'pages.home.history-title'} contentKey={'pages.home.history-body'}/>
             <ImageList variant="standard" cols={smallScreen ? 1 : 2} gap={8}>
-                <ImageListItem key='pear-house'>
-                    <Image src={PICTURES.pear.backside}
-                         alt='pear-house'
-                         loading="lazy"/>
-                    <ImageListItemBar className={classes.itemBar}
-                                      title={t('common.places.pear')}/>
-                </ImageListItem>
-                <ImageListItem key='grape-house'>
-                    <Image src={PICTURES.grape.house}
-                         alt='grape-house'
-                         loading="lazy"/>
-                    <ImageListItemBar className={classes.itemBar}
-                                      title={t('common.places.grape')}/>
-                </ImageListItem>
-                <ImageListItem key='lodge'>
-                    <Image src={PICTURES.lodge.lodgeFrontView}
-                         alt='lodge-house'
-                         loading="lazy"/>
-                    <ImageListItemBar className={classes.itemBar}
-                                      title={t('common.places.lodge')}/>
-                </ImageListItem>
-                <ImageListItem key='pool-view'>
-                    <Image src={PICTURES.pool.view}
-                         alt='pool-view'
-                         loading="lazy"/>
-                    <ImageListItemBar className={classes.itemBar}
-                                      title={t('common.places.pool')}/>
-                </ImageListItem>
+                {cottagesImages.map(image =>
+                    <ImageListItem key={image.src}>
+                        <Box position='relative'
+                             overflow='hidden'
+                             width='100%'
+                             height={40 * vw}>
+                            <Image src={image.src}
+                                   loader={imageLoader}
+                                   alt={image.key}
+                                   layout='fill'
+                                   objectFit='cover'
+                                   loading='lazy'/>
+                        </Box>
+                        <ImageListItemBar className={classes.itemBar}
+                                          title={t(image.key)}/>
+                    </ImageListItem>
+                )}
             </ImageList>
             <ImageDecoration icon={ICONS.dark.icons.keys}/>
             <Box sx={{display: 'flex', justifyContent: 'center'}}>

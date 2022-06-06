@@ -3,6 +3,7 @@ import {Box, Grid, useMediaQuery} from "@mui/material";
 import {makeStyles} from "@mui/styles";
 import {MEDIA_QUERY_650_BREAKPOINT} from "../../constants/constants";
 import Image from "next/image";
+import imageLoader from "../../service/ImageLoader";
 
 const useStyles = makeStyles(() => ({
     center: {
@@ -40,6 +41,7 @@ export function ImageBox({children, src, right = false}: Props) {
             <Box className={classes.container}
                  sx={{height: imageSize, width: imageSize}}>
                 <Image src={src}
+                       loader={imageLoader}
                        layout='fill'
                        objectFit='cover'
                        loading='lazy'

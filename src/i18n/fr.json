@@ -82,7 +82,8 @@
     },
     "gallery": {
       "label": "Galerie",
-      "body": "Bienvenue au <strong><i>Terrier</i></strong> ! 3 gîtes ruraux en <i>Dordogne</i> dans le Sud-Ouest rassemblés autour d’une placette de charme bordée d’oliviers, pour se retrouver avec ses proches au cœur de la nature non loin de sites emblématiques comme <i>Lascaux</i>, <i>Sarlat</i> ou encore <i>Rocamadour</i>."
+      "title": "Le Terrier en photos",
+      "body": "Un petit aperçu en images de votre prochaine destination de vacances !"
     },
     "explore": {
       "label": "Explorer la Dordogne"

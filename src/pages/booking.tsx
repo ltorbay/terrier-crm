@@ -31,6 +31,7 @@ const BookingDateRange = dynamic<Props>(
     {ssr: false}
 );
 
+// noinspection JSUnusedGlobalSymbols
 export default function Booking() {
     const [loading, setLoading] = useState<boolean>(false);
     const [cottage, setCottage] = useState<CottageSelect>(CottageSelect.BOTH)
