@@ -4,8 +4,6 @@ import {BACKEND_DATES_FORMAT} from "../constants/constants";
 import {PricingModel} from "../model/PricingModel";
 import {PricingPeriodType} from "../model/PricingPeriodType";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
 export interface BasePricingConfiguration {
     periodType: PricingPeriodType,
     minConsecutiveDays: number;
@@ -20,7 +18,7 @@ const PriceService = {
     getPriceConfiguration: async function (start: Moment, end: Moment): Promise<PricingConfigurationResponse[]> {
         const resp = await axios({
             method: 'get',
-            baseURL: SERVER_URL,
+            baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
             url: '/pricing',
             responseType: 'json',
             params: {

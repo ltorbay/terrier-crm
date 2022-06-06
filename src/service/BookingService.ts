@@ -5,8 +5,6 @@ import {CottageSelect, cottageToString} from "../model/CottageSelect";
 import {PricingModel} from "../model/PricingModel";
 import {PricingPeriodType} from "../model/PricingPeriodType";
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
 export interface BookedDatesResponse {
     pearBookings: string[];
     grapeBookings: string[];
@@ -30,7 +28,7 @@ const BookingService = {
     getReservedDates: async function (start: Moment, end: Moment): Promise<BookedDatesResponse> {
         const resp = await axios({
             method: 'get',
-            baseURL: SERVER_URL,
+            baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
             url: '/bookings',
             responseType: 'json',
             params: {
@@ -45,7 +43,7 @@ const BookingService = {
     simulateBooking: async function (type: CottageSelect, start: Moment, end: Moment): Promise<PricingDetail[]> {
         const resp = await axios({
             method: 'get',
-            baseURL: SERVER_URL,
+            baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
             url: '/bookings/simulations',
             responseType: 'json',
             params: {

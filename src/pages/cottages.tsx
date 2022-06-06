@@ -1,5 +1,5 @@
 import {Box, useMediaQuery} from "@mui/material";
-import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
+import {ICONS, MEDIA_QUERY_650_BREAKPOINT, PICTURES} from "../constants/constants";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
 import {ImageDecoration} from "../components/ImageDecoration";
@@ -8,8 +8,8 @@ import {ImageBox} from "../components/containers/ImageBox";
 import {ContentBox} from "../components/containers/ContentBox";
 import {TranslatedList} from "../components/TranslatedList";
 import React from "react";
-import {ICONS, PICTURES} from "../../public/assets";
 
+// noinspection JSUnusedGlobalSymbols
 export default function Cottages() {
     const textBoxWidth = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT) ? '70%' : '100%';
 
@@ -33,7 +33,7 @@ export default function Cottages() {
                 </ContentBox>
             </ImageBox>
             <ImageBox src={PICTURES.lodge.lodgeFrontView} right>
-                <ImageDecoration icon={ICONS.dark.icons.stump} marginTop='50px' width='30vw'/>
+                <ImageDecoration icon={ICONS.dark.icons.stump} marginTop='50px' vw={30}/>
                 <TextBox titleKey={'common.places.the-lodge'}
                          contentKey={'pages.cottages.lodge-description'}
                          marginBottom='0'
@@ -51,7 +51,7 @@ export default function Cottages() {
                                 itemKeys={pearEquipments.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
             <ImageBox src={PICTURES.grape.house} right>
-                <ImageDecoration icon={ICONS.dark.icons.grape} width='15vw'/>
+                <ImageDecoration icon={ICONS.dark.icons.grape} vw={15}/>
                 <TextBox titleKey={'common.places.the-grape'}
                          contentKey={'pages.cottages.grape-description'}
                          marginBottom='0'
