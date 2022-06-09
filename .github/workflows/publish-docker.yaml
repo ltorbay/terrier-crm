@@ -17,20 +17,21 @@ jobs:
         with:
           node-version: 16.x
           cache: npm
+      - run: npm install
       - run: npm run export
       - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io/ltorbay/terrier-crm
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ghcr.io/ltorbay/terrier-crm
       - name: Build and push Docker image
-        uses: docker/build-push-action
+        uses: docker/build-push-action@v3
         with:
           context: .
           push: true
