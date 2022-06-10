@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 import {Container, IconButton} from "@mui/material";
-import 'leaflet/dist/leaflet.css';
 import {divIcon, LatLng, point} from "leaflet";
 import {renderToStaticMarkup} from "react-dom/server";
 import LocationOnIcon from '@mui/icons-material/LocationOn';

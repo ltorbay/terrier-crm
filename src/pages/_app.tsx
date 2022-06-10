@@ -1,9 +1,6 @@
 import React, {ReactElement, useEffect, useState} from 'react';
 import reportWebVitals from '../utils/reportWebVitals';
 import '../utils/i18n';
-import '../styles.css';
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
 import {createTheme, responsiveFontSizes, ThemeProvider} from "@mui/material/styles";
 import {MINION, POPPINS} from "../constants/fonts";
 import {makeStyles} from "@mui/styles";
@@ -20,6 +17,11 @@ import Typography from "@mui/material/Typography";
 import {Provider} from "react-redux";
 import {AppProps} from "next/dist/pages/_app";
 import Link from "next/link";
+
+import '../styles.css';
+import 'leaflet/dist/leaflet.css';
+import 'react-date-range/dist/theme/default.css';
+import 'react-date-range/dist/styles.css'
 
 const theme = responsiveFontSizes(createTheme({
     palette: {
