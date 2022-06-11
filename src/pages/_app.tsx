@@ -20,8 +20,8 @@ import Link from "next/link";
 
 import '../styles.css';
 import 'leaflet/dist/leaflet.css';
-import 'react-date-range/dist/theme/default.css';
 import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css';
 
 const theme = responsiveFontSizes(createTheme({
     palette: {

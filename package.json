@@ -9,7 +9,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "homepage": "http://localhost:3000/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
