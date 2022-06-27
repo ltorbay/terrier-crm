@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Moment} from "moment";
 import PriceService, {BasePricingConfiguration, PricingConfigurationResponse} from "../../service/PriceService";
 import moment, {BACKEND_DATES_FORMAT} from "../../constants/constants";
+import {AppDispatch} from "../store";
 
 export interface PricingConfigurationStateItem extends BasePricingConfiguration {
     start: number;
@@ -19,6 +20,7 @@ const INITIAL_STATE: PricingState = {}
 interface InitPricingPayload {
     start: Moment,
     end: Moment,
+    dispatch: AppDispatch
 }
 
 export const fetchPricingConfiguration = createAsyncThunk(
@@ -33,7 +35,7 @@ export const fetchPricingConfiguration = createAsyncThunk(
                 response: configuration
             })
         }
-        return PriceService.getPriceConfiguration(payload.start, payload.end)
+        return PriceService.getPriceConfiguration(payload.start, payload.end, payload.dispatch)
             .then(value => {
                 const responseStartTimestamp = value.map(configResponse => moment(configResponse.start).valueOf());
                 const previousResponse = state.configuration?.filter(item => !responseStartTimestamp.includes(item.start)).map(stateItemToResponse);

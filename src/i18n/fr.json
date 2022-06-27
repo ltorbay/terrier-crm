@@ -48,6 +48,15 @@
       "weekend-rental": "Location au week-end",
       "price-per-night": "Tarif à la nuitée avec un minimum de deux nuits",
       "price-is-per-night": "Tarif à la nuitée avec un minimum de {{count}} nuits"
+    },
+    "payment-form": {
+      "book": "Réserver",
+      "confirm-and-pay": "Confirmer et payer",
+      "first-name": "Prénom",
+      "last-name": "Nom",
+      "email": "Mail",
+      "phone": "Téléphone",
+      "guests-count": "Voyageurs"
     }
   },
   "pages": {
@@ -98,6 +107,16 @@
     },
     "contact": {
       "label": "Nous contacter"
+    }
+  },
+  "messages": {
+    "failure": {
+      "reserved-dates": "Problème rencontré lors de la récupération des dates réservées<br/>Veuillez nous contacter !",
+      "simulate-booking": "Problème rencontré lors du calcul du tarif de réservation<br/>Veuillez nous contacter !",
+      "price-configuration": "Problème rencontré lors de la récupération de la tarification<br/>Veuillez nous contacter !"
+    },
+    "warning": {
+      "payment-form-invalid": "Le formulaire d'informations de réservation et de paiement est invalide"
     }
   }
 }

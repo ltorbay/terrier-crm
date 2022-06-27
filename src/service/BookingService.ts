@@ -4,6 +4,8 @@ import {BACKEND_DATES_FORMAT} from "../constants/constants";
 import {CottageSelect, cottageToString} from "../model/CottageSelect";
 import {PricingModel} from "../model/PricingModel";
 import {PricingPeriodType} from "../model/PricingPeriodType";
+import {uiMessage} from "../redux/slice/SnackbarSlice";
+import {AppDispatch} from "../redux/store";
 
 export interface BookedDatesResponse {
     pearBookings: string[];
@@ -24,8 +26,29 @@ export interface PricingDetail {
     totalCents: number
 }
 
+export interface BookingRequest {
+    type: 'BOTH' | 'PEAR' | 'GRAPE',
+    period: {
+        start: string,
+        end: string
+    },
+    user: {
+        firstName: string,
+        lastName: string,
+        email: string,
+        phoneNumber: string | undefined,
+        birthDate: string | undefined
+    },
+    information: {
+        guestsCount: number,
+        paymentSourceId: string,
+        paymentAmountCents: number,
+        comment: string | undefined
+    }
+}
+
 const BookingService = {
-    getReservedDates: async function (start: Moment, end: Moment): Promise<BookedDatesResponse> {
+    getReservedDates: async function (start: Moment, end: Moment, dispatch: AppDispatch): Promise<BookedDatesResponse> {
         const resp = await axios({
             method: 'get',
             baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -36,11 +59,14 @@ const BookingService = {
                 end: end.format(BACKEND_DATES_FORMAT)
             }
         }).catch(error => {
-            // TODO print messages for user
+            console.log(error)
+            // TODO send error log to backend error endpoint ?
+            dispatch(uiMessage({messageKey: 'messages.failure.reserved-dates', severity: 'error'}))
         });
+        
         return resp?.data;
     },
-    simulateBooking: async function (type: CottageSelect, start: Moment, end: Moment): Promise<PricingDetail[]> {
+    simulateBooking: async function (type: CottageSelect, start: Moment, end: Moment, dispatch: AppDispatch): Promise<PricingDetail[]> {
         const resp = await axios({
             method: 'get',
             baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -52,7 +78,8 @@ const BookingService = {
                 end: end.format(BACKEND_DATES_FORMAT)
             }
         }).catch(error => {
-            // TODO print messages for user
+            console.log(error)
+            dispatch(uiMessage({messageKey: 'messages.failure.simulate-booking', severity: 'error'}))
         });
         return resp?.data;
     }

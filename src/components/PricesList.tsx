@@ -11,7 +11,7 @@ import {PricingPeriodType} from "../model/PricingPeriodType";
 export function PricesList() {
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch(fetchPricingConfiguration({start: moment(), end: moment().endOf('year')}))
+        dispatch(fetchPricingConfiguration({start: moment(), end: moment().endOf('year'), dispatch: dispatch}))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -28,7 +28,7 @@ export function PricesList() {
     const priceMap = priceMapRef.current;
     return (
         <ContentBox titleKey={"components.prices-list.title"} width='100%'>
-            <Grid container>
+            <Grid container width='100%'>
                 {priceMap ? Array.from(priceMap.keys()).map((key, index, array) => (
                         <Grid item key={index} marginLeft='4vw'>
                             <PriceLine jsonData={key} hasNext={index < array.length - 1}

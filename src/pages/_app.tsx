@@ -22,6 +22,7 @@ import '../styles.css';
 import 'leaflet/dist/leaflet.css';
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css';
+import {MySnackBar} from "../components/MySnackBar";
 
 const theme = responsiveFontSizes(createTheme({
     palette: {
@@ -126,9 +127,10 @@ export default function App({Component, pageProps}: { Component: React.Component
                             '--color-dark': theme.palette.primary.dark
                         },
                     }}/>
-                    <Box sx={{backgroundColor: 'primary.light'}}>
+                    <Box sx={{backgroundColor: 'primary.light', width: '100vw'}}>
                         {/*@ts-ignore*/}
                         <Component {...pageProps} />
+                        <MySnackBar/>
                         <Box sx={{backgroundColor: 'primary.contrastText'}} className={classes.footer}>
                             <Grid container textAlign='center'>
                                 <Grid item xs={12}>

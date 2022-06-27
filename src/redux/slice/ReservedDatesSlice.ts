@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Moment} from "moment";
 import BookingService, {BookedDatesResponse} from "../../service/BookingService";
 import moment, {BACKEND_DATES_FORMAT} from "../../constants/constants";
+import {AppDispatch} from "../store";
 
 interface BookedDatesState {
     pear: number[];
@@ -20,6 +21,7 @@ const INITIAL_STATE: BookedDatesState = {
 interface BookedDatesPayload {
     start: Moment,
     end: Moment,
+    dispatch: AppDispatch
 }
 
 export const fetchReservedDates = createAsyncThunk(
@@ -37,7 +39,7 @@ export const fetchReservedDates = createAsyncThunk(
                 response: reservedDates
             })
         }
-        return BookingService.getReservedDates(payload.start, payload.end)
+        return BookingService.getReservedDates(payload.start, payload.end, payload.dispatch)
             .then(value => {
                 const previousPear = state.pear.map(item => moment(item).format(BACKEND_DATES_FORMAT)).filter(item => !value.pearBookings.includes(item));
                 const previousGrape = state.grape.map(item => moment(item).format(BACKEND_DATES_FORMAT)).filter(item => !value.grapeBookings.includes(item));

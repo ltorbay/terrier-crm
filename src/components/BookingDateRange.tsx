@@ -99,14 +99,16 @@ export default function BookingDateRange(props: Props) {
         if (pricingQueryBoundsRef.current.isBefore(from)) {
             dispatch(fetchPricingConfiguration({
                 start: pricingQueryBoundsRef.current,
-                end: pricingQueryBoundsRef.current.clone().add(1, 'year')
+                end: pricingQueryBoundsRef.current.clone().add(1, 'year'),
+                dispatch: dispatch
             }))
         }
         const reservationsQueryEndMoment = moment(reservationsQueryEnd);
         if (reservationsQueryEndMoment.isBefore(from)) {
             dispatch(fetchReservedDates({
                 start: reservationsQueryEndMoment,
-                end: reservationsQueryEndMoment.clone().add(1, 'year')
+                end: reservationsQueryEndMoment.clone().add(1, 'year'),
+                dispatch: dispatch
             }));
         }
     }

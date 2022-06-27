@@ -24,7 +24,8 @@ import {PricesList} from "../components/PricesList";
 import {ImageDecoration} from "../components/ImageDecoration";
 import {ContentBox} from "../components/containers/ContentBox";
 import {Trans} from "react-i18next";
-import BookingPayment from "../components/BookingPayment";
+import BookingPricing from "../components/BookingPricing";
+import {Information, MyPaymentForm, TokenResult, User} from "../components/MyPaymentForm";
 
 const BookingDateRange = dynamic<Props>(
     () => import("../components/BookingDateRange"),
@@ -39,11 +40,12 @@ export default function Booking() {
 
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch(fetchReservedDates({start: moment(), end: moment().add(1, 'year')}))
+        dispatch(fetchReservedDates({start: moment(), end: moment().add(1, 'year'), dispatch: dispatch}))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const pricingDetailRef = useRef<PricingDetail[]>([]);
+    const totalPrice = pricingDetailRef.current.map(detail => detail.totalCents).reduce((v1, v2) => v1 + v2, 0) / 100
 
     const pearReservations = useAppSelector((s) => s.reservedDates.pear);
     const grapeReservations = useAppSelector((s) => s.reservedDates.grape);
@@ -54,7 +56,7 @@ export default function Booking() {
                 <NavigationBar shade={Shade.Dark}/>
             </header>
             <Box sx={{paddingTop: '8vh'}}/>
-            <PricesList/>
+            <PricesList />
             <Card>
                 <ImageDecoration icon={cottageToIcon(cottage)} marginTop='50px'/>
                 <ContentBox titleKey='pages.booking.book-stay' width={tinyScreen ? '300px' : '500px'}>
@@ -88,7 +90,7 @@ export default function Booking() {
                                               vertical={tinyScreen}
                                               onChange={newSelection => {
                                                   setLoading(true);
-                                                  BookingService.simulateBooking(cottage, newSelection.start, newSelection.end).then(r => {
+                                                  BookingService.simulateBooking(cottage, newSelection.start, newSelection.end, dispatch).then(r => {
                                                       pricingDetailRef.current = r;
                                                       setLoading(false);
                                                   })
@@ -96,10 +98,17 @@ export default function Booking() {
                         </Grid>
                     </FormGroup>
                     {pricingDetailRef.current ?
-                        <BookingPayment
+                        <BookingPricing
                             loading={loading}
                             cottageSelect={cottage}
-                            pricingDetail={pricingDetailRef.current}/> : undefined}
+                            pricingDetail={pricingDetailRef.current}
+                            totalPrice={totalPrice}/> : undefined}
+                    <MyPaymentForm cottageSelect={cottage}
+                                   pricingDetail={pricingDetailRef.current}
+                                   totalPrice={totalPrice}
+                                   onValidatedPayment={(user: User, information: Information, paymentToken: TokenResult) => {
+                                       console.log(user, information, paymentToken)
+                                   }}/>
                 </ContentBox>
             </Card>
         </>

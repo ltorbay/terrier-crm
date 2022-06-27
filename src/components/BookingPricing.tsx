@@ -16,14 +16,14 @@ interface BookingDetail {
 
 interface Props {
     pricingDetail: PricingDetail[],
+    totalPrice: number,
     cottageSelect: CottageSelect,
     loading: boolean
 }
 
-export default function BookingPayment(props: Props) {
+export default function BookingPricing(props: Props) {
     const {t} = useTranslation();
     const split = splitBySeason(props.pricingDetail, props.cottageSelect);
-    const total = props.pricingDetail.map(detail => detail.totalCents).reduce((v1, v2) => v1 + v2, 0) / 100;
     return (
         <List dense={true} sx={{opacity: props.loading ? 0.25 : 1}}>
             {split.map(detail => priceLine(t, detail))}
@@ -31,7 +31,7 @@ export default function BookingPayment(props: Props) {
             <ListItem>
                 <ListItemText primary="Total"/>
                 <Typography gutterBottom variant="h5" component="div">
-                    {total}&nbsp;€
+                    {props.totalPrice}&nbsp;€
                 </Typography>
             </ListItem>
         </List>

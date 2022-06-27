@@ -48,6 +48,15 @@
       "weekend-rental": "Weekend rental",
       "price-per-night": "Price per night with a minimum of 2 nights",
       "price-is-per-night": "Price per night with a minimum of {{count}} nights"
+    },
+    "payment-form": {
+      "book": "Book",
+      "confirm-and-pay": "Confirm and pay",
+      "first-name": "First name",
+      "last-name": "Last name",
+      "email": "Email",
+      "phone": "Phone number",
+      "guests-count": "Guests"
     }
   },
   "pages": {
@@ -69,6 +78,16 @@
     },
     "contact": {
       "label": "Contact us"
+    }
+  },
+  "messages": {
+    "failure": {
+      "reserved-dates": "Issue encountered while fetching booked dates<br/>Please contact us!",
+      "simulate-booking": "Issue encountered while calculating your booking tarification<br/>Please contact us!",
+      "price-configuration": "Issue encountered while fetching period tarifications<br/>Please contact us!"
+    },
+    "warning": {
+      "payment-form-invalid": "The booking information and payment form is invalid"
     }
   }
 }
