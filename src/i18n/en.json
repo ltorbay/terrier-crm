@@ -74,16 +74,22 @@
     },
     "booking": {
       "label": "Booking",
-      "book-stay": "Book your stay"
+      "book-stay": "Book your stay",
+      "book-button": "Book"
     },
     "contact": {
       "label": "Contact us"
     }
   },
   "messages": {
+    "success": {
+      "book": "Reservation made successfully, a summary mail will be sent to you"
+    },
     "failure": {
       "reserved-dates": "Issue encountered while fetching booked dates<br/>Please contact us!",
       "simulate-booking": "Issue encountered while calculating your booking tarification<br/>Please contact us!",
+      "book": "Issue encountered while completing booking<br/>Please contact us",
+      "prepare-payment": "Issue encountered while preparing your payment<br/>Please contact us",
       "price-configuration": "Issue encountered while fetching period tarifications<br/>Please contact us!"
     },
     "warning": {

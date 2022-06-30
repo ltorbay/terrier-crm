@@ -28,17 +28,6 @@ export const fetchReservedDates = createAsyncThunk(
     'BookingService/getReservedDates',
     async (payload: BookedDatesPayload, thunkAPI): Promise<{ queryEnd: number, response: BookedDatesResponse }> => {
         const state = (thunkAPI.getState() as { reservedDates: BookedDatesState }).reservedDates;
-        const endMoment = moment(state.queryEnd);
-        if (state.initializedAt && endMoment.isAfter(payload.start)) {
-            const reservedDates: BookedDatesResponse = {
-                pearBookings: state.pear.map(item => moment(item).format(BACKEND_DATES_FORMAT)),
-                grapeBookings: state.grape.map(item => moment(item).format(BACKEND_DATES_FORMAT))
-            }
-            return Promise.resolve({
-                queryEnd: endMoment.valueOf(),
-                response: reservedDates
-            })
-        }
         return BookingService.getReservedDates(payload.start, payload.end, payload.dispatch)
             .then(value => {
                 const previousPear = state.pear.map(item => moment(item).format(BACKEND_DATES_FORMAT)).filter(item => !value.pearBookings.includes(item));

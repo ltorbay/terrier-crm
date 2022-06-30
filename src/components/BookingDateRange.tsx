@@ -1,4 +1,4 @@
-import React, {MutableRefObject, useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Moment} from "moment";
 // @ts-ignore
 import {enGB, fr} from "react-date-range/src/locale";
@@ -30,15 +30,11 @@ interface SeasonRef {
 }
 
 export class Props {
-    pearReservations: number[];
-    grapeReservations: number[];
     cottageSelect: CottageSelect;
     vertical: boolean;
     onChange: (arg: MomentRange) => void;
 
-    constructor(pearReservations: number[], grapeReservations: number[], cottageSelect: CottageSelect, vertical: boolean, onChange: (arg: MomentRange) => void) {
-        this.pearReservations = pearReservations;
-        this.grapeReservations = grapeReservations;
+    constructor(cottageSelect: CottageSelect, vertical: boolean, onChange: (arg: MomentRange) => void) {
         this.cottageSelect = cottageSelect;
         this.vertical = vertical;
         this.onChange = onChange;
@@ -51,7 +47,7 @@ class State {
     period: MomentRange;
     selectingStart: boolean
 
-    constructor(reservedDates: Moment[], firstAvailableRange: MomentRange, period: MomentRange) {
+    constructor(reservedDates: Moment[], period: MomentRange, firstAvailableRange: MomentRange) {
         this.reservedDates = reservedDates;
         this.firstAvailableRange = firstAvailableRange;
         this.period = period;
@@ -64,42 +60,43 @@ export default function BookingDateRange(props: Props) {
     const dispatch = useAppDispatch();
     const theme: Theme = useTheme();
 
-    const pricing = useAppSelector(s => s.pricing);
-    const seasonsArrayRef: MutableRefObject<SeasonRef[]> = useRef([]);
-    const pricingQueryBoundsRef: MutableRefObject<Moment> = useRef(moment().add(1, 'year'));
+    const [pricingQueryBounds, setPricingQueryBounds] = useState<Moment>(moment().add(3, 'year'));
+    const [seasons, setSeasons] = useState<SeasonRef[]>([]);
+
     const reservationsQueryEnd: number | undefined = useAppSelector((s) => s.reservedDates.queryEnd);
+    const pricing = useAppSelector(s => s.pricing);
+    const pearReservations = useAppSelector((s) => s.reservedDates.pear);
+    const grapeReservations = useAppSelector((s) => s.reservedDates.grape);
 
     useEffect(() => {
         if (pricing.configuration) {
-            seasonsArrayRef.current = pricing.configuration.map((item: PricingConfigurationStateItem) => {
+            setSeasons(pricing.configuration.map((item: PricingConfigurationStateItem) => {
                 return {
                     start: moment(item.start),
                     peakSeason: 'OFF_SEASON' !== item.periodType,
                     minConsecutiveDays: item.minConsecutiveDays,
                 }
-            });
+            }));
         }
         if (pricing.queriedStart && pricing.queriedEnd) {
-            pricingQueryBoundsRef.current = moment(pricing.queriedEnd)
+            setPricingQueryBounds(moment(pricing.queriedEnd));
         }
     }, [pricing.configuration, pricing.initializedAt, pricing.queriedStart, pricing.queriedEnd])
-    const seasons = seasonsArrayRef.current;
 
-    const [state, setState] = useState<State>(() => buildState(props, seasons));
+    const [state, setState] = useState<State>(() => buildState(props.cottageSelect, seasons, pearReservations, grapeReservations));
+
     useEffect(() => {
         if (seasons && seasons.length) {
-            const newState = buildState(props, seasons);
+            const newState = buildState(props.cottageSelect, seasons, pearReservations, grapeReservations);
             setState(newState);
-            props.onChange(newState.period);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.grapeReservations, props.pearReservations, props.cottageSelect]);
+    }, [seasons, grapeReservations, pearReservations, props.cottageSelect]);
 
     const fetchAdditionalSeasons = (from: Moment) => {
-        if (pricingQueryBoundsRef.current.isBefore(from)) {
+        if (pricingQueryBounds.isBefore(from)) {
             dispatch(fetchPricingConfiguration({
-                start: pricingQueryBoundsRef.current,
-                end: pricingQueryBoundsRef.current.clone().add(1, 'year'),
+                start: pricingQueryBounds,
+                end: pricingQueryBounds.clone().add(3, 'year'),
                 dispatch: dispatch
             }))
         }
@@ -107,13 +104,12 @@ export default function BookingDateRange(props: Props) {
         if (reservationsQueryEndMoment.isBefore(from)) {
             dispatch(fetchReservedDates({
                 start: reservationsQueryEndMoment,
-                end: reservationsQueryEndMoment.clone().add(1, 'year'),
+                end: reservationsQueryEndMoment.clone().add(3, 'year'),
                 dispatch: dispatch
             }));
         }
     }
 
-    // TODO Shown dates are getting reset when component reloads (on pricing configuration change or reservations change !)
     return (
         <DateRange ranges={[{
             key: "selection",
@@ -128,7 +124,7 @@ export default function BookingDateRange(props: Props) {
                    maxDate={state.selectingStart ? undefined : firstReservedDate(state.period.start, state.reservedDates)?.toDate()}
                    dayContentRenderer={date => customDayContent(t, moment(date), props.cottageSelect, state, seasons)}
                    onShownDateChange={date => fetchAdditionalSeasons(moment(date))}
-                   preventSnapRefocus={true}
+                   preventSnapRefocus
                    moveRangeOnFirstSelection={false}
                    months={2}
                    color={theme.palette.secondary.main}
@@ -235,11 +231,10 @@ function getDayState(date: Moment, reservedDates: Moment[], selectingStart: bool
     return DayState.Enabled;
 }
 
-function buildState(props: Props, seasons: SeasonRef[]): State {
-    const reservedDates = cottageReservationArray(props.cottageSelect, props.pearReservations, props.grapeReservations).map(epoch => moment(epoch));
-    const firstAvailableRange = getFirstAvailablePeriod(reservedDates, props.cottageSelect, seasons);
-    const period = moment.range(firstAvailableRange.start, firstAvailableRange.end);
-    return new State(reservedDates, firstAvailableRange, period);
+function buildState(cottageSelect: CottageSelect, seasons: SeasonRef[], pearReservations: number[], grapeReservations: number[]): State {
+    const reservedDates = cottageReservationArray(cottageSelect, pearReservations, grapeReservations).map(epoch => moment(epoch));
+    const firstAvailableRange = getFirstAvailablePeriod(reservedDates, cottageSelect, seasons);
+    return new State(reservedDates, firstAvailableRange, moment.range(firstAvailableRange.start, firstAvailableRange.end));
 }
 
 function cottageReservationArray(cottage: CottageSelect, pearReservations: number[], grapeReservations: number[]): number[] {

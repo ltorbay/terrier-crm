@@ -1,6 +1,6 @@
 import {Box, ImageList, ImageListItem, ImageListItemBar, Typography, useMediaQuery} from "@mui/material";
-import React from "react";
-import {ICONS, MEDIA_QUERY_650_BREAKPOINT, PICTURES} from "../constants/constants";
+import React, {useEffect} from "react";
+import moment, {ICONS, MEDIA_QUERY_650_BREAKPOINT, PICTURES} from "../constants/constants";
 
 import {makeStyles} from "@mui/styles";
 import NavigationBar from "../components/NavigationBar";
@@ -12,6 +12,9 @@ import {TranslatedList} from "../components/TranslatedList";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import imageLoader from "../service/ImageLoader";
+import {useAppDispatch} from "../redux/hooks";
+import {fetchPricingConfiguration} from "../redux/slice/PricingSlice";
+import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
 
 const LocalisationMap = dynamic<any>(
     () => import("../components/LocalisationMap").then(module => module.LocalisationMap),
@@ -40,6 +43,13 @@ export default function Home() {
     const {t} = useTranslation();
     const classes = useStyles();
     const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(fetchPricingConfiguration({start: moment(), end: moment().add(3, 'year'), dispatch: dispatch}));
+        dispatch(fetchReservedDates({start: moment(), end: moment().add(3, 'year'), dispatch: dispatch}));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    
     const vw = window.innerHeight / 100;
     const cottagesImages: {src: string, key: string}[] = [
         {src: PICTURES.pear.backside, key: 'common.places.pear'},

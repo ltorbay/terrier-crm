@@ -30,7 +30,7 @@ export function cottageToIcon(select: CottageSelect): string {
     }
 }
 
-export function cottageToString(select: CottageSelect): string {
+export function cottageToString(select: CottageSelect): 'BOTH' | 'PEAR' | 'GRAPE' {
     switch (select) {
         case CottageSelect.BOTH:
             return 'BOTH';

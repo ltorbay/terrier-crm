@@ -17,7 +17,7 @@ export function MySnackBar() {
 
     return (
         <Snackbar open={!!snackbar.messages[0] && !!snackbar.messages[0]?.messageKey}
-                  autoHideDuration={4000}
+                  autoHideDuration={2000}
                   onClose={handleCloseSnackbar}
                   sx={{visibility: snackbar.messages[0]?.messageKey ? 'visible' : 'hidden'}}>
             <Alert onClose={handleCloseSnackbar}

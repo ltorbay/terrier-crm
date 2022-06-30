@@ -1,5 +1,5 @@
 import {CreditCard, PaymentForm} from "react-square-web-payments-sdk";
-import {useRef, useState} from "react";
+import {useState} from "react";
 import {PricingDetail} from "../service/BookingService";
 import {CottageSelect} from "../model/CottageSelect";
 import {Moment} from "moment/moment";
@@ -58,7 +58,7 @@ export function MyPaymentForm(props: Props) {
     return (
         <FormControl>
             <Grid container>
-                <Grid item xs={fieldColumns} padding='1em'>
+                <Grid item xs={fieldColumns} paddingY='1em'>
                     <TextField required
                                fullWidth
                                id="lastName"
@@ -75,7 +75,7 @@ export function MyPaymentForm(props: Props) {
                                error={(hasSubmit || state.user?.lastName?.updated) && !state?.user?.lastName?.value}
                                label={t('components.payment-form.last-name')}/>
                 </Grid>
-                <Grid item xs={fieldColumns} padding='1em'>
+                <Grid item xs={fieldColumns} paddingY='1em'>
                     <TextField required
                                fullWidth
                                id="firstName"
@@ -92,7 +92,7 @@ export function MyPaymentForm(props: Props) {
                                error={(hasSubmit || state.user?.firstName?.updated) && !state?.user?.firstName?.value}
                                label={t('components.payment-form.first-name')}/>
                 </Grid>
-                <Grid item xs={fieldColumns} padding='1em'>
+                <Grid item xs={fieldColumns} paddingY='1em'>
                     <TextField required
                                fullWidth
                                id="email"
@@ -109,7 +109,7 @@ export function MyPaymentForm(props: Props) {
                                error={(hasSubmit || state.user?.email?.updated) && !state?.user?.email?.value}
                                label={t('components.payment-form.email')}/>
                 </Grid>
-                <Grid item xs={fieldColumns / 2} padding='1em'>
+                <Grid item xs={fieldColumns / 2} paddingY='1em' paddingRight='0.5em'>
                     <TextField required
                                fullWidth
                                id="guestsCount"
@@ -127,7 +127,7 @@ export function MyPaymentForm(props: Props) {
                                type="number"
                                label={t('components.payment-form.guests-count')}/>
                 </Grid>
-                <Grid item xs={fieldColumns / 2} padding='1em'>
+                <Grid item xs={fieldColumns / 2} paddingY='1em' paddingLeft='0.5em'>
                     <TextField fullWidth
                                id="phone"
                                onChange={event => setState((prevState: State) => ({
@@ -139,13 +139,14 @@ export function MyPaymentForm(props: Props) {
                                }))}
                                label={t('components.payment-form.phone')}/>
                 </Grid>
-                <Grid item xs={12} padding='1em'>
+                <Grid item xs={12} paddingY='1em'>
                     <PaymentForm applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID || 'missing-app-id'}
                                  locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID || 'missing-location-id'}
                                  cardTokenizeResponseReceived={(token, _buyer) => {
                                      setSubmit(true);
                                      if (paymentTokenValid(token) && state.user && state.information && formValid(state)) {
-                                         props.onValidatedPayment(state.user, state.information, token)
+                                         props.onValidatedPayment(state.user, state.information, token);
+                                         return;
                                      }
                                      dispatch(uiMessage({
                                          messageKey: 'messages.failure.reserved-dates',
@@ -172,7 +173,8 @@ export function MyPaymentForm(props: Props) {
                             '.message-icon': {
                                 color: palette.primary.dark
                             }
-                        }} buttonProps={{isLoading: !formValid(state)}}
+                        }}
+                                    buttonProps={{isLoading: !formValid(state), css: {backgroundColor: palette.primary.contrastText}}}
                                     includeInputLabels>
                             <Trans i18nKey='components.payment-form.confirm-and-pay'/>
                         </CreditCard>
@@ -206,13 +208,4 @@ function paymentTokenValid(result: TokenResult | undefined): boolean {
     return !!result
         && !!result.token
         && result.status === 'OK';
-}
-
-const useFocus = () => {
-    const htmlElRef = useRef<any>(null)
-    const setFocus = () => {
-        htmlElRef.current && htmlElRef.current.focus()
-    }
-
-    return [htmlElRef, setFocus]
 }

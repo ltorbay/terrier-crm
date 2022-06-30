@@ -63,7 +63,6 @@ const BookingService = {
             // TODO send error log to backend error endpoint ?
             dispatch(uiMessage({messageKey: 'messages.failure.reserved-dates', severity: 'error'}))
         });
-        
         return resp?.data;
     },
     simulateBooking: async function (type: CottageSelect, start: Moment, end: Moment, dispatch: AppDispatch): Promise<PricingDetail[]> {
@@ -82,6 +81,21 @@ const BookingService = {
             dispatch(uiMessage({messageKey: 'messages.failure.simulate-booking', severity: 'error'}))
         });
         return resp?.data;
-    }
+    },
+    book: async function (request: BookingRequest, dispatch: AppDispatch): Promise<PricingDetail[]> {
+        const resp = await axios({
+            method: 'post',
+            baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
+            url: '/bookings',
+            responseType: 'json',
+            data: request,
+            withCredentials: false,
+        }).catch(error => {
+            console.log(error)
+            dispatch(uiMessage({messageKey: 'messages.failure.book', severity: 'error'}))
+            throw error;
+        });
+        return resp?.data;
+    },
 }
 export default BookingService;
