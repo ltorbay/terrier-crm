@@ -91,7 +91,7 @@ export default function Home() {
                        layout='fill'
                        objectFit='cover'
                        alt='Pool'
-                       loading='lazy'/>
+                       loading='eager'/>
             </Box>
             <ImageDecoration right/>
             <TextBox titleKey={'pages.home.history-title'} contentKey={'pages.home.history-body'}/>
@@ -107,7 +107,7 @@ export default function Home() {
                                    alt={image.key}
                                    layout='fill'
                                    objectFit='cover'
-                                   loading='lazy'/>
+                                   loading='eager'/>
                         </Box>
                         <ImageListItemBar className={classes.itemBar}
                                           title={t(image.key)}/>

@@ -129,7 +129,7 @@ function imageList(images: ImageInfo[], vw: number, smallScreen: boolean) {
                                alt={image.title}
                                layout='fill'
                                objectFit='cover'
-                               loading='lazy'/>
+                               loading='eager'/>
                     </Box>
                 </ImageListItem>
             ))}
