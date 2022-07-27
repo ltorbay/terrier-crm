@@ -6,7 +6,7 @@ import {MINION, POPPINS} from "../constants/fonts";
 import {makeStyles} from "@mui/styles";
 import {useTranslation} from "react-i18next";
 import {Box, CssBaseline, GlobalStyles, Grid, IconButton, useMediaQuery} from "@mui/material";
-import moment, {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
+import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
 import {store} from "../redux/store";
 import {HomeButton} from "../components/HomeButton";
 import {Shade} from "../model/Shade";
@@ -23,8 +23,6 @@ import 'leaflet/dist/leaflet.css';
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css';
 import {MySnackBar} from "../components/MySnackBar";
-import {useAppDispatch} from "../redux/hooks";
-import {fetchPricingConfiguration} from "../redux/slice/PricingSlice";
 
 const theme = responsiveFontSizes(createTheme({
     palette: {

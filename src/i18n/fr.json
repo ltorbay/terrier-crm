@@ -107,7 +107,10 @@
       "book-button": "Réserver"
     },
     "contact": {
-      "label": "Nous contacter"
+      "label": "Nous contacter",
+      "title": "Nous contacter",
+      "contact-us-body": "Pour toute demande concernant l’organisation d’événements <i>(mariages - fêtes de famille - escape game - murder party…)</i> ou dans le cadre de votre entreprise <i>(séminaires - ateliers de team building - atelier thématique - réunion avec vos clients…)</i> n’hésitez pas à nous envoyer une demande par mail à <strong>leterrier.gites@gmail.com</strong>.",
+      "our-coordinates": "Nos Coordonnées"
     }
   },
   "messages": {
