@@ -34,7 +34,8 @@
       "per-day_one": "Accomodation for {{count}} night:",
       "per-day_other": "Accomodation for {{count}} nights:",
       "per-week_one": "Accomodation for {{count}} full week:",
-      "per-week_other": "Accomodation for {{count}} full weeks:"
+      "per-week_other": "Accomodation for {{count}} full weeks:",
+      "down-payment": "Down payment total"
     },
     "footer": {
       "legal-notice": "Legal notice",
@@ -56,7 +57,9 @@
       "last-name": "Last name",
       "email": "Email",
       "phone": "Phone number",
-      "guests-count": "Guests"
+      "guests-count": "Guests",
+      "down-payment": "Down payment",
+      "down-payment-disabled-tooltip": "Deferred payment is available only {{count}} days before the arrival date"
     }
   },
   "pages": {

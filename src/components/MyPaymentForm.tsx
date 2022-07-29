@@ -1,19 +1,22 @@
 import {CreditCard, PaymentForm} from "react-square-web-payments-sdk";
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {PricingDetail} from "../service/BookingService";
 import {CottageSelect} from "../model/CottageSelect";
 import {Moment} from "moment/moment";
 import {Trans, useTranslation} from "react-i18next";
-import {FormControl, Grid, TextField} from "@mui/material";
+import {Checkbox, FormControl, FormControlLabel, Grid, TextField, Tooltip} from "@mui/material";
 import {uiMessage} from "../redux/slice/SnackbarSlice";
 import {useAppDispatch} from "../redux/hooks";
 import {useTheme} from "@mui/styles";
+import moment from "../constants/constants";
 
 interface Props {
     pricingDetail: PricingDetail[],
     totalPrice: number,
     cottageSelect: CottageSelect,
-    onValidatedPayment: (user: User, information: Information, paymentToken: TokenResult) => void
+    onValidatedPayment: (user: User, information: Information, paymentToken: TokenResult) => void,
+    onDownPaymentChange: (value: boolean) => void,
+    selectedStart: Moment | undefined
 }
 
 interface State {
@@ -37,6 +40,7 @@ export interface User {
 
 export interface Information {
     guestsCount?: ValidatedField<number>;
+    downPayment?: ValidatedField<boolean>;
     comment?: string;
 }
 
@@ -51,13 +55,67 @@ export function MyPaymentForm(props: Props) {
     const palette = useTheme().palette;
     const dispatch = useAppDispatch();
     const fieldColumns = 12;
-    const [state, setState] = useState<State>({});
+    const [state, setState] = useState<State>({information: {downPayment: {updated: false, value: false}}});
     const [hasSubmit, setSubmit] = useState(false);
+    const minDelayDays = process.env.NEXT_PUBLIC_DUE_DATE_MIN_DELAY_DAYS ? parseInt(process.env.NEXT_PUBLIC_DUE_DATE_MIN_DELAY_DAYS, 10) : 30;
+    const downPaymentEnabled = moment().startOf('day').isBefore(props.selectedStart?.clone().subtract(minDelayDays, 'days'), 'days');
+    console.log(state.information)
+    useEffect(() => {
+        if (!downPaymentEnabled && !!state.information?.downPayment) {
+            setState((prevState: State) => ({
+                ...prevState,
+                information: {
+                    comment: prevState?.information?.comment,
+                    guestsCount: prevState?.information?.guestsCount,
+                    downPayment: {
+                        value: false,
+                        updated: true
+                    }
+                }
+            }))
+            props.onDownPaymentChange(false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [downPaymentEnabled, state.information?.downPayment?.value]);
 
+    const downPaymentCheckbox = (
+        <FormControlLabel
+            label={t('components.payment-form.down-payment')}
+            control={
+                <Checkbox required
+                          disabled={!downPaymentEnabled}
+                          id="downPayment"
+                          checked={!!state.information?.downPayment?.value}
+                          onChange={event => {
+                              const newValue = event.target.checked;
+                              setState((prevState: State) => ({
+                                  ...prevState,
+                                  information: {
+                                      comment: prevState?.information?.comment,
+                                      guestsCount: prevState?.information?.guestsCount,
+                                      downPayment: {
+                                          value: downPaymentEnabled && newValue,
+                                          updated: true
+                                      }
+                                  }
+                              }))
+                              props.onDownPaymentChange(newValue);
+                          }}/>
+            }
+        />
+    )
     // @ts-ignore
     return (
         <FormControl>
             <Grid container>
+                <Grid item xs={fieldColumns} paddingY='1em' paddingRight='0.5em'>
+                    {downPaymentEnabled ? downPaymentCheckbox : (
+                        <Tooltip placement='right'
+                                 title={t('components.payment-form.down-payment-disabled-tooltip', {count: minDelayDays})}>
+                            {downPaymentCheckbox}
+                        </Tooltip>
+                    )}
+                </Grid>
                 <Grid item xs={fieldColumns} paddingY='1em'>
                     <TextField required
                                fullWidth
@@ -117,6 +175,7 @@ export function MyPaymentForm(props: Props) {
                                    ...prevState,
                                    information: {
                                        comment: prevState?.information?.comment,
+                                       downPayment: prevState?.information?.downPayment,
                                        guestsCount: {
                                            value: parseInt(event.target.value, 10),
                                            updated: true
@@ -139,6 +198,8 @@ export function MyPaymentForm(props: Props) {
                                }))}
                                label={t('components.payment-form.phone')}/>
                 </Grid>
+                {/*TODO comment*/}
+                {/*TODO visible only if form is valid ?*/}
                 <Grid item xs={12} paddingY='1em'>
                     <PaymentForm applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID || 'missing-app-id'}
                                  locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID || 'missing-location-id'}
@@ -174,7 +235,10 @@ export function MyPaymentForm(props: Props) {
                                 color: palette.primary.dark
                             }
                         }}
-                                    buttonProps={{isLoading: !formValid(state), css: {backgroundColor: palette.primary.contrastText}}}
+                                    buttonProps={{
+                                        isLoading: !formValid(state),
+                                        css: {backgroundColor: palette.primary.contrastText}
+                                    }}
                                     includeInputLabels>
                             <Trans i18nKey='components.payment-form.confirm-and-pay'/>
                         </CreditCard>
@@ -200,6 +264,8 @@ function informationValid(information: Information | undefined): boolean {
     return !!information
         && !!information.guestsCount
         && !!information.guestsCount.value
+        && !!information.downPayment
+        && information.downPayment.value !== undefined
         && information.guestsCount.value >= 0
         && information.guestsCount.value <= 25;
 }

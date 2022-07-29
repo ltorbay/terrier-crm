@@ -74,7 +74,7 @@ function buildPriceMap(pricingConfiguration: PricingConfigurationStateItem[]): M
             map.set(item.labelKey, new Map<string, { start: Moment, end: Moment }[]>());
         }
         const child = map.get(item.labelKey);
-        if (child === undefined) return; // To make the compiler happy
+        if (child === undefined) return; // To make the linter happy
 
         const key = JSON.stringify({days: item.minConsecutiveDays, pricing: item.pricing})
         const value = {start: item.start, end: item.end};

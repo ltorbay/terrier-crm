@@ -12,6 +12,12 @@ export interface BookedDatesResponse {
     grapeBookings: string[];
 }
 
+export interface BookingPricingCalculation {
+    detail: PricingDetail[];
+    totalCents: number;
+    downPaymentTotalCents: number;
+}
+
 export interface PricingDetail {
     periodConfiguration: {
         periodType: PricingPeriodType,
@@ -43,7 +49,8 @@ export interface BookingRequest {
         guestsCount: number,
         paymentSourceId: string,
         paymentAmountCents: number,
-        comment: string | undefined
+        downPayment: boolean,
+        comment: string | undefined,
     }
 }
 
@@ -65,7 +72,7 @@ const BookingService = {
         });
         return resp?.data;
     },
-    simulateBooking: async function (type: CottageSelect, start: Moment, end: Moment, dispatch: AppDispatch): Promise<PricingDetail[]> {
+    simulateBooking: async function (type: CottageSelect, start: Moment, end: Moment, dispatch: AppDispatch): Promise<BookingPricingCalculation> {
         const resp = await axios({
             method: 'get',
             baseURL: process.env.NEXT_PUBLIC_SERVER_URL,

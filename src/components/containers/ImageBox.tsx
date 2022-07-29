@@ -44,7 +44,6 @@ export function ImageBox({children, src, right = false}: Props) {
                        loader={imageLoader}
                        layout='fill'
                        objectFit='cover'
-                       // TODO eager for all image loading
                        loading='eager'
                        alt=''/>
             </Box>

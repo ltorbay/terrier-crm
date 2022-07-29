@@ -34,7 +34,8 @@
       "per-day_one": "Hébergement pour {{count}} nuit :",
       "per-day_other": "Hébergement pour {{count}} nuits :",
       "per-week_one": "Hébergement pour {{count}} semaine complète :",
-      "per-week_other": "Hébergement pour {{count}} semaines complètes :"
+      "per-week_other": "Hébergement pour {{count}} semaines complètes :",
+      "down-payment": "Acompte à payer"
     },
     "footer": {
       "legal-notice": "Mentions légales",
@@ -56,7 +57,9 @@
       "last-name": "Nom",
       "email": "Mail",
       "phone": "Téléphone",
-      "guests-count": "Voyageurs"
+      "guests-count": "Voyageurs",
+      "down-payment": "Acompte uniquement",
+      "down-payment-disabled-tooltip": "Le paiement en deux fois est disponible uniquement {{count}} jours avant la date d'arrivée"
     }
   },
   "pages": {

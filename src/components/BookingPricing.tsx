@@ -1,7 +1,7 @@
 import {Divider, List, ListItem, ListItemText, Typography} from "@mui/material";
 import {TFunction, useTranslation} from "react-i18next";
 import * as React from "react";
-import {PricingDetail} from "../service/BookingService";
+import {BookingPricingCalculation, PricingDetail} from "../service/BookingService";
 import {PricingPeriodType} from "../model/PricingPeriodType";
 import {CottageSelect, cottageToPrice} from "../model/CottageSelect";
 import moment from "../constants/constants";
@@ -15,25 +15,37 @@ interface BookingDetail {
 }
 
 interface Props {
-    pricingDetail: PricingDetail[],
+    pricingCalculation: BookingPricingCalculation,
     totalPrice: number,
     cottageSelect: CottageSelect,
-    loading: boolean
+    loading: boolean,
+    downPayment: boolean
 }
 
 export default function BookingPricing(props: Props) {
     const {t} = useTranslation();
-    const split = splitBySeason(props.pricingDetail, props.cottageSelect);
+    const split = splitBySeason(props.pricingCalculation.detail, props.cottageSelect);
     return (
         <List dense={true} sx={{opacity: props.loading ? 0.25 : 1}}>
             {split.map(detail => priceLine(t, detail))}
             <Divider/>
-            <ListItem>
+            <ListItem key='total'>
                 <ListItemText primary="Total"/>
                 <Typography gutterBottom variant="h5" component="div">
                     {props.totalPrice}&nbsp;€
                 </Typography>
             </ListItem>
+            {
+                props.downPayment ? (
+                        <ListItem key='downPayment'>
+                            <ListItemText primary={t('components.booking-payment.down-payment')}/>
+                            <Typography gutterBottom variant="h5" component="div">
+                                {props.pricingCalculation.downPaymentTotalCents / 100}&nbsp;€
+                            </Typography>
+                        </ListItem>
+                    )
+                    : undefined
+            }
         </List>
     )
 }

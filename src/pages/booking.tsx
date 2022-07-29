@@ -17,7 +17,7 @@ import {
 import moment, {BACKEND_DATES_FORMAT, MEDIA_QUERY_550_BREAKPOINT} from "../constants/constants";
 import {useAppDispatch} from "../redux/hooks";
 import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
-import BookingService, {PricingDetail} from "../service/BookingService";
+import BookingService, {BookingPricingCalculation} from "../service/BookingService";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
 import {PricesList} from "../components/PricesList";
@@ -42,11 +42,14 @@ export default function Booking() {
     // @ts-ignore
     const palette = useTheme().palette;
     const [loading, setLoading] = useState<boolean>(false);
+    const [downPayment, setDownPayment] = useState<boolean>(false);
     const [cottage, setCottage] = useState<CottageSelect>(CottageSelect.BOTH);
-    const [pricingDetail, setPricingDetail] = useState<PricingDetail[]>([]);
+    const [pricingCalculation, setPricingCalculation] = useState<BookingPricingCalculation>();
     const [enabledPaymentForm, enablePaymentForm] = useState(false);
     const [selectedRange, selectRange] = useState<MomentRange>();
     const tinyScreen = useMediaQuery(MEDIA_QUERY_550_BREAKPOINT);
+    
+    console.log(process.env.NEXT_PUBLIC_DUE_DATE_MIN_DELAY_DAYS)
 
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -55,8 +58,7 @@ export default function Booking() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-    const totalPriceCents = pricingDetail.map(detail => detail.totalCents).reduce((v1, v2) => v1 + v2, 0);
+    const totalPriceCents = pricingCalculation?.totalCents || 0;
     const totalPrice = totalPriceCents / 100;
 
     return (
@@ -100,26 +102,28 @@ export default function Booking() {
 
                                                   BookingService.simulateBooking(cottage, newSelection.start, newSelection.end, dispatch).then(r => {
                                                       selectRange(newSelection);
-                                                      setPricingDetail(r);
+                                                      setPricingCalculation(r);
                                                       setLoading(false);
                                                   })
                                               }}/>
                         </Grid>
                     </FormGroup>
-                    {pricingDetail && pricingDetail.length ?
+                    {pricingCalculation && pricingCalculation.detail && pricingCalculation.detail.length ?
                         <>
-                            <BookingPricing
-                                loading={loading}
-                                cottageSelect={cottage}
-                                pricingDetail={pricingDetail}
-                                totalPrice={totalPrice}/>
+                            <BookingPricing loading={loading}
+                                            cottageSelect={cottage}
+                                            pricingCalculation={pricingCalculation}
+                                            totalPrice={totalPrice}
+                                            downPayment={downPayment}/>
                             {bookingButton(enabledPaymentForm, enablePaymentForm, palette)}
                         </> : undefined
                     }
                     {enabledPaymentForm ?
                         <MyPaymentForm cottageSelect={cottage}
-                                       pricingDetail={pricingDetail}
+                                       pricingDetail={pricingCalculation?.detail || []}
                                        totalPrice={totalPrice}
+                                       onDownPaymentChange={setDownPayment}
+                                       selectedStart={selectedRange?.start}
                                        onValidatedPayment={(user: User, information: Information, paymentToken: TokenResult) => {
                                            setLoading(true);
                                            BookingService.book({
@@ -128,7 +132,10 @@ export default function Booking() {
                                                    guestsCount: information.guestsCount?.value || 1,
                                                    comment: information.comment,
                                                    paymentSourceId: paymentToken.token || '',
-                                                   paymentAmountCents: totalPriceCents
+                                                   downPayment: information.downPayment?.value || false,
+                                                   paymentAmountCents: information.downPayment?.value ?
+                                                       pricingCalculation?.downPaymentTotalCents || totalPriceCents
+                                                       : totalPriceCents
                                                },
                                                user: {
                                                    firstName: user.firstName?.value || '',
@@ -142,6 +149,7 @@ export default function Booking() {
                                                    end: selectedRange?.end.format(BACKEND_DATES_FORMAT) || ''
                                                }
                                            }, dispatch).then(_r => {
+                                               // TODO loading stops too early
                                                dispatch(fetchReservedDates({
                                                    start: moment(),
                                                    end: moment().add(3, 'year'),
