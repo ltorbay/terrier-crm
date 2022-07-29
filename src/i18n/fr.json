@@ -4,7 +4,7 @@
     "nights_other": "{{count}} nuitées",
     "off-season": "Basse saison",
     "peak-season": "Haute saison",
-    "holidays": "Période de vacances",
+    "holidays": "Vacances scolaires",
     "minimum-nights": "{{count}} nuits minimum",
     "weekly-rental": "Location à la semaine uniquement en haute saison",
     "rural-cottages": "GÎTES RURAUX",
@@ -43,7 +43,7 @@
       "copyright": "© Le Terrier - 2022"
     },
     "prices-list": {
-      "title": "Nos tarifs",
+      "title": "Tarifs détaillés",
       "weekly-rental": "Location à la semaine",
       "nightly-rental": "Location à la nuitée",
       "weekend-rental": "Location au week-end",

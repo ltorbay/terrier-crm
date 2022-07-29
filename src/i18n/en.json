@@ -4,7 +4,7 @@
     "nights_other": "{{count}} nights",
     "off-season": "Off season",
     "peak-season": "Peak season",
-    "holidays": "Holiday period",
+    "holidays": "School holidays",
     "minimum-nights": "{{count}} nights minimum",
     "weekly-rental": "Weekly rental only for peak season",
     "rural-cottages": "RURAL COTTAGES",
@@ -18,7 +18,7 @@
       "pool": "Swimming pool",
       "the-pool": "The swimming pool",
       "domain": "The domain",
-      "full-cottage": "Whole domain"
+      "full-cottage": "Entire domain"
     },
     "equipments": {
       "double-glazing": "Double glazing",
@@ -43,7 +43,7 @@
       "copyright": "© Le Terrier - 2022"
     },
     "prices-list": {
-      "title": "Our prices",
+      "title": "Detailed prices",
       "weekly-rental": "Weekly rental",
       "nightly-rental": "Nightly rental",
       "weekend-rental": "Weekend rental",

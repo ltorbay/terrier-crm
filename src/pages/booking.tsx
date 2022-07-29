@@ -66,8 +66,7 @@ export default function Booking() {
             <header>
                 <NavigationBar shade={Shade.Dark}/>
             </header>
-            <Box sx={{paddingTop: '8vh'}}/>
-            <PricesList/>
+            <Box sx={{paddingTop: '14vh'}}/>
             <Card>
                 <ImageDecoration icon={cottageToIcon(cottage)} marginTop='50px'/>
                 <ContentBox titleKey='pages.booking.book-stay' width={tinyScreen ? '300px' : '500px'}>
@@ -169,6 +168,7 @@ export default function Booking() {
                     }
                 </ContentBox>
             </Card>
+            <PricesList/>
         </>
     )
 }
