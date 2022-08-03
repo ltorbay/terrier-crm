@@ -14,6 +14,7 @@ export interface BookedDatesResponse {
 
 export interface BookingPricingCalculation {
     detail: PricingDetail[];
+    cleaningFeeCents: number;
     totalCents: number;
     downPaymentTotalCents: number;
 }
@@ -48,6 +49,7 @@ export interface BookingRequest {
     information: {
         guestsCount: number,
         paymentSourceId: string,
+        cleaningFeeCents: number,
         paymentAmountCents: number,
         downPayment: boolean,
         comment: string | undefined,

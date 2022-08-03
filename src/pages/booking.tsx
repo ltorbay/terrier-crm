@@ -128,6 +128,7 @@ export default function Booking() {
                                                information: {
                                                    guestsCount: information.guestsCount?.value || 1,
                                                    comment: information.comment,
+                                                   cleaningFeeCents: pricingCalculation?.cleaningFeeCents || 0,
                                                    paymentSourceId: paymentToken.token || '',
                                                    downPayment: information.downPayment?.value || false,
                                                    paymentAmountCents: information.downPayment?.value ?

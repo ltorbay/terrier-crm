@@ -28,6 +28,12 @@ export default function BookingPricing(props: Props) {
     return (
         <List dense={true} sx={{opacity: props.loading ? 0.25 : 1}}>
             {split.map(detail => priceLine(t, detail))}
+            {!props.pricingCalculation.cleaningFeeCents ? undefined : <ListItem key='cleaningFee'>
+                <ListItemText primary={t('components.booking-payment.cleaning-fee')}/>
+                <Typography gutterBottom variant="h6" component="div">
+                    {props.pricingCalculation.cleaningFeeCents / 100}&nbsp;€
+                </Typography>
+            </ListItem>}
             <Divider/>
             <ListItem key='total'>
                 <ListItemText primary="Total"/>
