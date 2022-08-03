@@ -17,6 +17,8 @@ export default function PrivacyPolicy() {
             <ImageDecoration icon={ICONS.dark.icons.keys} right/>
             <TextBox titleKey={'pages.terms-and-conditions.label'}
                      contentKey={'pages.terms-and-conditions.content'}/>
+            <TextBox titleKey={'pages.terms-and-conditions.legal-notice-label'}
+                     contentKey={'pages.terms-and-conditions.legal-notice'}/>
         </>
     );
 }
