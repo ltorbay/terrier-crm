@@ -4,6 +4,7 @@ import {PricingDetail} from "../service/BookingService";
 import {CottageSelect} from "../model/CottageSelect";
 import {Moment} from "moment/moment";
 import {Trans, useTranslation} from "react-i18next";
+import Link from "next/link";
 import {Checkbox, FormControl, FormControlLabel, Grid, TextField, Tooltip} from "@mui/material";
 import {uiMessage} from "../redux/slice/SnackbarSlice";
 import {useAppDispatch} from "../redux/hooks";
@@ -41,6 +42,7 @@ export interface User {
 export interface Information {
     guestsCount?: ValidatedField<number>;
     downPayment?: ValidatedField<boolean>;
+    termsAndConditions?: ValidatedField<boolean>;
     comment?: string;
 }
 
@@ -59,7 +61,6 @@ export function MyPaymentForm(props: Props) {
     const [hasSubmit, setSubmit] = useState(false);
     const minDelayDays = process.env.NEXT_PUBLIC_DUE_DATE_MIN_DELAY_DAYS ? parseInt(process.env.NEXT_PUBLIC_DUE_DATE_MIN_DELAY_DAYS, 10) : 30;
     const downPaymentEnabled = moment().startOf('day').isBefore(props.selectedStart?.clone().subtract(minDelayDays, 'days'), 'days');
-    console.log(state.information)
     useEffect(() => {
         if (!downPaymentEnabled && !!state.information?.downPayment) {
             setState((prevState: State) => ({
@@ -67,6 +68,7 @@ export function MyPaymentForm(props: Props) {
                 information: {
                     comment: prevState?.information?.comment,
                     guestsCount: prevState?.information?.guestsCount,
+                    termsAndConditions: prevState?.information?.termsAndConditions,
                     downPayment: {
                         value: false,
                         updated: true
@@ -93,6 +95,7 @@ export function MyPaymentForm(props: Props) {
                                   information: {
                                       comment: prevState?.information?.comment,
                                       guestsCount: prevState?.information?.guestsCount,
+                                      termsAndConditions: prevState?.information?.termsAndConditions,
                                       downPayment: {
                                           value: downPaymentEnabled && newValue,
                                           updated: true
@@ -103,7 +106,8 @@ export function MyPaymentForm(props: Props) {
                           }}/>
             }
         />
-    )
+    );
+
     // @ts-ignore
     return (
         <FormControl>
@@ -164,7 +168,7 @@ export function MyPaymentForm(props: Props) {
                                        }
                                    }
                                }))}
-                               error={(hasSubmit || state.user?.email?.updated) && !state?.user?.email?.value}
+                               error={(hasSubmit || state.user?.email?.updated) && !emailValid(state.user?.email)}
                                label={t('components.payment-form.email')}/>
                 </Grid>
                 <Grid item xs={fieldColumns / 2} paddingY='1em' paddingRight='0.5em'>
@@ -176,13 +180,14 @@ export function MyPaymentForm(props: Props) {
                                    information: {
                                        comment: prevState?.information?.comment,
                                        downPayment: prevState?.information?.downPayment,
+                                       termsAndConditions: prevState?.information?.termsAndConditions,
                                        guestsCount: {
                                            value: parseInt(event.target.value, 10),
                                            updated: true
                                        }
                                    }
                                }))}
-                               error={(hasSubmit || state.information?.guestsCount?.updated) && !informationValid(state?.information)}
+                               error={(hasSubmit || state.information?.guestsCount?.updated) && !guestsCountValid(state?.information?.guestsCount)}
                                type="number"
                                label={t('components.payment-form.guests-count')}/>
                 </Grid>
@@ -198,8 +203,55 @@ export function MyPaymentForm(props: Props) {
                                }))}
                                label={t('components.payment-form.phone')}/>
                 </Grid>
-                {/*TODO comment*/}
-                {/*TODO visible only if form is valid ?*/}
+                <Grid item xs={fieldColumns} paddingY='1em'>
+                    <TextField multiline
+                               minRows={4}
+                               maxRows={8}
+                               fullWidth
+                               id="comment"
+                               onChange={event => setState((prevState: State) => ({
+                                   ...prevState,
+                                   information: {
+                                       ...prevState?.information,
+                                       comment: event.target.value
+                                   }
+                               }))}
+                               label={t('components.payment-form.comment')}/>
+                </Grid>
+                <Grid item xs={fieldColumns} paddingY='1em' paddingRight='0.5em' sx={{
+                    borderRadius: '4px',
+                    borderWidth: '1px',
+                    borderStyle: (hasSubmit || state.information?.termsAndConditions?.updated)
+                    && !termsAndConditionsValid(state.information?.termsAndConditions) ? 'solid' : 'none',
+                    borderColor: palette.error.main
+                }}>
+                    <FormControlLabel color='red' //sx={{color: 'red'}}
+                                      label={<span>
+                                          {t('components.payment-form.accept-the')}
+                                          <Link href='/termsAndConditions'
+                                                key='terms-and-conditions'>{t('components.payment-form.terms-and-conditions')}</Link>
+                                      </span>}
+                                      control={
+                                          <Checkbox id="termsAndConditions"
+                                                    checked={!!state.information?.termsAndConditions?.value}
+                                                    onChange={event => {
+                                                        const newValue = event.target.checked;
+                                                        setState((prevState: State) => ({
+                                                            ...prevState,
+                                                            information: {
+                                                                comment: prevState?.information?.comment,
+                                                                guestsCount: prevState?.information?.guestsCount,
+                                                                downPayment: prevState?.information?.downPayment,
+                                                                termsAndConditions: {
+                                                                    value: newValue,
+                                                                    updated: true
+                                                                }
+                                                            }
+                                                        }))
+                                                    }}/>
+                                      }
+                    />
+                </Grid>
                 <Grid item xs={12} paddingY='1em'>
                     <PaymentForm applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID || 'missing-app-id'}
                                  locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID || 'missing-location-id'}
@@ -257,7 +309,14 @@ function userValid(user: User | undefined): boolean {
     return !!user
         && !!user.firstName
         && !!user.lastName
-        && !!user.email;
+        && emailValid(user.email)
+}
+
+function emailValid(email: ValidatedField<string> | undefined): boolean {
+    return !!email
+        && !!email.value
+        // eslint-disable-next-line 
+        && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)
 }
 
 function informationValid(information: Information | undefined): boolean {
@@ -266,8 +325,18 @@ function informationValid(information: Information | undefined): boolean {
         && !!information.guestsCount.value
         && !!information.downPayment
         && information.downPayment.value !== undefined
-        && information.guestsCount.value >= 0
-        && information.guestsCount.value <= 25;
+        && guestsCountValid(information.guestsCount)
+        && termsAndConditionsValid(information.termsAndConditions);
+}
+
+function guestsCountValid(count: ValidatedField<number> | undefined): boolean {
+    return !!count
+        && count.value >= 0
+        && count.value <= 25
+}
+
+function termsAndConditionsValid(terms: ValidatedField<boolean> | undefined): boolean {
+    return !!terms && terms.value && terms.updated
 }
 
 function paymentTokenValid(result: TokenResult | undefined): boolean {

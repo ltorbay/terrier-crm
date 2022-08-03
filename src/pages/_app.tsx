@@ -23,6 +23,7 @@ import 'leaflet/dist/leaflet.css';
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css';
 import {MySnackBar} from "../components/MySnackBar";
+import Button from "@mui/material/Button";
 
 const theme = responsiveFontSizes(createTheme({
     palette: {
@@ -148,19 +149,21 @@ export default function App({Component, pageProps}: { Component: React.Component
                                     </IconButton>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <Link href='/'
-                                          key='legal-notice'
+                                    <Link href='/termsAndConditions'
+                                          key='terms-and-conditions'
                                           style={{textDecoration: 'none'}}>
-                                        <Typography variant='body2'
-                                                    color='primary.dark'>{t('components.footer.legal-notice')}</Typography>
+                                        <Typography sx={{cursor: 'pointer'}}
+                                                    variant='body2'
+                                                    color='primary.dark'>{t('components.footer.terms-and-conditions')}</Typography>
                                     </Link>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <Link href='/'
-                                          key='cookies'
+                                    <Link href='/privacyPolicy'
+                                          key='privacy-policy'
                                           style={{textDecoration: 'none'}}>
-                                        <Typography variant='body2'
-                                                    color='primary.dark'>{t('components.footer.cookies')}</Typography>
+                                        <Typography sx={{cursor: 'pointer'}}
+                                                    variant='body2'
+                                                    color='primary.dark'>{t('components.footer.privacy-policy')}</Typography>
                                     </Link>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>

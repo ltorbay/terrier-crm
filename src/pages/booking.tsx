@@ -49,8 +49,6 @@ export default function Booking() {
     const [selectedRange, selectRange] = useState<MomentRange>();
     const tinyScreen = useMediaQuery(MEDIA_QUERY_550_BREAKPOINT);
     
-    console.log(process.env.NEXT_PUBLIC_DUE_DATE_MIN_DELAY_DAYS)
-
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(fetchReservedDates({start: moment(), end: moment().add(3, 'year'), dispatch: dispatch}))
@@ -148,7 +146,6 @@ export default function Booking() {
                                                    end: selectedRange?.end.format(BACKEND_DATES_FORMAT) || ''
                                                }
                                            }, dispatch).then(_r => {
-                                               // TODO loading stops too early
                                                dispatch(fetchReservedDates({
                                                    start: moment(),
                                                    end: moment().add(3, 'year'),
@@ -160,8 +157,13 @@ export default function Booking() {
                                                    severity: 'success'
                                                }));
                                                enablePaymentForm(false)
-                                               setLoading(false);
+                                               setTimeout(() => setLoading(false),1000)
                                            }).catch(_error => {
+                                               dispatch(fetchReservedDates({
+                                                   start: moment(),
+                                                   end: moment().add(3, 'year'),
+                                                   dispatch: dispatch
+                                               }))
                                                setLoading(false);
                                            })
                                        }}/> : undefined

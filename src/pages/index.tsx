@@ -94,7 +94,7 @@ export default function Home() {
                        loading='eager'/>
             </Box>
             <ImageDecoration right/>
-            <TextBox titleKey={'pages.home.history-title'} contentKey={'pages.home.history-body'}/>
+            <TextBox titleKey={'pages.home.concept-title'} contentKey={'pages.home.concept-body'}/>
             <ImageList variant="standard" cols={smallScreen ? 1 : 2} gap={8}>
                 {cottagesImages.map(image =>
                     <ImageListItem key={image.src}>

@@ -38,7 +38,8 @@
       "down-payment": "Down payment total"
     },
     "footer": {
-      "legal-notice": "Legal notice",
+      "terms-and-conditions": "Terms and conditions",
+      "privacy-policy": "Privacy policy",
       "cookies": "Cookies preferences",
       "copyright": "© Le Terrier - 2022"
     },
@@ -56,44 +57,87 @@
       "first-name": "First name",
       "last-name": "Last name",
       "email": "Email",
+      "comment": "Additional information",
       "phone": "Phone number",
       "guests-count": "Guests",
       "down-payment": "Down payment",
+      "accept-the": "I accept the ",
+      "terms-and-conditions": "Terms and conditions",
       "down-payment-disabled-tooltip": "Deferred payment is available only {{count}} days before the arrival date"
     }
   },
   "pages": {
     "home": {
-      "label": "Home"
-    },
-    "gallery": {
-      "label": "Gallery"
+      "label": "Home",
+      "concept-title": "Our cottage",
+      "concept-body": "The concept is simple: 3 isolated buildings gathered around a plaza, the historical <i>La placette</i>, at the heart of the forest with a heated pool (and an inflatable unicorn of course), to get together with our loved ones. Being able to welcome 10 to 14 guests, <i>Le Terrier</i> combines the charm of the old with modern comfort to create an out of time bubble. <br/><br/>We live close by, but far from sight and ears so you can make noise all night if this is your wish, without disturbing us ! Intimacy is the key word, but if you need anyhing at all we are a text away from providing you whatever you need.<br/><br/>Welcome to our / your home !",
+      "join-us-title": "How to join us ?",
+      "join-us-train": "To come pay us a visit, it's this way!<br/><br/>By train - changes at <i>Bordeaux</i> or <i>Brive-la-Gaillarde</i> from <i>Paris</i> :",
+      "train-station-of": "<i>{{city}}</i> station",
+      "join-us-car": "By car:",
+      "perigueux-by-car": "30 minutes away from <i>Périgueux</i> via D6089",
+      "brive-by-car": "45 minutes away from <i>Brive-la-Gaillarde</i> via D6089 and A89",
+      "bordeaux-by-car": "Less than 2 hours away from <i>Bordeaux</i> via A89",
+      "toulouse-by-car": "2h30 from <i>Toulouse</i> via A20",
+      "join-us-plane": "By plane:",
+      "perigueux-airport": "<i>Périgueux</i> airport"
     },
     "cottages": {
-      "label": "Cottages"
+      "label": "Cottages",
+      "our-cottages-title": "Our cottages",
+      "our-cottages-body": "Welcome to <strong><i>Le Terrier</i></strong> ! 3 rural cottages in  <i>Dordogne</i> in the southwest of France gathered around a charming white graveled square surrounded by olive trees, to gather with our loved ones in the heart of nature, not far from emblematic sites such as <i>Lascaux</i>, <i>Sarlat</i> and <i>Rocamadour</i>. <br/><br/>More than a hundred meters of forest separate the housing from the closest neighbour providing a perfect sound insulation without encroaching on the bird's eye view of the <i>Manoire</i> valley.<br/><br/>Between June and September, the 3 cottages are available for rent as a whole; It is however possible to rent separately the pear and grape houses between October and May during which <i>Le Bòsc</i> remains available for all as the central common hall of the domain, and cannot be rented separately.",
+      "amenities-title": "Amenities",
+      "private-alleyway": "200 meters private alleyway",
+      "heated-pool": "Heated pool",
+      "buildings-and-courtyard": "3 buildings arranged around a central courtyard",
+      "private-terraces": "Private terrasses",
+      "terrain-description": "13 hectares of gardens, prairies and woods",
+      "pear-description": "This 100m2 cottage has 3 bedrooms including 2 large, and can house up to 7 guests. The little extra: The spring or summer subtle scent from the pear tree attached to the facade !<br/><br/><strong>7 people - 3 bedrooms - 2 bathrooms</strong> <br/><br/>Housing amenities:",
+      "grape-description": "This 114m2 cottage has 2 bedrooms including 1 large, and can house up to 4 guests. In summer, grape can be picked on the vines adorning the walls of the cottage!<br/><br/><strong>4 personnes - 2 chambres - 2 salles de bains</strong> <br/><br/>Housing amenities:",
+      "lodge-description": "This 130 square meters architect building and its south-facing bay windows allow a complete immersion into nature! It is the heart of <i>Le Terrier</i>, and the ideal place to gather in its 77m2 reception hall. The two mezzanines and their bathroom allow housing 4 additional guests if needed.<br/><br/><strong>0 to 4 people - 1 bathroom</strong> <br/><br/>Housing amenities:"
+    },
+    "gallery": {
+      "label": "Gallery",
+      "title": "The terrier in pictures",
+      "body": "A small image preview of your next holiday destination!"
     },
     "explore": {
       "label": "Explore Dordogne"
     },
     "booking": {
-      "label": "Booking",
+      "label": "Book",
+      "select-cottage": "Which cottage would you like to book?",
       "book-stay": "Book your stay",
+      "pear-count": "7 people - 3 bedrooms - 2 bathrooms",
+      "grape-count": "4 people - 2 bedrooms - 2 bathrooms",
+      "full-cottage-count": "11-13 people - 5 bedrooms - 5 bathrooms",
       "book-button": "Book"
     },
     "contact": {
-      "label": "Contact us"
+      "label": "Contact us",
+      "title": "Contact us",
+      "contact-us-body": "At the source of the project: 4 friends who met during their studies. Christelle, Cécile, Mathieu and Louis. We have often traveled together, in France or abroad, and it was during one of these getaways in 2018 that we imagined our project of rural lodgings that combine comfort, nature and slow life.<br/><br/>For any request concerning the organization of events <i>(weddings - family celebrations - escape game - murder party…)</i> or within the framework of your company <i>(seminars - team building workshops - thematic workshop - meeting with your clients…)</i> do not hesitate to send us a request by email at <strong>leterrier.gites@gmail.com</strong>.",
+      "our-coordinates": "Our coordinates"
+    },
+    "privacy-policy": {
+      "label": "Privacy policy",
+      "content": ""
+    },
+    "terms-and-conditions": {
+      "label": "Terms and conditions",
+      "content": "<strong>Article 1</strong> - Conclusion of the contract<br/>This seasonal rental contract is reserved for the exclusive use of the gîtes located at 340 route des canons, 24210 Fossemagne.<br/><br/><strong>Article 2</strong> - Duration of stay<br/>The tenant signatory of this contract concluded for a fixed period may not under any circumstances claim any right to remain in the premises at the end of the stay.<br/><br/><strong>Article 3</strong> - Conclusion of the contract<br/>The reservation becomes effective when the tenant has sent the owner a deposit of 30% of the total amount of the rental at the time of reservation, the balance one month before the scheduled date of entry into the premises. The acceptance of these general conditions of sale at the time of booking on the website is valid for the rental contract; the periods selected will be those in which the rental will take place.<br/><br/>The rental concluded between the parties to this deed can in no case benefit even partially to third parties, natural or legal persons, except with the written agreement of the owner.<br/><br/>Any breach of this last paragraph would be likely to result in the immediate termination of the rental at the fault of the tenant, the product of the rental remaining definitively acquired by the lessor.<br/><br/><strong>Article 4</strong> - Absence of withdrawal<br/>For reservations made by mail, telephone or internet, the tenant does not benefit from the withdrawal period, in accordance with article L121-21-8 of the consumer code relating in particular to the provision of accommodation services provided. on a date or according to a determined periodicity.<br/><br/><strong>Article 5</strong> - Cancellation by the tenant<br/>Any cancellation must be notified by registered mail or electronic letter addressed to the lessor.<br/>Cancellation more than 30 days before the scheduled date of entry into the premises: the deposit remains with the lessor<br/>Cancellation less than 30 days before the scheduled date of entry into the premises: the deposit and the balance paid remain with the lessor, unless the lessor has not been able to re-let the accommodation under the same financial conditions<br/>If the tenant does not appear within 24 hours of the arrival date indicated on the contract, the deposit and the balance remain with the lessor. In this case, this contract becomes null and the owner can dispose of his lodging<br/>If the stay is shortened, the rental price remains with the lessor. In this case, no refund will be made.<br/><br/><strong>Article 6</strong> - Cancellation by the owner<br/>The owner pays the tenant all the sums paid.<br/><br/><strong>Article 7</strong> - Arrival<br/>The tenant must present himself on the specified day and at the time mentioned on the reservation confirmation email. In case of late or delayed arrival, the tenant must notify the owner.<br/><br/><strong>Article 8</strong> - Payment of the balance<br/>The balance of the rental is paid one month before the scheduled date of entry into the premises.<br/><br/><strong>Article 9</strong> - Inventory<br/>At the time of the inventory, the state of cleanliness must be noted by both parties. If it is not suitable, the tenant may require additional cleaning on arrival if he considers that the cleanliness is not satisfactory, similarly cleaning costs may be requested in addition despite the fact that they are included in the fixed price if the lodging is returned in a bad state because the tenant is held to enjoy peacefully the good.<br/><br/><strong>Article 10</strong> - Security deposit<br/>Upon arrival of the tenant, a security deposit, the amount of which is indicated in the booking confirmation email, is requested by the owner. After the contradictory establishment of the exit inventory, this deposit is returned, after deducting the cost of restoring the premises if damage was noted.<br/><br/>In the event of early departure (prior to the time mentioned on this contract) preventing the establishment of the inventory on the day of the tenant's departure, the security deposit is returned by the owner within a period not exceeding not a week.<br/><br/><strong>Article 11</strong> - Use of premises<br/>The tenant must ensure the peaceful character of the rental and make use of it in accordance with the destination of the premises.<br/><br/>The tenant is required to:<br/>\u00A0\u00A0\u25E6\u00A0\u00A0Occupy the premises only for private purposes, to the exclusion of the exercise of any trade, profession or industry, the tenant acknowledging that this rental is granted to him only as a temporary residence and pleasure, major condition without which this rental would not have been granted to him.<br/>\u00A0\u00A0\u25E6\u00A0\u00A0Occupy the premises personally and cannot under any circumstances sublet, even free of charge, nor assign their rights to this rental without the written consent of the lessor<br/>\u00A0\u00A0\u25E6\u00A0\u00A0Not being able under any circumstances to store furniture except for linen and small objects<br/>\u00A0\u00A0\u25E6\u00A0\u00A0Do not make any modification or change in the arrangement of furniture and places<br/>\u00A0\u00A0\u25E6\u00A0\u00A0Do not bring any pets into the rented gîte without prior authorization from the renter<br/>\u00A0\u00A0\u25E6\u00A0\u00A0Allow to be carried out during the rental in the rented premises, the works whose manifest urgency does not allow their postponement<br/>\u00A0\u00A0\u25E6\u00A0\u00A0Maintain the rented premises and return them to good cleanliness at the end of their use<br/>\u00A0\u00A0\u25E6\u00A0\u00A0Immediately inform the lessor or his representative of any loss and damage occurring in the rented premises even if no apparent damage results<br/>\u00A0\u00A0\u25E6\u00A0\u00A0Respond to damage and losses that occur by his own doing or by the people accompanying him during the enjoyment of the gîte<br/><br/><strong>Article 12</strong> - Capacity of the premises<br/>This contract is established for a maximum capacity of people. If the number of tenants exceeds the capacity, the owner can refuse the additional people. Any modification or termination of the contract will be considered at the initiative of the customer.<br/><br/><strong>Article 13</strong> - Reception of animals<br/>This contract specifies that the tenant can stay in the company of a domestic animal only in the event of prior agreement with the renter. In the event of non-compliance with this clause by the tenant, the lessor may refuse the stay. In this case, no refund will be made.<br/><br/><strong>Article 14</strong> - Insurance<br/>The tenant is responsible for all damages caused by him. It is required to be insured by a resort-type insurance contract for these various risks.<br/><br/><strong>Article 15</strong> - Disputes<br/>Any complaint relating to the inventory and the condition of the description during a rental must be submitted to the SARL “Le Terrier” within three days of entering the premises. Any other complaint must also be addressed to him as soon as possible, by letter."
     }
   },
   "messages": {
     "success": {
-      "book": "Reservation made successfully, a summary mail will be sent to you"
+      "book": "Booking made successfully, we will contact you shortly!"
     },
     "failure": {
-      "reserved-dates": "Issue encountered while fetching booked dates<br/>Please contact us!",
-      "simulate-booking": "Issue encountered while calculating your booking tarification<br/>Please contact us!",
+      "reserved-dates": "Issue encountered while fetching booked dates<br/>Please contact us",
+      "simulate-booking": "Issue encountered while calculating your booking tarification<br/>Please contact us",
       "book": "Issue encountered while completing booking<br/>Please contact us",
       "prepare-payment": "Issue encountered while preparing your payment<br/>Please contact us",
-      "price-configuration": "Issue encountered while fetching period tarifications<br/>Please contact us!"
+      "price-configuration": "Issue encountered while fetching period tarifications<br/>Please contact us"
     },
     "warning": {
       "payment-form-invalid": "The booking information and payment form is invalid"

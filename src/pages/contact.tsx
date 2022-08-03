@@ -15,7 +15,7 @@ export default function Contact() {
             <header>
                 <NavigationBar shade={Shade.Dark}/>
             </header>
-            <Box sx={{paddingTop: '4vh'}}/>
+            <Box sx={{paddingTop: '7vh'}}/>
             <ImageDecoration right/>
             <TextBox titleKey={'pages.contact.title'}
                      contentKey={'pages.contact.contact-us-body'}/>
