@@ -14,7 +14,7 @@
       "grape": "Maison du raisin",
       "the-grape": "La maison du raisin",
       "lodge": "Bòsc",
-      "the-lodge": "Le bòsc",
+      "the-lodge": "Le Bòsc",
       "pool": "Piscine",
       "the-pool": "La piscine",
       "domain": "Le domaine",
@@ -81,12 +81,13 @@
       "bordeaux-by-car": "à moins de 2h de <i>Bordeaux</i> via l’A89",
       "toulouse-by-car": "à 2h30 de <i>Toulouse</i> via l’A20",
       "join-us-plane": "En avion :",
-      "perigueux-airport": "aéroport de <i>Périgueux</i>"
+      "perigueux-airport": "aéroport de <i>Périgueux</i>",
+      "bergerac-airport": "aéroport de <i>Bergerac</i>"
     },
     "cottages": {
       "label": "Gîtes",
       "our-cottages-title": "Nos gîtes",
-      "our-cottages-body": "Bienvenue au <strong><i>Terrier</i></strong> ! 3 gîtes ruraux en <i>Dordogne</i> dans le Sud-Ouest rassemblés autour d’une placette de charme bordée d’oliviers, pour se retrouver avec ses proches au cœur de la nature non loin de sites emblématiques comme <i>Lascaux</i>, <i>Sarlat</i> ou encore <i>Rocamadour</i>. <br/><br/>Plus de cent mètres de forêt sépare les bâtiments du plus proche voisin apportant une isolation sonore parfaite sans empiéter sur la vue plongeante sur la vallée du <i>Manoire</i>.<br/><br/>Entre juin et septembre, les 3 gîtes sont disponibles à la location dans un même ensemble ; il est cependant possible de louer séparément la maison de la poire et la maison du raisin entre octobre et mai. Le Bòsc reste accessible comme la salle commune du domaine, et ne peut être loué séparément.",
+      "our-cottages-body": "Bienvenue au <strong><i>Terrier</i></strong> ! 3 gîtes ruraux en <i>Dordogne</i> dans le Sud-Ouest rassemblés autour d’une placette de charme bordée d’oliviers, pour se retrouver avec ses proches au cœur de la nature non loin de sites emblématiques comme <i>Lascaux</i>, <i>Sarlat</i> ou encore <i>Les Eyzies</i>. <br/><br/>Plus de cent mètres de forêt sépare les bâtiments du plus proche voisin, apportant une isolation sonore parfaite sans empiéter sur la vue plongeante sur la vallée du <i>Manoire</i>.<br/><br/>Entre juin et septembre, les 3 gîtes sont disponibles à la location dans un même ensemble ; il est cependant possible de louer séparément la maison de la poire et la maison du raisin entre octobre et mai. Le Bòsc reste accessible en tant que salle commune du domaine, et ne peut être loué séparément.",
       "amenities-title": "Aménagements",
       "private-alleyway": "Allée privative de 200 mètres",
       "heated-pool": "Piscine chauffée",
@@ -95,12 +96,12 @@
       "terrain-description": "13 hectares de jardins, prairies et bois",
       "pear-description": "Ce gîte de 100m2 dispose de 3 chambres dont 2 grandes, et peut accueillir jusqu’à 7 personnes. Le petit + : la douce odeur du poirier accolé à la façade au printemps et en été !<br/><br/><strong>7 personnes - 3 chambres - 2 salles de bains</strong> <br/><br/>Les équipements :",
       "grape-description": "Ce gîte de 114m2 dispose de 2 chambres dont 1 grande, et peut accueillir jusqu’à 4 personnes. Le petit <i>+</i> : cueillir un grain de raisin gorgé de soleil en été, sur les vignes qui ornent les murs du gîte !<br/><br/><strong>4 personnes - 2 chambres - 2 salles de bains</strong> <br/><br/>Les équipements :",
-      "lodge-description": "Ce grand bâtiment d’architecte de 130m2 et sa verrière orientée plein Sud permettent une immersion complète dans la nature ! C’est le cœur du <i>Terrier</i>, et l’endroit idéal pour se retrouver grâce à sa salle de réception de 77m2. Les 2 mezzanines et leur salle de bains permettent d’accueillir jusqu’à 4 personnes si besoin.<br/><br/><strong>jusqu'à 4 personnes - 1 salle de bains</strong> <br/><br/>Les équipements :"
+      "lodge-description": "Ce grand bâtiment d’architecte de 130m2 et sa verrière orientée plein Sud permettent une immersion complète dans la nature ! C’est le cœur du <i>Terrier</i>, et l’endroit idéal pour se retrouver grâce à sa salle de réception de 77m2. Les 2 mezzanines et leur salle de bains permettent d’accueillir jusqu’à 4 personnes supplémentaires grâce à des couchages d'appoint.<br/><br/><strong>jusqu'à 4 personnes - 1 salle de bains</strong> <br/><br/>Les équipements :"
     },
     "gallery": {
       "label": "Galerie",
       "title": "Le Terrier en photos",
-      "body": "Un petit aperçu en images de votre prochaine destination de vacances !"
+      "body": "Un petit aperçu en images de vos prochaines vacances !"
     },
     "explore": {
       "label": "Explorer la Dordogne"
@@ -111,7 +112,7 @@
       "book-stay": "Réservez votre séjour",
       "pear-count": "7 personnes - 3 chambres - 2 salles de bains",
       "grape-count": "4 personnes - 2 chambres - 2 salles de bains",
-      "full-cottage-count": "16-18 personnes - 7-8 chambres - 5 salles de bains",
+      "full-cottage-count": "11-15 personnes - 5-7 chambres - 5 salles de bains",
       "book-button": "Réserver"
     },
     "contact": {

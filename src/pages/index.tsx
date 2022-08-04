@@ -15,6 +15,7 @@ import imageLoader from "../service/ImageLoader";
 import {useAppDispatch} from "../redux/hooks";
 import {fetchPricingConfiguration} from "../redux/slice/PricingSlice";
 import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
+import Link from "next/link";
 
 const LocalisationMap = dynamic<any>(
     () => import("../components/LocalisationMap").then(module => module.LocalisationMap),
@@ -49,9 +50,9 @@ export default function Home() {
         dispatch(fetchReservedDates({start: moment(), end: moment().add(3, 'year'), dispatch: dispatch}));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    
+
     const vw = window.innerHeight / 100;
-    const cottagesImages: {src: string, key: string}[] = [
+    const cottagesImages: { src: string, key: string }[] = [
         {src: PICTURES.pear.backside, key: 'common.places.pear'},
         {src: PICTURES.grape.house, key: 'common.places.grape'},
         {src: PICTURES.lodge.lodgeFrontView, key: 'common.places.lodge'},
@@ -97,21 +98,23 @@ export default function Home() {
             <TextBox titleKey={'pages.home.concept-title'} contentKey={'pages.home.concept-body'}/>
             <ImageList variant="standard" cols={smallScreen ? 1 : 2} gap={8}>
                 {cottagesImages.map(image =>
-                    <ImageListItem key={image.src}>
-                        <Box position='relative'
-                             overflow='hidden'
-                             width='100%'
-                             height={40 * vw}>
-                            <Image src={image.src}
-                                   loader={imageLoader}
-                                   alt={image.key}
-                                   layout='fill'
-                                   objectFit='cover'
-                                   loading='eager'/>
-                        </Box>
-                        <ImageListItemBar className={classes.itemBar}
-                                          title={t(image.key)}/>
-                    </ImageListItem>
+                    <Link href={'/cottages#' + image.key}>
+                        <ImageListItem key={image.src} sx={{cursor: 'pointer'}}>
+                            <Box position='relative'
+                                 overflow='hidden'
+                                 width='100%'
+                                 height={40 * vw}>
+                                <Image src={image.src}
+                                       loader={imageLoader}
+                                       alt={image.key}
+                                       layout='fill'
+                                       objectFit='cover'
+                                       loading='eager'/>
+                            </Box>
+                            <ImageListItemBar className={classes.itemBar}
+                                              title={t(image.key)}/>
+                        </ImageListItem>
+                    </Link>
                 )}
             </ImageList>
             <ImageDecoration icon={ICONS.dark.icons.keys}/>
@@ -125,7 +128,7 @@ export default function Home() {
                     <TextBox contentKey={'pages.home.join-us-car'} marginBottom='0' marginTop='0' width='100%'/>
                     <TranslatedList itemKeys={carAccess.map(carFrom => 'pages.home.' + carFrom)}/>
                     <TextBox contentKey={'pages.home.join-us-plane'} marginBottom='0' marginTop='0' width='100%'/>
-                    <TranslatedList itemKeys={['pages.home.perigueux-airport']}/>
+                    <TranslatedList itemKeys={['pages.home.perigueux-airport', 'pages.home.bergerac-airport']}/>
                     <Box sx={{paddingTop: '4vh'}}/>
                 </Box>
             </Box>

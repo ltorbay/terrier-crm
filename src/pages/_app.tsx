@@ -23,7 +23,7 @@ import 'leaflet/dist/leaflet.css';
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css';
 import {MySnackBar} from "../components/MySnackBar";
-import DirectionsIcon from "@mui/icons-material/Directions";
+import Head from "next/head";
 
 const theme = responsiveFontSizes(createTheme({
     palette: {
@@ -117,6 +117,14 @@ export default function App({Component, pageProps}: { Component: React.Component
     return (
         <SafeHydrate>
             <Provider store={store}>
+                <Head>
+                    <title>Le Terrier</title>
+                    <meta property="og:title" content="Le Terrier"/>
+                    <meta property="og:type" content="website"/>
+                    <meta property="og:url" content="https://www.leterrier-gites.fr/"/>
+                    <meta property="og:image" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
+                    <meta property="og:description" content="Grand Gîte à Fossemagne en Dordogne"/>
+                </Head>
                 <ThemeProvider theme={theme}>
                     <CssBaseline/>
                     <GlobalStyles styles={{

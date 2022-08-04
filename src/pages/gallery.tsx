@@ -92,19 +92,19 @@ export default function Gallery() {
                 <TextBox titleKey={'pages.gallery.title'}
                          contentKey={'pages.gallery.body'}/>
             </ImageBox>
-            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'>
+            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4' id='common.places.pool'>
                 <Trans i18nKey={'common.places.domain'}/>
             </Typography>
             {imageList(domainImages, vw, smallScreen)}
-            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'>
+            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4' id='common.places.lodge'>
                 <Trans i18nKey={'common.places.the-lodge'}/>
             </Typography>
             {imageList(lodgeImages, vw, smallScreen)}
-            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'>
+            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4' id='common.places.pear'>
                 <Trans i18nKey={'common.places.the-pear'}/>
             </Typography>
             {imageList(pearImages, vw, smallScreen)}
-            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'>
+            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4' id='common.places.grape'>
                 <Trans i18nKey={'common.places.the-grape'}/>
             </Typography>
             {imageList(grapeImages, vw, smallScreen)}

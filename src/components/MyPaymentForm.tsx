@@ -333,7 +333,7 @@ function informationValid(information: Information | undefined): boolean {
 function guestsCountValid(count: ValidatedField<number> | undefined): boolean {
     return !!count
         && count.value >= 0
-        && count.value <= 25
+        && count.value <= 15
 }
 
 function termsAndConditionsValid(terms: ValidatedField<boolean> | undefined): boolean {

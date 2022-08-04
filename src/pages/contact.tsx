@@ -26,14 +26,14 @@ export default function Contact() {
                 <Typography display='block' textAlign='justify' variant='body1'>
                     <List>
                             <ListItem key='mail' disablePadding sx={{paddingX:'2em'}}>
-                                <EmailOutlinedIcon fontSize='small'/>
-                                <Typography>
+                                <EmailOutlinedIcon fontSize='medium'/>
+                                <Typography variant='h6'>
                                     {'\u00A0\u00A0\u00A0'}leterrier.gites@gmail.com
                                 </Typography>
                             </ListItem>
                             <ListItem key='number' disablePadding sx={{paddingX:'2em'}}>
-                                <LocalPhoneOutlinedIcon fontSize='small'/>
-                                <Typography>
+                                <LocalPhoneOutlinedIcon fontSize='medium'/>
+                                <Typography variant='h6'>
                                     {'\u00A0\u00A0\u00A0'}06 70 70 17 72
                                 </Typography>
                             </ListItem>
