@@ -1,7 +1,7 @@
 {
   "common": {
-    "nights_one": "{{count}} nuitée",
-    "nights_other": "{{count}} nuitées",
+    "nights_one": "{{count}} nuit",
+    "nights_other": "{{count}} nuits",
     "off-season": "Basse saison",
     "peak-season": "Haute saison",
     "holidays": "Vacances scolaires",
@@ -49,8 +49,8 @@
       "weekly-rental": "Location à la semaine",
       "nightly-rental": "Location à la nuitée",
       "weekend-rental": "Location au week-end",
-      "price-per-night": "Tarif à la nuitée avec un minimum de deux nuits",
-      "price-is-per-night": "Tarif à la nuitée avec un minimum de {{count}} nuits"
+      "price-per-night": "2 nuits minimum",
+      "price-is-per-night": "{{count}} nuits minimum"
     },
     "payment-form": {
       "book": "Réserver",

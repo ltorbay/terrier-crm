@@ -49,8 +49,8 @@
       "weekly-rental": "Weekly rental",
       "nightly-rental": "Nightly rental",
       "weekend-rental": "Weekend rental",
-      "price-per-night": "Price per night with a minimum of 2 nights",
-      "price-is-per-night": "Price per night with a minimum of {{count}} nights"
+      "price-per-night": "2 nights minimum",
+      "price-is-per-night": "{{count}} nights minimum"
     },
     "payment-form": {
       "book": "Book",

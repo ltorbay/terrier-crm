@@ -23,7 +23,7 @@ import 'leaflet/dist/leaflet.css';
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css';
 import {MySnackBar} from "../components/MySnackBar";
-import Button from "@mui/material/Button";
+import DirectionsIcon from "@mui/icons-material/Directions";
 
 const theme = responsiveFontSizes(createTheme({
     palette: {
@@ -138,15 +138,24 @@ export default function App({Component, pageProps}: { Component: React.Component
                                     <HomeButton shade={Shade.Dark} height={55}/>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='instagram'>
-                                        <InstagramIcon fontSize='small'/>
-                                    </IconButton>
-                                    <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='facebook'>
-                                        <FacebookIcon fontSize='small'/>
-                                    </IconButton>
-                                    <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='pinterest'>
-                                        <PinterestIcon fontSize='small'/>
-                                    </IconButton>
+                                    <a target="_blank" rel="noreferrer"
+                                       href={`https://instagram.com/leterrier.gites`}>
+                                        <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='instagram'>
+                                            <InstagramIcon fontSize='small'/>
+                                        </IconButton>
+                                    </a>
+                                    <a target="_blank" rel="noreferrer"
+                                       href={`https://www.facebook.com/leterrier.gites`}>
+                                        <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='facebook'>
+                                            <FacebookIcon fontSize='small'/>
+                                        </IconButton>
+                                    </a>
+                                    <a target="_blank" rel="noreferrer"
+                                       href={`https://pinterest.fr/leterriergites/`}>
+                                        <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='pinterest'>
+                                            <PinterestIcon fontSize='small'/>
+                                        </IconButton>
+                                    </a>
                                 </Grid>
                                 <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
                                     <Link href='/termsAndConditions'

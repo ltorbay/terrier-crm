@@ -1,9 +1,9 @@
-import {Grid} from "@mui/material";
+import {Grid, useMediaQuery} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import {ContentBox} from "./containers/ContentBox";
 import {PricingConfigurationStateItem} from "../redux/slice/PricingSlice";
 import {useAppSelector} from "../redux/hooks";
-import moment from "../constants/constants";
+import moment, {MEDIA_QUERY_1000_BREAKPOINT} from "../constants/constants";
 import {Moment} from "moment/moment";
 import {PriceLine} from "./PriceLine";
 import {PricingPeriodType} from "../model/PricingPeriodType";
@@ -11,6 +11,7 @@ import {PricingPeriodType} from "../model/PricingPeriodType";
 type LabelKeys = 'common.holidays' | 'common.off-season' | 'common.peak-season' | '';
 
 export function PricesList() {
+    const smallScreen = useMediaQuery(MEDIA_QUERY_1000_BREAKPOINT);
     const pricing = useAppSelector((state) => state.pricing);
 
     const [priceMap, setPriceMap] = useState<Map<LabelKeys, Map<string, { start: Moment, end: Moment }[]>>>();
@@ -24,7 +25,7 @@ export function PricesList() {
         <ContentBox titleKey={"components.prices-list.title"} width='100%'>
             <Grid container width='100%'>
                 {priceMap ? Array.from(priceMap.keys()).map((key, index) => (
-                        <Grid item key={index} marginLeft='4vw'>
+                        <Grid item xs={smallScreen ? 12: 3.5} key={index} marginLeft='4vw'>
                             {iterateSubMap(priceMap, key, index)}
                         </Grid>))
                     : undefined}

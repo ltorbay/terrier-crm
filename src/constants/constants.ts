@@ -6,6 +6,7 @@ export const BACKEND_DATES_FORMAT = "YYYY-MM-DD";
 export const POSITION = {lat: 45.139756772239814, lng: 0.9903618727530135, alt: 11};
 export const ADDRESS = "86 A La Placette, 24210 Fossemagne";
 
+export const MEDIA_QUERY_1000_BREAKPOINT = '(max-width:1000px)';
 export const MEDIA_QUERY_650_BREAKPOINT = '(max-width:650px)';
 export const MEDIA_QUERY_550_BREAKPOINT = '(max-width:550px)';
 export const MEDIA_QUERY_450_BREAKPOINT = '(max-width:450px)';

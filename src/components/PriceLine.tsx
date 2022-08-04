@@ -1,9 +1,8 @@
-import {Container, List, ListItem, ListItemText, Typography, useMediaQuery} from "@mui/material";
+import {List, ListItem, ListItemText, Typography} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import {TFunction, Trans, useTranslation} from "react-i18next";
 import {Moment} from "moment";
 import {PricingLine} from "../model/PricingModel";
-import {MEDIA_QUERY_450_BREAKPOINT} from "../constants/constants";
 import {makeStyles, useTheme} from "@mui/styles";
 
 class Props {
@@ -32,7 +31,6 @@ export function PriceLine(props: Props) {
     // @ts-ignore
     const classes = useStyles(useTheme().palette)();
     const [data, setData] = useState(JSON.parse(props.jsonData));
-    const minWidth = useMediaQuery(MEDIA_QUERY_450_BREAKPOINT) ? '260px' : '400px';
 
     useEffect(() => {
         setData(JSON.parse(props.jsonData));
@@ -57,15 +55,15 @@ export function PriceLine(props: Props) {
                                       {line}<br/>
                                   </Typography>)}</>}/>
             <List dense>
-                {listItems(t, 'common.places.full-cottage', nights, data.pricing.both, minWidth)}
-                {listItems(t, 'common.places.grape', nights, data.pricing.grape, minWidth)}
-                {listItems(t, 'common.places.pear', nights, data.pricing.pear, minWidth)}
+                {listItems(t, 'common.places.full-cottage', nights, data.pricing.both)}
+                {listItems(t, 'common.places.grape', nights, data.pricing.grape)}
+                {listItems(t, 'common.places.pear', nights, data.pricing.pear)}
             </List>
         </>
     )
 }
 
-function listItems(t: TFunction<"translation">, titleKey: string, minimumNights: number, line: PricingLine, minWidth: string) {
+function listItems(t: TFunction<"translation">, titleKey: string, minimumNights: number, line: PricingLine) {
     if (!line.weekly && !line.nightly) return undefined;
     return (
         <ListItem key={titleKey}>
@@ -75,17 +73,17 @@ function listItems(t: TFunction<"translation">, titleKey: string, minimumNights:
                         <Trans i18nKey={titleKey}/>
                     </Typography>
                 </ListItem>
-                {listItemText(t, false, minimumNights, line.weekly, minWidth)}
-                {listItemText(t, true, minimumNights, line.nightly, minWidth)}
+                {listItemText(t, false, minimumNights, line.weekly)}
+                {listItemText(t, true, minimumNights, line.nightly)}
             </List>
         </ListItem>
     );
 }
 
-function listItemText(t: TFunction<"translation">, perNight: boolean, minimumNights: number, pricingCents: number, minWidth: string) {
+function listItemText(t: TFunction<"translation">, perNight: boolean, minimumNights: number, pricingCents: number) {
     if (!pricingCents) return undefined;
     return (
-        <ListItem key={perNight ? 'nightly' : 'weekly'} sx={{minWidth: minWidth}}>
+        <ListItem key={perNight ? 'nightly' : 'weekly'} sx={{width: '300px'}}>
             <ListItemText
                 primary={perNight ? t("components.prices-list.nightly-rental") : t("components.prices-list.weekly-rental")}
                 secondary={perNight ? t("components.prices-list.price-is-per-night", {count: minimumNights}) : t("common.nights", {count: 7})}/>
