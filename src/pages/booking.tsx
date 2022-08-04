@@ -118,6 +118,7 @@ export default function Booking() {
                     {enabledPaymentForm ?
                         <MyPaymentForm cottageSelect={cottage}
                                        pricingDetail={pricingCalculation?.detail || []}
+                                       downPayment={pricingCalculation?.downPaymentTotalCents || 0}
                                        totalPrice={totalPrice}
                                        onDownPaymentChange={setDownPayment}
                                        selectedStart={selectedRange?.start}

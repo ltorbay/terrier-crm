@@ -13,6 +13,7 @@ import moment from "../constants/constants";
 
 interface Props {
     pricingDetail: PricingDetail[],
+    downPayment: number,
     totalPrice: number,
     cottageSelect: CottageSelect,
     onValidatedPayment: (user: User, information: Information, paymentToken: TokenResult) => void,
@@ -267,7 +268,7 @@ export function MyPaymentForm(props: Props) {
                                      }))
                                  }}
                                  createVerificationDetails={() => ({
-                                     amount: props.totalPrice.toString(),
+                                     amount: !!state.information?.downPayment ? props.downPayment.toString() : props.totalPrice.toString(),
                                      billingContact: {
                                          familyName: state.user?.lastName?.value,
                                          givenName: state.user?.firstName?.value,
