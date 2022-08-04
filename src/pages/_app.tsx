@@ -123,6 +123,9 @@ export default function App({Component, pageProps}: { Component: React.Component
                     <meta property="og:type" content="website"/>
                     <meta property="og:url" content="https://www.leterrier-gites.fr/"/>
                     <meta property="og:image" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
+                    <meta property="og:image:secure_url" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
+                    <meta property="og:image:width" content="1200"/>
+                    <meta property="og:image:height" content="799"/>
                     <meta property="og:description" content="Grand Gîte à Fossemagne en Dordogne"/>
                 </Head>
                 <ThemeProvider theme={theme}>
