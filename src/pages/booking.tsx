@@ -48,7 +48,7 @@ export default function Booking() {
     const [enabledPaymentForm, enablePaymentForm] = useState(false);
     const [selectedRange, selectRange] = useState<MomentRange>();
     const tinyScreen = useMediaQuery(MEDIA_QUERY_550_BREAKPOINT);
-    
+
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(fetchReservedDates({start: moment(), end: moment().add(3, 'year'), dispatch: dispatch}))
@@ -118,7 +118,7 @@ export default function Booking() {
                     {enabledPaymentForm ?
                         <MyPaymentForm cottageSelect={cottage}
                                        pricingDetail={pricingCalculation?.detail || []}
-                                       downPayment={pricingCalculation?.downPaymentTotalCents || 0}
+                                       downPayment={(pricingCalculation?.downPaymentTotalCents || 0) / 100}
                                        totalPrice={totalPrice}
                                        onDownPaymentChange={setDownPayment}
                                        selectedStart={selectedRange?.start}
@@ -159,7 +159,7 @@ export default function Booking() {
                                                    severity: 'success'
                                                }));
                                                enablePaymentForm(false)
-                                               setTimeout(() => setLoading(false),1000)
+                                               setTimeout(() => setLoading(false), 1000)
                                            }).catch(_error => {
                                                dispatch(fetchReservedDates({
                                                    start: moment(),

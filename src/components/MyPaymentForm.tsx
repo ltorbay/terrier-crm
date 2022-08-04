@@ -268,7 +268,7 @@ export function MyPaymentForm(props: Props) {
                                      }))
                                  }}
                                  createVerificationDetails={() => ({
-                                     amount: !!state.information?.downPayment ? props.downPayment.toString() : props.totalPrice.toString(),
+                                     amount: !state.information?.downPayment ? props.totalPrice.toString() : props.downPayment.toString(),
                                      billingContact: {
                                          familyName: state.user?.lastName?.value,
                                          givenName: state.user?.firstName?.value,
