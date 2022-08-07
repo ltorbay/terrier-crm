@@ -79,7 +79,6 @@ const grapeImages: ImageInfo[] = [
 // noinspection JSUnusedGlobalSymbols
 export default function Gallery() {
     const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
-    const vw = (smallScreen ? window.innerWidth : window.innerHeight) / 100;
 
     return (
         <Box>
@@ -92,27 +91,31 @@ export default function Gallery() {
                 <TextBox titleKey={'pages.gallery.title'}
                          contentKey={'pages.gallery.body'}/>
             </ImageBox>
-            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4' id='common.places.pool'>
+            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'
+                        id='common.places.pool'>
                 <Trans i18nKey={'common.places.domain'}/>
             </Typography>
-            {imageList(domainImages, vw, smallScreen)}
-            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4' id='common.places.lodge'>
+            {imageList(domainImages, smallScreen)}
+            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'
+                        id='common.places.lodge'>
                 <Trans i18nKey={'common.places.the-lodge'}/>
             </Typography>
-            {imageList(lodgeImages, vw, smallScreen)}
-            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4' id='common.places.pear'>
+            {imageList(lodgeImages, smallScreen)}
+            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'
+                        id='common.places.pear'>
                 <Trans i18nKey={'common.places.the-pear'}/>
             </Typography>
-            {imageList(pearImages, vw, smallScreen)}
-            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4' id='common.places.grape'>
+            {imageList(pearImages, smallScreen)}
+            <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'
+                        id='common.places.grape'>
                 <Trans i18nKey={'common.places.the-grape'}/>
             </Typography>
-            {imageList(grapeImages, vw, smallScreen)}
+            {imageList(grapeImages, smallScreen)}
         </Box>
     )
 }
 
-function imageList(images: ImageInfo[], vw: number, smallScreen: boolean) {
+function imageList(images: ImageInfo[], smallScreen: boolean) {
     const gap = 6;
     return (
         <ImageList variant="quilted" cols={smallScreen ? 2 : 4} gap={gap}>
@@ -123,7 +126,7 @@ function imageList(images: ImageInfo[], vw: number, smallScreen: boolean) {
                     <Box position='relative'
                          overflow='hidden'
                          width='100%'
-                         height={image.rows * 40 * vw + (image.rows - 1) * gap}>
+                         height={(image.rows * 40 + (image.rows - 1) * gap) + 'vw'}>
                         <Image src={image.src}
                                loader={imageLoader}
                                alt={image.title}

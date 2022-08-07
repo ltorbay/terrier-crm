@@ -3,7 +3,6 @@ import React, {useEffect, useState} from "react";
 import {TFunction, Trans, useTranslation} from "react-i18next";
 import {Moment} from "moment";
 import {PricingLine} from "../model/PricingModel";
-import {makeStyles, useTheme} from "@mui/styles";
 
 class Props {
     labelKey: string;
@@ -19,17 +18,15 @@ class Props {
     }
 }
 
-const useStyles = (palette: any) => makeStyles(() => ({
+const classes = {
     subtitle: {
-        color: palette.primary.dark,
+        color: 'primary.dark',
         opacity: 0.6
     }
-}));
+};
 
 export function PriceLine(props: Props) {
     const {t} = useTranslation();
-    // @ts-ignore
-    const classes = useStyles(useTheme().palette)();
     const [data, setData] = useState(JSON.parse(props.jsonData));
 
     useEffect(() => {
@@ -50,7 +47,7 @@ export function PriceLine(props: Props) {
                               .map((line, index) =>
                                   <Typography component='span'
                                               variant='body2'
-                                              className={classes.subtitle}
+                                              sx={classes.subtitle}
                                               key={index}>
                                       {line}<br/>
                                   </Typography>)}</>}/>

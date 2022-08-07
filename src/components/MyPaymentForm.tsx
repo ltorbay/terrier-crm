@@ -230,7 +230,11 @@ export function MyPaymentForm(props: Props) {
                                       label={<span>
                                           {t('components.payment-form.accept-the')}
                                           <Link href='/termsAndConditions'
-                                                key='terms-and-conditions'>{t('components.payment-form.terms-and-conditions')}</Link>
+                                                key='terms-and-conditions'>
+                                              <a style={{textDecoration: 'none'}}>
+                                                  {t('components.payment-form.terms-and-conditions')}
+                                              </a>
+                                          </Link>
                                       </span>}
                                       control={
                                           <Checkbox id="termsAndConditions"

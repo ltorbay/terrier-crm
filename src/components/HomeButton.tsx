@@ -15,24 +15,27 @@ export function HomeButton({shade, height}: { shade: Shade, height: number }) {
         <Link href={HOME_PATH}
               key={HOME_KEY}
               style={{textDecoration: 'none', color: color}}>
-            <Button key={HOME_KEY}
-                    sx={{
-                        display: 'inline-block',
-                        height: height,
-                        width: 2 * height,
-                        my: 2,
-                        color: color,
-                        marginY: '0',
-                        paddingY: '0'
-                    }}
-                    startIcon={
-                        <Image src={shade === Shade.Dark ? ICONS.dark.logo : ICONS.light.logo}
-                               loader={imageLoader}
-                               layout='fill'
-                               objectFit='contain'
-                               height={height}
-                               alt={HOME_KEY}/>
-                    }/>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a style={{textDecoration: 'none'}}>
+                <Button key={HOME_KEY}
+                        sx={{
+                            display: 'inline-block',
+                            height: height,
+                            width: 2 * height,
+                            my: 2,
+                            color: color,
+                            marginY: '0',
+                            paddingY: '0'
+                        }}
+                        startIcon={
+                            <Image src={shade === Shade.Dark ? ICONS.dark.logo : ICONS.light.logo}
+                                   loader={imageLoader}
+                                   layout='fill'
+                                   objectFit='contain'
+                                   height={height}
+                                   alt={HOME_KEY}/>
+                        }/>
+            </a>
         </Link>
     );
 }

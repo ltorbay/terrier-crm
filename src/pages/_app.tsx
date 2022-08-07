@@ -1,9 +1,8 @@
-import React, {ReactElement, useEffect, useState} from 'react';
+import React from 'react';
 import reportWebVitals from '../utils/reportWebVitals';
 import '../utils/i18n';
 import {createTheme, responsiveFontSizes, ThemeProvider} from "@mui/material/styles";
 import {MINION, POPPINS} from "../constants/fonts";
-import {makeStyles} from "@mui/styles";
 import {useTranslation} from "react-i18next";
 import {Box, CssBaseline, GlobalStyles, Grid, IconButton, useMediaQuery} from "@mui/material";
 import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
@@ -18,7 +17,7 @@ import {Provider} from "react-redux";
 import {AppProps} from "next/dist/pages/_app";
 import Link from "next/link";
 
-import '../styles.css';
+import '../../public/styles.css';
 import 'leaflet/dist/leaflet.css';
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css';
@@ -80,128 +79,125 @@ const theme = responsiveFontSizes(createTheme({
     },
 }));
 
-const useStyles = makeStyles(() => ({
+const classes = {
     footer: {
         textAlign: 'center',
         paddingBottom: '4vh',
         paddingTop: '4vh',
-        marginTop: '4vh'
+        marginTop: '4vh',
+        backgroundColor: 'primary.contrastText'
     }
-}));
+};
 
-function SafeHydrate({children}: { children: ReactElement }) {
-    const [showing, setShowing] = useState(false);
-
-    useEffect(() => {
-        setShowing(true);
-    }, []);
-
-    if (!showing) {
-        return null;
-    }
-
-    if (typeof window === 'undefined') {
-        return <></>;
-    } else {
-        return (
-            children
-        );
-    }
-}
-
-export default function App({Component, pageProps}: { Component: React.Component, pageProps: AppProps }) {
-    const classes = useStyles();
+function App({Component, pageProps}: { Component: React.Component, pageProps: AppProps }) {
     const {t} = useTranslation();
     const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
 
     return (
-        <SafeHydrate>
-            <Provider store={store}>
-                <Head>
-                    <title>Le Terrier</title>
-                    <meta property="og:title" content="Le Terrier"/>
-                    <meta property="og:type" content="website"/>
-                    <meta property="og:url" content="https://www.leterrier-gites.fr/"/>
-                    <meta property="og:image" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
-                    <meta property="og:image:secure_url" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
-                    <meta property="og:image:width" content="1200"/>
-                    <meta property="og:image:height" content="799"/>
-                    <meta property="og:description" content="Grand Gîte à Fossemagne en Dordogne"/>
-                </Head>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline/>
-                    <GlobalStyles styles={{
-                        ':root': {
-                            '--color-primary': theme.palette.primary.main,
-                            '--color-secondary': theme.palette.secondary.main,
-                            '--color-contrast': theme.palette.primary.contrastText,
-                            '--color-light': theme.palette.primary.light,
-                            '--color-dark': theme.palette.primary.dark
-                        },
-                    }}/>
-                    <Box sx={{backgroundColor: 'primary.light', width: '100vw'}}>
-                        {/*@ts-ignore*/}
-                        <Component {...pageProps} />
-                        <MySnackBar/>
-                        <Box sx={{backgroundColor: 'primary.contrastText'}} className={classes.footer}>
-                            <Grid container textAlign='center'>
-                                <Grid item xs={12}>
-                                    <HomeButton shade={Shade.Dark} height={55}/>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <a target="_blank" rel="noreferrer"
-                                       href={`https://instagram.com/leterrier.gites`}>
-                                        <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='instagram'>
-                                            <InstagramIcon fontSize='small'/>
-                                        </IconButton>
-                                    </a>
-                                    <a target="_blank" rel="noreferrer"
-                                       href={`https://www.facebook.com/leterrier.gites`}>
-                                        <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='facebook'>
-                                            <FacebookIcon fontSize='small'/>
-                                        </IconButton>
-                                    </a>
-                                    <a target="_blank" rel="noreferrer"
-                                       href={`https://pinterest.fr/leterriergites/`}>
-                                        <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='pinterest'>
-                                            <PinterestIcon fontSize='small'/>
-                                        </IconButton>
-                                    </a>
-                                </Grid>
-                                <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <Link href='/termsAndConditions'
-                                          key='terms-and-conditions'
-                                          style={{textDecoration: 'none'}}>
+        <Provider store={store}>
+            <Head>
+                <title>Le Terrier</title>
+                <link rel="stylesheet" href="styles.css"/>
+                <meta property="og:title" content="Le Terrier"/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:url" content="https://www.leterrier-gites.fr/"/>
+                <meta property="og:image" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
+                <meta property="og:image:secure_url"
+                      content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
+                <meta property="og:image:width" content="1200"/>
+                <meta property="og:image:height" content="799"/>
+                <meta property="og:description" content="Grand Gîte à Fossemagne en Dordogne"/>
+            </Head>
+            <ThemeProvider theme={theme}>
+                <CssBaseline/>
+                <GlobalStyles styles={{
+                    ':root': {
+                        '--color-primary': theme.palette.primary.main,
+                        '--color-secondary': theme.palette.secondary.main,
+                        '--color-contrast': theme.palette.primary.contrastText,
+                        '--color-light': theme.palette.primary.light,
+                        '--color-dark': theme.palette.primary.dark
+                    },
+                }}/>
+                <Box sx={{backgroundColor: 'primary.light', width: '100vw'}}>
+                    {/*@ts-ignore*/}
+                    <Component {...pageProps} />
+                    <MySnackBar/>
+                    <Box sx={classes.footer}>
+                        <Grid container textAlign='center'>
+                            <Grid item xs={12}>
+                                <HomeButton shade={Shade.Dark} height={55}/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <a target="_blank" rel="noreferrer"
+                                   href={`https://instagram.com/leterrier.gites`}>
+                                    <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='instagram'>
+                                        <InstagramIcon fontSize='small'/>
+                                    </IconButton>
+                                </a>
+                                <a target="_blank" rel="noreferrer"
+                                   href={`https://www.facebook.com/leterrier.gites`}>
+                                    <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='facebook'>
+                                        <FacebookIcon fontSize='small'/>
+                                    </IconButton>
+                                </a>
+                                <a target="_blank" rel="noreferrer"
+                                   href={`https://pinterest.fr/leterriergites/`}>
+                                    <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='pinterest'>
+                                        <PinterestIcon fontSize='small'/>
+                                    </IconButton>
+                                </a>
+                            </Grid>
+                            <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
+                                <Link href='/termsAndConditions'
+                                      key='terms-and-conditions'
+                                      style={{textDecoration: 'none'}}>
+                                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                    <a style={{textDecoration: 'none'}}>
                                         <Typography sx={{cursor: 'pointer'}}
                                                     variant='body2'
                                                     color='primary.dark'>{t('components.footer.terms-and-conditions')}</Typography>
-                                    </Link>
-                                </Grid>
-                                <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <Link href='/privacyPolicy'
-                                          key='privacy-policy'
-                                          style={{textDecoration: 'none'}}>
+                                    </a>
+                                </Link>
+                            </Grid>
+                            <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
+                                <Link href='/privacyPolicy'
+                                      key='privacy-policy'
+                                      style={{textDecoration: 'none'}}>
+                                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                    <a style={{textDecoration: 'none'}}>
                                         <Typography sx={{cursor: 'pointer'}}
                                                     variant='body2'
                                                     color='primary.dark'>{t('components.footer.privacy-policy')}</Typography>
-                                    </Link>
-                                </Grid>
-                                <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
-                                    <Link href='/'
-                                          key='copyright'
-                                          style={{textDecoration: 'none'}}>
+                                    </a>
+                                </Link>
+                            </Grid>
+                            <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
+                                <Link href='/'
+                                      key='copyright'
+                                      style={{textDecoration: 'none'}}>
+                                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                    <a style={{textDecoration: 'none'}}>
                                         <Typography variant='body2'
                                                     color='primary.dark'>{t('components.footer.copyright')}</Typography>
-                                    </Link>
-                                </Grid>
+                                    </a>
+                                </Link>
                             </Grid>
-                        </Box>
+                        </Grid>
                     </Box>
-                </ThemeProvider>
-            </Provider>
-        </SafeHydrate>
+                </Box>
+            </ThemeProvider>
+        </Provider>
     )
 }
+
+export async function getStaticProps(context: any) {
+    return {
+        props: {}, // will be passed to the page component as props
+    }
+}
+
+export default App;
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

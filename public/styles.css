@@ -4,12 +4,12 @@ html {
 
 @font-face {
     font-family: "MinionPro";
-    src: url("../public/fonts/MinionPro-Regular.ttf");
+    src: url("fonts/MinionPro-Regular.ttf");
 }
 
 @font-face {
     font-family: "Poppins";
-    src: url("../public/fonts/Poppins-Regular.ttf");
+    src: url("fonts/Poppins-Regular.ttf");
 }
 
 body {

@@ -8,7 +8,6 @@ import {ImageBox} from "../components/containers/ImageBox";
 import {ContentBox} from "../components/containers/ContentBox";
 import {TranslatedList} from "../components/TranslatedList";
 import React from "react";
-import Link from "next/link";
 
 // noinspection JSUnusedGlobalSymbols
 export default function Cottages() {

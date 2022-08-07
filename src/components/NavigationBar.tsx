@@ -85,9 +85,12 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
                                       color='primary.dark'
                                       key={page.key}
                                       style={{textDecoration: 'none', display: 'flex'}}>
-                                    <MenuItem onClick={handleCloseNavMenu}>
-                                        <Typography textAlign='center'>{t(page.key)}</Typography>
-                                    </MenuItem>
+                                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                    <a style={{textDecoration: 'none'}}>
+                                        <MenuItem onClick={handleCloseNavMenu}>
+                                            <Typography textAlign='center'>{t(page.key)}</Typography>
+                                        </MenuItem>
+                                    </a>
                                 </Link>
                             ))}
                         </Menu>
@@ -97,10 +100,13 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
                             <Link href={page.path}
                                   key={page.key}
                                   style={{textDecoration: 'none', color: color, display: 'flex'}}>
-                                <Button onClick={handleCloseNavMenu}
-                                        sx={{my: 2, color: color, display: 'block'}}>
-                                    <Typography variant='body2'>{t(page.key)}</Typography>
-                                </Button>
+                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                <a style={{textDecoration: 'none'}}>
+                                    <Button onClick={handleCloseNavMenu}
+                                            sx={{my: 2, color: color, display: 'block'}}>
+                                        <Typography variant='body2'>{t(page.key)}</Typography>
+                                    </Button>
+                                </a>
                             </Link>
                         ))}
                     </Box>

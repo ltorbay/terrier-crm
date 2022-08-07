@@ -1,8 +1,6 @@
 import {Box, ImageList, ImageListItem, ImageListItemBar, Typography, useMediaQuery} from "@mui/material";
 import React, {useEffect} from "react";
 import moment, {ICONS, MEDIA_QUERY_650_BREAKPOINT, PICTURES} from "../constants/constants";
-
-import {makeStyles} from "@mui/styles";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
 import {useTranslation} from "react-i18next";
@@ -22,7 +20,7 @@ const LocalisationMap = dynamic<any>(
     {ssr: false}
 );
 
-const useStyles = makeStyles(() => ({
+const classes = {
     container: {
         overflow: 'hidden',
         position: 'relative',
@@ -38,11 +36,10 @@ const useStyles = makeStyles(() => ({
         marginBottom: '4vh',
         marginTop: '8vh'
     }
-}));
+};
 
 export default function Home() {
     const {t} = useTranslation();
-    const classes = useStyles();
     const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
     const dispatch = useAppDispatch();
     useEffect(() => {
@@ -51,7 +48,7 @@ export default function Home() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const vw = window.innerHeight / 100;
+    // const vw = typeof window === 'undefined' ? 3 : window.innerHeight / 100;
     const cottagesImages: { src: string, key: string }[] = [
         {src: PICTURES.pear.backside, key: 'common.places.pear'},
         {src: PICTURES.grape.house, key: 'common.places.grape'},
@@ -66,16 +63,14 @@ export default function Home() {
             <header>
                 <NavigationBar shade={Shade.Dark} displayHomeButton={false}/>
             </header>
-            <Box className={classes.centerContent}>
+            <Box sx={classes.centerContent}>
                 <Box width='20vw'
                      height='16vw'
                      margin='auto'
                      position='relative'>
                     <Image src={ICONS.dark.logo}
                            loader={imageLoader}
-                           width={1}
-                           height={1}
-                           layout='responsive'
+                           layout='fill'
                            objectFit='contain'
                            alt=''/>
                 </Box>
@@ -86,7 +81,9 @@ export default function Home() {
                     {t('common.rural-cottages')}
                 </Typography>
             </Box>
-            <Box className={classes.container}>
+            <Box
+                sx={classes.container}
+            >
                 <Image src={PICTURES.pool.pool}
                        loader={imageLoader}
                        layout='fill'
@@ -98,23 +95,26 @@ export default function Home() {
             <TextBox titleKey={'pages.home.concept-title'} contentKey={'pages.home.concept-body'}/>
             <ImageList variant="standard" cols={smallScreen ? 1 : 2} gap={8}>
                 {cottagesImages.map(image =>
-                    <Link href={'/cottages#' + image.key}>
-                        <ImageListItem key={image.src} sx={{cursor: 'pointer'}}>
-                            <Box position='relative'
-                                 overflow='hidden'
-                                 width='100%'
-                                 height={40 * vw}>
-                                <Image src={image.src}
-                                       loader={imageLoader}
-                                       alt={image.key}
-                                       layout='fill'
-                                       objectFit='cover'
-                                       loading='eager'/>
-                            </Box>
-                            <ImageListItemBar className={classes.itemBar}
-                                              title={t(image.key)}/>
-                        </ImageListItem>
-                    </Link>
+                    <ImageListItem key={image.src} sx={{cursor: 'pointer'}}>
+                        <Box position='relative'
+                             overflow='hidden'
+                             width='100%'
+                             height='40vw'>
+                            <Link key={image.key} href={'/cottages#' + image.key}>
+                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                <a style={{textDecoration: 'none'}}>
+                                    <Image src={image.src}
+                                           loader={imageLoader}
+                                           alt={image.key}
+                                           layout='fill'
+                                           objectFit='cover'
+                                           loading='eager'/>
+                                </a>
+                            </Link>
+                        </Box>
+                        <ImageListItemBar sx={classes.itemBar}
+                                          title={t(image.key)}/>
+                    </ImageListItem>
                 )}
             </ImageList>
             <ImageDecoration icon={ICONS.dark.icons.keys}/>
@@ -133,7 +133,6 @@ export default function Home() {
                 </Box>
             </Box>
             <LocalisationMap/>
-            {/*TODO Le terrier en photos (see edito)*/}
         </>
     )
 }

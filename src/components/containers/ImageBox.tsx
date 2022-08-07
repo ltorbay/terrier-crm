@@ -1,12 +1,11 @@
 import React from "react";
 import {Box, Grid, useMediaQuery} from "@mui/material";
-import {makeStyles} from "@mui/styles";
 import {MEDIA_QUERY_650_BREAKPOINT} from "../../constants/constants";
 import Image from "next/image";
 import imageLoader from "../../service/ImageLoader";
 import Link from "next/link";
 
-const useStyles = makeStyles(() => ({
+const classes = {
     center: {
         display: 'flex',
         justifyContent: 'center',
@@ -16,7 +15,7 @@ const useStyles = makeStyles(() => ({
         overflow: 'hidden',
         position: 'relative',
     },
-}));
+};
 
 class Props {
     children: React.ReactNode;
@@ -33,7 +32,6 @@ class Props {
 }
 
 export function ImageBox({children, id, hrefLink, src, right = false}: Props) {
-    const classes = useStyles();
     const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
     const imageSize = smallScreen ? '100vw' : '35vw';
 
@@ -41,9 +39,10 @@ export function ImageBox({children, id, hrefLink, src, right = false}: Props) {
         <Grid item
               id={id}
               xs={smallScreen ? 12 : 6}
-              className={classes.center}>
-            <Box className={classes.container}
-                 sx={{height: imageSize, width: imageSize}}>
+              sx={classes.center}>
+            <Box sx={classes.container}
+                 height={imageSize}
+                 width={imageSize}>
                 {!hrefLink ?
                     <Image src={src}
                            loader={imageLoader}
@@ -52,13 +51,16 @@ export function ImageBox({children, id, hrefLink, src, right = false}: Props) {
                            loading='eager'
                            alt=''/>
                     : <Link href={hrefLink}>
-                        <Image src={src}
-                               style={{cursor: 'pointer'}}
-                               loader={imageLoader}
-                               layout='fill'
-                               objectFit='cover'
-                               loading='eager'
-                               alt=''/>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                        <a style={{textDecoration: 'none'}}>
+                            <Image src={src}
+                                   style={{cursor: 'pointer'}}
+                                   loader={imageLoader}
+                                   layout='fill'
+                                   objectFit='cover'
+                                   loading='eager'
+                                   alt=''/>
+                        </a>
                     </Link>
                 }
             </Box>
