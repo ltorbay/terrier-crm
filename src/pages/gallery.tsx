@@ -118,7 +118,7 @@ export default function Gallery() {
 function imageList(images: ImageInfo[], smallScreen: boolean) {
     const gap = 6;
     return (
-        <ImageList variant="quilted" cols={smallScreen ? 2 : 4} gap={gap}>
+        <ImageList sx={{paddingX: gap + 'px'}} variant="quilted" cols={smallScreen ? 2 : 4} gap={gap}>
             {images.map((image) => (
                 <ImageListItem key={image.src}
                                cols={smallScreen ? image.smallScreenCols : image.cols}
@@ -126,7 +126,9 @@ function imageList(images: ImageInfo[], smallScreen: boolean) {
                     <Box position='relative'
                          overflow='hidden'
                          width='100%'
-                         height={(image.rows * 40 + (image.rows - 1) * gap) + 'vw'}>
+                         height={typeof window === 'undefined' ?
+                             image.rows * 40 + (smallScreen ? 'vw' : 'vh')
+                             : (image.rows * 40 * ((smallScreen ? window.innerWidth : window.innerHeight) / 100) + (image.rows - 1) * gap) + 'px'}>
                         <Image src={image.src}
                                loader={imageLoader}
                                alt={image.title}

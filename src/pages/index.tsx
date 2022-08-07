@@ -93,7 +93,7 @@ export default function Home() {
             </Box>
             <ImageDecoration right/>
             <TextBox titleKey={'pages.home.concept-title'} contentKey={'pages.home.concept-body'}/>
-            <ImageList variant="standard" cols={smallScreen ? 1 : 2} gap={8}>
+            <ImageList sx={{paddingX: '6px'}} variant="standard" cols={smallScreen ? 1 : 2} gap={8}>
                 {cottagesImages.map(image =>
                     <ImageListItem key={image.src} sx={{cursor: 'pointer'}}>
                         <Box position='relative'
