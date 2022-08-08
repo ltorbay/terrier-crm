@@ -73,6 +73,7 @@ export const PICTURES = {
     pool: {
         pool: 'pictures/pool/pool.jpg',
         large: 'pictures/pool/pool_large.jpeg',
+        pool_square: 'pictures/pool/pool_square.jpeg',
         topDown: 'pictures/pool/pool_top_down.jpeg',
         view: 'pictures/pool/pool_view.jpg'
     }

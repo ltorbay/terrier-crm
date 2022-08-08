@@ -101,11 +101,19 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
                 <meta property="og:title" content="Le Terrier - Grand gîte à Fossemagne, Dordogne"/>
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content="https://www.leterrier-gites.fr/"/>
+                
                 <meta property="og:image" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
                 <meta property="og:image:secure_url"
                       content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="799"/>
+                
+                <meta property="og:image" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
+                <meta property="og:image:secure_url"
+                      content="https://leterrier-gites.fr/img400/pictures/pool/pool_square.jpg"/>
+                <meta property="og:image:width" content="400"/>
+                <meta property="og:image:height" content="400"/>
+                
                 <meta property="og:description" content="Bienvenue chez nous ! Notre gîte pouvant accueillir 11 à 15 personnes vous accueille dans le Périgord noir pour des vacances uniques au coeur de la nature."/>
                 <meta property="og:locale" content="fr_FR"/>
                 <meta property="og:locale:alternate" content="en_GB"/>
@@ -134,13 +142,13 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
                             </Grid>
                             <Grid item xs={12}>
                                 <a target="_blank" rel="noreferrer"
-                                   href={`https://instagram.com/leterrier.gites`}>
+                                   href={`https://instagram.com/leterrier.gite`}>
                                     <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='instagram'>
                                         <InstagramIcon fontSize='small'/>
                                     </IconButton>
                                 </a>
                                 <a target="_blank" rel="noreferrer"
-                                   href={`https://www.facebook.com/leterrier.gites`}>
+                                   href={`https://www.facebook.com/leterrier.gite`}>
                                     <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='facebook'>
                                         <FacebookIcon fontSize='small'/>
                                     </IconButton>
