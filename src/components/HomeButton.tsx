@@ -5,11 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import imageLoader from "../service/ImageLoader";
 import {ICONS} from "../constants/constants";
+import {useTranslation} from "react-i18next";
 
 const HOME_PATH = '/';
 const HOME_KEY = 'pages.home.label'
 
 export function HomeButton({shade, height}: { shade: Shade, height: number }) {
+    const {t} = useTranslation();
     const color = shade === Shade.Dark ? 'primary.dark' : 'primary.light';
     return (
         <Link href={HOME_PATH}
@@ -33,7 +35,7 @@ export function HomeButton({shade, height}: { shade: Shade, height: number }) {
                                    layout='fill'
                                    objectFit='contain'
                                    height={height}
-                                   alt={HOME_KEY}/>
+                                   alt={t('common.images.domain.logo')}/>
                         }/>
             </a>
         </Link>

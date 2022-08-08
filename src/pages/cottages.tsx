@@ -27,12 +27,12 @@ export default function Cottages() {
             <ImageDecoration right/>
             <TextBox titleKey={'pages.cottages.our-cottages-title'}
                      contentKey={'pages.cottages.our-cottages-body'}/>
-            <ImageBox src={PICTURES.domain.aerialView1} hrefLink='/gallery#common.places.pool' id='common.places.pool'>
+            <ImageBox src={PICTURES.domain.aerialView1} hrefLink='/gallery#common.places.pool' id='common.places.pool' altKey='domain.aerialView1'>
                 <ContentBox titleKey={'pages.cottages.amenities-title'} width='100%'>
                     <TranslatedList itemKeys={amenities.map(amenity => 'pages.cottages.' + amenity)}/>
                 </ContentBox>
             </ImageBox>
-            <ImageBox src={PICTURES.lodge.lodgeFrontView} right hrefLink='/gallery#common.places.lodge' id='common.places.lodge'>
+            <ImageBox src={PICTURES.lodge.lodgeFrontView} right hrefLink='/gallery#common.places.lodge' id='common.places.lodge' altKey='lodge.lodgeFrontView'>
                 <ImageDecoration icon={ICONS.dark.icons.stump} marginTop='50px' vw={30}/>
                 <TextBox titleKey={'common.places.the-lodge'}
                          contentKey={'pages.cottages.lodge-description'}
@@ -41,7 +41,7 @@ export default function Cottages() {
                 <TranslatedList width={textBoxWidth}
                                 itemKeys={lodgeEquipment.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
-            <ImageBox src={PICTURES.pear.backside} hrefLink='/gallery#common.places.pear' id='common.places.pear'>
+            <ImageBox src={PICTURES.pear.backside} hrefLink='/gallery#common.places.pear' id='common.places.pear' altKey='lodge.backside'>
                 <ImageDecoration right icon={ICONS.dark.icons.pear}/>
                 <TextBox titleKey={'common.places.the-pear'}
                          contentKey={'pages.cottages.pear-description'}
@@ -50,7 +50,7 @@ export default function Cottages() {
                 <TranslatedList width={textBoxWidth}
                                 itemKeys={pearEquipments.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
-            <ImageBox src={PICTURES.grape.house} right hrefLink='/gallery#common.places.grape' id='common.places.grape'>
+            <ImageBox src={PICTURES.grape.house} right hrefLink='/gallery#common.places.grape' id='common.places.grape' altKey='grape.house'>
                 <ImageDecoration icon={ICONS.dark.icons.grape} vw={15}/>
                 <TextBox titleKey={'common.places.the-grape'}
                          contentKey={'pages.cottages.grape-description'}

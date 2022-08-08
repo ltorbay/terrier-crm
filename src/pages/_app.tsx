@@ -98,7 +98,7 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
             <Head>
                 <title>Le Terrier</title>
                 <link rel="stylesheet" href="styles.css"/>
-                <meta property="og:title" content="Le Terrier"/>
+                <meta property="og:title" content="Le Terrier - Grand gîte à Fossemagne, Dordogne"/>
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content="https://www.leterrier-gites.fr/"/>
                 <meta property="og:image" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
@@ -106,7 +106,11 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
                       content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
                 <meta property="og:image:width" content="1200"/>
                 <meta property="og:image:height" content="799"/>
-                <meta property="og:description" content="Grand Gîte à Fossemagne en Dordogne"/>
+                <meta property="og:description" content="Bienvenue chez nous ! Notre gîte pouvant accueillir 11 à 15 personnes vous accueille dans le Périgord noir pour des vacances uniques au coeur de la nature."/>
+                <meta property="og:locale" content="fr_FR"/>
+                <meta property="og:locale:alternate" content="en_GB"/>
+                <meta property="description" content="Bienvenue chez nous ! Notre gîte pouvant accueillir 11 à 15 personnes vous accueille dans le Périgord noir pour des vacances uniques au coeur de la nature."/>
+                <meta property="robots" content="index,follow"/>
             </Head>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>

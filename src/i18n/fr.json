@@ -27,6 +27,61 @@
       "stove": "Poêle à bois",
       "equipped-kitchen": "Cuisine toute équipée",
       "covered-terrace": "Terrasse couverte privative"
+    },
+    "images": {
+      "domain": {
+        "logo": "Logo du Terrier",
+        "aerialView1": "Vue aérienne de côté des bâtiments",
+        "aerialView": "Vue aérienne de face des bâtiments",
+        "arrival": "Vue en arrivant auprès du Gîte",
+        "frontTerrace": "Avant de la placette",
+        "terrace": "La Placette",
+        "well": "Le puits",
+        "yard": "Cour",
+        "entrance": "Chemin d'entrée dans le domaine"
+      },
+      "pool": {
+        "large": "Piscine en largeur",
+        "pool": "Vue depuis la piscine",
+        "view": "Vue plongeante sur la vallée"
+      },
+      "lodge": {
+        "bayView": "Vue des baies vitrées",
+        "backside": "Arrière du Bòsc",
+        "dinnerTableSunny": "Table à manger au soleil",
+        "firstMezzanine": "Première mezzanine du Bòsc",
+        "lodgeFrontView": "Vue de devant du Bòsc",
+        "secondMezzanine": "Seconde mezzanine",
+        "viewedFromTerrace": "Vue de la terrace",
+        "viewFromMezzanine": "Vue de la mezzanine",
+        "salon": "Salon du Bòsc",
+        "salonInside": "À l'intérieur du salon"
+      },
+      "pear": {
+        "coveredTerrace": "Terrace couverte",
+        "pears": "Poires du Gîte de la Poire",
+        "kitchen": "Cuisine de la Poire",
+        "bathroom": "Salle de bains",
+        "dinnerTable": "Table à manger",
+        "smallBedroom": "Petite chambre",
+        "salon": "Salon du gîte de la Poire",
+        "smallDoubleBedroom": "Suite parentale",
+        "backside": "Arrière du gîte",
+        "frontSide": "Avant du Gîte",
+        "tallBedroom": "Grand chambre"
+      },
+      "grape": {
+        "backside": "Arrière du gîte du raisin",
+        "grape": "Raisins",
+        "fireplace": "Grande cheminée d'époque",
+        "bathroom": "Salle de bains",
+        "house": "Maison du Raisin",
+        "salon": "Grand salon du gîte",
+        "tallBedroom": "Suite parentale",
+        "terrace": "La Placette",
+        "kitchen": "Cuisine principale des gîtes",
+        "smallBedroom": "Chambre lits jumeaux"
+      }
     }
   },
   "components": {
@@ -87,7 +142,7 @@
     "cottages": {
       "label": "Gîte",
       "our-cottages-title": "Nos gîtes",
-      "our-cottages-body": "Bienvenue au <strong><i>Terrier</i></strong> ! Un gîte en <i>Dordogne</i> dans le Sud-Ouest, où trois bâtiments se rassemblent autour d’une placette de charme bordée d’oliviers, pour se retrouver avec ses proches au cœur de la nature non loin de sites emblématiques comme <i>Lascaux</i>, <i>Sarlat</i> ou encore <i>Les Eyzies</i>. <br/><br/>Plus de cent mètres de forêt sépare les bâtiments du plus proche voisin, apportant une isolation sonore parfaite sans empiéter sur la vue plongeante sur la vallée du <i>Manoire</i>.<br/><br/>Entre juin et septembre, les 3 bâtiments sont disponibles à la location dans un même ensemble ; il est cependant possible de louer séparément la maison de la poire et la maison du raisin entre octobre et mai. Le Bòsc reste accessible en tant que salle commune du domaine, et ne peut être loué séparément.",
+      "our-cottages-body": "Bienvenue au <strong><i>Terrier</i></strong> ! Un gîte en <i>Périgord noir, Dordogne</i> dans le Sud-Ouest, où trois bâtiments se rassemblent autour d’une placette de charme bordée d’oliviers, pour se retrouver avec ses proches au cœur de la nature non loin de sites emblématiques comme <i>Lascaux</i>, <i>Sarlat</i> ou encore <i>Les Eyzies</i>. <br/><br/>Plus de cent mètres de forêt sépare les bâtiments du plus proche voisin, apportant une isolation sonore parfaite sans empiéter sur la vue plongeante sur la vallée du <i>Manoire</i>.<br/><br/>Entre juin et septembre, les 3 bâtiments sont disponibles à la location dans un même ensemble ; il est cependant possible de louer séparément la maison de la poire et la maison du raisin entre octobre et mai. Le Bòsc reste accessible en tant que salle commune du domaine, et ne peut être loué séparément.",
       "amenities-title": "Aménagements",
       "private-alleyway": "Allée privative de 200 mètres",
       "heated-pool": "Piscine chauffée",

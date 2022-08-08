@@ -49,11 +49,11 @@ export default function Home() {
     }, [])
 
     // const vw = typeof window === 'undefined' ? 3 : window.innerHeight / 100;
-    const cottagesImages: { src: string, key: string }[] = [
-        {src: PICTURES.pear.backside, key: 'common.places.pear'},
-        {src: PICTURES.grape.house, key: 'common.places.grape'},
-        {src: PICTURES.lodge.lodgeFrontView, key: 'common.places.lodge'},
-        {src: PICTURES.pool.view, key: 'common.places.pool'}
+    const cottagesImages: { src: string, key: string, altKey: string }[] = [
+        {src: PICTURES.pear.backside, key: 'common.places.pear', altKey: 'pear.backside'},
+        {src: PICTURES.grape.house, key: 'common.places.grape', altKey: 'grape.house'},
+        {src: PICTURES.lodge.lodgeFrontView, key: 'common.places.lodge', altKey: 'lodge.lodgeFrontView'},
+        {src: PICTURES.pool.view, key: 'common.places.pool', altKey: 'pool.view'}
     ]
     const trainStations = ['Niversac', 'Périgueux', 'Thenon', 'Les Versannes'];
     const carAccess = ['perigueux-by-car', 'brive-by-car', 'bordeaux-by-car', 'toulouse-by-car']
@@ -72,7 +72,7 @@ export default function Home() {
                            loader={imageLoader}
                            layout='fill'
                            objectFit='contain'
-                           alt=''/>
+                           alt={t('common.images.domain.logo')}/>
                 </Box>
                 <Typography variant='h2'>
                     LE TERRIER
@@ -81,14 +81,12 @@ export default function Home() {
                     {t('common.rural-cottages')}
                 </Typography>
             </Box>
-            <Box
-                sx={classes.container}
-            >
+            <Box sx={classes.container}>
                 <Image src={PICTURES.pool.pool}
                        loader={imageLoader}
                        layout='fill'
                        objectFit='cover'
-                       alt='Pool'
+                       alt={t('common.images.pool.pool')}
                        loading='eager'/>
             </Box>
             <ImageDecoration right/>
@@ -105,7 +103,7 @@ export default function Home() {
                                 <a style={{textDecoration: 'none'}}>
                                     <Image src={image.src}
                                            loader={imageLoader}
-                                           alt={image.key}
+                                           alt={t('common.images.' + image.altKey)}
                                            layout='fill'
                                            objectFit='cover'
                                            loading='eager'/>

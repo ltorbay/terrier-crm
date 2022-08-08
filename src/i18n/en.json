@@ -27,6 +27,61 @@
       "stove": "Wood stove",
       "equipped-kitchen": "Fully equipped kitchen",
       "covered-terrace": "Covered private terrace"
+    },
+    "images": {
+      "domain": {
+        "logo": "Le Terrier logo",
+        "aerialView1": "Side aerial view of the buildings",
+        "aerialView": "Front aerial view of the buildings",
+        "arrival": "Arrival view",
+        "frontTerrace": "Front terrace",
+        "terrace": "Terrace",
+        "well": "Well",
+        "yard": "Yard",
+        "entrance": "entrance"
+      },
+      "pool": {
+        "large": "Pool large",
+        "pool": "View from the pool",
+        "view": "Bird's eye view of the valley"
+      },
+      "lodge": {
+        "bayView": "Bay view",
+        "backside": "Back side",
+        "dinnerTableSunny": "Sunny dinner table",
+        "firstMezzanine": "First mezzanine",
+        "lodgeFrontView": "Lodge front view",
+        "secondMezzanine": "Second mezzanine",
+        "viewedFromTerrace": "Viewed from the terrace",
+        "viewFromMezzanine": "View from the mezzanine",
+        "salon": "Lodge salon",
+        "salonInside": "Inside the salon"
+      },
+      "pear": {
+        "coveredTerrace": "Covered terrace",
+        "pears": "Pears",
+        "kitchen": "Kitchen",
+        "bathroom": "Bathroom",
+        "dinnerTable": "Dinner table",
+        "smallBedroom": "Small bedroom",
+        "salon": "Salon",
+        "smallDoubleBedroom": "Small double bedroom",
+        "backside": "Back side",
+        "frontSide": "Front side",
+        "tallBedroom": "Tall bedroom"
+      },
+      "grape": {
+        "backside": "Back side",
+        "grape": "Grape",
+        "fireplace": "Fire place",
+        "bathroom": "Bathroom",
+        "house": "House",
+        "salon": "Salon",
+        "tallBedroom": "Tall bedroom",
+        "terrace": "Terrace",
+        "kitchen": "Kitchen",
+        "smallBedroom": "Small bedroom"
+      }
     }
   },
   "components": {

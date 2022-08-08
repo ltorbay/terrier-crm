@@ -4,6 +4,7 @@ import {MEDIA_QUERY_650_BREAKPOINT} from "../../constants/constants";
 import Image from "next/image";
 import imageLoader from "../../service/ImageLoader";
 import Link from "next/link";
+import {useTranslation} from "react-i18next";
 
 const classes = {
     center: {
@@ -23,15 +24,19 @@ class Props {
     hrefLink?: string;
 
     src: string;
+    altKey: string;
     right?: boolean;
 
-    constructor(children: React.ReactNode, src: string) {
+    constructor(children: React.ReactNode, src: string, altKey: string) {
         this.children = children;
         this.src = src;
+        this.altKey = altKey;
     }
 }
 
-export function ImageBox({children, id, hrefLink, src, right = false}: Props) {
+export function ImageBox({children, id, hrefLink, src, altKey, right = false}: Props) {
+    const {t} = useTranslation();
+    const alt = t('common.images.' + altKey);
     const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
     const imageSize = smallScreen ? '100vw' : '35vw';
 
@@ -49,7 +54,7 @@ export function ImageBox({children, id, hrefLink, src, right = false}: Props) {
                            layout='fill'
                            objectFit='cover'
                            loading='eager'
-                           alt=''/>
+                           alt={alt}/>
                     : <Link href={hrefLink}>
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a style={{textDecoration: 'none'}}>
@@ -59,7 +64,7 @@ export function ImageBox({children, id, hrefLink, src, right = false}: Props) {
                                    layout='fill'
                                    objectFit='cover'
                                    loading='eager'
-                                   alt=''/>
+                                   alt={alt}/>
                         </a>
                     </Link>
                 }
