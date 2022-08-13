@@ -86,6 +86,11 @@ export default function BookingDateRange(props: Props) {
     const [state, setState] = useState<State>(() => buildState(props.cottageSelect, seasons, pearReservations, grapeReservations));
 
     useEffect(() => {
+        props.onChange(state.period);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.cottageSelect, state.period])
+    
+    useEffect(() => {
         if (seasons && seasons.length) {
             const newState = buildState(props.cottageSelect, seasons, pearReservations, grapeReservations);
             setState(newState);
@@ -116,7 +121,7 @@ export default function BookingDateRange(props: Props) {
             startDate: state.period.start.toDate(),
             endDate: state.period.end.toDate()
         }]}
-                   onChange={days => handleSelect(days, props.onChange, state, setState, seasons)}
+                   onChange={days => handleSelect(days, state, setState, seasons)}
                    onRangeFocusChange={rangeFocus => onRangeFocusChange(rangeFocus, setState)}
                    focusedRange={state.selectingStart ? [0, 0] : [0, 1]}
                    disabledDay={date => getDayState(moment(date), state.reservedDates, state.selectingStart, props.cottageSelect, seasons) !== DayState.Enabled}
@@ -165,7 +170,7 @@ function getMinDate(state: State, seasons: SeasonRef[]): Moment {
     }
 }
 
-function handleSelect(dates: any, onChange: (arg: MomentRange) => void, state: State, setState: React.Dispatch<any>, seasons: SeasonRef[]) {
+function handleSelect(dates: any, state: State, setState: React.Dispatch<any>, seasons: SeasonRef[]) {
     let startMoment;
     let endMoment;
     if (state.selectingStart) {
@@ -186,10 +191,6 @@ function handleSelect(dates: any, onChange: (arg: MomentRange) => void, state: S
         ...prevState,
         period: selectedRange
     }));
-
-    if (!state.selectingStart) {
-        onChange(selectedRange);
-    }
 }
 
 function onRangeFocusChange(rangeFocus: number[], setState: React.Dispatch<any>) {
