@@ -1,17 +1,16 @@
-import {MouseEventHandler} from "react";
+import * as React from "react";
 import {useTranslation} from "react-i18next";
-import {Fade, Tooltip, useScrollTrigger} from "@mui/material";
+import {Fade, Tooltip, useMediaQuery, useScrollTrigger} from "@mui/material";
 import Box from "@mui/material/Box";
 import Link from "next/link";
 import IconButton from "@mui/material/IconButton";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
-import * as React from "react";
+import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
 
 export function StickyBookingButton() {
     const {t} = useTranslation();
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
+    const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
+
     const trigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 100,
@@ -19,17 +18,15 @@ export function StickyBookingButton() {
 
     return (
         <Fade in={trigger}>
-            <Box role="presentation" sx={{position: 'fixed', top: '1vh', right: '1vh'}}>
+            <Box role="presentation" sx={{zIndex: '999', position: 'fixed', top: '1vh', right: '1vh'}}>
                 <Link href='/booking'
                       key='pages.booking.label'
                       style={{textDecoration: 'none', display: 'flex'}}>
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a style={{textDecoration: 'none'}}>
                         <Tooltip placement='left' title={t('pages.booking.label')}>
-                            <IconButton size='large'
-                                        // onClick={onClick}
+                            <IconButton size={smallScreen ? 'medium': 'large'}
                                         sx={{
-                                            boxShadow: '-2px 2px 3px ',
                                             outline: 'solid 2px',
                                             margin: '2vw',
                                             backgroundColor: 'primary.light',
@@ -38,7 +35,7 @@ export function StickyBookingButton() {
                                             },
                                         }}
                                         aria-label='booking'>
-                                <CalendarMonthOutlinedIcon fontSize='large'/>
+                                <CalendarMonthOutlinedIcon fontSize={smallScreen ? 'medium': 'large'}/>
                             </IconButton>
                         </Tooltip>
                     </a>
