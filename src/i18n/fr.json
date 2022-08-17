@@ -127,7 +127,7 @@
       "label": "Accueil",
       "concept-title": "Notre Gîte",
       "concept-body": "Le concept est simple : 3 bâtiments isolés rassemblés autour d’une <i>placette</i> au cœur de la forêt avec une piscine chauffée (et une bouée licorne bien entendu), pour se retrouver avec ceux qu’on aime. Pouvant accueillir entre 10 et 14 personnes, <i>Le Terrier</i> allie le charme de l’ancien et le confort moderne pour créer une bulle hors du temps. <br/><br/>Nous habitons à proximité à l’opposé du gîte, donc vous pourrez faire du bruit toute la nuit tandis que nous dormirons sur nos 8 oreilles ! L’intimité est le maître mot, mais si vous avez besoin de quoi que ce soit on est à un texto de vous fournir ce dont vous avez besoin.<br/><br/>Bienvenue chez nous / vous !",
-      "join-us-title": "Comment venir ?",
+      "join-us-title": "Comment venir ?<br/>340 Route des canons, 24210 Fossemagne",
       "join-us-train": "Pour venir nous rendre visite, c’est par ici ! <br/><br/>En train - changements à <i>Bordeaux</i> ou <i>Brive-la-Gaillarde</i> depuis <i>Paris</i> :",
       "train-station-of": "Gare de <i>{{city}}</i>",
       "join-us-car": "En voiture :",
@@ -137,7 +137,8 @@
       "toulouse-by-car": "à 2h30 de <i>Toulouse</i> via l’A20",
       "join-us-plane": "En avion :",
       "perigueux-airport": "aéroport de <i>Périgueux</i>",
-      "bergerac-airport": "aéroport de <i>Bergerac</i>"
+      "bergerac-airport": "aéroport de <i>Bergerac</i>",
+      "address": "340 Route des canons, 24210 Fossemagne"
     },
     "cottages": {
       "label": "Gîte",

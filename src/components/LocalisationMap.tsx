@@ -1,12 +1,11 @@
 import React, {useState} from "react";
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
-import {Container, IconButton} from "@mui/material";
-import {divIcon, LatLng, point} from "leaflet";
+import {MapContainer, Marker, TileLayer} from "react-leaflet";
+import {Container} from "@mui/material";
+import {divIcon, LatLng, LeafletMouseEvent, point} from "leaflet";
 import {renderToStaticMarkup} from "react-dom/server";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import DirectionsIcon from '@mui/icons-material/Directions';
 import i18n from "../utils/i18n";
-import {ADDRESS, POSITION} from "../constants/constants";
+import {POSITION} from "../constants/constants";
 
 export function LocalisationMap() {
     const positionLatLng = new LatLng(POSITION.lat, POSITION.lng, POSITION.alt);
@@ -22,19 +21,11 @@ export function LocalisationMap() {
                     attribution={renderToStaticMarkup(<a href="src/components/LocalisationMap">OpenStreetMap</a>)}
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
                 <Marker position={positionLatLng}
+                        eventHandlers={{click: (event: LeafletMouseEvent) => window.open('https://goo.gl/maps/L8VVYhv4TVCsXbjk7', '_blank', 'noopener,noreferrer')}}
                         icon={divIcon({
                             html: renderToStaticMarkup(<LocationOnIcon sx={{color: "primary.dark"}}/>),
-                            iconSize: point(24, 24)
+                            iconSize: point(30, 30)
                         })}>
-                    <Popup>
-                        {ADDRESS}&nbsp;
-                        <a target="_blank" rel="noreferrer"
-                           href={`https://www.google.com/maps/place/${positionLatLng.lat},${positionLatLng.lng}?hl=${lang}`}>
-                            <IconButton aria-label="directions">
-                                <DirectionsIcon sx={{color: "primary.dark"}}></DirectionsIcon>
-                            </IconButton>
-                        </a>
-                    </Popup>
                 </Marker>
             </MapContainer>
         </Container>

@@ -141,19 +141,19 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
                                 <HomeButton shade={Shade.Dark} height={55}/>
                             </Grid>
                             <Grid item xs={12}>
-                                <a target="_blank" rel="noreferrer"
+                                <a target="_blank" rel="noreferrer noopener"
                                    href={`https://instagram.com/leterrier.gite`}>
                                     <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='instagram'>
                                         <InstagramIcon fontSize='small'/>
                                     </IconButton>
                                 </a>
-                                <a target="_blank" rel="noreferrer"
+                                <a target="_blank" rel="noreferrer noopener"
                                    href={`https://www.facebook.com/leterrier.gite`}>
                                     <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='facebook'>
                                         <FacebookIcon fontSize='small'/>
                                     </IconButton>
                                 </a>
-                                <a target="_blank" rel="noreferrer"
+                                <a target="_blank" rel="noreferrer noopener"
                                    href={`https://pinterest.fr/leterriergites/`}>
                                     <IconButton sx={{outline: 'solid 1px', margin: '2vw'}} aria-label='pinterest'>
                                         <PinterestIcon fontSize='small'/>

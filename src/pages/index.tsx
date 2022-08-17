@@ -129,6 +129,7 @@ export default function Home() {
                     <TextBox contentKey={'pages.home.join-us-plane'} marginBottom='0' marginTop='0' width='100%'/>
                     <TranslatedList itemKeys={['pages.home.perigueux-airport', 'pages.home.bergerac-airport']}/>
                     <Box sx={{paddingTop: '4vh'}}/>
+                    <Box sx={{paddingTop: '2vh'}}/>
                 </Box>
             </Box>
             <LocalisationMap/>
