@@ -5,15 +5,15 @@ import moment, {BACKEND_DATES_FORMAT} from "../../constants/constants";
 import {AppDispatch} from "../store";
 
 interface BookedDatesState {
-    pear: number[];
-    grape: number[];
+    pear: number[] | undefined;
+    grape: number[] | undefined;
     queryEnd: number | undefined;
     initializedAt: number | undefined;
 }
 
 const INITIAL_STATE: BookedDatesState = {
-    pear: [],
-    grape: [],
+    pear: undefined,
+    grape: undefined,
     queryEnd: undefined,
     initializedAt: undefined
 }
@@ -30,8 +30,8 @@ export const fetchReservedDates = createAsyncThunk(
         const state = (thunkAPI.getState() as { reservedDates: BookedDatesState }).reservedDates;
         return BookingService.getReservedDates(payload.start, payload.end, payload.dispatch)
             .then(value => {
-                const previousPear = state.pear.map(item => moment(item).format(BACKEND_DATES_FORMAT)).filter(item => !value.pearBookings.includes(item));
-                const previousGrape = state.grape.map(item => moment(item).format(BACKEND_DATES_FORMAT)).filter(item => !value.grapeBookings.includes(item));
+                const previousPear = state.pear?.map(item => moment(item).format(BACKEND_DATES_FORMAT)).filter(item => !value.pearBookings.includes(item));
+                const previousGrape = state.grape?.map(item => moment(item).format(BACKEND_DATES_FORMAT)).filter(item => !value.grapeBookings.includes(item));
                 return {
                     queryEnd: payload.end.valueOf(),
                     response: {

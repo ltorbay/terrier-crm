@@ -83,16 +83,18 @@ export default function BookingDateRange(props: Props) {
         }
     }, [pricing.configuration, pricing.initializedAt, pricing.queriedStart, pricing.queriedEnd])
 
-    const [state, setState] = useState<State>(() => buildState(props.cottageSelect, seasons, pearReservations, grapeReservations));
+    const [state, setState] = useState<State>(() => buildState(props.cottageSelect, seasons, pearReservations || [], grapeReservations || []));
 
     useEffect(() => {
-        props.onChange(state.period);
+        if (pearReservations !== undefined && grapeReservations !== undefined) {
+            props.onChange(state.period);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.cottageSelect, state.period])
-    
+
     useEffect(() => {
         if (seasons && seasons.length) {
-            const newState = buildState(props.cottageSelect, seasons, pearReservations, grapeReservations);
+            const newState = buildState(props.cottageSelect, seasons, pearReservations || [], grapeReservations || []);
             setState(newState);
         }
     }, [seasons, grapeReservations, pearReservations, props.cottageSelect]);
