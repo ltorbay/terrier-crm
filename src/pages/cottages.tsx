@@ -8,6 +8,7 @@ import {ImageBox} from "../components/containers/ImageBox";
 import {ContentBox} from "../components/containers/ContentBox";
 import {TranslatedList} from "../components/TranslatedList";
 import React from "react";
+import {StickyBookingButton} from "../components/StickyBookingButton";
 
 // noinspection JSUnusedGlobalSymbols
 export default function Cottages() {
@@ -59,6 +60,7 @@ export default function Cottages() {
                 <TranslatedList width={textBoxWidth}
                                 itemKeys={grapeEquipments.map(item => 'common.equipments.' + item)}/>
             </ImageBox>
+            <StickyBookingButton/>
         </>
     )
 }

@@ -32,8 +32,8 @@ export const SITE_PAGES: { key: string, path: string }[] = [
     {key: 'pages.cottages.label', path: '/cottages'},
     {key: 'pages.gallery.label', path: '/gallery'},
     // {key: 'pages.explore.label', path: '/explore'},
-    {key: 'pages.booking.label', path: '/booking'},
-    {key: 'pages.contact.label', path: '/contact'}
+    {key: 'pages.contact.label', path: '/contact'},
+    {key: 'pages.booking.label', path: '/booking'}
 ]
 
 const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
@@ -95,7 +95,12 @@ const NavigationBar = ({shade, displayHomeButton = true}: Props) => {
                             ))}
                         </Menu>
                     </Box>
-                    <Box sx={{justifyContent: 'flex-end', flexGrow: 1, display: smallScreen ? 'none' : 'flex'}}>
+                    <Box sx={{
+                        justifyContent: 'flex-end',
+                        flexGrow: 1,
+                        display: smallScreen ? 'none' : 'flex',
+                        position: 'sticky'
+                    }}>
                         {SITE_PAGES.map((page) => (
                             <Link href={page.path}
                                   key={page.key}

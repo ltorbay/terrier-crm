@@ -9,6 +9,7 @@ import React from "react";
 import {MEDIA_QUERY_650_BREAKPOINT, PICTURES} from "../constants/constants";
 import Image from "next/image";
 import imageLoader from "../service/ImageLoader";
+import {StickyBookingButton} from "../components/StickyBookingButton";
 
 class ImageInfo {
     src: string;
@@ -112,6 +113,7 @@ export default function Gallery() {
                 <Trans i18nKey={'common.places.the-grape'}/>
             </Typography>
             {imageList(t, grapeImages, smallScreen)}
+            <StickyBookingButton/>
         </Box>
     )
 }

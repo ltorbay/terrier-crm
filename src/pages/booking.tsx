@@ -192,7 +192,6 @@ function bookingButton(enabledPaymentForm: boolean, enablePaymentForm: Dispatch<
     if (enabledPaymentForm) return undefined;
     return (
         <Button variant='contained'
-                disableElevation
                 sx={{
                     width: '100%',
                     marginX: 0,

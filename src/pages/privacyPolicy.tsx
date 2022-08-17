@@ -5,6 +5,7 @@ import {Box} from "@mui/material";
 import {ImageDecoration} from "../components/ImageDecoration";
 import {TextBox} from "../components/containers/TextBox";
 import {ICONS} from "../constants/constants";
+import {StickyBookingButton} from "../components/StickyBookingButton";
 
 // noinspection JSUnusedGlobalSymbols
 export default function PrivacyPolicy() {
@@ -17,6 +18,7 @@ export default function PrivacyPolicy() {
             <ImageDecoration icon={ICONS.dark.icons.keys} right/>
             <TextBox titleKey={'pages.privacy-policy.label'}
                      contentKey={'pages.privacy-policy.content'}/>
+            <StickyBookingButton/>
         </>
     );
 }

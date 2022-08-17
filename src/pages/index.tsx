@@ -14,6 +14,7 @@ import {useAppDispatch} from "../redux/hooks";
 import {fetchPricingConfiguration} from "../redux/slice/PricingSlice";
 import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
 import Link from "next/link";
+import {StickyBookingButton} from "../components/StickyBookingButton";
 
 const LocalisationMap = dynamic<any>(
     () => import("../components/LocalisationMap").then(module => module.LocalisationMap),
@@ -131,6 +132,7 @@ export default function Home() {
                 </Box>
             </Box>
             <LocalisationMap/>
+            <StickyBookingButton/>
         </>
     )
 }
