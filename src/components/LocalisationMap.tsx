@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import {MapContainer, Marker, TileLayer} from "react-leaflet";
-import {Container} from "@mui/material";
+import {Container, useMediaQuery} from "@mui/material";
 import {divIcon, LatLng, LeafletMouseEvent, point} from "leaflet";
 import {renderToStaticMarkup} from "react-dom/server";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import i18n from "../utils/i18n";
-import {POSITION} from "../constants/constants";
+import {MEDIA_QUERY_650_BREAKPOINT, POSITION} from "../constants/constants";
 
 export function LocalisationMap() {
+    const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
     const positionLatLng = new LatLng(POSITION.lat, POSITION.lng, POSITION.alt);
     const [lang, setLang] = useState<string>(i18n.language);
     i18n.on("languageChanged", setLang)
@@ -16,7 +17,9 @@ export function LocalisationMap() {
         <Container sx={{width: "90%", height: "500px", maxWidth: "lg", maxHeight: "lg"}}>
             <MapContainer center={positionLatLng}
                           zoom={positionLatLng.alt}
-                          scrollWheelZoom={false}>
+                          scrollWheelZoom={false}
+                          dragging={!smallScreen}
+                          tap={false}>
                 <TileLayer
                     attribution={renderToStaticMarkup(<a href="src/components/LocalisationMap">OpenStreetMap</a>)}
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
