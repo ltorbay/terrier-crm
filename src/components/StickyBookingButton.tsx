@@ -27,7 +27,8 @@ export function StickyBookingButton() {
                         <Tooltip placement='left' title={t('pages.booking.label')}>
                             <IconButton size={smallScreen ? 'medium': 'large'}
                                         sx={{
-                                            outline: 'solid 2px',
+                                            border: 'solid 2px',
+                                            borderRadius: '100px',
                                             margin: '2vw',
                                             backgroundColor: 'primary.light',
                                             ":hover": {
