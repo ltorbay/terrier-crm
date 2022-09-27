@@ -98,7 +98,7 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
             <Head>
                 <title>Le Terrier</title>
                 <link rel="stylesheet" href="styles.css"/>
-                <meta property="og:title" content="Le Terrier - Grand gîte à Fossemagne, Dordogne"/>
+                <meta property="og:title" content="Le Terrier - Gîte en Dordogne"/>
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content="https://www.leterrier-gites.fr/"/>
 
