@@ -35,7 +35,7 @@ export default function Contact() {
                         <ListItem key='number' disablePadding sx={{paddingX: '2em'}}>
                             <LocalPhoneOutlinedIcon fontSize='medium'/>
                             <Typography variant='h6'>
-                                {'\u00A0\u00A0\u00A0'}06 70 70 17 72
+                                {'\u00A0\u00A0\u00A0'}07 63 77 49 33
                             </Typography>
                         </ListItem>
                     </List>
