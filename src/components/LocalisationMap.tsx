@@ -27,7 +27,7 @@ export function LocalisationMap() {
                         eventHandlers={{click: (event: LeafletMouseEvent) => window.open('https://goo.gl/maps/L8VVYhv4TVCsXbjk7', '_blank', 'noopener,noreferrer')}}
                         icon={divIcon({
                             html: renderToStaticMarkup(<LocationOnIcon sx={{color: "primary.dark"}}/>),
-                            iconSize: point(30, 30)
+                            iconSize: point(50, 50)
                         })}>
                 </Marker>
             </MapContainer>
