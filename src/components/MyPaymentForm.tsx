@@ -172,7 +172,7 @@ export function MyPaymentForm(props: Props) {
                                error={(hasSubmit || state.user?.email?.updated) && !emailValid(state.user?.email)}
                                label={t('components.payment-form.email')}/>
                 </Grid>
-                <Grid item xs={fieldColumns / 2} paddingY='1em' paddingRight='0.5em'>
+                <Grid item xs={fieldColumns} paddingY='1em'>
                     <TextField required
                                fullWidth
                                id="guestsCount"
@@ -188,11 +188,12 @@ export function MyPaymentForm(props: Props) {
                                        }
                                    }
                                }))}
+                               helperText={t('components.payment-form.guests-count-helper')}
                                error={(hasSubmit || state.information?.guestsCount?.updated) && !guestsCountValid(state?.information?.guestsCount)}
                                type="number"
                                label={t('components.payment-form.guests-count')}/>
                 </Grid>
-                <Grid item xs={fieldColumns / 2} paddingY='1em' paddingLeft='0.5em'>
+                <Grid item xs={fieldColumns} paddingY='1em'>
                     <TextField fullWidth
                                id="phone"
                                onChange={event => setState((prevState: State) => ({

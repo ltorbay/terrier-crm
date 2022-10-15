@@ -26,8 +26,9 @@ export default function Cottages() {
             </header>
             <Box sx={{paddingTop: '4vh'}}/>
             <ImageDecoration right/>
-            <TextBox titleKey={'pages.cottages.our-cottages-title'}
+            <TextBox marginBottom='4vh' titleKey={'pages.cottages.our-cottages-title'}
                      contentKey={'pages.cottages.our-cottages-body'}/>
+            <TextBox marginTop='0px' contentKey={'pages.cottages.events-details'}/>
             <ImageBox src={PICTURES.domain.aerialView1} hrefLink='/gallery#common.places.pool' id='common.places.pool' altKey='domain.aerialView1'>
                 <ContentBox titleKey={'pages.cottages.amenities-title'} width='100%'>
                     <TranslatedList itemKeys={amenities.map(amenity => 'pages.cottages.' + amenity)}/>
