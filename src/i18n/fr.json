@@ -128,7 +128,7 @@
     "home": {
       "label": "Accueil",
       "concept-title": "Notre Gîte",
-      "concept-body": "Le concept est simple : 3 bâtiments isolés rassemblés autour d’une <i>placette</i> au cœur de la forêt avec une piscine chauffée (et une bouée licorne bien entendu), pour se retrouver avec ceux qu’on aime. Pouvant accueillir entre 13 et 21 personnes, <i>Le Terrier</i> allie le charme de l’ancien et le confort moderne pour créer une bulle hors du temps. <br/><br/>Pour toute demande d'organisation d'évènements supérieurs à la capacité du gîte, merci de nous contacter directement.<br/><br/>Nous habitons à proximité à l’opposé du gîte, donc vous pourrez faire du bruit toute la nuit tandis que nous dormirons sur nos 8 oreilles ! L’intimité est le maître mot, mais si vous avez besoin de quoi que ce soit on est à un texto de vous fournir ce dont vous avez besoin.<br/><br/>Bienvenue chez nous / vous !",
+      "concept-body": "Le concept est simple : 3 bâtiments isolés rassemblés autour d’une <i>placette</i> au cœur de la forêt avec une piscine (et une bouée licorne bien entendu), pour se retrouver avec ceux qu’on aime. Pouvant accueillir entre 13 et 21 personnes, <i>Le Terrier</i> allie le charme de l’ancien et le confort moderne pour créer une bulle hors du temps. <br/><br/>Pour toute demande d'organisation d'évènements supérieurs à la capacité du gîte, merci de nous contacter directement.<br/><br/>Nous habitons à proximité à l’opposé du gîte, donc vous pourrez faire du bruit toute la nuit tandis que nous dormirons sur nos 8 oreilles ! L’intimité est le maître mot, mais si vous avez besoin de quoi que ce soit on est à un texto de vous fournir ce dont vous avez besoin.<br/><br/>Bienvenue chez nous / vous !",
       "join-us-title": "Comment venir ?",
       "join-us-train": "Pour venir nous rendre visite, c’est par ici ! <br/><br/>En train - changements à <i>Bordeaux</i> ou <i>Brive-la-Gaillarde</i> depuis <i>Paris</i> :",
       "train-station-of": "Gare de <i>{{city}}</i>",
@@ -147,7 +147,7 @@
       "our-cottages-body": "Bienvenue au <strong><i>Terrier</i></strong> ! Un gîte en <i>Périgord noir, Dordogne</i> dans le Sud-Ouest, où trois bâtiments se rassemblent autour d’une placette de charme bordée d’oliviers, pour se retrouver avec ses proches au cœur de la nature non loin de sites emblématiques comme <i>Lascaux</i>, <i>Sarlat</i> ou encore <i>Les Eyzies</i>. <br/><br/>Plus de cent mètres de forêt séparent les bâtiments du plus proche voisin, apportant une isolation sonore parfaite sans empiéter sur la vue plongeante sur la vallée du <i>Manoire</i>.<br/><br/>Entre juin et septembre, les 3 bâtiments sont disponibles à la location dans un même ensemble ; il est cependant possible de louer séparément la maison de la poire et la maison du raisin entre octobre et mai. Le <i>Bòsc</i> reste accessible en tant que salle commune du domaine, et ne peut être loué séparément.",
       "amenities-title": "Aménagements",
       "private-alleyway": "Allée privative de 200 mètres",
-      "heated-pool": "Piscine chauffée",
+      "heated-pool": "Piscine",
       "buildings-and-courtyard": "3 bâtiments disposés autour d’une cour centrale",
       "private-terraces": "Terrasses privatives",
       "terrain-description": "13 hectares de jardins, prairies et bois",
