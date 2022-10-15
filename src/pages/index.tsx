@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import moment, {ICONS, MEDIA_QUERY_650_BREAKPOINT, PICTURES} from "../constants/constants";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
-import {useTranslation} from "react-i18next";
+import {Trans, useTranslation} from "react-i18next";
 import {TextBox} from "../components/containers/TextBox";
 import {ImageDecoration} from "../components/ImageDecoration";
 import {TranslatedList} from "../components/TranslatedList";
@@ -15,6 +15,7 @@ import {fetchPricingConfiguration} from "../redux/slice/PricingSlice";
 import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
 import Link from "next/link";
 import {StickyBookingButton} from "../components/StickyBookingButton";
+import HomeOutlined from "@mui/icons-material/HomeOutlined";
 
 const LocalisationMap = dynamic<any>(
     () => import("../components/LocalisationMap").then(module => module.LocalisationMap),
@@ -118,10 +119,17 @@ export default function Home() {
             </ImageList>
             <ImageDecoration icon={ICONS.dark.icons.keys}/>
             <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                <Box width='70%'>
-                    <TextBox titleKey={'pages.home.join-us-title'} contentKey={'pages.home.join-us-train'}
-                             marginBottom='0'
-                             width='100%'/>
+                <Box width='80%'>
+                    <Typography paddingBottom='2rem' display='block' textAlign='center' variant='h4'>
+                        <Trans i18nKey='pages.home.join-us-title'/>
+                    </Typography>
+                    <Typography display='flex' variant='h6' justifyContent='center'>
+                        <HomeOutlined fontSize='large'/>
+                        {'\u00A0\u00A0\u00A0'}
+                        <Trans i18nKey='common.address'/>
+                    </Typography>
+                    <br/><br/><br/>
+                    <TextBox contentKey={'pages.home.join-us-train'} marginBottom='0' marginTop='0' width='100%'/>
                     <TranslatedList
                         itemKeys={trainStations.map(station => t('pages.home.train-station-of', {city: station}))}/>
                     <TextBox contentKey={'pages.home.join-us-car'} marginBottom='0' marginTop='0' width='100%'/>

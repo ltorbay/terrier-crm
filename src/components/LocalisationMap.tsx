@@ -10,7 +10,7 @@ import {MEDIA_QUERY_650_BREAKPOINT, POSITION} from "../constants/constants";
 export function LocalisationMap() {
     const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
     const positionLatLng = new LatLng(POSITION.lat, POSITION.lng, POSITION.alt);
-    const [lang, setLang] = useState<string>(i18n.language);
+    const setLang = useState<string>(i18n.language)[1];
     i18n.on("languageChanged", setLang)
 
     return (

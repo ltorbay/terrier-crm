@@ -8,6 +8,7 @@
     "minimum-nights": "{{count}} nuits minimum",
     "weekly-rental": "Location à la semaine uniquement en haute saison",
     "rural-cottages": "GÎTE EN DORDOGNE",
+    "address": "340 Route des Canons, 24210 Fossemagne",
     "places": {
       "pear": "Maison de la poire",
       "the-pear": "La maison de la poire",
@@ -127,7 +128,7 @@
       "label": "Accueil",
       "concept-title": "Notre Gîte",
       "concept-body": "Le concept est simple : 3 bâtiments isolés rassemblés autour d’une <i>placette</i> au cœur de la forêt avec une piscine chauffée (et une bouée licorne bien entendu), pour se retrouver avec ceux qu’on aime. Pouvant accueillir entre 10 et 14 personnes, <i>Le Terrier</i> allie le charme de l’ancien et le confort moderne pour créer une bulle hors du temps. <br/><br/>Nous habitons à proximité à l’opposé du gîte, donc vous pourrez faire du bruit toute la nuit tandis que nous dormirons sur nos 8 oreilles ! L’intimité est le maître mot, mais si vous avez besoin de quoi que ce soit on est à un texto de vous fournir ce dont vous avez besoin.<br/><br/>Bienvenue chez nous / vous !",
-      "join-us-title": "Comment venir ?<br/>340 Route des canons, 24210 Fossemagne",
+      "join-us-title": "Comment venir ?",
       "join-us-train": "Pour venir nous rendre visite, c’est par ici ! <br/><br/>En train - changements à <i>Bordeaux</i> ou <i>Brive-la-Gaillarde</i> depuis <i>Paris</i> :",
       "train-station-of": "Gare de <i>{{city}}</i>",
       "join-us-car": "En voiture :",
@@ -137,8 +138,7 @@
       "toulouse-by-car": "à 2h30 de <i>Toulouse</i> via l’A20",
       "join-us-plane": "En avion :",
       "perigueux-airport": "aéroport de <i>Périgueux</i>",
-      "bergerac-airport": "aéroport de <i>Bergerac</i>",
-      "address": "340 Route des canons, 24210 Fossemagne"
+      "bergerac-airport": "aéroport de <i>Bergerac</i>"
     },
     "cottages": {
       "label": "Gîte",
@@ -175,7 +175,7 @@
       "label": "Nous contacter",
       "title": "Nous contacter",
       "contact-us-body": "À l’origine de ce projet : 4 amis qui se sont rencontrés durant les études. Christelle, Cécile, Mathieu et Louis. Il nous est souvent arrivé de voyager ensemble, en France ou à l’étranger, et c’est lors d’une de ces escapades en 2018 que nous avons imaginé notre projet de gîte qui allie confort, nature et slow life.<br/><br/>Pour toute demande concernant l’organisation d’événements <i>(mariages - fêtes de famille - escape game - murder party…)</i> ou dans le cadre de votre entreprise <i>(séminaires - ateliers de team building - atelier thématique - réunion avec vos clients…)</i> n’hésitez pas à nous envoyer une demande par mail à <strong>leterrier.gites@gmail.com</strong>.",
-      "our-coordinates": "Nos Coordonnées"
+      "our-coordinates": "Nos coordonnées"
     },
     "privacy-policy": {
       "label": "Politique de confidentialité",

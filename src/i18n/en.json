@@ -137,8 +137,7 @@
       "toulouse-by-car": "2h30 from <i>Toulouse</i> via A20",
       "join-us-plane": "By plane:",
       "perigueux-airport": "<i>Périgueux</i> airport",
-      "bergerac-airport": "<i>Bergerac</i> airport",
-      "address": "340 Route des canons, 24210 Fossemagne"
+      "bergerac-airport": "<i>Bergerac</i> airport"
     },
     "cottages": {
       "label": "Cottage",
@@ -175,7 +174,7 @@
       "label": "Contact us",
       "title": "Contact us",
       "contact-us-body": "At the source of the project: 4 friends who met during their studies. Christelle, Cécile, Mathieu and Louis. We have often traveled together, in France or abroad, and it was during one of these getaways in 2018 that we imagined our project of rural lodgings that combine comfort, nature and slow life.<br/><br/>For any request concerning the organization of events <i>(weddings - family celebrations - escape game - murder party…)</i> or within the framework of your company <i>(seminars - team building workshops - thematic workshop - meeting with your clients…)</i> do not hesitate to send us a request by email at <strong>leterrier.gites@gmail.com</strong>.",
-      "our-coordinates": "Our coordinates"
+      "our-coordinates": "Our contact details"
     },
     "privacy-policy": {
       "label": "Privacy policy",
