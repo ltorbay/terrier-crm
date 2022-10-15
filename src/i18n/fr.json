@@ -128,7 +128,7 @@
     "home": {
       "label": "Accueil",
       "concept-title": "Notre Gîte",
-      "concept-body": "Le concept est simple : 3 bâtiments isolés rassemblés autour d’une <i>placette</i> au cœur de la forêt avec une piscine chauffée (et une bouée licorne bien entendu), pour se retrouver avec ceux qu’on aime. Pouvant accueillir entre 10 et 14 personnes, <i>Le Terrier</i> allie le charme de l’ancien et le confort moderne pour créer une bulle hors du temps. <br/><br/>Pour toute demande d'organisation d'évènements supérieurs à la capacité du gîte, merci de nous contacter directement.<br/><br/>Nous habitons à proximité à l’opposé du gîte, donc vous pourrez faire du bruit toute la nuit tandis que nous dormirons sur nos 8 oreilles ! L’intimité est le maître mot, mais si vous avez besoin de quoi que ce soit on est à un texto de vous fournir ce dont vous avez besoin.<br/><br/>Bienvenue chez nous / vous !",
+      "concept-body": "Le concept est simple : 3 bâtiments isolés rassemblés autour d’une <i>placette</i> au cœur de la forêt avec une piscine chauffée (et une bouée licorne bien entendu), pour se retrouver avec ceux qu’on aime. Pouvant accueillir entre 13 et 21 personnes, <i>Le Terrier</i> allie le charme de l’ancien et le confort moderne pour créer une bulle hors du temps. <br/><br/>Pour toute demande d'organisation d'évènements supérieurs à la capacité du gîte, merci de nous contacter directement.<br/><br/>Nous habitons à proximité à l’opposé du gîte, donc vous pourrez faire du bruit toute la nuit tandis que nous dormirons sur nos 8 oreilles ! L’intimité est le maître mot, mais si vous avez besoin de quoi que ce soit on est à un texto de vous fournir ce dont vous avez besoin.<br/><br/>Bienvenue chez nous / vous !",
       "join-us-title": "Comment venir ?",
       "join-us-train": "Pour venir nous rendre visite, c’est par ici ! <br/><br/>En train - changements à <i>Bordeaux</i> ou <i>Brive-la-Gaillarde</i> depuis <i>Paris</i> :",
       "train-station-of": "Gare de <i>{{city}}</i>",
@@ -143,7 +143,7 @@
     },
     "cottages": {
       "label": "Gîte",
-      "our-cottages-title": "Nos gîtes",
+      "our-cottages-title": "Notre gîte",
       "our-cottages-body": "Bienvenue au <strong><i>Terrier</i></strong> ! Un gîte en <i>Périgord noir, Dordogne</i> dans le Sud-Ouest, où trois bâtiments se rassemblent autour d’une placette de charme bordée d’oliviers, pour se retrouver avec ses proches au cœur de la nature non loin de sites emblématiques comme <i>Lascaux</i>, <i>Sarlat</i> ou encore <i>Les Eyzies</i>. <br/><br/>Plus de cent mètres de forêt séparent les bâtiments du plus proche voisin, apportant une isolation sonore parfaite sans empiéter sur la vue plongeante sur la vallée du <i>Manoire</i>.<br/><br/>Entre juin et septembre, les 3 bâtiments sont disponibles à la location dans un même ensemble ; il est cependant possible de louer séparément la maison de la poire et la maison du raisin entre octobre et mai. Le <i>Bòsc</i> reste accessible en tant que salle commune du domaine, et ne peut être loué séparément.",
       "amenities-title": "Aménagements",
       "private-alleyway": "Allée privative de 200 mètres",
@@ -151,7 +151,8 @@
       "buildings-and-courtyard": "3 bâtiments disposés autour d’une cour centrale",
       "private-terraces": "Terrasses privatives",
       "terrain-description": "13 hectares de jardins, prairies et bois",
-      "pear-description": "Ce gîte de 100m2 dispose de 3 chambres dont 2 grandes, et peut accueillir jusqu’à 7 personnes. Le petit + : la douce odeur du poirier accolé à la façade au printemps et en été !<br/><br/><strong>7 personnes - 3 chambres - 2 salles de bains</strong> <br/><br/>Les équipements :",
+      "domain-count": "13 personnes en capacité nominale, jusqu'à 21 personnes avec nos couchages d'appoint",
+      "pear-description": "Ce gîte de 100m2 dispose de 3 chambres dont 2 grandes, et peut accueillir jusqu’à 9 personnes. Le petit + : la douce odeur du poirier accolé à la façade au printemps et en été !<br/><br/><strong>9 personnes - 3 chambres - 2 salles de bains</strong> <br/><br/>Les équipements :",
       "grape-description": "Ce gîte de 114m2 dispose de 2 chambres dont 1 grande, et peut accueillir jusqu’à 4 personnes. Le petit <i>+</i> : cueillir un grain de raisin gorgé de soleil en été, sur les vignes qui ornent les murs du gîte !<br/><br/><strong>4 personnes - 2 chambres - 2 salles de bains</strong> <br/><br/>Les équipements :",
       "lodge-description": "Ce grand bâtiment d’architecte de 130m2 et sa verrière orientée plein Sud permettent une immersion complète dans la nature ! C’est le cœur du <i>Terrier</i>, et l’endroit idéal pour se retrouver grâce à sa salle de réception de 77m2. Les 2 mezzanines et leur salle de bains permettent d’accueillir jusqu’à 4 personnes supplémentaires grâce à des couchages d'appoint.<br/><br/><strong>jusqu'à 4 personnes - 1 salle de bains</strong> <br/><br/>Les équipements :",
       "events-details": "Pour l'organisation d'évènements de plus grande ampleur (anniversaires, réceptions, mariages, séminaires d'entreprise...) un premier contact sera nécessaire pour que l'on s'adapte au mieux à vos besoins. Il est tout à fait possible d'acueillir une soixantaine de personnes au <strong><i>Terrier</i></strong>, et nous pourrons également lors de nos échanges vous proposer des services annexes (traiteurs, location de tireuse à bière, animation, team building...)."
@@ -168,9 +169,9 @@
       "label": "Disponibilités et réservation",
       "select-cottage": "Quel gîte souhaitez-vous réserver ?",
       "book-stay": "Réservez votre séjour",
-      "pear-count": "7 personnes - 3 chambres - 2 salles de bains",
+      "pear-count": "9 personnes - 3 chambres - 2 salles de bains",
       "grape-count": "4 personnes - 2 chambres - 2 salles de bains",
-      "full-cottage-count": "11-15 personnes - 5-7 chambres - 5 salles de bains",
+      "full-cottage-count": "13-21 personnes - 5-9 chambres - 5 salles de bains",
       "book-button": "Réserver"
     },
     "contact": {

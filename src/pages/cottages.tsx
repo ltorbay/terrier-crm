@@ -14,7 +14,7 @@ import {StickyBookingButton} from "../components/StickyBookingButton";
 export default function Cottages() {
     const textBoxWidth = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT) ? '70%' : '100%';
 
-    const amenities = ['private-alleyway', 'heated-pool', 'buildings-and-courtyard', 'private-terraces', 'terrain-description']
+    const amenities = ['private-alleyway', 'heated-pool', 'buildings-and-courtyard', 'private-terraces', 'terrain-description', 'domain-count']
     const pearEquipments = ['double-glazing', 'central-heater', 'stove', 'equipped-kitchen', 'covered-terrace'];
     const grapeEquipments = ['double-glazing', 'central-heater', 'stove', 'equipped-kitchen'];
     const lodgeEquipment = ['double-glazing', 'reversible-air-conditionner', 'stove'];

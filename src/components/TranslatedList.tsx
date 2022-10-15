@@ -9,7 +9,8 @@ export function TranslatedList({itemKeys, width = '100%'}: { itemKeys: string[],
                 <List>
                     {itemKeys.map((key: string) => (
                         <ListItem key={key} disablePadding sx={{paddingX:'2em'}}>
-                            <Typography alignSelf='start'>{'\u25E6\u00A0\u00A0\u00A0'}<Trans i18nKey={key}/></Typography>
+                            <Typography alignSelf='start'>{'\u25E6\u00A0\u00A0\u00A0'}</Typography>
+                            <Typography alignSelf='start'><Trans i18nKey={key}/></Typography>
                         </ListItem>
                     ))}
                 </List>
