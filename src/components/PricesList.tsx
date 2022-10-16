@@ -6,15 +6,13 @@ import {useAppSelector} from "../redux/hooks";
 import moment, {MEDIA_QUERY_1000_BREAKPOINT} from "../constants/constants";
 import {Moment} from "moment/moment";
 import {PriceLine} from "./PriceLine";
-import {PricingPeriodType} from "../model/PricingPeriodType";
-
-type LabelKeys = 'common.holidays' | 'common.off-season' | 'common.peak-season' | '';
+import {PeriodKeys, seasonKey} from "../model/PricingPeriodType";
 
 export function PricesList() {
     const smallScreen = useMediaQuery(MEDIA_QUERY_1000_BREAKPOINT);
     const pricing = useAppSelector((state) => state.pricing);
 
-    const [priceMap, setPriceMap] = useState<Map<LabelKeys, Map<string, { start: Moment, end: Moment }[]>>>();
+    const [priceMap, setPriceMap] = useState<Map<PeriodKeys, Map<string, { start: Moment, end: Moment }[]>>>();
     useEffect(() => {
         if (pricing.configuration) {
             setPriceMap(buildPriceMap(pricing.configuration));
@@ -34,7 +32,7 @@ export function PricesList() {
     );
 }
 
-function iterateSubMap(priceMap: Map<LabelKeys, Map<string, { start: Moment, end: Moment }[]>>, key: LabelKeys, index: number): React.ReactNode {
+function iterateSubMap(priceMap: Map<PeriodKeys, Map<string, { start: Moment, end: Moment }[]>>, key: PeriodKeys, index: number): React.ReactNode {
     const keys = priceMap?.get(key)?.keys();
     return keys ? Array.from(keys).map((subKey, subIndex) =>
         <PriceLine key={'' + index + subIndex}
@@ -45,26 +43,13 @@ function iterateSubMap(priceMap: Map<LabelKeys, Map<string, { start: Moment, end
     ) : undefined;
 }
 
-function labelKey(periodType: PricingPeriodType): LabelKeys {
-    switch (periodType) {
-        case 'HOLIDAYS':
-            return 'common.holidays';
-        case 'OFF_SEASON':
-            return 'common.off-season';
-        case 'PEAK_SEASON':
-            return 'common.peak-season';
-        default:
-            return '';
-    }
-}
-
-function buildPriceMap(pricingConfiguration: PricingConfigurationStateItem[]): Map<LabelKeys, Map<string, { start: Moment, end: Moment }[]>> {
+function buildPriceMap(pricingConfiguration: PricingConfigurationStateItem[]): Map<PeriodKeys, Map<string, { start: Moment, end: Moment }[]>> {
     const today = moment().startOf('day');
-    const map = new Map<LabelKeys, Map<string, { start: Moment, end: Moment }[]>>();
+    const map = new Map<PeriodKeys, Map<string, { start: Moment, end: Moment }[]>>();
     pricingConfiguration?.map((value, index, array) => {
         const startMoment = moment(value.start);
         return {
-            labelKey: labelKey(value.periodType),
+            labelKey: seasonKey(value.periodType),
             start: startMoment.isBefore(today) ? today : startMoment,
             end: array[index + 1] ? moment(array[index + 1].start) : undefined,
             minConsecutiveDays: value.minConsecutiveDays,

@@ -2,7 +2,7 @@ import {Divider, List, ListItem, ListItemText, Typography} from "@mui/material";
 import {TFunction, useTranslation} from "react-i18next";
 import * as React from "react";
 import {BookingPricingCalculation, PricingDetail} from "../service/BookingService";
-import {PricingPeriodType} from "../model/PricingPeriodType";
+import {PricingPeriodType, seasonKey} from "../model/PricingPeriodType";
 import {CottageSelect, cottageToPrice} from "../model/CottageSelect";
 import moment from "../constants/constants";
 
@@ -80,17 +80,6 @@ function listItem(t: TFunction<"translation">, seasonLabel: string, paymentTypeK
             </Typography>
         </ListItem>
     )
-}
-
-function seasonKey(seasonType: PricingPeriodType): string {
-    switch (seasonType) {
-        case "OFF_SEASON":
-            return 'common.off-season'
-        case "PEAK_SEASON":
-            return 'common.peak-season'
-        case "HOLIDAYS":
-            return 'common.holidays'
-    }
 }
 
 function splitBySeason(pricingDetail: PricingDetail[], select: CottageSelect): BookingDetail[] {

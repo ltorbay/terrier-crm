@@ -4,7 +4,8 @@
     "nights_other": "{{count}} nights",
     "off-season": "Off season",
     "peak-season": "Peak season",
-    "holidays": "School holidays",
+    "holidays": "Mid season",
+    "mid-season": "Mid season",
     "minimum-nights": "{{count}} nights minimum",
     "weekly-rental": "Weekly rental only for peak season",
     "rural-cottages": "COTTAGE IN DORDOGNE",
@@ -159,7 +160,7 @@
     "gallery": {
       "label": "Gallery",
       "title": "Le Terrier in pictures",
-      "body": "A small image preview of your next holiday!"
+      "body": "A small image preview of your next holidays!"
     },
     "explore": {
       "label": "Explore Dordogne"
