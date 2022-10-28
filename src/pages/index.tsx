@@ -84,7 +84,7 @@ export default function Home() {
                 </Typography>
             </Box>
             <Box sx={classes.container}>
-                <Image src={PICTURES.pool.pool}
+                <Image src={PICTURES.domain.frontTerrace}
                        loader={imageLoader}
                        layout='fill'
                        objectFit='cover'
