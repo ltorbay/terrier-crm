@@ -1,6 +1,6 @@
 import {Box, ImageList, ImageListItem, ImageListItemBar, Typography, useMediaQuery} from "@mui/material";
 import React, {useEffect} from "react";
-import moment, {ICONS, MEDIA_QUERY_650_BREAKPOINT, PICTURES} from "../constants/constants";
+import moment, {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
 import {Trans, useTranslation} from "react-i18next";
@@ -16,6 +16,7 @@ import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
 import Link from "next/link";
 import {StickyBookingButton} from "../components/StickyBookingButton";
 import HomeOutlined from "@mui/icons-material/HomeOutlined";
+import {IMAGES} from "../constants/images";
 
 const LocalisationMap = dynamic<any>(
     () => import("../components/LocalisationMap").then(module => module.LocalisationMap),
@@ -26,11 +27,14 @@ const classes = {
     container: {
         overflow: 'hidden',
         position: 'relative',
-        height: '50vw',
+        height: '60vw',
         width: '100%',
     },
+    topBar: {
+        background: 'linear-gradient(to bottom, rgb(246,245,245) 30%, rgba(246,245,245,0.4) 70%, rgba(246,245,245,0.1) 90%) !important'
+    },
     itemBar: {
-        background: 'linear-gradient(to top, rgba(33,30,30,0.6) 0%, rgba(33,30,30,0.4) 70%, rgba(33,30,30,0.2) 100%) !important'
+        background: 'linear-gradient(to top, rgba(33,30,30,0.3) 30%, rgba(33,30,30,0.4) 70%, rgba(33,30,30,0.2) 100%) !important'
     },
     centerContent: {
         textAlign: 'center',
@@ -52,10 +56,10 @@ export default function Home() {
 
     // const vw = typeof window === 'undefined' ? 3 : window.innerHeight / 100;
     const cottagesImages: { src: string, key: string, altKey: string }[] = [
-        {src: PICTURES.pear.backside, key: 'common.places.pear', altKey: 'pear.backside'},
-        {src: PICTURES.grape.house, key: 'common.places.grape', altKey: 'grape.house'},
-        {src: PICTURES.lodge.lodgeFrontView, key: 'common.places.lodge', altKey: 'lodge.lodgeFrontView'},
-        {src: PICTURES.pool.view, key: 'common.places.pool', altKey: 'pool.view'}
+        {src: IMAGES.home.lodge, key: 'common.places.lodge', altKey: 'lodge.lodgeFrontView'},
+        {src: IMAGES.home.pool, key: 'common.places.pool', altKey: 'pool.view'},
+        {src: IMAGES.home.pear, key: 'common.places.pear', altKey: 'pear.backside'},
+        {src: IMAGES.home.grapes, key: 'common.places.grape', altKey: 'grape.house'}
     ]
     const trainStations = ['Niversac', 'Périgueux', 'Thenon', 'Les Versannes'];
     const carAccess = ['perigueux-by-car', 'brive-by-car', 'bordeaux-by-car', 'toulouse-by-car']
@@ -70,7 +74,7 @@ export default function Home() {
                      height='16vw'
                      margin='auto'
                      position='relative'>
-                    <Image src={ICONS.dark.logo}
+                    <Image src={IMAGES.icons.dark.logo}
                            loader={imageLoader}
                            layout='fill'
                            objectFit='contain'
@@ -84,12 +88,13 @@ export default function Home() {
                 </Typography>
             </Box>
             <Box sx={classes.container}>
-                <Image src={PICTURES.pool.pool}
+                <Image src={IMAGES.home.main}
                        loader={imageLoader}
                        layout='fill'
                        objectFit='cover'
-                       alt={t('common.images.pool.pool')}
+                       alt={t('Drone 2022-10 9')}
                        loading='eager'/>
+                <ImageListItemBar sx={classes.topBar} position='top' />
             </Box>
             <ImageDecoration right/>
             <TextBox titleKey={'pages.home.concept-title'} contentKey={'pages.home.concept-body'}/>
@@ -117,7 +122,7 @@ export default function Home() {
                     </ImageListItem>
                 )}
             </ImageList>
-            <ImageDecoration icon={ICONS.dark.icons.keys}/>
+            <ImageDecoration icon={IMAGES.icons.dark.keys}/>
             <Box sx={{display: 'flex', justifyContent: 'center'}}>
                 <Box width='80%'>
                     <Typography paddingBottom='2rem' display='block' textAlign='center' variant='h4'>

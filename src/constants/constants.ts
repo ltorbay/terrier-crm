@@ -77,28 +77,3 @@ export const PICTURES = {
         view: 'pictures/pool/pool_view.jpg'
     }
 }
-
-export const ICONS = {
-    dark: {
-        logo: 'icons/dark/logo.png',
-        icons: {
-            door: 'icons/dark/door.png',
-            flower: 'icons/dark/flower.png',
-            keys: 'icons/dark/keys.png',
-            stump: 'icons/dark/stump.png',
-            grape: 'icons/dark/grape.png',
-            pear: 'icons/dark/pear.png'
-        }
-    },
-    light: {
-        logo: 'icons/light/logo.png',
-        icons: {
-            door: 'icons/light/door.png',
-            flower: 'icons/light/flower.png',
-            keys: 'icons/light/keys.png',
-            stump: 'icons/light/stump.png',
-            grape: 'icons/light/grape.png',
-            pear: 'icons/light/pear.png'
-        }
-    }
-}

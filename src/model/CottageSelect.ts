@@ -1,5 +1,5 @@
-import {ICONS} from "../constants/constants";
 import {PricingLine, PricingModel} from "./PricingModel";
+import {IMAGES} from "../constants/images";
 
 export enum CottageSelect {
     BOTH,
@@ -22,11 +22,11 @@ export function cottageToLabel(select: CottageSelect): string {
 export function cottageToIcon(select: CottageSelect): string {
     switch (select) {
         case CottageSelect.BOTH:
-            return ICONS.dark.icons.keys;
+            return IMAGES.icons.dark.keys;
         case CottageSelect.PEAR:
-            return ICONS.dark.icons.pear;
+            return IMAGES.icons.dark.pear;
         case CottageSelect.GRAPE:
-            return ICONS.dark.icons.grape;
+            return IMAGES.icons.dark.grape;
     }
 }
 

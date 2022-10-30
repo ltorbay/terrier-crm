@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {ICONS} from "../constants/constants";
 import Image from "next/image";
 import {Box} from "@mui/material";
 import imageLoader from "../service/ImageLoader";
+import {IMAGES} from "../constants/images";
 
 const classes = {
     backgroundDecorationLeft: {
@@ -25,7 +25,7 @@ export function ImageDecoration({
                                     right = false,
                                     marginTop = '100px',
                                     vw = 20,
-                                    icon = ICONS.dark.icons.flower
+                                    icon = IMAGES.icons.dark.flower
                                 }: { right?: boolean, marginTop?: string, vw?: number, icon?: string }) {
     const [showing, setShowing] = useState(false);
 

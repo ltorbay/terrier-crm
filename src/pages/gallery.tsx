@@ -10,22 +10,9 @@ import {MEDIA_QUERY_650_BREAKPOINT, PICTURES} from "../constants/constants";
 import Image from "next/image";
 import imageLoader from "../service/ImageLoader";
 import {StickyBookingButton} from "../components/StickyBookingButton";
-
-class ImageInfo {
-    src: string;
-    titleKey: string;
-    rows: number;
-    cols: number;
-    smallScreenCols: number;
-
-    constructor(src: string, titleKey: string, rows?: number, cols?: number, smallScreenCols?: number) {
-        this.src = src;
-        this.titleKey = titleKey;
-        this.rows = rows || 1;
-        this.cols = cols || 1;
-        this.smallScreenCols = smallScreenCols || this.cols;
-    }
-}
+import {ImageInfo} from "../model/ImageInfo";
+import {ImageGallery} from "../components/ImageGallery";
+import {IMAGES} from "../constants/images";
 
 const domainImages: ImageInfo[] = [
     new ImageInfo(PICTURES.domain.arrival, 'domain.arrival', 2, 2),
@@ -79,9 +66,6 @@ const grapeImages: ImageInfo[] = [
 
 // noinspection JSUnusedGlobalSymbols
 export default function Gallery() {
-    const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
-    const {t} = useTranslation();
-
     return (
         <Box>
             <header>
@@ -89,7 +73,7 @@ export default function Gallery() {
             </header>
             <Box sx={{paddingTop: '4vh'}}/>
             <ImageDecoration right/>
-            <ImageBox src={PICTURES.domain.aerialView} altKey='domain.aerialView'>
+            <ImageBox src={IMAGES.gallery.main} altKey='domain.aerialView'>
                 <TextBox titleKey={'pages.gallery.title'}
                          contentKey={'pages.gallery.body'}/>
             </ImageBox>
@@ -97,50 +81,23 @@ export default function Gallery() {
                         id='common.places.pool'>
                 <Trans i18nKey={'common.places.domain'}/>
             </Typography>
-            {imageList(t, domainImages, smallScreen)}
+            <ImageGallery images={domainImages}/>
             <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'
                         id='common.places.lodge'>
                 <Trans i18nKey={'common.places.the-lodge'}/>
             </Typography>
-            {imageList(t, lodgeImages, smallScreen)}
+            <ImageGallery images={lodgeImages}/>
             <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'
                         id='common.places.pear'>
                 <Trans i18nKey={'common.places.the-pear'}/>
             </Typography>
-            {imageList(t, pearImages, smallScreen)}
+            <ImageGallery images={pearImages}/>
             <Typography paddingTop='2vh' paddingBottom='2vh' display='block' textAlign='center' variant='h4'
                         id='common.places.grape'>
                 <Trans i18nKey={'common.places.the-grape'}/>
             </Typography>
-            {imageList(t, grapeImages, smallScreen)}
+            <ImageGallery images={grapeImages}/>
             <StickyBookingButton/>
         </Box>
-    )
-}
-
-function imageList(t: TFunction<"translation">, images: ImageInfo[], smallScreen: boolean) {
-    const gap = 6;
-    return (
-        <ImageList sx={{paddingX: gap + 'px'}} variant="quilted" cols={smallScreen ? 2 : 4} gap={gap}>
-            {images.map((image) => (
-                <ImageListItem key={image.src}
-                               cols={smallScreen ? image.smallScreenCols : image.cols}
-                               rows={image.rows}>
-                    <Box position='relative'
-                         overflow='hidden'
-                         width='100%'
-                         height={typeof window === 'undefined' ?
-                             image.rows * 40 + (smallScreen ? 'vw' : 'vh')
-                             : (image.rows * 40 * ((smallScreen ? window.innerWidth : window.innerHeight) / 100) + (image.rows - 1) * gap) + 'px'}>
-                        <Image src={image.src}
-                               loader={imageLoader}
-                               alt={t('common.images.' + image.titleKey)}
-                               layout='fill'
-                               objectFit='cover'
-                               loading='eager'/>
-                    </Box>
-                </ImageListItem>
-            ))}
-        </ImageList>
     )
 }

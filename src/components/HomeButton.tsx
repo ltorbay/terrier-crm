@@ -4,8 +4,8 @@ import {Shade} from "../model/Shade";
 import Link from "next/link";
 import Image from "next/image";
 import imageLoader from "../service/ImageLoader";
-import {ICONS} from "../constants/constants";
 import {useTranslation} from "react-i18next";
+import {IMAGES} from "../constants/images";
 
 const HOME_PATH = '/';
 const HOME_KEY = 'pages.home.label'
@@ -30,7 +30,7 @@ export function HomeButton({shade, height}: { shade: Shade, height: number }) {
                             paddingY: '0'
                         }}
                         startIcon={
-                            <Image src={shade === Shade.Dark ? ICONS.dark.logo : ICONS.light.logo}
+                            <Image src={shade === Shade.Dark ? IMAGES.icons.dark.logo : IMAGES.icons.light.logo}
                                    loader={imageLoader}
                                    layout='fill'
                                    objectFit='contain'
