@@ -1,7 +1,7 @@
 import NavigationBar from "../components/NavigationBar";
 import {Shade} from "../model/Shade";
 import * as React from "react";
-import {Box, List, ListItem, Typography, useMediaQuery} from "@mui/material";
+import {Box, List, ListItem, Typography} from "@mui/material";
 import {ImageDecoration} from "../components/ImageDecoration";
 import {TextBox} from "../components/containers/TextBox";
 import {ContentBox} from "../components/containers/ContentBox";
@@ -16,12 +16,12 @@ import {IMAGES} from "../constants/images";
 import {MEDIA_QUERY_1000_BREAKPOINT} from "../constants/constants";
 
 const teamImages: ImageInfo[] = [
-    new ImageInfo(IMAGES.contact.louis, 'domain.arrival', 1, 1),
-    new ImageInfo(IMAGES.contact.popo, 'domain.arrival', 1, 1),
-    new ImageInfo(IMAGES.contact.mathieu, 'domain.arrival', 1, 1),
-    new ImageInfo(IMAGES.contact.cecile, 'domain.arrival', 1, 1),
-    new ImageInfo(IMAGES.contact.crozi, 'domain.arrival', 1, 2),
-    new ImageInfo(IMAGES.contact.chipo, 'domain.arrival', 1, 2)
+    new ImageInfo(IMAGES.contact.louis, 'louis', 1, 1),
+    new ImageInfo(IMAGES.contact.christelle, 'christelle', 1, 1),
+    new ImageInfo(IMAGES.contact.mathieu, 'mathieu', 1, 1),
+    new ImageInfo(IMAGES.contact.cecile, 'cecile', 1, 1),
+    new ImageInfo(IMAGES.contact.crozi, 'crozi', 1, 2),
+    new ImageInfo(IMAGES.contact.chipo, 'chipo', 1, 2)
 ]
 
 // noinspection JSUnusedGlobalSymbols
