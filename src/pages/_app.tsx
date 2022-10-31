@@ -102,17 +102,17 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content="https://www.leterrier-gites.fr/"/>
 
-                <meta property="og:image" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
+                <meta property="og:image" content="https://leterrier-gites.fr/img1920/2022-10-26/Drone/@arthurhabudzik-%20Le%20Terrier%20-%20Drone%20-%20Octobre%202022-9.jpg"/>
                 <meta property="og:image:secure_url"
-                      content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
+                      content="https://leterrier-gites.fr/img1200/2022-10-26/Drone/@arthurhabudzik-%20Le%20Terrier%20-%20Drone%20-%20Octobre%202022-9.jpg"/>
                 <meta property="og:image:width" content="1200"/>
-                <meta property="og:image:height" content="799"/>
+                <meta property="og:image:height" content="898"/>
 
-                <meta property="og:image" content="https://leterrier-gites.fr/img1200/pictures/pool/pool.jpg"/>
+                <meta property="og:image" content="https://leterrier-gites.fr/img1200/2022-10-26/Drone/@arthurhabudzik-%20Le%20Terrier%20-%20Drone%20-%20Octobre%202022-9.jpg"/>
                 <meta property="og:image:secure_url"
-                      content="https://leterrier-gites.fr/img400/pictures/pool/pool_square.jpg"/>
+                      content="https://leterrier-gites.fr/img400/2022-10-26/Drone/@arthurhabudzik-%20Le%20Terrier%20-%20Drone%20-%20Octobre%202022-9.jpg"/>
                 <meta property="og:image:width" content="400"/>
-                <meta property="og:image:height" content="400"/>
+                <meta property="og:image:height" content="299"/>
 
                 <meta property="og:description"
                       content="Bienvenue chez nous ! Notre gîte pouvant accueillir 11 à 15 personnes vous accueille dans le Périgord noir pour des vacances uniques au coeur de la nature."/>
