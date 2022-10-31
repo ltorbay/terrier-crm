@@ -110,16 +110,16 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
 
                 <meta property="og:image" content="https://leterrier-gites.fr/img1200/2022-10-26/Drone/@arthurhabudzik-%20Le%20Terrier%20-%20Drone%20-%20Octobre%202022-9.jpg"/>
                 <meta property="og:image:secure_url"
-                      content="https://leterrier-gites.fr/img400/2022-10-26/Drone/@arthurhabudzik-%20Le%20Terrier%20-%20Drone%20-%20Octobre%202022-9.jpg"/>
+                      content="https://leterrier-gites.fr/img400/2022-10-26/Drone/@arthurhabudzik-%20Le%20Terrier%20-%20Drone%20-%20Octobre%202022-9_400.jpg"/>
                 <meta property="og:image:width" content="400"/>
-                <meta property="og:image:height" content="299"/>
+                <meta property="og:image:height" content="400"/>
 
                 <meta property="og:description"
-                      content="Bienvenue chez nous ! Notre gîte pouvant accueillir 11 à 15 personnes vous accueille dans le Périgord noir pour des vacances uniques au coeur de la nature."/>
+                      content="Bienvenue chez nous ! Notre gîte vous accueille dans le Périgord noir pour des vacances uniques au coeur de la nature."/>
                 <meta property="og:locale" content="fr_FR"/>
                 <meta property="og:locale:alternate" content="en_GB"/>
                 <meta property="description"
-                      content="Bienvenue chez nous ! Notre gîte pouvant accueillir 11 à 15 personnes vous accueille dans le Périgord noir pour des vacances uniques au coeur de la nature."/>
+                      content="Bienvenue chez nous ! Notre gîte vous accueille dans le Périgord noir pour des vacances uniques au coeur de la nature."/>
                 <meta property="robots" content="index,follow"/>
             </Head>
             <ThemeProvider theme={theme}>
