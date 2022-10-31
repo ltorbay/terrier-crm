@@ -6,7 +6,7 @@ export const IMAGES = {
         pear: 'pictures/pear/pear_backside.jpeg',
         grapes: '2022-10-26/Vues generales/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-68.jpg',
         lodge: '2022-10-26/Le Bosc/Jour/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-86.jpg',
-        pool: '2022-10-26/La Piscine/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-117.jpg'
+        pool: '2022-10-26/La piscine/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-117.jpg'
     },
     cottages: {
         amenities: '2022-10-26/Drone/@arthurhabudzik- Le Terrier - Drone - Octobre 2022-39.jpg',
