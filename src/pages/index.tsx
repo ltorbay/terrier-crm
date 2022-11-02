@@ -89,6 +89,7 @@ export default function Home() {
             </Box>
             <Box sx={classes.container}>
                 <Image src={IMAGES.home.main}
+                       quality={45}
                        loader={imageLoader}
                        layout='fill'
                        objectFit='cover'

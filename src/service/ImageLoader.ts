@@ -1,9 +1,11 @@
 import {ImageLoaderProps} from "next/image";
 
-export default function imageLoader({src, width}: ImageLoaderProps) {
-    const queryWidth = width > 1920 ? 1920 : Math.floor(width / 16) * 16
+export default function imageLoader({src, width, quality}: ImageLoaderProps) {
+    const queryWidth = width > 3840 ? 3840 : Math.floor(width / 16) * 16
+    const imagePath = `img${queryWidth}/${src}?q=${quality || 30}`;
+
     if (process.env.NEXT_PUBLIC_IMAGE_SOURCE) {
-        return process.env.NEXT_PUBLIC_IMAGE_SOURCE + `img${queryWidth}/${src}`
+        return process.env.NEXT_PUBLIC_IMAGE_SOURCE + imagePath;
     }
-    return `img${queryWidth}/${src}`
+    return imagePath;
 }
