@@ -6,7 +6,7 @@ export class ImageInfo {
     smallScreenCols: number;
 
     constructor(src: string, titleKey: string, rows?: number, cols?: number, smallScreenCols?: number) {
-        this.src = src;
+        this.src = src.replaceAll(' ', '%20');
         this.titleKey = titleKey;
         this.rows = rows || 1;
         this.cols = cols || 1;

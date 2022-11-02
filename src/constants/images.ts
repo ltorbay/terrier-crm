@@ -2,20 +2,20 @@ import {ImageInfo} from "../model/ImageInfo";
 
 export const IMAGES = {
     home: {
-        main: '2022-10-26/Drone/@arthurhabudzik- Le Terrier - Drone - Octobre 2022-9.jpg',
-        pear: 'pictures/pear/pear_backside.jpeg',
-        grapes: '2022-10-26/Vues generales/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-68.jpg',
-        lodge: '2022-10-26/Le Bosc/Jour/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-86.jpg',
-        pool: '2022-10-26/La piscine/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-117.jpg'
+        main: noSpace('2022-10-26/Drone/@arthurhabudzik- Le Terrier - Drone - Octobre 2022-9.jpg'),
+        pear: noSpace('pictures/pear/pear_backside.jpeg'),
+        grapes: noSpace('2022-10-26/Vues generales/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-68.jpg'),
+        lodge: noSpace('2022-10-26/Le Bosc/Jour/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-86.jpg'),
+        pool: noSpace('2022-10-26/La piscine/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-117.jpg'),
     },
     cottages: {
-        amenities: '2022-10-26/Drone/@arthurhabudzik- Le Terrier - Drone - Octobre 2022-39.jpg',
-        lodge: '2022-10-26/Le Bosc/Nuit/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-35.jpg',
-        pear: '2022-10-26/La maison de la poire/Cuisine/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-129.jpg',
-        grapes: '2022-10-26/Vues generales/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-68.jpg'
+        amenities: noSpace('2022-10-26/Drone/@arthurhabudzik- Le Terrier - Drone - Octobre 2022-39.jpg'),
+        lodge: noSpace('2022-10-26/Le Bosc/Nuit/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-35.jpg'),
+        pear: noSpace('2022-10-26/La maison de la poire/Cuisine/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-129.jpg'),
+        grapes: noSpace('2022-10-26/Vues generales/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-68.jpg'),
     },
     gallery: {
-        main: '2022-10-26/Drone/@arthurhabudzik- Le Terrier - Drone - Octobre 2022-25.jpg',
+        main: noSpace('2022-10-26/Drone/@arthurhabudzik- Le Terrier - Drone - Octobre 2022-25.jpg'),
         domain: [
             new ImageInfo('2022-10-26/Drone/@arthurhabudzik- Le Terrier - Drone - Octobre 2022-40.jpg', 'large.vertical', 1, 1, 2),
             new ImageInfo('2022-10-26/Drone/@arthurhabudzik- Le Terrier - Drone - Octobre 2022-10.jpg', 'afternoon.close.top.down', 2, 2),
@@ -72,12 +72,12 @@ export const IMAGES = {
         ]
     },
     contact: {
-        louis: '2022-10-26/La team/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-90.jpg',
-        christelle: '2022-10-26/La team/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-101.jpg',
-        mathieu: '2022-10-26/La team/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-92.jpg',
-        cecile: '2022-10-26/La team/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-99.jpg',
-        crozi: '2022-10-26/Crozi et Chipo/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-45.jpg',
-        chipo: '2022-10-26/Crozi et Chipo/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-109.jpg'
+        louis: noSpace('2022-10-26/La team/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-90.jpg'),
+        christelle: noSpace('2022-10-26/La team/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-101.jpg'),
+        mathieu: noSpace('2022-10-26/La team/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-92.jpg'),
+        cecile: noSpace('2022-10-26/La team/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-99.jpg'),
+        crozi: noSpace('2022-10-26/Crozi et Chipo/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-45.jpg'),
+        chipo: noSpace('2022-10-26/Crozi et Chipo/@arthurhabudzik- Le Terrier - Boitier - Octobre 2022-109.jpg'),
     },
     icons: {
         dark: {
@@ -100,3 +100,7 @@ export const IMAGES = {
         }
     }
 } 
+
+function noSpace(str: string): string {
+    return str.replaceAll(' ', '%20');
+}
