@@ -5,7 +5,7 @@ import {createTheme, responsiveFontSizes, ThemeProvider} from "@mui/material/sty
 import {MINION, POPPINS} from "../constants/fonts";
 import {useTranslation} from "react-i18next";
 import {Box, CssBaseline, GlobalStyles, Grid, IconButton, useMediaQuery} from "@mui/material";
-import {MEDIA_QUERY_890_BREAKPOINT} from "../constants/constants";
+import {MEDIA_QUERY_650_BREAKPOINT} from "../constants/constants";
 import {store} from "../redux/store";
 import {HomeButton} from "../components/HomeButton";
 import {Shade} from "../model/Shade";
@@ -91,7 +91,7 @@ const classes = {
 
 function App({Component, pageProps}: { Component: React.Component, pageProps: AppProps }) {
     const {t} = useTranslation();
-    const smallScreen = useMediaQuery(MEDIA_QUERY_890_BREAKPOINT);
+    const smallScreen = useMediaQuery(MEDIA_QUERY_650_BREAKPOINT);
 
     return (
         <Provider store={store}>
@@ -163,7 +163,7 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
                                     </IconButton>
                                 </a>
                             </Grid>
-                            <Grid item xs={smallScreen ? 12 : 3} marginTop='2vh'>
+                            <Grid item xs={smallScreen ? 12 : 6} marginTop='2vh'>
                                 <Link href='/termsAndConditions'
                                       key='terms-and-conditions'
                                       style={{textDecoration: 'none'}}>
@@ -175,7 +175,7 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
                                     </a>
                                 </Link>
                             </Grid>
-                            <Grid item xs={smallScreen ? 12 : 3} marginTop='2vh'>
+                            <Grid item xs={smallScreen ? 12 : 6} marginTop='2vh'>
                                 <Link href='/privacyPolicy'
                                       key='privacy-policy'
                                       style={{textDecoration: 'none'}}>
@@ -187,7 +187,7 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
                                     </a>
                                 </Link>
                             </Grid>
-                            <Grid item xs={smallScreen ? 12 : 3} marginTop='2vh'>
+                            <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
                                 <Link href='https://www.hbz-production.com/'
                                       key='photo-credit'
                                       style={{textDecoration: 'none'}}>
@@ -198,7 +198,18 @@ function App({Component, pageProps}: { Component: React.Component, pageProps: Ap
                                     </a>
                                 </Link>
                             </Grid>
-                            <Grid item xs={smallScreen ? 12 : 3} marginTop='2vh'>
+                            <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
+                                <Link href='https://github.com/ltorbay/'
+                                      key='website-credit'
+                                      style={{textDecoration: 'none'}}>
+                                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                    <a style={{textDecoration: 'none'}}>
+                                        <Typography variant='body2'
+                                                    color='primary.dark'>{t('components.footer.website-credit')}</Typography>
+                                    </a>
+                                </Link>
+                            </Grid>
+                            <Grid item xs={smallScreen ? 12 : 4} marginTop='2vh'>
                                 <Link href='/'
                                       key='copyright'
                                       style={{textDecoration: 'none'}}>
