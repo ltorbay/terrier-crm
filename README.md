@@ -5,4 +5,4 @@ npm run next
 docker run --name teriado -v /Users/louistorbay/IdeaProjects/terrier/terrier-crm/out:/usr/share/nginx/html:ro -p 3000:80 nginx
 
 ## Bulk resizing images using imagemagick
-find . -iname '*.jpg' -exec convert {} -verbose -resize 3000x3000 -quality 45\> {} \;
+find . -iname '*.jpg' -exec convert {} -verbose -quality 60\> {} \;
