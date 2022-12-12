@@ -14,6 +14,8 @@ import {ImageGallery} from "../components/ImageGallery";
 import {ImageInfo} from "../model/ImageInfo";
 import {IMAGES} from "../constants/images";
 import {MEDIA_QUERY_1000_BREAKPOINT} from "../constants/constants";
+// @ts-ignore
+import Obfuscate from 'react-obfuscate';
 
 const teamImages: ImageInfo[] = [
     new ImageInfo(IMAGES.contact.louis, 'louis', 1, 1),
@@ -54,13 +56,13 @@ export default function Contact() {
                         <ListItem key='mail' disablePadding sx={{paddingX: '2em'}}>
                             <EmailOutlinedIcon fontSize='medium'/>
                             <Typography variant='h6'>
-                                {'\u00A0\u00A0\u00A0'}leterrier.gites@gmail.com
+                                {'\u00A0\u00A0\u00A0'}<Obfuscate element='span' email='leterrier.gites@gmail.com'/>
                             </Typography>
                         </ListItem>
                         <ListItem key='number' disablePadding sx={{paddingX: '2em'}}>
                             <LocalPhoneOutlinedIcon fontSize='medium'/>
                             <Typography variant='h6'>
-                                {'\u00A0\u00A0\u00A0'}07 63 77 49 33
+                                {'\u00A0\u00A0\u00A0'}<Obfuscate element='span' tel='07 63 77 49 33'/>
                             </Typography>
                         </ListItem>
                     </List>
