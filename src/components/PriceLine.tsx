@@ -52,24 +52,17 @@ export function PriceLine(props: Props) {
                                       {line}<br/>
                                   </Typography>)}</>}/>
             <List dense>
-                {listItems(t, 'common.places.full-cottage', nights, data.pricing.both)}
-                {listItems(t, 'common.places.grape', nights, data.pricing.grape)}
-                {listItems(t, 'common.places.pear', nights, data.pricing.pear)}
+                {listItems(t, nights, data.pricing.both)}
             </List>
         </>
     )
 }
 
-function listItems(t: TFunction<"translation">, titleKey: string, minimumNights: number, line: PricingLine) {
+function listItems(t: TFunction<"translation">, minimumNights: number, line: PricingLine) {
     if (!line.weekly && !line.nightly) return undefined;
     return (
-        <ListItem key={titleKey}>
+        <ListItem>
             <List dense>
-                <ListItem key='title'>
-                    <Typography display='block' textAlign='justify' variant='h6'>
-                        <Trans i18nKey={titleKey}/>
-                    </Typography>
-                </ListItem>
                 {listItemText(t, false, minimumNights, line.weekly)}
                 {listItemText(t, true, minimumNights, line.nightly)}
             </List>

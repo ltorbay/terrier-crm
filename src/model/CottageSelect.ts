@@ -7,18 +7,6 @@ export enum CottageSelect {
     GRAPE
 }
 
-export function cottageToLabel(select: CottageSelect): string {
-    switch (select) {
-        case CottageSelect.BOTH:
-            return 'common.places.full-cottage';
-        case CottageSelect.PEAR:
-            return 'common.places.pear';
-        case CottageSelect.GRAPE:
-            return 'common.places.grape';
-    }
-}
-
-
 export function cottageToIcon(select: CottageSelect): string {
     switch (select) {
         case CottageSelect.BOTH:

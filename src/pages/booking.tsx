@@ -1,19 +1,8 @@
 import dynamic from "next/dynamic";
 import {Props} from "../components/BookingDateRange";
 import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
-import {CottageSelect, cottageToIcon, cottageToLabel, cottageToString} from "../model/CottageSelect";
-import {
-    Box,
-    Card,
-    FormControl,
-    FormGroup,
-    Grid,
-    InputLabel,
-    MenuItem,
-    Select,
-    Typography,
-    useMediaQuery
-} from "@mui/material";
+import {CottageSelect, cottageToIcon, cottageToString} from "../model/CottageSelect";
+import {Box, Card, FormGroup, Grid, Typography, useMediaQuery} from "@mui/material";
 import moment, {BACKEND_DATES_FORMAT, MEDIA_QUERY_550_BREAKPOINT} from "../constants/constants";
 import {useAppDispatch} from "../redux/hooks";
 import {fetchReservedDates} from "../redux/slice/ReservedDatesSlice";
@@ -41,9 +30,9 @@ const BookingDateRange = dynamic<Props>(
 export default function Booking() {
     // @ts-ignore
     const palette = useTheme().palette;
+    const cottage = CottageSelect.BOTH;
     const [loading, setLoading] = useState<boolean>(false);
     const [downPayment, setDownPayment] = useState<boolean>(false);
-    const [cottage, setCottage] = useState<CottageSelect>(CottageSelect.BOTH);
     const [pricingCalculation, setPricingCalculation] = useState<BookingPricingCalculation>();
     const [enabledPaymentForm, enablePaymentForm] = useState(false);
     const [selectedRange, selectRange] = useState<MomentRange>();
@@ -69,25 +58,6 @@ export default function Booking() {
                 <ImageDecoration icon={cottageToIcon(cottage)} marginTop='50px'/>
                 <ContentBox titleKey='pages.booking.book-stay' width={tinyScreen ? '300px' : '500px'}>
                     <FormGroup>
-                        <FormControl fullWidth>
-                            <Select onChange={action => setCottage(action.target.value as CottageSelect)}
-                                    defaultValue={CottageSelect.BOTH}
-                                    sx={{backgroundColor: 'white'}}
-                                    inputProps={{name: 'cottage', id: 'uncontrolled-native'}}>
-                                <MenuItem value={CottageSelect.BOTH}>
-                                    <Trans i18nKey={cottageToLabel(CottageSelect.BOTH)}/>
-                                </MenuItem>
-                                <MenuItem value={CottageSelect.PEAR}>
-                                    <Trans i18nKey={cottageToLabel(CottageSelect.PEAR)}/>
-                                </MenuItem>
-                                <MenuItem value={CottageSelect.GRAPE}>
-                                    <Trans i18nKey={cottageToLabel(CottageSelect.GRAPE)}/>
-                                </MenuItem>
-                            </Select>
-                            <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                                &nbsp;<Trans i18nKey='pages.booking.select-cottage'/>
-                            </InputLabel>
-                        </FormControl>
                         <Typography display='block' textAlign='justify' variant='body2' marginLeft='1em'>
                             <Trans i18nKey={cottageSizingKey(cottage)}/>
                         </Typography>
