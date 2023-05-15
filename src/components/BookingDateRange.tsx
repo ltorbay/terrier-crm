@@ -73,7 +73,7 @@ export default function BookingDateRange(props: Props) {
             setSeasons(pricing.configuration.map((item: PricingConfigurationStateItem) => {
                 return {
                     start: moment(item.start),
-                    peakSeason: 'PEAK_SEASON' === item.periodType,
+                    peakSeason: 8 === item.minConsecutiveDays,
                     minConsecutiveDays: item.minConsecutiveDays,
                 }
             }));
