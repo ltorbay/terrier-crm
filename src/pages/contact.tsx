@@ -35,13 +35,7 @@ export default function Contact() {
             </header>
             <Box sx={{paddingTop: '7vh'}}/>
             <ImageDecoration right/>
-            <TextBox titleKey={'pages.contact.title'}
-                     contentKey={'pages.contact.our-story'}/>
-            <ContentBox>
-                <ImageGallery images={teamImages} mediaQuery={MEDIA_QUERY_1000_BREAKPOINT}/>
-            </ContentBox>
-            <TextBox contentKey={'pages.contact.contact-us-body'}/>
-            <ContentBox>
+            <ContentBox titleKey={'pages.contact.title'}>
                 <Typography display='block' textAlign='justify' variant='h6'>
                     <strong><Trans i18nKey='pages.contact.our-coordinates'/></strong><br/>
                 </Typography>
@@ -67,6 +61,25 @@ export default function Contact() {
                         </ListItem>
                     </List>
                 </Typography>
+            </ContentBox>
+            <ContentBox>
+                <Typography display='block' textAlign='justify' variant='h6'>
+                    <strong><Trans i18nKey='pages.contact.our-project'/></strong><br/>
+                </Typography>
+                <Typography display='block' textAlign='justify' variant='body1'>
+                    <Trans i18nKey={'pages.contact.our-story'}/>
+                </Typography>
+            </ContentBox>
+            <ContentBox>
+                <Typography display='block' textAlign='justify' variant='h6'>
+                    <strong><Trans i18nKey='pages.contact.events'/></strong><br/>
+                </Typography>
+                <Typography display='block' textAlign='justify' variant='body1'>
+                    <Trans i18nKey={'pages.contact.contact-us-body'}/>
+                </Typography>
+            </ContentBox>
+            <ContentBox>
+                <ImageGallery images={teamImages} mediaQuery={MEDIA_QUERY_1000_BREAKPOINT}/>
             </ContentBox>
             <StickyBookingButton/>
         </>
